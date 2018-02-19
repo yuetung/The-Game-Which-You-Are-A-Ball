@@ -10,19 +10,19 @@ public class PlayerController : NetworkBehaviour {
 	[Tooltip("true projectile speed = player shoot speed * projectile speed")]
 	public float playerShootSpeed=2.0f;
 	[Tooltip("Projectie for Default element")]
-	public Rigidbody2D projectileDefault=null;
+	public GameObject projectileDefault=null;
 	[Tooltip("Projectie for Fire element")]
-	public Rigidbody2D projectileFire=null;
+	public GameObject projectileFire=null;
 	[Tooltip("Projectie for Water element")]
-	public Rigidbody2D projectileWater=null;
+	public GameObject projectileWater=null;
 	[Tooltip("Projectie for Lightning element")]
-	public Rigidbody2D projectileLightning=null;
+	public GameObject projectileLightning=null;
 	[Tooltip("Projectie for Earth element")]
-	public Rigidbody2D projectileEarth=null;
+	public GameObject projectileEarth=null;
 	[Tooltip("Projectie for Wind element")]
-	public Rigidbody2D projectileWind=null;
+	public GameObject projectileWind=null;
 	[Tooltip("Projectie for Antimatter element")]
-	public Rigidbody2D projectileAntimatter=null;
+	public GameObject projectileAntimatter=null;
 	[Tooltip("Trail Renderer Material")]
 	public Material trailMaterial=null;
 	public float trailAlpha=0.2f;
@@ -113,16 +113,16 @@ public class PlayerController : NetworkBehaviour {
     [Command]
     private void CmdShoot(Vector2 shootDirection)
     {
-        Rigidbody2D projectile = getProjectileFromType();
+        GameObject projectile = getProjectileFromType();
         // Create Projectile
-        Rigidbody2D clone;
-        clone = Instantiate(projectile, transform.position, transform.rotation);
-        clone.velocity = shootDirection.normalized * playerShootSpeed * projectile.GetComponent<ProjectileController>().projectileSpeed;
-        clone.rotation = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
-        //NetworkServer.Spawn(clone);
+        GameObject clone;
+        clone = Instantiate(projectile, transform.position, transform.rotation) as GameObject;
+        clone.GetComponent<Rigidbody2D>().velocity = shootDirection.normalized * playerShootSpeed * projectile.GetComponent<ProjectileController>().projectileSpeed;
+        clone.GetComponent<Rigidbody2D>().rotation = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
+        NetworkServer.Spawn(clone);
     }
     
-	private Rigidbody2D getProjectileFromType() {
+	private GameObject getProjectileFromType() {
 		switch (elementType) {
 		case ElementType.Fire:
 			return projectileFire;

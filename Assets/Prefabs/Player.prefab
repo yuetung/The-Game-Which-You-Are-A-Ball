@@ -259,9 +259,9 @@ MonoBehaviour:
   moveSpeed: 10
   clickDragSensitivity: 0.1
   playerShootSpeed: 1
-  projectileDefault: {fileID: 50782933194062984, guid: bd5724900e5b551408d15391d3bfe8f6,
+  projectileDefault: {fileID: 1593106812344302, guid: bd5724900e5b551408d15391d3bfe8f6,
     type: 2}
-  projectileFire: {fileID: 50782933194062984, guid: d850a7b457631d240b68fbb0d45e4722,
+  projectileFire: {fileID: 1593106812344302, guid: d850a7b457631d240b68fbb0d45e4722,
     type: 2}
   projectileWater: {fileID: 0}
   projectileLightning: {fileID: 0}
