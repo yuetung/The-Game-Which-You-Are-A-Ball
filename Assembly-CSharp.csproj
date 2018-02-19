@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{2D91530A-7793-2A6F-41C4-4D7DBCB01F42}</ProjectGuid>
+    <ProjectGuid>{621FC1ED-296E-373C-0CF5-AAAED4400C16}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -51,9 +51,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\PlayerControler.cs" />
      <Compile Include="Assets\Scripts\PowerUpPickup.cs" />
      <Compile Include="Assets\Scripts\ProjectileController.cs" />
+     <Compile Include="Assets\Scripts\ProjectileFactory.cs" />
      <Compile Include="Assets\Scripts\TimedObjectDestruction.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
