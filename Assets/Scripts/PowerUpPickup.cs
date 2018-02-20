@@ -24,6 +24,9 @@ public class PowerUpPickup : MonoBehaviour {
 			if (explosion) {
 				Instantiate (explosion, transform.position, transform.rotation);
 			}
+			if (GameManager.gm) {
+				GameManager.gm.energyUp (20);
+			}
 			DestroyObject (this.gameObject);
 		}
 
