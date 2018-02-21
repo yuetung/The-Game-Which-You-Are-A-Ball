@@ -3,7 +3,7 @@
 public class PowerUpPickup : MonoBehaviour {
 
 	public PlayerController.ElementType elementType;
-	public float energy=10.0f;
+	public int energy=10;
 	[Tooltip("explosion particle effect")]
 	public GameObject explosion;
 

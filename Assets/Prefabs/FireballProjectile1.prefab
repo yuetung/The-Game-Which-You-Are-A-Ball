@@ -25,6 +25,8 @@ GameObject:
   - component: {fileID: 95776409165702720}
   - component: {fileID: 114871498063997084}
   - component: {fileID: 114086671879420930}
+  - component: {fileID: 114996125942298294}
+  - component: {fileID: 114136025452324334}
   m_Layer: 0
   m_Name: FireballProjectile1
   m_TagString: Projectile
@@ -111,6 +113,27 @@ MonoBehaviour:
   projectileSpeed: 10
   projectileDamage: 1
   explodeAnimationSeconds: 2
+--- !u!114 &114136025452324334
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593106812344302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 2
+  m_SendInterval: 0
+  m_SyncRotationAxis: 3
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!114 &114871498063997084
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -124,6 +147,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeOut: 2
   detachChildren: 0
+--- !u!114 &114996125942298294
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593106812344302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 216
+    i1: 80
+    i2: 167
+    i3: 180
+    i4: 87
+    i5: 99
+    i6: 29
+    i7: 36
+    i8: 11
+    i9: 104
+    i10: 251
+    i11: 176
+    i12: 212
+    i13: 94
+    i14: 71
+    i15: 34
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!212 &212105419801229082
 SpriteRenderer:
   m_ObjectHideFlags: 1

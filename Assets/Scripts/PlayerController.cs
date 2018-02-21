@@ -13,11 +13,11 @@ public class PlayerController : NetworkBehaviour {
 	public Material trailMaterial=null;
 	public float trailAlpha=0.2f;
 	public ElementType elementType = ElementType.Default;
-	public float energy = 0;
+	public int energy = 0;
 	public int elementLevel = 0;
+	public int health = 100;
 	private Vector2 mouseDownLocation; // where the mouse is initially held down
 	private Vector2 moveTarget;  // target point to move player towards
-
 	// Possible element types
 	public enum ElementType {
 		Default,
@@ -34,6 +34,7 @@ public class PlayerController : NetworkBehaviour {
 	Rigidbody2D _rigidbody;
 	TrailRenderer _trailRenderer;
 	ProjectileFactory projectileFactory;
+	GUIManager guiManager;
 		
 	// Use this for initialization
 	void Start () {
@@ -45,6 +46,10 @@ public class PlayerController : NetworkBehaviour {
 		moveTarget = transform.position;
 		elementType = ElementType.Default;
 		projectileFactory = GameManager.gm.GetComponent<ProjectileFactory>();
+		guiManager = GameManager.gm.GetComponent<GUIManager>();
+		if (isLocalPlayer) {
+			guiManager.register (gameObject);
+		}
 	}
 	
 	// Update is called once per frame
@@ -72,9 +77,8 @@ public class PlayerController : NetworkBehaviour {
                 CmdShoot(shootDirection);
 			}
 		}
-
 		move ();
-
+		guiManager.updateAll ();
 		//Debug.Log ("Element: "+elementType.ToString()+" Level: "+elementLevel.ToString()+" Energy: "+energy.ToString());
 	}
 
@@ -125,7 +129,7 @@ public class PlayerController : NetworkBehaviour {
 	}
 
 	// Change user's current ElementType if element obtained is different from current elementType
-	public void gainPowerUp(ElementType newElementType, float energyAmount) {
+	public void gainPowerUp(ElementType newElementType, int energyAmount) {
 		if (elementType != newElementType) {
 			elementType = newElementType;
 			elementLevel = 1;
@@ -140,7 +144,7 @@ public class PlayerController : NetworkBehaviour {
 
 	}
 
-	private void gainEnergy(float amount) {
+	private void gainEnergy(int amount) {
 		energy = energy + amount;
 		while (energy >= 100) {
 			elementLevel++;
@@ -149,7 +153,7 @@ public class PlayerController : NetworkBehaviour {
 
 	}
 
-	private void depletesEnergy(float amount) {
+	private void depletesEnergy(int amount) {
 		if (elementType == ElementType.Default || elementLevel==0)
 			return;
 		energy -= amount;
