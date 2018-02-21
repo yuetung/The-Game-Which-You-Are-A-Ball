@@ -1,4 +1,10 @@
-Branch for multiplayer network. 
+Branch for multiplayer network
+===
 
-Moved shoot to a new function, CmdShoot.
-Seems a little repetitive to have so many similar projectiles, is there an inheritance possible in Unity?
+Change network to 2P scene.
+
+Health and Damage and Energy syncing in network. 
+
+Animation change when picking up powerups network.
+
+Spawnpoints/spawner.
