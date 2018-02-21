@@ -18,6 +18,8 @@ public class PlayerController : NetworkBehaviour {
 	public int health = 100;
 	private Vector2 mouseDownLocation; // where the mouse is initially held down
 	private Vector2 moveTarget;  // target point to move player towards
+	private float timeCounter = 1.0f;
+	private float energyLossRate = 1.0f;
 	// Possible element types
 	public enum ElementType {
 		Default,
@@ -78,6 +80,12 @@ public class PlayerController : NetworkBehaviour {
 			}
 		}
 		move ();
+		// Reduce energy over time
+		timeCounter += Time.deltaTime;
+		if (timeCounter >= 1 / energyLossRate) {
+			depletesEnergy (1);
+			timeCounter = 0;
+		}
 		guiManager.updateAll ();
 		//Debug.Log ("Element: "+elementType.ToString()+" Level: "+elementLevel.ToString()+" Energy: "+energy.ToString());
 	}
@@ -132,7 +140,7 @@ public class PlayerController : NetworkBehaviour {
 	public void gainPowerUp(ElementType newElementType, int energyAmount) {
 		if (elementType != newElementType) {
 			elementType = newElementType;
-			elementLevel = 1;
+			setElementLevel (1);
 			this.energy = energyAmount;
 			changeSprite ();
 
@@ -147,7 +155,7 @@ public class PlayerController : NetworkBehaviour {
 	private void gainEnergy(int amount) {
 		energy = energy + amount;
 		while (energy >= 100) {
-			elementLevel++;
+			setElementLevel (elementLevel + 1);
 			energy -= 100;
 		}
 
@@ -162,15 +170,20 @@ public class PlayerController : NetworkBehaviour {
 				energy = 0;
 				elementType = ElementType.Default;
 				changeSprite ();
-				elementLevel = 0;
+				setElementLevel (0);
 			} else {
 				while (energy <= 0) {
-					elementLevel--;
+					setElementLevel (elementLevel - 1);
 					energy += 100;
 				}
 			}
 		}
 
+	}
+
+	private void setElementLevel(int newElementLevel) {
+		elementLevel = newElementLevel;
+		energyLossRate = Mathf.Pow (elementLevel , 1.5f);
 	}
 
 	// Set the sprite animation and trailRenderer color

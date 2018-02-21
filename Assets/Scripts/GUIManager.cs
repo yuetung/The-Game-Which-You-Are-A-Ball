@@ -8,7 +8,7 @@ public class GUIManager : MonoBehaviour {
 	public int health = 100;
 	public int energy = 0;
 	public PlayerController.ElementType elementType = PlayerController.ElementType.Default;
-	public int level = 1;
+	public int level = 0;
 	public PlayerController playerController;
 	public Text mainHealthDisplay;
 	public Text mainEnergyDisplay;
