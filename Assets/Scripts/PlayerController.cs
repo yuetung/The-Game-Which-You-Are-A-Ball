@@ -75,7 +75,7 @@ public class PlayerController : NetworkBehaviour {
 
 		move ();
 
-		Debug.Log ("Element: "+elementType.ToString()+" Level: "+elementLevel.ToString()+" Energy: "+energy.ToString());
+		//Debug.Log ("Element: "+elementType.ToString()+" Level: "+elementLevel.ToString()+" Energy: "+energy.ToString());
 	}
 
 	// set moveTarget of where the player should go to
@@ -87,7 +87,8 @@ public class PlayerController : NetworkBehaviour {
 
 
 	// Obtain a projectile from ProjectileFactory and shoots it
-	private void shootProjectile (Vector2 shootDirection) {
+    [Command]
+	private void CmdShoot (Vector2 shootDirection) {
 		Rigidbody2D projectile = projectileFactory.getProjectileFromType (elementType, elementLevel);
 		Rigidbody2D clone;
 		clone = Instantiate (projectile, transform.position, transform.rotation) as Rigidbody2D;
@@ -95,6 +96,7 @@ public class PlayerController : NetworkBehaviour {
 		Vector2 velocity = shootDirection.normalized * playerShootSpeed * projectile.GetComponent<ProjectileController>().projectileSpeed;
 		float rotation = Mathf.Atan2 (shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
 		cloneGameObject.GetComponent<ProjectileController> ().setVelocityAndRotation (velocity, rotation);
+        NetworkServer.Spawn(cloneGameObject);
 		depletesEnergy (elementLevel * 10);
 	}
 

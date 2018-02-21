@@ -56,7 +56,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 1915009595028262}
   m_BodyType: 0
   m_Simulated: 1
-  m_UseFullKinematicContacts: 1
+  m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -79,9 +79,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.00999999, y: 0.010797501}
   serializedVersion: 2
-  m_Radius: 0.3846979
+  m_Radius: 0.38469785
 --- !u!95 &95794146531697648
 Animator:
   serializedVersion: 3
@@ -134,7 +134,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.4
+  m_Time: 0.8
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 0.7
@@ -259,18 +259,10 @@ MonoBehaviour:
   moveSpeed: 10
   clickDragSensitivity: 0.1
   playerShootSpeed: 1
-  projectileDefault: {fileID: 1593106812344302, guid: bd5724900e5b551408d15391d3bfe8f6,
-    type: 2}
-  projectileFire: {fileID: 1593106812344302, guid: d850a7b457631d240b68fbb0d45e4722,
-    type: 2}
-  projectileWater: {fileID: 0}
-  projectileLightning: {fileID: 0}
-  projectileEarth: {fileID: 0}
-  projectileWind: {fileID: 0}
-  projectileAntimatter: {fileID: 0}
   trailMaterial: {fileID: 2100000, guid: 96939af4e8e264e4aa75f101ec226be5, type: 2}
   trailAlpha: 0.4
   elementType: 0
+  energy: 0
   elementLevel: 1
 --- !u!212 &212226190400297144
 SpriteRenderer:

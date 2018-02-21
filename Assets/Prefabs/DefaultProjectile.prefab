@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114865525049991296}
   - component: {fileID: 95249657183665752}
   - component: {fileID: 114811695859772010}
-  - component: {fileID: 114234066095153868}
+  - component: {fileID: 114271954615399718}
   m_Layer: 0
   m_Name: DefaultProjectile
   m_TagString: Projectile
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeOut: 1
   detachChildren: 0
---- !u!114 &114234066095153868
+--- !u!114 &114271954615399718
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1593106812344302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 2
