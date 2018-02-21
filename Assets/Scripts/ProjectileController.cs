@@ -10,6 +10,14 @@ public class ProjectileController : MonoBehaviour {
 
 	[Tooltip("how many seconds before destroying object when hit, leave just enought to play animation")]
 	public float explodeAnimationSeconds = 1.0f;
+
+	// Store references to gamebject Components
+	private Rigidbody2D _rigidbody;
+
+	void Awake () {
+		_rigidbody = gameObject.GetComponent<Rigidbody2D>();
+	}
+
 	// Use this for initialization
 	void Start () {
 		
@@ -18,6 +26,12 @@ public class ProjectileController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	// Initializer called by Player during instantiation
+	public void setVelocityAndRotation(Vector2 velocity, float rotation) {
+		_rigidbody.velocity = velocity;
+		_rigidbody.rotation = rotation;
 	}
 
 	// Collision with wall
