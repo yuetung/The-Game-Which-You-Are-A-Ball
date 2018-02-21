@@ -1,12 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ProjectileFactory.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PauseMenu.cs">
     <Files>
-      <File FileName="Assets\Scripts\ProjectileFactory.cs" Line="95" Column="11" />
-      <File FileName="Assets\Scripts\PowerUpPickup.cs" Line="12" Column="32" />
-      <File FileName="Assets\Scripts\ProjectileController.cs" Line="6" Column="2" />
-      <File FileName="Assets\Scripts\PlayerControler.cs" Line="88" Column="21" />
-      <File FileName="Assets\Scripts\GameManager.cs" Line="10" Column="2" />
+      <File FileName="Assets\Scripts\ProjectileFactory.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PowerUpPickup.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ProjectileController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerControler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MainMenu\MainMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\PauseMenu.cs" Line="8" Column="32" />
+      <File FileName="Assets\PauseMenuList.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
