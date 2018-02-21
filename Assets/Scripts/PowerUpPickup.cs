@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PowerUpPickup : MonoBehaviour {
 
-	public PlayerControler.ElementType elementType;
+	public PlayerController.ElementType elementType;
 	public float energy=10.0f;
 	[Tooltip("explosion particle effect")]
 	public GameObject explosion;
@@ -22,7 +20,7 @@ public class PowerUpPickup : MonoBehaviour {
 	// Collision with player
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Player") {
-			other.gameObject.GetComponent<PlayerControler> ().gainPowerUp (elementType, energy);
+			other.gameObject.GetComponent<PlayerController> ().gainPowerUp (elementType, energy);
 			if (explosion) {
 				Instantiate (explosion, transform.position, transform.rotation);
 			}
