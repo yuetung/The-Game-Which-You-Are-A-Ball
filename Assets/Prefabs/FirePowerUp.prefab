@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 50302538553946656}
   - component: {fileID: 58772568070238552}
   - component: {fileID: 114815835300546078}
+  - component: {fileID: 114866183963964654}
   m_Layer: 0
   m_Name: FirePowerUp
   m_TagString: PowerUp
@@ -122,7 +123,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementType: 1
+  energy: 10
   explosion: {fileID: 1721851429065050, guid: 6315c69064b0c5b43b850b14b07cf062, type: 2}
+--- !u!114 &114866183963964654
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1878414360261748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 147
+    i1: 22
+    i2: 53
+    i3: 37
+    i4: 144
+    i5: 16
+    i6: 153
+    i7: 148
+    i8: 11
+    i9: 240
+    i10: 166
+    i11: 118
+    i12: 172
+    i13: 50
+    i14: 93
+    i15: 9
+  m_ServerOnly: 1
+  m_LocalPlayerAuthority: 0
 --- !u!212 &212250104227597220
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -132,6 +166,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -147,6 +182,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
