@@ -11,7 +11,7 @@ public class PowerUpSpawner : NetworkBehaviour {
 	void Update () {
 
         //just some random code to spawn some stuff, time could be better coded than <0.01
-		if(Time.time%1 < 0.01)
+		if(Time.time%1 < 0.005)
         {
             Spawn();
         }
@@ -45,7 +45,6 @@ public class PowerUpSpawner : NetworkBehaviour {
             i++;
         }
         while (nearPlayer && i < 100);
-        Debug.Log(i);
 
 
         //We need to randomly generate powerups too, currently it's spawning the fire powerup.

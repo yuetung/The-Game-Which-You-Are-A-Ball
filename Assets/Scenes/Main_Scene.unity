@@ -583,6 +583,8 @@ MonoBehaviour:
   m_OnlineScene: 
   m_SpawnPrefabs:
   - {fileID: 1593106812344302, guid: bd5724900e5b551408d15391d3bfe8f6, type: 2}
+  - {fileID: 1593106812344302, guid: d850a7b457631d240b68fbb0d45e4722, type: 2}
+  - {fileID: 1593106812344302, guid: 1c25e549c243e964096e9563f9272c27, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -1406,6 +1408,7 @@ MonoBehaviour:
   mainElementDisplay: {fileID: 1820079695}
   mainLevelDisplay: {fileID: 1804188762}
   mainGameOverDisplay: {fileID: 1581728934}
+  mainNetworkIPAddress: {fileID: 1963347324}
   counter: 1
 --- !u!114 &1354272045
 MonoBehaviour:
@@ -2439,6 +2442,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4069923675676102, guid: 93163525901099940bf0a676ac325d09,
     type: 2}
   m_PrefabInternal: {fileID: 1195994455}
+--- !u!114 &1963347324 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114530487489824446, guid: 6366d48e80247e74fb1d0a5b97fa2efd,
+    type: 2}
+  m_PrefabInternal: {fileID: 1881075073}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!4 &1979296181 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4069923675676102, guid: e3f5fd0f50289c14cb375a5b3009d4a1,

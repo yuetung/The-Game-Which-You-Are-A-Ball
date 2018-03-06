@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class GUIManager : MonoBehaviour {
+public class GUIManager : NetworkBehaviour {
 
 	public int health = 100;
 	public int energy = 0;
@@ -15,6 +16,7 @@ public class GUIManager : MonoBehaviour {
 	public Text mainElementDisplay;
 	public Text mainLevelDisplay;
 	public Text mainGameOverDisplay;
+    public Text mainNetworkIPAddress;
 
 	public int counter = 1;
 
@@ -27,11 +29,19 @@ public class GUIManager : MonoBehaviour {
 		mainElementDisplay.text = "Element: Default";
 		mainLevelDisplay.text = "Level: 1";
 		mainGameOverDisplay.text = "";
+        mainNetworkIPAddress.text = "a a a a ";
 	}
-	
-	// Update is called once per frame
-	// Update is used to check to run idle state
-	void Update () {
+
+    public virtual void OnClientConnect(NetworkConnection conn)
+    {
+        ClientScene.Ready(conn);
+        ClientScene.AddPlayer(0);
+        mainNetworkIPAddress.text = conn.address;
+    }
+
+    // Update is called once per frame
+    // Update is used to check to run idle state
+    void Update () {
 
 		// check if health < 0
 //		if (health <= 0) {

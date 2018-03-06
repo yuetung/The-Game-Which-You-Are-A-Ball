@@ -1385,6 +1385,7 @@ MonoBehaviour:
   mainElementDisplay: {fileID: 1820079695}
   mainLevelDisplay: {fileID: 1804188762}
   mainGameOverDisplay: {fileID: 1581728934}
+  mainNetworkIPAddress: {fileID: 1881075074}
   counter: 1
 --- !u!114 &1354272045
 MonoBehaviour:
@@ -2410,9 +2411,20 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114530487489824446, guid: 6366d48e80247e74fb1d0a5b97fa2efd,
+        type: 2}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6366d48e80247e74fb1d0a5b97fa2efd, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1881075074 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114530487489824446, guid: 6366d48e80247e74fb1d0a5b97fa2efd,
+    type: 2}
+  m_PrefabInternal: {fileID: 1881075073}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!4 &1922640752 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4069923675676102, guid: 93163525901099940bf0a676ac325d09,
