@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GUIManager : MonoBehaviour {
 
 	public int health = 100;
+	public float health2 = 1.0f;
 	public int energy = 0;
 	public PlayerController.ElementType elementType = PlayerController.ElementType.Default;
 	public int level = 0;
@@ -15,6 +16,8 @@ public class GUIManager : MonoBehaviour {
 	public Text mainElementDisplay;
 	public Text mainLevelDisplay;
 	public Text mainGameOverDisplay;
+
+	public Slider HealthBar;
 
 	public int counter = 1;
 
@@ -27,6 +30,7 @@ public class GUIManager : MonoBehaviour {
 		mainElementDisplay.text = "Element: Default";
 		mainLevelDisplay.text = "Level: 1";
 		mainGameOverDisplay.text = "";
+		HealthBar.value = 1.0f;
 	}
 	
 	// Update is called once per frame
@@ -87,7 +91,12 @@ public class GUIManager : MonoBehaviour {
 			health = 0;
 			EndGame ();
 		}
+		// Text UI
 		mainHealthDisplay.text = "Health: " + health.ToString ();
+
+		// Slidebar UI
+		health2 = health/100.0f;
+		HealthBar.value = health2;
 	}
 		
 	public void updateElement(PlayerController.ElementType newElement){
