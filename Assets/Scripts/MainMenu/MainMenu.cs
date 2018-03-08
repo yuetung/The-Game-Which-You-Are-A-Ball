@@ -10,7 +10,9 @@ public class MainMenu : MonoBehaviour {
 
 	}
 	public void Play2(){
-		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 2);
+        Debug.Log(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 2);
+        
 	}
 	public void BossAi(){
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 2);

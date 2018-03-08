@@ -923,11 +923,13 @@ MonoBehaviour:
   m_PlayerPrefab: {fileID: 1915009595028262, guid: 70e75b4836006014897cc03eee190e63,
     type: 2}
   m_AutoCreatePlayer: 1
-  m_PlayerSpawnMethod: 0
+  m_PlayerSpawnMethod: 1
   m_OfflineScene: 
   m_OnlineScene: 
   m_SpawnPrefabs:
   - {fileID: 1593106812344302, guid: bd5724900e5b551408d15391d3bfe8f6, type: 2}
+  - {fileID: 1593106812344302, guid: d850a7b457631d240b68fbb0d45e4722, type: 2}
+  - {fileID: 1593106812344302, guid: 1c25e549c243e964096e9563f9272c27, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -1011,6 +1013,46 @@ MonoBehaviour:
   showGUI: 1
   offsetX: 0
   offsetY: 0
+--- !u!1 &817000726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 817000728}
+  - component: {fileID: 817000727}
+  m_Layer: 0
+  m_Name: SpawnPoint 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &817000727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 817000726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1050975500, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &817000728
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 817000726}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &826298998
 Prefab:
   m_ObjectHideFlags: 0
@@ -1941,6 +1983,7 @@ MonoBehaviour:
   HealthBar: {fileID: 1136603177}
   LoadingBar: {fileID: 297681930}
   LevelText2: {fileID: 968215929}
+  mainNetworkIPAddress: {fileID: 1963347324}
   counter: 1
 --- !u!114 &1354272045
 MonoBehaviour:
@@ -3043,6 +3086,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4069923675676102, guid: 93163525901099940bf0a676ac325d09,
     type: 2}
   m_PrefabInternal: {fileID: 1195994455}
+--- !u!114 &1963347324 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114530487489824446, guid: 6366d48e80247e74fb1d0a5b97fa2efd,
+    type: 2}
+  m_PrefabInternal: {fileID: 1881075073}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!4 &1979296181 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4069923675676102, guid: e3f5fd0f50289c14cb375a5b3009d4a1,
