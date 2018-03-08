@@ -48,7 +48,7 @@ public class GUIManager : NetworkBehaviour {
 		HealthBar.value = 1.0f;
 		LoadingBar.GetComponent<Image> ().fillAmount = 0.0f;
 		LevelText2.text = "1";
-    mainNetworkIPAddress.text = "a a a a ";
+	    //mainNetworkIPAddress.text = "a a a a ";
 	}
 
     public virtual void OnClientConnect(NetworkConnection conn)

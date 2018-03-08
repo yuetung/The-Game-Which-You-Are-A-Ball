@@ -9,7 +9,7 @@ public class PowerUpPickup : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		transform.SetParent (GameObject.Find("PowerUps").transform);
 	}
 	
 	// Update is called once per frame
@@ -27,6 +27,10 @@ public class PowerUpPickup : MonoBehaviour {
 			DestroyObject (this.gameObject);
 		}
 
+	}
+
+	public void setEnergy(int amount){
+		energy = amount;
 	}
 
 }

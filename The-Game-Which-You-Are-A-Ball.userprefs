@@ -1,12 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GUIManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PowerUpPickup.cs">
     <Files>
-      <File FileName="Assets/GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GUIManager.cs" Line="148" Column="42" />
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="200" Column="12" />
-      <File FileName="Assets/Scripts/PauseMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Progress.cs" Line="6" Column="2" />
+      <File FileName="Assets\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUIManager.cs" Line="51" Column="8" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PauseMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Progress.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PowerUpSpawner.cs" Line="59" Column="38" />
+      <File FileName="Assets\Scripts\PowerUpPickup.cs" Line="13" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

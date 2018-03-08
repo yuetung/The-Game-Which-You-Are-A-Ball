@@ -5,7 +5,10 @@ using UnityEngine.Networking;
 
 public class PowerUpSpawner : NetworkBehaviour {
 
-    public GameObject powerUpPrefab;
+	[Tooltip ("Include power ups here (each has equal chance of spawning)")]
+    public GameObject[] powerUpPrefabs;
+	public int minEnergy = 10;
+	public int maxEnergy = 80;
     public GameObject players;
     
 	void Update () {
@@ -50,8 +53,9 @@ public class PowerUpSpawner : NetworkBehaviour {
         //We need to randomly generate powerups too, currently it's spawning the fire powerup.
         //The strength/level of powerups should also be randomized.
 
-        var powerUp = (GameObject)Instantiate(powerUpPrefab, location, new Quaternion());
-        
+		GameObject powerUpPrefab = powerUpPrefabs[Random.Range(0,powerUpPrefabs.Length)];
+        GameObject powerUp = (GameObject)Instantiate(powerUpPrefab, location, new Quaternion());
+		powerUp.GetComponent<PowerUpPickup> ().setEnergy (Random.Range (minEnergy, maxEnergy));
         NetworkServer.Spawn(powerUp);
     }
 

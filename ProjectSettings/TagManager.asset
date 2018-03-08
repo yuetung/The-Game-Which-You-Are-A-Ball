@@ -41,6 +41,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Power-Ups
+    uniqueID: 301326155
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Wall
+    uniqueID: 618980145
+    locked: 0
+  - name: Projectiles
+    uniqueID: 2142278917
     locked: 0

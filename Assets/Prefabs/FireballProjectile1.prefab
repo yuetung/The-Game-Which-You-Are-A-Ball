@@ -79,9 +79,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.024124622}
+  m_Offset: {x: 0.0066767037, y: -0.024124622}
   serializedVersion: 2
-  m_Radius: 0.056575574
+  m_Radius: 0.0632523
 --- !u!95 &95776409165702720
 Animator:
   serializedVersion: 3
@@ -110,9 +110,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220de9bdeb292f5429b78d48a9fc7f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 10
+  projectileSpeed: 15
   projectileDamage: 1
   explodeAnimationSeconds: 2
+  angleAdjustment: 0
 --- !u!114 &114136025452324334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -208,8 +209,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2142278917
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7e72cc484bdb524428f8237475f5070f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
