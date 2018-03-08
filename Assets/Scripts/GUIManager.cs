@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GUIManager : NetworkBehaviour {
 
 	public int health = 100;
+
 	public int energy = 0;
 	public PlayerController.ElementType elementType = PlayerController.ElementType.Default;
 	public int level = 0;
@@ -18,7 +19,22 @@ public class GUIManager : NetworkBehaviour {
 	public Text mainGameOverDisplay;
     public Text mainNetworkIPAddress;
 
+	public Slider HealthBar;
+	public Transform LoadingBar;
+	public Text LevelText2;
+
 	public int counter = 1;
+
+	// Possible element types (copied from PlayerController.cs
+//	public enum ElementType {
+//		Default,
+//		Fire,
+//		Water,
+//		Lightning,
+//		Earth,
+//		Wind,
+//		Antimatter
+//	};
 
 	// get a reference to the GameManager component for use by other scripts
 	void Start () {
@@ -29,7 +45,10 @@ public class GUIManager : NetworkBehaviour {
 		mainElementDisplay.text = "Element: Default";
 		mainLevelDisplay.text = "Level: 1";
 		mainGameOverDisplay.text = "";
-        mainNetworkIPAddress.text = "a a a a ";
+		HealthBar.value = 1.0f;
+		LoadingBar.GetComponent<Image> ().fillAmount = 0.0f;
+		LevelText2.text = "1";
+    mainNetworkIPAddress.text = "a a a a ";
 	}
 
     public virtual void OnClientConnect(NetworkConnection conn)
@@ -89,6 +108,9 @@ public class GUIManager : NetworkBehaviour {
 	public void updateEnergy(int amount){
 		energy = amount;
 		mainEnergyDisplay.text = "Energy: " + energy.ToString();
+
+		// TODO: change the display of energy into a radial energy bar
+		LoadingBar.GetComponent<Image>().fillAmount = energy/100.0f;
 	}
 		
 	public void updateHealth(int amount){
@@ -97,17 +119,38 @@ public class GUIManager : NetworkBehaviour {
 			health = 0;
 			EndGame ();
 		}
+		// Text UI
 		mainHealthDisplay.text = "Health: " + health.ToString ();
+
+		// Slidebar UI
+		float health2 = health/100.0f;
+		HealthBar.value = health2;
 	}
 		
 	public void updateElement(PlayerController.ElementType newElement){
 		elementType = newElement;
 		mainElementDisplay.text = "Element: " + elementType.ToString ();
+
+		//TODO: 
+		if (newElement == PlayerController.ElementType.Fire) {
+			// set the color of the radial energy bar
+			LoadingBar.GetComponent<Image>().color = Color.red;
+		} else if (newElement == PlayerController.ElementType.Water) {
+			// set the color of the radial energy bar
+			LoadingBar.GetComponent<Image>().color = Color.blue;
+		} else if (newElement == PlayerController.ElementType.Lightning) {
+			// set the color of the radial energy bar
+			LoadingBar.GetComponent<Image>().color = Color.yellow;
+		}
+
 	}
 
 	public void updateLevel (int amount) {
 		level = amount;
 		mainLevelDisplay.text = "Level: " + level.ToString ();
+
+		//TODO: display the level text in the middle of the radial energy bar
+		LevelText2.text = level.ToString();
 	}
 
 	public void updateAll() {

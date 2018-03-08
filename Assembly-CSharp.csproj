@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\PauseMenuList.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PowerUpPickup.cs" />
+     <Compile Include="Assets\Scripts\Progress.cs" />
      <Compile Include="Assets\Scripts\PowerUpSpawner.cs" />
      <Compile Include="Assets\Scripts\ProjectileController.cs" />
      <Compile Include="Assets\Scripts\ProjectileFactory.cs" />
