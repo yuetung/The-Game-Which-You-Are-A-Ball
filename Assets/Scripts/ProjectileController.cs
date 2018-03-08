@@ -6,7 +6,7 @@ public class ProjectileController : MonoBehaviour {
 	public float projectileSpeed = 1.0f;
 
 	[Tooltip("true damage = player base power * projectile damage")]
-	public float projectileDamage = 1.0f;
+	public int projectileDamage = 1;
 
 	[Tooltip("how many seconds before destroying object when hit, leave just enought to play animation")]
 	public float explodeAnimationSeconds = 1.0f;
@@ -40,14 +40,19 @@ public class ProjectileController : MonoBehaviour {
 
 	// Collision with wall
 	void OnTriggerEnter2D(Collider2D other) {
-		if (other.tag == "Wall") {
+		if (other.tag == "Wall" || other.tag == "Enemy") {
 			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
 			Invoke ("DestroyNow", explodeAnimationSeconds);
 		}
+
 	}
 
 	void DestroyNow() {
 		DestroyObject (this.gameObject);
+	}
+
+	public int getProjectileDamage() {
+		return projectileDamage;
 	}
 }

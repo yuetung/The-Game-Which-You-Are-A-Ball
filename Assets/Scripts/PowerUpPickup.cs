@@ -31,6 +31,8 @@ public class PowerUpPickup : MonoBehaviour {
 
 	public void setEnergy(int amount){
 		energy = amount;
+		float scaleFactor = Mathf.Log10 (amount)/2;
+		transform.localScale = new Vector3 (scaleFactor, scaleFactor, 1);
 	}
 
 }
