@@ -6,22 +6,26 @@ using UnityEngine;
 public class NetworkManager_Custom : NetworkManager {
 
 	public void StartupHost() {
-		SetPort();
-		NetworkManager.singleton.StartHost ();
-
+        Debug.Log("startupHost");
+        SetPort();
+		NetworkManager.singleton.StartHost();
 	}
 	public void joinGame(){
+        Debug.Log("joinGame");
 		SetIPAddress ();
 		SetPort ();
-		NetworkManager.singleton.StartClient ();
-	}
+		NetworkManager.singleton.StartClient();
+    }
 	void SetIPAddress(){
-		string ipAddress=GameObject.Find("InputFieldIPAddress").transform.FindChild("Text").GetComponent<Text>().text;
+		string ipAddress=GameObject.Find("InputFieldIPAddress").transform.Find("Text").GetComponent<Text>().text;
 		NetworkManager.singleton.networkAddress = ipAddress;
+        Debug.Log("IP Address is " + ipAddress + ", length: " + ipAddress.Length);
 	}
 	void SetPort(){
 		NetworkManager.singleton.networkPort = 7777;
 	}
+
+
 
 }
 

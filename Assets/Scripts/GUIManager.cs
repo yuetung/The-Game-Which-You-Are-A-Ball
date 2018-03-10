@@ -53,6 +53,7 @@ public class GUIManager : NetworkBehaviour {
 
     public virtual void OnClientConnect(NetworkConnection conn)
     {
+        Debug.Log("OnClientConnect");
         ClientScene.Ready(conn);
         ClientScene.AddPlayer(0);
         mainNetworkIPAddress.text = conn.address;

@@ -52,9 +52,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd140a1a8fcc0734f8f9448d2f93fa12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpPrefab: {fileID: 1878414360261748, guid: 93163525901099940bf0a676ac325d09,
-    type: 2}
-  players: {fileID: 0}
+  powerUpPrefabs:
+  - {fileID: 1653906736689226, guid: 49b09531689cab94687889d79bc49e46, type: 2}
+  minEnergy: 10
+  maxEnergy: 30
+  secondsBetweenSpawn: 1
+  startSpawning: 1
 --- !u!114 &114704131932519326
 MonoBehaviour:
   m_ObjectHideFlags: 1

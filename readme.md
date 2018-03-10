@@ -1,29 +1,33 @@
-TODO
+Branch for multiplayer network
 ===
 
-* GUI Design 
-  (design health bar, energy bar, element picture, enemy health bar etc.)
+Health and Damage and Energy syncing in network. 
 
-* Building for mobile
-(mobile input, resolve screen resolutions bugs, use motion sensor to move etc.)
+Animation change when picking up powerups network.
 
-* User Experience Tutorial Design
-(Single player tutorial design, user learning experience curve to make game intuitive to new players)
+---
 
-* Level Design
-(multiple levels for Single Player mode – each has different wall layout, power-up spawner etc.)
+Android <-> Android no IP address
 
-* AI design
-(fancy AI boss projectile patterns, AI behaviour patterns - movement, when hit, death, etc.)
+---
 
-* User Control Testing
-(gather user feedback, test if controls are intuitive to users)
+Change IP display for SinglePlayer to empty
 
-* Multiplayer Network Design
-(resolve network bugs, design user friendly network GUI – create room, join room, waiting for other player screen etc.)
+Change IP display & all the other displays for multiplayer to scale with screen size.
 
-* Projectile Design
-(14 projectiles to go)
 
-* Sound Design
-(sound for projectile, collision, BGM etc.)
+Make back button from 2Player network screen
+
+Show progress of connection of IP and cancel button
+
+===
+
+Client spawns only one colour?
+
+All colours are the same for the client
+
+The client's energy gui thinks it's all the same colour but not the server
+
+The client's energy gui doesn't drop when he shoots
+
+The host's colour doesn't get updated when it picks up a powerup but the the other way works.

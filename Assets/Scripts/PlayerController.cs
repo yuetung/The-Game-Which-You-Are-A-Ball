@@ -3,15 +3,15 @@ using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour {
 
-	[Tooltip("Movement Speed")]
-	public float moveSpeed=1.5f;
-	[Tooltip("How much distance to drag mouse to distinguish between a click and a drag")]
-	public float clickDragSensitivity=0.01f;
-	[Tooltip("true projectile speed = player shoot speed * projectile speed")]
-	public float playerShootSpeed=2.0f;
-	[Tooltip("Trail Renderer Material")]
-	public Material trailMaterial=null;
-	public float trailAlpha=0.2f;
+    [Tooltip("Movement Speed")]
+    public float moveSpeed = 1.5f;
+    [Tooltip("How much distance to drag mouse to distinguish between a click and a drag")]
+    public float clickDragSensitivity = 0.01f;
+    [Tooltip("true projectile speed = player shoot speed * projectile speed")]
+    public float playerShootSpeed = 2.0f;
+    [Tooltip("Trail Renderer Material")]
+    public Material trailMaterial = null;
+    public float trailAlpha = 0.2f;
 	public ElementType elementType = ElementType.Default;
 	public int energy = 0;
 	public int elementLevel = 0;
