@@ -9,14 +9,25 @@ public class PowerUpSpawner : NetworkBehaviour {
     public GameObject[] powerUpPrefabs;
 	public int minEnergy = 10;
 	public int maxEnergy = 80;
-    public GameObject players;
+	public float secondsBetweenSpawn = 1.0f;
+	public bool startSpawning = true;
+	private float height_y = 6.0f;
+	private float width_x = 14.0f;
+	private float nextSpawnTime = 0f;
     
+	void Start() {
+		Vector2 dimension = gameObject.GetComponent<BoxCollider2D> ().size;
+		height_y = dimension.y;
+		width_x = dimension.x;
+	}
+
 	void Update () {
 
         //just some random code to spawn some stuff, time could be better coded than <0.01
-		if(Time.time%1 < 0.005)
+		if(Time.time>nextSpawnTime && startSpawning)
         {
             Spawn();
+			nextSpawnTime = Time.time+secondsBetweenSpawn;
         }
 	}
 
@@ -37,7 +48,7 @@ public class PowerUpSpawner : NetworkBehaviour {
         do
         {
             nearPlayer = false;
-            location = new Vector3(Random.Range(-7, 7), Random.Range(-3, 3), 0);
+			location = new Vector3(Random.Range(-width_x/2, width_x/2), Random.Range(-height_y/2, height_y/2), 0);
             foreach (GameObject p in GameObject.FindGameObjectsWithTag("Player"))
             {
                 if (Around(location, p.transform.localPosition))
@@ -69,4 +80,26 @@ public class PowerUpSpawner : NetworkBehaviour {
         }
         return false;
     }
+
+	// Start spawning if player enters the field
+	void OnTriggerEnter2D(Collider2D other) {
+		if (other.tag == "Player") {
+			startSpawn ();
+		}
+	}
+
+	// Stop spawning if player leaves the field
+	void OnTriggerExit2D(Collider2D other) {
+		if (other.tag == "Player") {
+			stopSpawn ();
+		}
+	}
+
+	public void startSpawn() {
+		startSpawning = true;
+	}
+
+	public void stopSpawn() {
+		startSpawning = false;
+	}
 }

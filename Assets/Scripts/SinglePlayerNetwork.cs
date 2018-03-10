@@ -24,5 +24,6 @@ public class SinglePlayerNetwork : NetworkManager
         player.transform.position = new Vector3();
 
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
+		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera2DFollow> ().followPlayer (player);
     }
 }

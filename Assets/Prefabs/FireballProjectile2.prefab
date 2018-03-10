@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpeed: 20
-  projectileDamage: 2
+  projectileDamage: 5
   explodeAnimationSeconds: 2
   angleAdjustment: 0
 --- !u!114 &114306445548069104
