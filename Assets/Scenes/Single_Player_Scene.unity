@@ -2505,6 +2505,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114778667874006040, guid: 4d0ab0474f8782841aa4dbfa5a8c1855,
+        type: 2}
+      propertyPath: patterns.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4061832313050436, guid: 4d0ab0474f8782841aa4dbfa5a8c1855, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2550,6 +2555,16 @@ Prefab:
         type: 2}
       propertyPath: canRotate
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114778667874006040, guid: 4d0ab0474f8782841aa4dbfa5a8c1855,
+        type: 2}
+      propertyPath: patterns.Array.data[0]
+      value: shoot5FireballSpread30Degree
+      objectReference: {fileID: 0}
+    - target: {fileID: 114778667874006040, guid: 4d0ab0474f8782841aa4dbfa5a8c1855,
+        type: 2}
+      propertyPath: cooldownTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4d0ab0474f8782841aa4dbfa5a8c1855, type: 2}
@@ -4014,6 +4029,7 @@ GameObject:
   - component: {fileID: 1354272044}
   - component: {fileID: 1354272042}
   - component: {fileID: 1354272045}
+  - component: {fileID: 1354272046}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4102,6 +4118,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b85b2996207c884f8d9a231014acb48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1354272046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1354272041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a645842cfdec7440988736d0693433f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1372260172
@@ -6338,6 +6365,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 114778667874006040, guid: 4d0ab0474f8782841aa4dbfa5a8c1855,
         type: 2}
+      propertyPath: patterns.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114778667874006040, guid: 4d0ab0474f8782841aa4dbfa5a8c1855,
+        type: 2}
       propertyPath: wayPoints.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -6406,6 +6438,21 @@ Prefab:
     - target: {fileID: 114778667874006040, guid: 4d0ab0474f8782841aa4dbfa5a8c1855,
         type: 2}
       propertyPath: canRotate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114778667874006040, guid: 4d0ab0474f8782841aa4dbfa5a8c1855,
+        type: 2}
+      propertyPath: patterns.Array.data[0]
+      value: basicFireball
+      objectReference: {fileID: 0}
+    - target: {fileID: 114778667874006040, guid: 4d0ab0474f8782841aa4dbfa5a8c1855,
+        type: 2}
+      propertyPath: patterns.Array.data[1]
+      value: shoot5FireballSpread30Degree
+      objectReference: {fileID: 0}
+    - target: {fileID: 114778667874006040, guid: 4d0ab0474f8782841aa4dbfa5a8c1855,
+        type: 2}
+      propertyPath: cooldownTime
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

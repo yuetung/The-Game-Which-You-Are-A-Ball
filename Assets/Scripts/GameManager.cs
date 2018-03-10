@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour {
 	public static GameManager gm;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		if (gm == null)
 			gm = this.gameObject.GetComponent<GameManager> ();
 	}

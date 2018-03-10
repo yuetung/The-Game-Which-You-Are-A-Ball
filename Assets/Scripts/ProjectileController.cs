@@ -15,6 +15,8 @@ public class ProjectileController : MonoBehaviour {
 		"if facing top, type 270; facing left, type 180; facing down type 90")]
 	public float angleAdjustment = 0.0f;
 
+	public bool belongToPlayer= false;
+
 	// Store references to gamebject Components
 	private Rigidbody2D _rigidbody;
 
@@ -38,14 +40,31 @@ public class ProjectileController : MonoBehaviour {
 		_rigidbody.rotation = rotation+angleAdjustment;
 	}
 
+	public void setVelocity(Vector2 velocity) {
+		_rigidbody.velocity = velocity;
+	}
+
+	public void setRotation(float rotation) {
+		_rigidbody.rotation = rotation+angleAdjustment;
+	}
+
 	// Collision with wall
 	void OnTriggerEnter2D(Collider2D other) {
-		if (other.tag == "Wall" || other.tag == "Enemy") {
+		if (other.tag == "Wall") {
 			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
 			Invoke ("DestroyNow", explodeAnimationSeconds);
 		}
-
+		if (other.tag == "Enemy" && belongToPlayer) {
+			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
+			Invoke ("DestroyNow", explodeAnimationSeconds);
+		}
+		if (other.tag == "Player" && !belongToPlayer) {
+			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
+			Invoke ("DestroyNow", explodeAnimationSeconds);
+		}
 	}
 
 	void DestroyNow() {
@@ -54,5 +73,13 @@ public class ProjectileController : MonoBehaviour {
 
 	public int getProjectileDamage() {
 		return projectileDamage;
+	}
+
+	public void belongsToPlayer() {
+		belongToPlayer = true;
+	}
+
+	public bool getBelongsToPlayer() {
+		return belongToPlayer;
 	}
 }
