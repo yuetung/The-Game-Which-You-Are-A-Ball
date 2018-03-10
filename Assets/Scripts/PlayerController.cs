@@ -105,6 +105,7 @@ public class PlayerController : NetworkBehaviour {
 		Rigidbody2D clone;
 		clone = Instantiate (projectile, transform.position, transform.rotation) as Rigidbody2D;
 		GameObject cloneGameObject = clone.gameObject;
+		cloneGameObject.GetComponent<ProjectileController> ().belongsToPlayer ();
 		Vector2 velocity = shootDirection.normalized * playerShootSpeed * projectile.GetComponent<ProjectileController>().projectileSpeed;
 		float rotation = Mathf.Atan2 (shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
 		cloneGameObject.GetComponent<ProjectileController> ().setVelocityAndRotation (velocity, rotation);
@@ -218,5 +219,20 @@ public class PlayerController : NetworkBehaviour {
 			new GradientAlphaKey[]{ new GradientAlphaKey (trailAlpha, 0.0f), new GradientAlphaKey (0, 1.0f) }
 		);
 		_trailRenderer.colorGradient = gradient;
+	}
+
+	void OnTriggerEnter2D(Collider2D collision) {
+		if (collision.tag == "Projectile" && !collision.GetComponent<ProjectileController>().getBelongsToPlayer()) {
+			int damage = collision.GetComponent<ProjectileController> ().getProjectileDamage();
+			if (health - damage <= 0) {
+				health = 0;
+				//TODO: implement player's death
+				//Instantiate (explosionPrefab, transform.position, transform.rotation);
+				guiManager.updateAll ();
+				DestroyObject (this.gameObject);
+			} else {
+				health -= damage;
+			}
+		}
 	}
 }

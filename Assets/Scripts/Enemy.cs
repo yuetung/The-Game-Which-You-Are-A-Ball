@@ -13,12 +13,21 @@ public class Enemy : MonoBehaviour {
 	[Tooltip("Empty game objects which this enemy will move towards and backwards")]
 	public GameObject[] wayPoints;
 
-	[Tooltip("How long wil the enemy wait at each wayPoints")]
+	[Tooltip("How long will the enemy wait at each wayPoints")]
 	public float waitAtWaypointTime = 1f;
 
 	public bool loopWaypoints = true;
 
 	public GameObject explosionPrefab;
+
+	[Tooltip("check list of available patterns at ProjectilePatternFactory class")]
+	public string[] patterns;
+
+	[Tooltip("How long before each attack")]
+	public float cooldownTime = 3.0f;
+
+	[Tooltip("How far away to sense player")]
+	public float sensePlayer = 5.0f;
 
 	[Tooltip("Set to true if the enemy can rotate when move")]
 	public bool canRotate = false;
@@ -27,16 +36,24 @@ public class Enemy : MonoBehaviour {
 
 	[SerializeField]
 	int waypointIndex = 0;
+	GameObject player;
 	float vx = 0f;  //Horizotal velocity
 	float vy = 0f;  //Vertical velocity
 	float moveTime; //Tracks time to determine whether enemy should move already
+	float spawnTime;
 	bool moving = true;
+	ProjectilePatternFactory projectilePatternFactory;
 
 	void Awake() {
 		_rigidbody = GetComponent<Rigidbody2D> ();
 		_animator = GetComponent<Animator> ();
 		moveTime = 0f;
+		spawnTime = 0f;
 		moving = true;
+	}
+
+	void Start() {
+		projectilePatternFactory = GameManager.gm.GetComponent<ProjectilePatternFactory> ();
 	}
 	
 	// Update is called once per frame
@@ -46,8 +63,20 @@ public class Enemy : MonoBehaviour {
 		} else {
 			_animator.SetBool ("Moving", false);
 		}
+		if (Time.time >= spawnTime) {
+			spawnProjectile ();
+		} 
 	}
 
+	void spawnProjectile() {
+		if (Time.time >= spawnTime && isNearPlayer () && patterns.Length>0) {
+			int rand = Random.Range (0, patterns.Length);
+			string pattern = patterns [rand];
+			Vector2 shootDirection = player.transform.position - transform.position;
+			projectilePatternFactory.createProjectilePattern(pattern,transform.position,shootDirection, false);
+		}
+		spawnTime = Time.time + cooldownTime;
+	}
 	void EnemyMovement() {
 		if (wayPoints.Length != 0 && moving) {
 			vx = wayPoints [waypointIndex].transform.position.x - transform.position.x;
@@ -87,7 +116,7 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collision) {
-		if (collision.tag == "Projectile") {
+		if (collision.tag == "Projectile" && collision.GetComponent<ProjectileController>().getBelongsToPlayer()) {
 			int damage = collision.GetComponent<ProjectileController> ().getProjectileDamage();
 			if (hp - damage <= 0) {
 				hp = 0;
@@ -101,5 +130,19 @@ public class Enemy : MonoBehaviour {
 				hp -= damage;
 			}
 		}
+	}
+
+	bool isNearPlayer() {
+		if (!player) {
+			player = GameObject.FindGameObjectWithTag ("Player");
+		}
+		if (!player) return false;
+		Vector3 playerLocation = player.transform.position;
+		Vector3 difference = transform.position - playerLocation;
+		if(difference.magnitude < sensePlayer)
+		{
+			return true;
+		}
+		return false;
 	}
 }
