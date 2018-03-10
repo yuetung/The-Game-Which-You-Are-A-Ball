@@ -52,7 +52,7 @@ public class PlayerController : NetworkBehaviour {
 		if (isLocalPlayer) {
 			guiManager.register (gameObject);
 		}
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {

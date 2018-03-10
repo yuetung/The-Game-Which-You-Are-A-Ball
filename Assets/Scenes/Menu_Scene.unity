@@ -4241,7 +4241,7 @@ GameObject:
   - component: {fileID: 1716227634}
   - component: {fileID: 1716227633}
   m_Layer: 0
-  m_Name: NetworkManager
+  m_Name: NetworkManager_Custom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4338,7 +4338,7 @@ MonoBehaviour:
     m_MaxTimerTimeout: 12000
     m_MinNetSimulatorTimeout: 1
     m_MaxNetSimulatorTimeout: 12000
-  m_Channels: 
+  m_Channels: 0500000000000000
   m_UseWebSockets: 0
   m_UseSimulator: 0
   m_SimulatedLatency: 1
@@ -4351,6 +4351,7 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
+  player1: {fileID: 1915009595028262, guid: 70e75b4836006014897cc03eee190e63, type: 2}
 --- !u!4 &1716227635
 Transform:
   m_ObjectHideFlags: 0

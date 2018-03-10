@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class NetworkManager_Custom : NetworkManager {
 
-	public void StartupHost() {
+    public GameObject player1;
+    private static bool singlePlayer = false;
+
+    public void StartupHost() {
         Debug.Log("startupHost");
         SetPort();
 		NetworkManager.singleton.StartHost();
@@ -25,7 +28,28 @@ public class NetworkManager_Custom : NetworkManager {
 		NetworkManager.singleton.networkPort = 7777;
 	}
 
+    public static void StartSinglePlayer()
+    {
+        Debug.Log("Start");
+        NetworkManager.singleton.StartHost();
+        singlePlayer = true;
+    }
 
+    public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
+    {
+        if (singlePlayer)
+        {
+            Debug.Log("OnServerAddPlayer");
+            GameObject player = Instantiate(player1);
+            player.transform.position = new Vector3();
+            NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera2DFollow>().followPlayer(player);
+        }
+        else
+        {
+            base.OnServerAddPlayer(conn, playerControllerId);
+        }
+    }
 
 }
 
