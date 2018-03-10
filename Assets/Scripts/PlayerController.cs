@@ -62,16 +62,16 @@ public class PlayerController : NetworkBehaviour {
         }
 		// Mouse Down
 		if (Input.GetMouseButtonDown (0)) { // Record initial mouseDown location
-			mouseDownLocation = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+			mouseDownLocation =Input.mousePosition;
 		}
 		// Mouse Released: considered click if mouse release location is close to mouse down location, considered drag otherwise
 		if (Input.GetMouseButtonUp (0)) { // Record mouseUp location to determine click vs drag
-			Vector2 mouseUpLocation = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+			Vector2 mouseUpLocation = Input.mousePosition;
 			Vector2 shootDirection = mouseUpLocation - mouseDownLocation;
 
 			// Mouse Clicked
 			if (shootDirection.magnitude < clickDragSensitivity) {
-				setMovementTarget (mouseUpLocation);
+				setMovementTarget (Camera.main.ScreenToWorldPoint (mouseUpLocation));
 			}
 
 			// Mouse Dragged
