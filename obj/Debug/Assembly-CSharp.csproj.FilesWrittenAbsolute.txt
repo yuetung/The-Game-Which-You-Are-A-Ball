@@ -43,3 +43,7 @@
 /Users/YiLong/Desktop/SUTD/Term 7/50.003 - Elements of Software Construction/The-Game-Which-You-Are-A-Ball/Temp/bin/Debug/Unity.Cecil.Mdb.dll
 /Users/YiLong/Desktop/SUTD/Term 7/50.003 - Elements of Software Construction/The-Game-Which-You-Are-A-Ball/Temp/bin/Debug/UnityEditor.iOS.Extensions.Xcode.dll
 /Users/YiLong/Desktop/SUTD/Term 7/50.003 - Elements of Software Construction/The-Game-Which-You-Are-A-Ball/Temp/bin/Debug/UnityEditor.iOS.Extensions.Xcode.xml
+/Users/YiLong/Desktop/SUTD/Term 7/50.003 - Elements of Software Construction/The-Game-Which-You-Are-A-Ball/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/YiLong/Desktop/SUTD/Term 7/50.003 - Elements of Software Construction/The-Game-Which-You-Are-A-Ball/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/YiLong/Desktop/SUTD/Term 7/50.003 - Elements of Software Construction/The-Game-Which-You-Are-A-Ball/obj/Debug/Assembly-CSharp.dll
+/Users/YiLong/Desktop/SUTD/Term 7/50.003 - Elements of Software Construction/The-Game-Which-You-Are-A-Ball/obj/Debug/Assembly-CSharp.dll.mdb
