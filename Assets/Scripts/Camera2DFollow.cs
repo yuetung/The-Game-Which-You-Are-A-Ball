@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Camera2DFollow : MonoBehaviour
+public class Camera2DFollow : NetworkBehaviour
 {
     private Transform target;
     public float damping = 1;
@@ -22,6 +23,12 @@ public class Camera2DFollow : MonoBehaviour
 		transform.parent = null;
     }
 
+
+    void Start()
+    {
+        GameObject parent = transform.parent.gameObject;
+        followPlayer(parent);
+    }
 
     // Update is called once per frame
     private void Update()

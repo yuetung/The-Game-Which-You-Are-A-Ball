@@ -20,6 +20,10 @@ Make back button from 2Player network screen
 
 Show progress of connection of IP and cancel button
 
+Cameras?
+
+Client not shooting projectile correctly.
+
 ===
 
 Client spawns only one colour?

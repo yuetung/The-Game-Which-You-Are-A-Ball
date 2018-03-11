@@ -43,7 +43,7 @@ public class NetworkManager_Custom : NetworkManager {
             GameObject player = Instantiate(player1);
             player.transform.position = new Vector3();
             NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
-            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera2DFollow>().followPlayer(player);
+            //GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera2DFollow>().followPlayer(player);
         }
         else
         {
