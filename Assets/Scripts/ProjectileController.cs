@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class ProjectileController : MonoBehaviour {
+public class ProjectileController : NetworkBehaviour {
 	
 	[Tooltip("true projectile speed = player base speed * projectile speed")]
 	public float projectileSpeed = 1.0f;

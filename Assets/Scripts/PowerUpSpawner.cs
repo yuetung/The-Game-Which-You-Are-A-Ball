@@ -67,7 +67,6 @@ public class PowerUpSpawner : NetworkBehaviour {
         GameObject powerUp = (GameObject)Instantiate(powerUpPrefab, location, new Quaternion());
         powerUp.GetComponent<PowerUpPickup>().setEnergy(Random.Range(minEnergy, maxEnergy));
         NetworkServer.Spawn(powerUp);
-        Debug.Log(powerUp.GetComponent<PowerUpPickup>().elementType);
 
     //  }       
         //Debug.Log(Network.player.ipAddress);
