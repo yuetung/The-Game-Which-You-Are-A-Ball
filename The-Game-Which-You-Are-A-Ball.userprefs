@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MainMenu\MainMenu.cs">
     <Files>
       <File FileName="Assets\Scripts\GUIManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PlayerController.cs" Line="1" Column="1" />
@@ -10,13 +10,15 @@
       <File FileName="Assets\Scripts\PowerUpPickup.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\MainMenu\MainMenu.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\MainMenu\NetworkManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemy.cs" Line="105" Column="2" />
+      <File FileName="Assets\Scripts\Enemy.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SinglePlayerNetwork.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\ProjectileFactory.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\ProjectileController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PauseMenuList.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\TimedObjectDestruction.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LevelSelect\LevelSelect.cs" Line="1" Column="1" />
+      <File FileName="Assets\NewBehaviourScript.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
