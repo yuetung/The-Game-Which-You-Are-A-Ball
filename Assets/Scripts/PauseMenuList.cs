@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class PauseMenuList : MonoBehaviour {
 
 	public void MainMenu(){
+        NetworkManager_Custom.Shutdown();
 		SceneManager.LoadScene (0);
-
 	}
 	public void Quit(){
 		Debug.Log ("Quit");
