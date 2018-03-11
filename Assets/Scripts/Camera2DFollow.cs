@@ -15,6 +15,12 @@ public class Camera2DFollow : NetworkBehaviour
     private Vector3 m_CurrentVelocity;
     private Vector3 m_LookAheadPos;
 
+    void Start()
+    {
+        GameObject parent = transform.parent.gameObject;
+        followPlayer(parent);
+    }
+
 	public void followPlayer(GameObject player)
     {
 		target = player.transform;
@@ -23,12 +29,6 @@ public class Camera2DFollow : NetworkBehaviour
 		transform.parent = null;
     }
 
-
-    void Start()
-    {
-        GameObject parent = transform.parent.gameObject;
-        followPlayer(parent);
-    }
 
     // Update is called once per frame
     private void Update()

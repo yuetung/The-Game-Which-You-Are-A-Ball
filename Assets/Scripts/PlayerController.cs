@@ -50,29 +50,11 @@ public class PlayerController : NetworkBehaviour {
 		projectileFactory = GameManager.gm.GetComponent<ProjectileFactory>();
 		guiManager = GameManager.gm.GetComponent<GUIManager>();
 
-        // Instead of trying to initialise the camera by player, maybe we can search all cameras and then
-        // assign players to them instead?
-
-        //foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
-        //{
-        //    if (isLocalPlayer)
-        //    {
-        //        player.GetComponent<Camera2DFollow>().followPlayer(player);
-        //    }
-        //}
-
         if (isLocalPlayer) {
 			guiManager.register (gameObject);
+            // Cameras are disabled by default, this enables only one camera for each client.
             transform.Find("Main Camera").gameObject.SetActive(true);
         }
-        //else
-        //{
-        //    GameObject[] cameras = GameObject.FindGameObjectsWithTag("MainCamera");
-        //    foreach (GameObject camera in cameras)
-        //    {
-        //        camera.SetActive(false);
-        //    }
-        //}
     }
 	
 	// Update is called once per frame
