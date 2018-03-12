@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 95791093682409812}
   - component: {fileID: 114391248363121152}
   - component: {fileID: 58890498870834526}
+  - component: {fileID: 114489006711610978}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Portal
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1726314699818936}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.36, y: 10.02, z: 0}
+  m_LocalPosition: {x: 10.74, y: 9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,6 +85,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d1df25319df0eb4ea8090dd966309ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114489006711610978
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1726314699818936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149f118e419b9934c8b6cae66ef3f7dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212801569832483636

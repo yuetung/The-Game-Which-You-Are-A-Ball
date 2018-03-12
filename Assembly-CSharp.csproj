@@ -52,7 +52,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\NewBehaviourScript.cs" />
-     <Compile Include="Assets\Portal.cs" />
      <Compile Include="Assets\Scripts\Camera2DFollow.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
@@ -64,6 +63,7 @@
      <Compile Include="Assets\Scripts\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\PauseMenuList.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Portal.cs" />
      <Compile Include="Assets\Scripts\PowerUpPickup.cs" />
      <Compile Include="Assets\Scripts\PowerUpSpawner.cs" />
      <Compile Include="Assets\Scripts\Progress.cs" />

@@ -48,7 +48,7 @@ public class PowerUpSpawner : NetworkBehaviour {
         do
         {
             nearPlayer = false;
-            location = new Vector3(Random.Range(-width_x / 2, width_x / 2), Random.Range(-height_y / 2, height_y / 2), 0);
+			location = new Vector3(transform.position.x+Random.Range(-width_x / 2, width_x / 2), transform.position.y+Random.Range(-height_y / 2, height_y / 2), 0);
             foreach (GameObject p in GameObject.FindGameObjectsWithTag("Player"))
             {
                 if (Around(location, p.transform.localPosition))
