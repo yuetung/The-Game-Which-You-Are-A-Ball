@@ -67,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1579650814257456}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.01, y: 0.69, z: 0}
+  m_LocalPosition: {x: -7.93, y: -3.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4070828922715628}
@@ -85,7 +85,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -154,17 +154,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 10
   moveSpeed: 0.3
-  wayPoints:
-  - {fileID: 0}
+  wayPoints: []
   waitAtWaypointTime: 1
   loopWaypoints: 1
   explosionPrefab: {fileID: 1015006985979810, guid: 269ed0b6d625aac4b9046c97d96ad3b4,
     type: 2}
   patterns:
   - shoot8Fireball360DegreeSpread
-  - shoot5FireballSpread30Degree
-  cooldownTime: 3
-  sensePlayer: 10
+  cooldownTime: 0.1
+  sensePlayer: 3
   canRotate: 1
   waypointIndex: 0
 --- !u!212 &212416887942185390
