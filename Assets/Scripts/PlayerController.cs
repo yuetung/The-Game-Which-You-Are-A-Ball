@@ -184,7 +184,6 @@ public class PlayerController : NetworkBehaviour {
 				}
 			}
 		}
-
 	}
 
 	private void setElementLevel(int newElementLevel) {
