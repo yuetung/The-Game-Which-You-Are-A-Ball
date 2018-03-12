@@ -26,13 +26,13 @@ public class PowerUpSpawner : NetworkBehaviour {
         //just some random code to spawn some stuff, time could be better coded than <0.01
         if (Time.time > nextSpawnTime && startSpawning)
         {
-            Spawn();
+            RpcSpawn();
             nextSpawnTime = Time.time + secondsBetweenSpawn;
         }
     }
 
-
-    void Spawn()
+    [ClientRpc]
+    void RpcSpawn()
     {
         
         //if(isServer) {

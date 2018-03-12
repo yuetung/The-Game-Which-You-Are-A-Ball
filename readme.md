@@ -20,9 +20,11 @@ Make back button from 2Player network screen
 
 Show progress of connection of IP and cancel button
 
-Cameras (probably fixed)
 
-Client not shooting projectile correctly.
+
+I broke the AI's automatic shooting
+
+Client not seeing shot projectiles correctly. 
 
 ===
 

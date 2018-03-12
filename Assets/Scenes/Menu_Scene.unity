@@ -77,15 +77,18 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-    m_PVRFiltering: 0
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
     m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousColorSigma: 1
-    m_PVRFilteringAtrousNormalSigma: 1
-    m_PVRFilteringAtrousPositionSigma: 1
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -107,6 +110,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    debug:
+      m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1 &105487683
 GameObject:
@@ -316,6 +321,8 @@ MonoBehaviour:
   level02Button: {fileID: 1077295156}
   level03Button: {fileID: 972706950}
   level04Button: {fileID: 123218998}
+  startHost: {fileID: 0}
+  joinGame: {fileID: 0}
 --- !u!114 &116978622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -689,17 +696,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1716227633}
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -1295,6 +1291,8 @@ MonoBehaviour:
   level02Button: {fileID: 0}
   level03Button: {fileID: 0}
   level04Button: {fileID: 0}
+  startHost: {fileID: 0}
+  joinGame: {fileID: 0}
 --- !u!1 &477037074
 GameObject:
   m_ObjectHideFlags: 0
@@ -2287,11 +2285,11 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!4 &813722550
 Transform:
   m_ObjectHideFlags: 0
@@ -2719,7 +2717,7 @@ GameObject:
   - component: {fileID: 963411734}
   - component: {fileID: 963411733}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: InputFieldIPAddress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4301,7 +4299,7 @@ GameObject:
   - component: {fileID: 1716227633}
   m_Layer: 0
   m_Name: NetworkManager
-  m_TagString: Untagged
+  m_TagString: NetworkManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4329,7 +4327,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1716227632}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -822479833, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ccb3215aebd4ca40a5917a30fe0e62a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_NetworkPort: 7777
@@ -4351,6 +4349,14 @@ MonoBehaviour:
   - {fileID: 1593106812344302, guid: bd5724900e5b551408d15391d3bfe8f6, type: 2}
   - {fileID: 1593106812344302, guid: d850a7b457631d240b68fbb0d45e4722, type: 2}
   - {fileID: 1593106812344302, guid: 1c25e549c243e964096e9563f9272c27, type: 2}
+  - {fileID: 1561952393268744, guid: 2a0c15af4f3249d419b98a774edc8246, type: 2}
+  - {fileID: 1670857170476974, guid: 6791aa693f4e1c8468eba96595530cbd, type: 2}
+  - {fileID: 1089991351277568, guid: cfbfa974868c8ec4bbaffc673039995a, type: 2}
+  - {fileID: 1179510615566326, guid: 2ede339e215710647a2eea4452aeab53, type: 2}
+  - {fileID: 1922265683848210, guid: 7cfc2626d41db58439a8090b5e5a407c, type: 2}
+  - {fileID: 1454719174388740, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+  - {fileID: 1629280884279896, guid: b419e042115cb7f46803010165246887, type: 2}
+  - {fileID: 1236864174980664, guid: 3640818ac8f0e3a4491d4ffa4370f578, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -4406,6 +4412,7 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
+  player1: {fileID: 1915009595028262, guid: 70e75b4836006014897cc03eee190e63, type: 2}
 --- !u!4 &1716227635
 Transform:
   m_ObjectHideFlags: 0
@@ -4623,9 +4630,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 537d7a052d1911746b3d3584505d3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level02Button: {fileID: 0}
-  level03Button: {fileID: 0}
-  level04Button: {fileID: 0}
+  level02Button: {fileID: 1077295156}
+  level03Button: {fileID: 972706950}
+  level04Button: {fileID: 123218998}
+  startHost: {fileID: 1867007904}
+  joinGame: {fileID: 1917715357}
 --- !u!1 &1764180144
 GameObject:
   m_ObjectHideFlags: 0
@@ -5188,18 +5197,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1867007905}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1716227632}
-        m_MethodName: 
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: StartupHost()
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1867007905

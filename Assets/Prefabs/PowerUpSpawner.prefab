@@ -79,8 +79,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpPrefabs:
-  - {fileID: 1653906736689226, guid: 49b09531689cab94687889d79bc49e46, type: 2}
-  - {fileID: 1006088078320206, guid: 49b09531689cab94687889d79bc49e46, type: 2}
+  - {fileID: 1089991351277568, guid: cfbfa974868c8ec4bbaffc673039995a, type: 2}
+  - {fileID: 1179510615566326, guid: 2ede339e215710647a2eea4452aeab53, type: 2}
   minEnergy: 10
   maxEnergy: 50
   secondsBetweenSpawn: 2
