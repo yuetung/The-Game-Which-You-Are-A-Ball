@@ -20,20 +20,10 @@ Make back button from 2Player network screen
 
 Show progress of connection of IP and cancel button
 
+~~Camera?~~
 
+~~I broke the AI's automatic shooting~~
 
-I broke the AI's automatic shooting
+Client not shooting/seeing shot projectiles correctly. 
 
-Client not seeing shot projectiles correctly. 
-
-===
-
-Client spawns only one colour?
-
-All colours are the same for the client
-
-The client's energy gui thinks it's all the same colour but not the server
-
-The client's energy gui doesn't drop when he shoots
-
-The host's colour doesn't get updated when it picks up a powerup but the the other way works.
+~~Client spawns only one colour?~~

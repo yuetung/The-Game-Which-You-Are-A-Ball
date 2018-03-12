@@ -9,6 +9,8 @@ TagManager:
   - Wall
   - Enemy
   - Portal
+  - NetworkManager
+  - OtherPlayer
   layers:
   - Default
   - TransparentFX

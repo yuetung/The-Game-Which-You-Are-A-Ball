@@ -54,6 +54,8 @@ public class PlayerController : NetworkBehaviour {
 			guiManager.register (gameObject);
             // Cameras are disabled by default, this enables only one camera for each client.
             transform.Find("Main Camera").gameObject.SetActive(true);
+            // Register self's tag as player
+            transform.gameObject.tag = "Player";
         }
     }
 	
