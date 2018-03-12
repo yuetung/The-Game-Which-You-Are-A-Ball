@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MainMenu\LevelSelectMenu.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ProjectilePatternFactory.cs">
     <Files>
       <File FileName="Assets\Scripts\GUIManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PlayerController.cs" Line="1" Column="1" />
@@ -9,16 +9,16 @@
       <File FileName="Assets\Scripts\PowerUpSpawner.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PowerUpPickup.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\MainMenu\MainMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Enemy.cs" Line="83" Column="1" />
       <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SinglePlayerNetwork.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\ProjectileFactory.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\ProjectileController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PauseMenuList.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\TimedObjectDestruction.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ProjectilePatternFactory.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LevelSelect\LevelSelect.cs" Line="16" Column="3" />
-      <File FileName="Assets\Scripts\MainMenu\LevelSelectMenu.cs" Line="14" Column="53" />
+      <File FileName="Assets\Scripts\ProjectilePatternFactory.cs" Line="55" Column="4" />
+      <File FileName="Assets\Scripts\LevelSelect\LevelSelect.cs" Line="15" Column="36" />
+      <File FileName="Assets\Scripts\MainMenu\LevelSelectMenu.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

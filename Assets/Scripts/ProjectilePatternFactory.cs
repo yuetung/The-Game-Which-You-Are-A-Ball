@@ -35,6 +35,24 @@ public class ProjectilePatternFactory : NetworkBehaviour {
 				NetworkServer.Spawn (cloneGameObject);
 			}
 		}
+		if (pattern == "shoot8Fireball360DegreeSpread") {
+			for (int i = 0; i < 8; i++) {
+				Rigidbody2D projectile = projectileFactory.getProjectileFromType (PlayerController.ElementType.Fire, 1);
+				Rigidbody2D clone;
+				clone = Instantiate (projectile, startPosition, transform.rotation) as Rigidbody2D;
+				GameObject cloneGameObject = clone.gameObject;
+				if (belongToPlayer) {
+					cloneGameObject.GetComponent<ProjectileController> ().belongsToPlayer ();
+				}
+				float rotation = Mathf.Atan2 (shootDirection.y, shootDirection.x) * Mathf.Rad2Deg+45*i;
+				cloneGameObject.GetComponent<ProjectileController> ().setRotation (rotation);
+				//float vx = cloneGameObject.transform.right*projectile.GetComponent<ProjectileController> ().projectileSpeed;
+				//float vy = cloneGameObject.transform.up*projectile.GetComponent<ProjectileController> ().projectileSpeed;
+				Vector2 velocity = new Vector2(Mathf.Cos(rotation*Mathf.Deg2Rad),Mathf.Sin(rotation*Mathf.Deg2Rad)).normalized*cloneGameObject.GetComponent<ProjectileController> ().projectileSpeed;
+				cloneGameObject.GetComponent<ProjectileController> ().setVelocity (velocity);
+				NetworkServer.Spawn (cloneGameObject);
+			}
+		}
 		if (pattern == "basicFireball") {
 			Rigidbody2D projectile = projectileFactory.getProjectileFromType (PlayerController.ElementType.Fire, 1);
 			Rigidbody2D clone;

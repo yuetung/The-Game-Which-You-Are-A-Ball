@@ -12,6 +12,7 @@ public class LevelSelect : MonoBehaviour {
 		PlayerPrefs.SetInt ("LevelReached", currentLevel+1);
 		Debug.Log (PlayerPrefs.GetInt ("LevelReached"));
 		//NetworkManager_Custom nw = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<NetworkManager_Custom>();
+		NetworkManager_Custom.Shutdown();
 		NetworkManager_Custom.StartSinglePlayer();
 		SceneManager.LoadScene(currentLevel+1);
 	}
