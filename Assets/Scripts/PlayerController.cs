@@ -35,7 +35,7 @@ public class PlayerController : NetworkBehaviour {
 	Animator _animator;
 	Rigidbody2D _rigidbody;
 	TrailRenderer _trailRenderer;
-	ProjectileFactory projectileFactory;
+	protected ProjectileFactory projectileFactory;
 	GUIManager guiManager;
 		
 	// Use this for initialization
@@ -167,7 +167,7 @@ public class PlayerController : NetworkBehaviour {
 
 	}
 
-	private void depletesEnergy(int amount) {
+	protected void depletesEnergy(int amount) {
 		if (elementType == ElementType.Default || elementLevel==0)
 			return;
 		energy -= amount;
