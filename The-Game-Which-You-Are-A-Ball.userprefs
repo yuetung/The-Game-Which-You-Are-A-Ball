@@ -1,14 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LevelSelect\LevelSelect.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MainMenu\MainMenu.cs">
     <Files>
       <File FileName="Assets\Scripts\GUIManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PlayerController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PauseMenu.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Progress.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PowerUpSpawner.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PowerUpSpawner.cs" Line="50" Column="50" />
       <File FileName="Assets\Scripts\PowerUpPickup.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MainMenu\MainMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MainMenu\MainMenu.cs" Line="15" Column="1" />
       <File FileName="Assets\Scripts\Enemy.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SinglePlayerNetwork.cs" Line="1" Column="1" />
@@ -17,10 +17,10 @@
       <File FileName="Assets\Scripts\PauseMenuList.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\TimedObjectDestruction.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\ProjectilePatternFactory.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LevelSelect\LevelSelect.cs" Line="15" Column="60" />
+      <File FileName="Assets\Scripts\LevelSelect\LevelSelect.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\MainMenu\LevelSelectMenu.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Portal.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MainMenu\NetworkManager_Custom.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MainMenu\NetworkManager_Custom.cs" Line="42" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
