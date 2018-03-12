@@ -16,10 +16,10 @@ public class PlayerController : NetworkBehaviour {
 	public int energy = 0;
 	public int elementLevel = 0;
 	public int health = 100;
-	private Vector2 mouseDownLocation; // where the mouse is initially held down
-	private Vector2 moveTarget;  // target point to move player towards
-	private float timeCounter = 1.0f;
-	private float energyLossRate = 1.0f;
+	public Vector2 mouseDownLocation; // where the mouse is initially held down
+	public Vector2 moveTarget;  // target point to move player towards
+	public float timeCounter = 1.0f;
+	public float energyLossRate = 1.0f;
 	// Possible element types
 	public enum ElementType {
 		Default,
@@ -35,11 +35,11 @@ public class PlayerController : NetworkBehaviour {
 	Animator _animator;
 	Rigidbody2D _rigidbody;
 	TrailRenderer _trailRenderer;
-	ProjectileFactory projectileFactory;
+	public ProjectileFactory projectileFactory;
 	GUIManager guiManager;
 		
 	// Use this for initialization
-	void Start () {
+	public void Start () {
 		_animator=gameObject.GetComponent<Animator>();
 		_rigidbody = gameObject.GetComponent<Rigidbody2D> ();
 		_trailRenderer = gameObject.GetComponent<TrailRenderer> ();
@@ -54,13 +54,11 @@ public class PlayerController : NetworkBehaviour {
 			guiManager.register (gameObject);
             // Cameras are disabled by default, this enables only one camera for each client.
             transform.Find("Main Camera").gameObject.SetActive(true);
-            // Register self's tag as player
-            transform.gameObject.tag = "Player";
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    public void Update () {
         if (!isLocalPlayer)
         {
             return;
@@ -96,7 +94,7 @@ public class PlayerController : NetworkBehaviour {
 	}
 
 	// set moveTarget of where the player should go to
-	private void setMovementTarget(Vector2 targetLocation) {
+	public void setMovementTarget(Vector2 targetLocation) {
 		moveTarget = targetLocation;
 		Vector2 faceDirection = moveTarget - new Vector2(transform.position.x,transform.position.y);
 		_rigidbody.rotation = Mathf.Atan2 (faceDirection.y, faceDirection.x) * Mathf.Rad2Deg +90;
@@ -105,7 +103,7 @@ public class PlayerController : NetworkBehaviour {
 
 	// Obtain a projectile from ProjectileFactory and shoots it
     [Command]
-	private void CmdShoot (Vector2 shootDirection) {
+	public void CmdShoot (Vector2 shootDirection) {
 		Rigidbody2D projectile = projectileFactory.getProjectileFromType (elementType, elementLevel);
 		Rigidbody2D clone;
 		clone = Instantiate (projectile, transform.position, transform.rotation) as Rigidbody2D;
@@ -114,13 +112,16 @@ public class PlayerController : NetworkBehaviour {
 		Vector2 velocity = shootDirection.normalized * playerShootSpeed * projectile.GetComponent<ProjectileController>().projectileSpeed;
 		float rotation = Mathf.Atan2 (shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
 		cloneGameObject.GetComponent<ProjectileController> ().setVelocityAndRotation (velocity, rotation);
+        // assigns a shooter to the bullet
+        cloneGameObject.GetComponent<ProjectileController>().shooter = transform.gameObject;
+        Debug.Log("Shooter is: " + transform.gameObject);
         NetworkServer.Spawn(cloneGameObject);
 		depletesEnergy (elementLevel * 10);
 	}
 
 	/*
 	[Command]
-    private void CmdShoot(Vector2 shootDirection)
+    public void CmdShoot(Vector2 shootDirection)
     {
         GameObject projectile = getProjectileFromType();
         // Create Projectile
@@ -133,7 +134,7 @@ public class PlayerController : NetworkBehaviour {
 	*/
 	
 	// constant movement if player haven't reached the moveTarget
-	private void move() {
+	public void move() {
 		Vector2 moveVector = moveTarget - (Vector2)transform.position;
 		if (moveVector.magnitude <= moveSpeed * Time.deltaTime) {
 			_rigidbody.velocity = Vector2.zero;
@@ -158,7 +159,7 @@ public class PlayerController : NetworkBehaviour {
 
 	}
 
-	private void gainEnergy(int amount) {
+	public void gainEnergy(int amount) {
 		energy = energy + amount;
 		while (energy >= 100) {
 			setElementLevel (elementLevel + 1);
@@ -167,7 +168,7 @@ public class PlayerController : NetworkBehaviour {
 
 	}
 
-	private void depletesEnergy(int amount) {
+	public void depletesEnergy(int amount) {
 		if (elementType == ElementType.Default || elementLevel==0)
 			return;
 		energy -= amount;
@@ -186,13 +187,13 @@ public class PlayerController : NetworkBehaviour {
 		}
 	}
 
-	private void setElementLevel(int newElementLevel) {
+	public void setElementLevel(int newElementLevel) {
 		elementLevel = newElementLevel;
 		energyLossRate = Mathf.Pow (elementLevel , 1.5f);
 	}
 
 	// Set the sprite animation and trailRenderer color
-	private void changeSprite () {
+	public void changeSprite () {
 		Color color = Color.white;
 		if (elementType == ElementType.Fire) {
 			_animator.SetTrigger ("FireType");
@@ -225,7 +226,7 @@ public class PlayerController : NetworkBehaviour {
 		_trailRenderer.colorGradient = gradient;
 	}
 
-	void OnTriggerEnter2D(Collider2D collision) {
+    public void OnTriggerEnter2D(Collider2D collision) {
 		if (collision.tag == "Projectile" && !collision.GetComponent<ProjectileController>().getBelongsToPlayer()) {
 			int damage = collision.GetComponent<ProjectileController> ().getProjectileDamage();
 			if (health - damage <= 0) {
@@ -240,7 +241,7 @@ public class PlayerController : NetworkBehaviour {
 		}
 	}
 
-	void OnTriggerEnter2D(Collider other){
+    public void OnTriggerEnter2D(Collider other){
 		if (other.tag == "Portal") {
 			Debug.Log ("level up");
 

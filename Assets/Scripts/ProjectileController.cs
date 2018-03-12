@@ -18,6 +18,9 @@ public class ProjectileController : NetworkBehaviour {
 
 	public bool belongToPlayer= false;
 
+    [SyncVar]
+    public GameObject shooter;
+
 	// Store references to gamebject Components
 	private Rigidbody2D _rigidbody;
 
@@ -56,18 +59,26 @@ public class ProjectileController : NetworkBehaviour {
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
 			Invoke ("DestroyNow", explodeAnimationSeconds);
 		}
-		if (other.tag == "Enemy" && belongToPlayer) {
+		else if (other.tag == "Enemy" && belongToPlayer) {
 			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
 			Invoke ("DestroyNow", explodeAnimationSeconds);
 		}
-        // other.tag == OtherPlayer?
-        // check for multiplayer
-		if (other.tag == "Player" && !belongToPlayer) {
-			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
-			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
-			Invoke ("DestroyNow", explodeAnimationSeconds);
-		}
+
+        else if (other.gameObject == shooter.gameObject)
+        {
+            Debug.Log("Hit self");
+            //do nothing
+        }
+
+        else if (other.tag == "Player")
+        {
+            Debug.Log("Hit Player");
+            Debug.Log(shooter.gameObject);
+            gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            gameObject.GetComponent<Animator>().SetTrigger("Explode");
+            Invoke("DestroyNow", explodeAnimationSeconds);
+        }
 	}
 
 	void DestroyNow() {
