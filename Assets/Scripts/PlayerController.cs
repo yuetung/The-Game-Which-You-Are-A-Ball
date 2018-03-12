@@ -238,4 +238,11 @@ public class PlayerController : NetworkBehaviour {
 			}
 		}
 	}
+
+	void OnTriggerEnter2D(Collider other){
+		if (other.tag == "Portal") {
+			Debug.Log ("level up");
+
+		}
+	}
 }

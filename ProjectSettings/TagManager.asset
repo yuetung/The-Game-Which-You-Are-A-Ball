@@ -8,7 +8,7 @@ TagManager:
   - PowerUp
   - Wall
   - Enemy
-  - NetworkManager
+  - Portal
   layers:
   - Default
   - TransparentFX
