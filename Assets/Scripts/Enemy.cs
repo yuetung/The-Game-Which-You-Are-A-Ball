@@ -73,6 +73,7 @@ public class Enemy : MonoBehaviour {
 			int rand = Random.Range (0, patterns.Length);
 			string pattern = patterns [rand];
 			Vector2 shootDirection = player.transform.position - transform.position;
+			Debug.Log (projectilePatternFactory);
 			projectilePatternFactory.createProjectilePattern(pattern,transform.position,shootDirection, false);
 		}
 		spawnTime = Time.time + cooldownTime;
