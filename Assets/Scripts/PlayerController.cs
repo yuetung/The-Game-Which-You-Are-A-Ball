@@ -54,8 +54,6 @@ public class PlayerController : NetworkBehaviour {
 			guiManager.register (gameObject);
             // Cameras are disabled by default, this enables only one camera for each client.
             transform.Find("Main Camera").gameObject.SetActive(true);
-            // Register self's tag as player
-            transform.gameObject.tag = "Player";
         }
     }
 	
@@ -114,6 +112,8 @@ public class PlayerController : NetworkBehaviour {
 		Vector2 velocity = shootDirection.normalized * playerShootSpeed * projectile.GetComponent<ProjectileController>().projectileSpeed;
 		float rotation = Mathf.Atan2 (shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
 		cloneGameObject.GetComponent<ProjectileController> ().setVelocityAndRotation (velocity, rotation);
+        // assigns a shooter to the bullet
+        cloneGameObject.GetComponent<ProjectileController>().shooter = transform.gameObject;
         NetworkServer.Spawn(cloneGameObject);
 		depletesEnergy (elementLevel * 10);
 	}

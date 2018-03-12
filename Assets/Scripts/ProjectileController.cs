@@ -18,6 +18,8 @@ public class ProjectileController : NetworkBehaviour {
 
 	public bool belongToPlayer= false;
 
+    public GameObject shooter;
+
 	// Store references to gamebject Components
 	private Rigidbody2D _rigidbody;
 
@@ -61,8 +63,7 @@ public class ProjectileController : NetworkBehaviour {
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
 			Invoke ("DestroyNow", explodeAnimationSeconds);
 		}
-        // other.tag == OtherPlayer?
-        // check for multiplayer
+
 		if (other.tag == "Player" && !belongToPlayer) {
 			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
