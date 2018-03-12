@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerControllerSingle : PlayerController {
 
-    private void CmdShoot(Vector2 shootDirection)
+    public new void CmdShoot(Vector2 shootDirection)
     {
         Rigidbody2D projectile = projectileFactory.getProjectileFromType(elementType, elementLevel);
         Rigidbody2D clone;
@@ -17,6 +17,7 @@ public class PlayerControllerSingle : PlayerController {
         //// assigns a shooter to the bullet
         //cloneGameObject.GetComponent<ProjectileController>().shooter = transform.gameObject;
         depletesEnergy(elementLevel * 10);
+
     }
 
 

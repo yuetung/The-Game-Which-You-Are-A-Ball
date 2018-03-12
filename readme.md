@@ -26,4 +26,10 @@ Show progress of connection of IP and cancel button
 
 Client not shooting/seeing shot projectiles correctly. 
 
+Also collision
+
 ~~Client spawns only one colour?~~
+
+Can put a Boolean in PlayerController to check if there is a networkmanager
+
+or separate SinglePlayerController code
