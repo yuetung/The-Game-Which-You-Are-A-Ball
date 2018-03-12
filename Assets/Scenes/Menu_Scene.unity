@@ -77,18 +77,15 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-    m_PVRFilterTypeDirect: 0
-    m_PVRFilterTypeIndirect: 0
-    m_PVRFilterTypeAO: 0
+    m_PVRFiltering: 0
     m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
-    m_PVRFilteringAtrousPositionSigmaIndirect: 2
-    m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
+    m_PVRFilteringAtrousColorSigma: 1
+    m_PVRFilteringAtrousNormalSigma: 1
+    m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -110,8 +107,6 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-    debug:
-      m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1 &105487683
 GameObject:
@@ -318,9 +313,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 537d7a052d1911746b3d3584505d3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level02Button: {fileID: 1077295156}
-  level03Button: {fileID: 972706950}
-  level04Button: {fileID: 123218998}
   startHost: {fileID: 0}
   joinGame: {fileID: 0}
 --- !u!114 &116978622
@@ -331,9 +323,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 116978619}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 149f118e419b9934c8b6cae66ef3f7dd, type: 3}
+  m_Script: {fileID: 11500000, guid: a5e5896917ccd8440bdc1adb1821c77b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level02Button: {fileID: 1077295156}
+  level03Button: {fileID: 972706950}
+  level04Button: {fileID: 123218998}
 --- !u!1 &123218996
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,9 +1283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 537d7a052d1911746b3d3584505d3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level02Button: {fileID: 0}
-  level03Button: {fileID: 0}
-  level04Button: {fileID: 0}
   startHost: {fileID: 0}
   joinGame: {fileID: 0}
 --- !u!1 &477037074
@@ -2285,11 +2277,11 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+  m_StereoMirrorMode: 0
 --- !u!4 &813722550
 Transform:
   m_ObjectHideFlags: 0
@@ -4630,9 +4622,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 537d7a052d1911746b3d3584505d3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level02Button: {fileID: 1077295156}
-  level03Button: {fileID: 972706950}
-  level04Button: {fileID: 123218998}
   startHost: {fileID: 1867007904}
   joinGame: {fileID: 1917715357}
 --- !u!1 &1764180144
