@@ -15,6 +15,16 @@ public class PowerUpSpawner : NetworkBehaviour {
     private float width_x = 14.0f;
     private float nextSpawnTime = 0f;
 
+	public void Construct (GameObject powerupPrefab){
+		BoxCollider2D boxCollider = this.gameObject.AddComponent<BoxCollider2D> ();
+		boxCollider.size = new Vector2 (30, 20);
+		secondsBetweenSpawn = 2.0f;
+		//		gameObject.GetComponent<NetworkIdentity>().serverOnly = true;
+		NetworkServer.Listen(7777);
+		powerUpPrefabs=new GameObject[1];
+		powerUpPrefabs [0] = powerupPrefab;
+	}
+
     void Start() {
         Vector2 dimension = gameObject.GetComponent<BoxCollider2D>().size;
         height_y = dimension.y;
