@@ -18,6 +18,8 @@ public class ProjectileController : NetworkBehaviour {
 
 	public bool belongToPlayer= false;
 
+	private bool alreadyHit = false;
+
     [SyncVar]
     public GameObject shooter;
 
@@ -54,16 +56,20 @@ public class ProjectileController : NetworkBehaviour {
 
 	// Collision with wall
 	void OnTriggerEnter2D(Collider2D other) {
+		if (alreadyHit)
+			return;
 		if (other.tag == "Wall") {
 			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
 			Invoke ("DestroyNow", explodeAnimationSeconds);
+			alreadyHit = true;
 		}
 		else if (other.tag == "Enemy" && belongToPlayer) {
 			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
 			other.GetComponent<Enemy> ().depleteHealth (projectileDamage);
 			Invoke ("DestroyNow", explodeAnimationSeconds);
+			alreadyHit = true;
 		}
 
         else if (other.gameObject == shooter.gameObject)
@@ -79,6 +85,7 @@ public class ProjectileController : NetworkBehaviour {
             gameObject.GetComponent<Animator>().SetTrigger("Explode");
 			other.GetComponent<PlayerController> ().depleteHealth (projectileDamage);
             Invoke("DestroyNow", explodeAnimationSeconds);
+			alreadyHit = true;
         }
 	}
 
