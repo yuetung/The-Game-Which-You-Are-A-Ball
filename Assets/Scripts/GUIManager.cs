@@ -102,7 +102,7 @@ public class GUIManager : NetworkBehaviour {
 		playerController = player.GetComponent<PlayerController> ();
 	}
 
-	void EndGame(){
+	public void EndGame(){
 		mainGameOverDisplay.text = "GAME OVER";
 	}
 		

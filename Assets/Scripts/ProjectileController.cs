@@ -62,6 +62,7 @@ public class ProjectileController : NetworkBehaviour {
 		else if (other.tag == "Enemy" && belongToPlayer) {
 			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
+			other.GetComponent<Enemy> ().depleteHealth (projectileDamage);
 			Invoke ("DestroyNow", explodeAnimationSeconds);
 		}
 

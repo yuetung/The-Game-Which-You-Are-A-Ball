@@ -232,6 +232,7 @@ public class PlayerController : NetworkBehaviour {
 			//TODO: implement player's death
 			//Instantiate (explosionPrefab, transform.position, transform.rotation);
 			guiManager.updateAll ();
+			guiManager.EndGame ();
 			DestroyObject (this.gameObject);
 		} else {
 			health -= damage;
