@@ -54,4 +54,12 @@ public class PowerUpTest : MonoBehaviour {
 
 		Assert.AreEqual(spawnedPowerUp[0].transform.localScale.x,scaleFactor);
 	}
+
+	[TearDown]
+	public void afterEveryTest(){
+		foreach(GameObject i in Object.FindObjectsOfType<GameObject>()) {
+			Destroy (i);
+		}
+		NetworkServer.dontListen = true;
+	}
 }

@@ -134,5 +134,14 @@ public class PowerUpSpawnerTest : MonoBehaviour{
 
 		GameObject[] spawnedPowerUp = GameObject.FindGameObjectsWithTag("PowerUp");
 		Assert.AreEqual(spawnedPowerUp.Length,0);
+
+	}
+
+	[TearDown]
+	public void afterEveryTest(){
+		foreach(GameObject i in Object.FindObjectsOfType<GameObject>()) {
+			Destroy (i);
+		}
+		NetworkServer.dontListen = true;
 	}
 }
