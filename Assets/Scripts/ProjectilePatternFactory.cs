@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class ProjectilePatternFactory : NetworkBehaviour {
 
-	private ProjectileFactory projectileFactory;
+	public ProjectileFactory projectileFactory;
 	// Use this for initialization
 	void Start () {
 		projectileFactory = GameManager.gm.GetComponent<ProjectileFactory> ();
