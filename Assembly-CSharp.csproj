@@ -69,6 +69,7 @@
      <Compile Include="Assets\Scripts\PowerUpPickup.cs" />
      <Compile Include="Assets\Scripts\PowerUpSpawner.cs" />
      <Compile Include="Assets\Scripts\PowerUpSpawnerTest.cs" />
+     <Compile Include="Assets\Scripts\PowerUpTest.cs" />
      <Compile Include="Assets\Scripts\Progress.cs" />
      <Compile Include="Assets\Scripts\ProjectileController.cs" />
      <Compile Include="Assets\Scripts\ProjectileFactory.cs" />
