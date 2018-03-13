@@ -165,6 +165,8 @@ MonoBehaviour:
   sensePlayer: 3
   canRotate: 1
   waypointIndex: 0
+  EnemyHealthBarPrefab: {fileID: 1920628111961788, guid: e6bcf14eac3452c4698df3582a518a7e,
+    type: 2}
 --- !u!212 &212416887942185390
 SpriteRenderer:
   m_ObjectHideFlags: 1
