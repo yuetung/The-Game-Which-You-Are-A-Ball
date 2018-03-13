@@ -11,18 +11,18 @@ public class PowerUpSpawner : NetworkBehaviour {
     public int maxEnergy = 80;
     public float secondsBetweenSpawn = 1.0f;
     public bool startSpawning = true;
-    private float height_y = 6.0f;
-    private float width_x = 14.0f;
+    public float height_y = 6.0f;
+    public float width_x = 14.0f;
     private float nextSpawnTime = 0f;
 
-	public void Construct (GameObject powerupPrefab){
-		BoxCollider2D boxCollider = this.gameObject.AddComponent<BoxCollider2D> ();
-		boxCollider.size = new Vector2 (30, 20);
-		secondsBetweenSpawn = 2.0f;
-		//		gameObject.GetComponent<NetworkIdentity>().serverOnly = true;
-		NetworkServer.Listen(7777);
+	public void Construct (GameObject powerupPrefab, float secondsBetweenSpawn, 
+		int portNumber){
 		powerUpPrefabs=new GameObject[1];
 		powerUpPrefabs [0] = powerupPrefab;
+		BoxCollider2D boxCollider = this.gameObject.AddComponent<BoxCollider2D> ();
+		boxCollider.size = new Vector2 (30, 20);
+		this.secondsBetweenSpawn = secondsBetweenSpawn;
+		NetworkServer.Listen(portNumber);
 	}
 
     void Start() {
