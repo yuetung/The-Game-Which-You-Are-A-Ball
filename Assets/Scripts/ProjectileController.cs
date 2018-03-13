@@ -73,8 +73,7 @@ public class ProjectileController : NetworkBehaviour {
 
         else if (other.tag == "Player")
         {
-            Debug.Log("Hit Player");
-            Debug.Log(shooter.gameObject);
+            Debug.Log("Hit player: " + shooter.gameObject);
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             gameObject.GetComponent<Animator>().SetTrigger("Explode");
             Invoke("DestroyNow", explodeAnimationSeconds);
