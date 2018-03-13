@@ -116,20 +116,17 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter2D(Collider2D collision) {
-		if (collision.tag == "Projectile" && collision.GetComponent<ProjectileController>().getBelongsToPlayer()) {
-			int damage = collision.GetComponent<ProjectileController> ().getProjectileDamage();
-			if (hp - damage <= 0) {
-				hp = 0;
-				Instantiate (explosionPrefab, transform.position, transform.rotation);
-				for (int i = 0; i < wayPoints.Length; i++) {
-					DestroyObject (wayPoints [i]);
-				}
-				DestroyObject (transform.parent.gameObject);
-				DestroyObject (this.gameObject);
-			} else {
-				hp -= damage;
+	public void depleteHealth(int damage){
+		if (hp - damage <= 0) {
+			hp = 0;
+			Instantiate (explosionPrefab, transform.position, transform.rotation);
+			for (int i = 0; i < wayPoints.Length; i++) {
+				DestroyObject (wayPoints [i]);
 			}
+			DestroyObject (transform.parent.gameObject);
+			DestroyObject (this.gameObject);
+		} else {
+			hp -= damage;
 		}
 	}
 

@@ -59,13 +59,12 @@ public class PlayerController : NetworkBehaviour {
 
     // Update is called once per frame
     public void Update () {
-        if (!isLocalPlayer)
-        {
-            return;
-        }
+		if (!isLocalPlayer) {
+			return;
+		}
 		// Mouse Down
 		if (Input.GetMouseButtonDown (0)) { // Record initial mouseDown location
-			mouseDownLocation =Input.mousePosition;
+			mouseDownLocation = Input.mousePosition;
 		}
 		// Mouse Released: considered click if mouse release location is close to mouse down location, considered drag otherwise
 		if (Input.GetMouseButtonUp (0)) { // Record mouseUp location to determine click vs drag
@@ -79,7 +78,8 @@ public class PlayerController : NetworkBehaviour {
 
 			// Mouse Dragged
 			else { 
-                CmdShoot(shootDirection);
+				CmdShoot (shootDirection, elementType, elementLevel);
+				depletesEnergy (elementLevel * 10);
 			}
 		}
 		move ();
@@ -103,7 +103,7 @@ public class PlayerController : NetworkBehaviour {
 
 	// Obtain a projectile from ProjectileFactory and shoots it
     [Command]
-	public void CmdShoot (Vector2 shootDirection) {
+	public void CmdShoot (Vector2 shootDirection, ElementType elementType, int elementLevel) {
 		Rigidbody2D projectile = projectileFactory.getProjectileFromType (elementType, elementLevel);
 		Rigidbody2D clone;
 		clone = Instantiate (projectile, transform.position, transform.rotation) as Rigidbody2D;
@@ -114,9 +114,7 @@ public class PlayerController : NetworkBehaviour {
 		cloneGameObject.GetComponent<ProjectileController> ().setVelocityAndRotation (velocity, rotation);
         // assigns a shooter to the bullet
         cloneGameObject.GetComponent<ProjectileController>().shooter = transform.gameObject;
-        Debug.Log("Shooter is: " + transform.gameObject);
         NetworkServer.Spawn(cloneGameObject);
-		depletesEnergy (elementLevel * 10);
 	}
 
 	/*
@@ -145,6 +143,7 @@ public class PlayerController : NetworkBehaviour {
 
 	// Change user's current ElementType if element obtained is different from current elementType
 	public void gainPowerUp(ElementType newElementType, int energyAmount) {
+		Debug.Log ("PowerUpGained");
 		if (elementType != newElementType) {
 			elementType = newElementType;
 			setElementLevel (1);
@@ -226,24 +225,17 @@ public class PlayerController : NetworkBehaviour {
 		_trailRenderer.colorGradient = gradient;
 	}
 
-    public void OnTriggerEnter2D(Collider2D collision) {
-		if (collision.tag == "Projectile" && !collision.GetComponent<ProjectileController>().getBelongsToPlayer()) {
-			int damage = collision.GetComponent<ProjectileController> ().getProjectileDamage();
-			if (health - damage <= 0) {
-				health = 0;
-				//TODO: implement player's death
-				//Instantiate (explosionPrefab, transform.position, transform.rotation);
-				guiManager.updateAll ();
-				DestroyObject (this.gameObject);
-			} else {
-				health -= damage;
-			}
-		}
-	}
-
-    public void OnTriggerEnter2D(Collider other){
-		if (other.tag == "Portal") {
-			Debug.Log ("level up");
+    
+	public void depleteHealth(int damage) {
+		if (health - damage <= 0) {
+			health = 0;
+			//TODO: implement player's death
+			//Instantiate (explosionPrefab, transform.position, transform.rotation);
+			guiManager.updateAll ();
+			guiManager.EndGame ();
+			DestroyObject (this.gameObject);
+		} else {
+			health -= damage;
 		}
 	}
 }
