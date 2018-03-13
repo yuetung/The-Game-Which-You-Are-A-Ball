@@ -76,6 +76,7 @@ public class ProjectileController : NetworkBehaviour {
             Debug.Log("Hit player: " + shooter.gameObject);
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             gameObject.GetComponent<Animator>().SetTrigger("Explode");
+			other.GetComponent<PlayerController> ().depleteHealth (projectileDamage);
             Invoke("DestroyNow", explodeAnimationSeconds);
         }
 	}

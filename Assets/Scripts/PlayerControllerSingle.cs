@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿/*
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControllerSingle : PlayerController {
 
-    public new void CmdShoot(Vector2 shootDirection)
+    public void CmdShoot(Vector2 shootDirection)
     {
         Rigidbody2D projectile = projectileFactory.getProjectileFromType(elementType, elementLevel);
         Rigidbody2D clone;
@@ -20,5 +21,5 @@ public class PlayerControllerSingle : PlayerController {
 
     }
 
-
 }
+*/
