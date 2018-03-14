@@ -58,6 +58,7 @@ public class ProjectileController : NetworkBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (alreadyHit)
 			return;
+        
 		if (other.tag == "Wall") {
 			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
@@ -72,7 +73,7 @@ public class ProjectileController : NetworkBehaviour {
 			alreadyHit = true;
 		}
 
-        else if (other.gameObject == shooter.gameObject)
+        else if (shooter != null && other.gameObject == shooter.gameObject)
         {
             Debug.Log("Hit self");
             //do nothing
@@ -80,7 +81,6 @@ public class ProjectileController : NetworkBehaviour {
 
         else if (other.tag == "Player")
         {
-            Debug.Log("Hit player: " + shooter.gameObject);
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             gameObject.GetComponent<Animator>().SetTrigger("Explode");
 			other.GetComponent<PlayerController> ().depleteHealth (projectileDamage);

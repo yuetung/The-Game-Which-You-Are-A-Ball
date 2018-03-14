@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
             Debug.LogError("Multiple GameManagers");
         }
-        DontDestroyOnLoad(gameObject);
     }
 	
 	// Update is called once per frame

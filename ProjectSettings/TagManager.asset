@@ -12,6 +12,7 @@ TagManager:
   - NetworkManager
   - OtherPlayer
   - MainCanvas
+  - GameManager
   layers:
   - Default
   - TransparentFX

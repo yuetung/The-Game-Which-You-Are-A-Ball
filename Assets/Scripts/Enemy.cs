@@ -59,9 +59,11 @@ public class Enemy : MonoBehaviour {
 
 	void Start() {
 		hp = maxHp;
+        var test1 = GameObject.FindGameObjectWithTag("GameManager");
+        Debug.Log(test1.ToString());
         //var test1 = GameManager.gm;
-        //projectilePatternFactory = test1.GetComponent<ProjectilePatternFactory>();
-        projectilePatternFactory = GameManager.gm.GetComponent<ProjectilePatternFactory>();
+        projectilePatternFactory = test1.GetComponent<ProjectilePatternFactory>();
+        //projectilePatternFactory = GameManager.gm.GetComponent<ProjectilePatternFactory>();
         CreateHealthBar ();
 	}
 
@@ -80,7 +82,17 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Time.time >= moveTime) {
+
+        if (projectilePatternFactory == null)
+        {
+            var test1 = GameObject.FindGameObjectWithTag("GameManager");
+            test1.ToString();
+            projectilePatternFactory = test1.GetComponent<ProjectilePatternFactory>();
+            CreateHealthBar();
+        }
+
+
+        if (Time.time >= moveTime) {
 			EnemyMovement ();
 		} else {
 			_animator.SetBool ("Moving", false);
