@@ -8,9 +8,17 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		if (gm == null)
-			gm = this.gameObject.GetComponent<GameManager> ();
-	}
+        if (gm == null)
+        {
+            gm = this;
+        }
+        else if (gm != this)
+        {
+            Destroy(gameObject);
+            Debug.LogError("Multiple GameManagers");
+        }
+        DontDestroyOnLoad(gameObject);
+    }
 	
 	// Update is called once per frame
 	void Update () {

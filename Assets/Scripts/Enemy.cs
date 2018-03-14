@@ -59,15 +59,18 @@ public class Enemy : MonoBehaviour {
 
 	void Start() {
 		hp = maxHp;
-		projectilePatternFactory = GameManager.gm.GetComponent<ProjectilePatternFactory> ();
-		CreateHealthBar ();
+        //var test1 = GameManager.gm;
+        //projectilePatternFactory = test1.GetComponent<ProjectilePatternFactory>();
+        projectilePatternFactory = GameManager.gm.GetComponent<ProjectilePatternFactory>();
+        CreateHealthBar ();
 	}
 
 	void CreateHealthBar(){
-		// instantiate a new enemyhealthbar gameobject from prefab
-		//		GameObject UIHealthBar = Instantiate(EnemyHealthBarPrefab,new Vector2 (0,0),Quaternion.identity) as GameObject;
-		EnemyHealthBar = Instantiate(EnemyHealthBarPrefab,new Vector2 (0,0),Quaternion.identity) as GameObject;
-		// place this gameobject inside the canvas (only way to display a UI)
+        // instantiate a new enemyhealthbar gameobject from prefab
+        //		GameObject UIHealthBar = Instantiate(EnemyHealthBarPrefab,new Vector2 (0,0),Quaternion.identity) as GameObject;
+        Debug.Log("??");
+        EnemyHealthBar = Instantiate(EnemyHealthBarPrefab,new Vector2 (0,0),Quaternion.identity) as GameObject;
+        // place this gameobject inside the canvas (only way to display a UI)
 		EnemyHealthBar.transform.SetParent(GameObject.FindGameObjectWithTag("MainCanvas").transform,false);
 		Debug.Log ("created enemy health bar");
 		// fill the enemyhealthbar with red color
