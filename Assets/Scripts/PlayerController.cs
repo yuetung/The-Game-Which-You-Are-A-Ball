@@ -33,7 +33,7 @@ public class PlayerController : NetworkBehaviour {
 
 	// Store references to gamebject Components
 	Animator _animator;
-	Rigidbody2D _rigidbody;
+	public Rigidbody2D _rigidbody;
 	TrailRenderer _trailRenderer;
 	public ProjectileFactory projectileFactory;
 	GUIManager guiManager;
