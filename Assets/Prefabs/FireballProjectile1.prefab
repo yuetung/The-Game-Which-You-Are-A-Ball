@@ -110,10 +110,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220de9bdeb292f5429b78d48a9fc7f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  elementType: 1
   projectileSpeed: 15
   projectileDamage: 3
   explodeAnimationSeconds: 2
   angleAdjustment: 0
+  belongToPlayer: 0
+  shooter: {fileID: 0}
 --- !u!114 &114136025452324334
 MonoBehaviour:
   m_ObjectHideFlags: 1

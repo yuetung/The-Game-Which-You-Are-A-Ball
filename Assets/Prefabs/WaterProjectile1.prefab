@@ -155,10 +155,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220de9bdeb292f5429b78d48a9fc7f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  elementType: 2
   projectileSpeed: 13
   projectileDamage: 2
   explodeAnimationSeconds: 1
   angleAdjustment: 270
+  belongToPlayer: 0
+  shooter: {fileID: 0}
 --- !u!114 &114774095729965694
 MonoBehaviour:
   m_ObjectHideFlags: 1

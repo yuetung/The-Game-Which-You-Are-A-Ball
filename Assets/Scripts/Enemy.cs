@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour {
 	[Range(1,200)]
 	public int maxHp = 10;
 
-	private int hp;
+	public int hp;
 
 	[Range(0f,20f)]
 	public float moveSpeed = 3f;
@@ -48,6 +48,7 @@ public class Enemy : MonoBehaviour {
 	ProjectilePatternFactory projectilePatternFactory;
 	public GameObject EnemyHealthBarPrefab;
 	private GameObject EnemyHealthBar;
+	private GameObject gameManager;
 
 	void Awake() {
 		_rigidbody = GetComponent<Rigidbody2D> ();
@@ -59,10 +60,9 @@ public class Enemy : MonoBehaviour {
 
 	void Start() {
 		hp = maxHp;
-        var test1 = GameObject.FindGameObjectWithTag("GameManager");
-        Debug.Log(test1.ToString());
+		gameManager = GameManager.gm.gameObject;
         //var test1 = GameManager.gm;
-        projectilePatternFactory = test1.GetComponent<ProjectilePatternFactory>();
+		projectilePatternFactory = gameManager.GetComponent<ProjectilePatternFactory>();
         //projectilePatternFactory = GameManager.gm.GetComponent<ProjectilePatternFactory>();
         CreateHealthBar ();
 	}
@@ -70,7 +70,6 @@ public class Enemy : MonoBehaviour {
 	void CreateHealthBar(){
         // instantiate a new enemyhealthbar gameobject from prefab
         //		GameObject UIHealthBar = Instantiate(EnemyHealthBarPrefab,new Vector2 (0,0),Quaternion.identity) as GameObject;
-        Debug.Log("??");
         EnemyHealthBar = Instantiate(EnemyHealthBarPrefab,new Vector2 (0,0),Quaternion.identity) as GameObject;
         // place this gameobject inside the canvas (only way to display a UI)
 		EnemyHealthBar.transform.SetParent(GameObject.FindGameObjectWithTag("MainCanvas").transform,false);
@@ -85,9 +84,8 @@ public class Enemy : MonoBehaviour {
 
         if (projectilePatternFactory == null)
         {
-            var test1 = GameObject.FindGameObjectWithTag("GameManager");
-            test1.ToString();
-            projectilePatternFactory = test1.GetComponent<ProjectilePatternFactory>();
+			gameManager = GameManager.gm.gameObject;
+			projectilePatternFactory = gameManager.GetComponent<ProjectilePatternFactory>();
             CreateHealthBar();
         }
 

@@ -2,7 +2,8 @@
 using UnityEngine.Networking;
 
 public class ProjectileController : NetworkBehaviour {
-	
+
+	public PlayerController.ElementType elementType = PlayerController.ElementType.Default;
 	[Tooltip("true projectile speed = player base speed * projectile speed")]
 	public float projectileSpeed = 1.0f;
 
@@ -62,6 +63,13 @@ public class ProjectileController : NetworkBehaviour {
 		if (other.tag == "Wall") {
 			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
+			Invoke ("DestroyNow", explodeAnimationSeconds);
+			alreadyHit = true;
+		}
+		if (other.tag == "BreakableWall") {
+			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
+			other.GetComponent<BreakableWall> ().depleteHealth (projectileDamage,elementType);
 			Invoke ("DestroyNow", explodeAnimationSeconds);
 			alreadyHit = true;
 		}
