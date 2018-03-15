@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour {
 
 	[Range(1,200)]
-	public int hp = 10;
+	public int maxHp = 10;
+
+	private int hp;
 
 	[Range(0f,20f)]
 	public float moveSpeed = 3f;
@@ -43,6 +46,8 @@ public class Enemy : MonoBehaviour {
 	float spawnTime;
 	bool moving = true;
 	ProjectilePatternFactory projectilePatternFactory;
+	public GameObject EnemyHealthBarPrefab;
+	private GameObject EnemyHealthBar;
 
 	void Awake() {
 		_rigidbody = GetComponent<Rigidbody2D> ();
@@ -53,12 +58,41 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void Start() {
-		projectilePatternFactory = GameManager.gm.GetComponent<ProjectilePatternFactory> ();
+		hp = maxHp;
+        var test1 = GameObject.FindGameObjectWithTag("GameManager");
+        Debug.Log(test1.ToString());
+        //var test1 = GameManager.gm;
+        projectilePatternFactory = test1.GetComponent<ProjectilePatternFactory>();
+        //projectilePatternFactory = GameManager.gm.GetComponent<ProjectilePatternFactory>();
+        CreateHealthBar ();
+	}
+
+	void CreateHealthBar(){
+        // instantiate a new enemyhealthbar gameobject from prefab
+        //		GameObject UIHealthBar = Instantiate(EnemyHealthBarPrefab,new Vector2 (0,0),Quaternion.identity) as GameObject;
+        Debug.Log("??");
+        EnemyHealthBar = Instantiate(EnemyHealthBarPrefab,new Vector2 (0,0),Quaternion.identity) as GameObject;
+        // place this gameobject inside the canvas (only way to display a UI)
+		EnemyHealthBar.transform.SetParent(GameObject.FindGameObjectWithTag("MainCanvas").transform,false);
+		Debug.Log ("created enemy health bar");
+		// fill the enemyhealthbar with red color
+		Transform barFill = EnemyHealthBar.transform.Find ("Fill Area").transform.Find ("Fill");
+		barFill.GetComponent<Image>().color = Color.red;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Time.time >= moveTime) {
+
+        if (projectilePatternFactory == null)
+        {
+            var test1 = GameObject.FindGameObjectWithTag("GameManager");
+            test1.ToString();
+            projectilePatternFactory = test1.GetComponent<ProjectilePatternFactory>();
+            CreateHealthBar();
+        }
+
+
+        if (Time.time >= moveTime) {
 			EnemyMovement ();
 		} else {
 			_animator.SetBool ("Moving", false);
@@ -66,6 +100,14 @@ public class Enemy : MonoBehaviour {
 		if (Time.time >= spawnTime) {
 			spawnProjectile ();
 		} 
+		// update position of the health bar to follow the enemy
+		Vector3 TransformedPos = new Vector3 ((float)0, (float)0.7, (float)0);
+		Vector3 RectBoxPos = Camera.main.WorldToScreenPoint (transform.position + TransformedPos);
+		EnemyHealthBar.transform.position = RectBoxPos;
+
+		// update the health bar to show current health of enemy
+		float enemyhealth = hp*1.0f/maxHp;
+		EnemyHealthBar.GetComponent<Slider> ().value = enemyhealth;
 	}
 
 	void spawnProjectile() {
@@ -124,6 +166,7 @@ public class Enemy : MonoBehaviour {
 				DestroyObject (wayPoints [i]);
 			}
 			DestroyObject (transform.parent.gameObject);
+			DestroyObject (EnemyHealthBar);
 			DestroyObject (this.gameObject);
 		} else {
 			hp -= damage;

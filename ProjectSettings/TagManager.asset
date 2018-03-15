@@ -11,7 +11,8 @@ TagManager:
   - Portal
   - NetworkManager
   - OtherPlayer
-  - WayPoint
+  - MainCanvas
+  - GameManager
   layers:
   - Default
   - TransparentFX

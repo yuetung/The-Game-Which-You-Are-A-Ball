@@ -11,11 +11,12 @@ public class LevelSelect : MonoBehaviour {
 		int currentLevel = SceneManager.GetActiveScene ().buildIndex;
 		PlayerPrefs.SetInt ("LevelReached", currentLevel+1);
 		Debug.Log (PlayerPrefs.GetInt ("LevelReached"));
-		//NetworkManager_Custom nw = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<NetworkManager_Custom>();
+		NetworkManager_Custom nw = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<NetworkManager_Custom>();
 		//TODO: Error Network.Shutdown automatically goes to menu
-		NetworkManager_Custom.Shutdown();
-		NetworkManager_Custom.StartSinglePlayer();
-		SceneManager.LoadScene (currentLevel+1);
+		//NetworkManager_Custom.Shutdown();
+		//NetworkManager_Custom.StartSinglePlayer();
+        nw.ServerChangeScene("Single_Player_Scene_" + (currentLevel + 1));
+		//SceneManager.LoadScene (currentLevel+1);
 
 	}
 }

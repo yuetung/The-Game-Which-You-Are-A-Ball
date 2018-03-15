@@ -49,6 +49,7 @@ public class PlayerController : NetworkBehaviour {
 		elementType = ElementType.Default;
 		projectileFactory = GameManager.gm.GetComponent<ProjectileFactory>();
 		guiManager = GameManager.gm.GetComponent<GUIManager>();
+        //GetComponent<NetworkAnimator>().SetParameterAutoSend(0, true);
 
         if (isLocalPlayer) {
 			guiManager.register (gameObject);
@@ -195,25 +196,32 @@ public class PlayerController : NetworkBehaviour {
 	public void changeSprite () {
 		Color color = Color.white;
 		if (elementType == ElementType.Fire) {
-			_animator.SetTrigger ("FireType");
+            GetComponent<NetworkAnimator>().SetTrigger("FireType");
+            _animator.SetTrigger ("FireType");
 			color = Color.red;
 		} else if (elementType == ElementType.Water) {
-			_animator.SetTrigger ("WaterType");
+            GetComponent<NetworkAnimator>().SetTrigger("WaterType");
+            _animator.SetTrigger ("WaterType");
 			color = Color.blue;
 		} else if (elementType == ElementType.Lightning) {
-			_animator.SetTrigger ("LightningType");
+            GetComponent<NetworkAnimator>().SetTrigger("LightningType");
+            _animator.SetTrigger ("LightningType");
 			color = Color.yellow;
 		} else if (elementType == ElementType.Earth) {
-			_animator.SetTrigger ("EarthType");
+            GetComponent<NetworkAnimator>().SetTrigger("EarthType");
+            _animator.SetTrigger ("EarthType");
 			color = new Color (120, 82, 45); //Brown color
 		} else if (elementType == ElementType.Wind) {
-			_animator.SetTrigger ("WindType");
+            GetComponent<NetworkAnimator>().SetTrigger("WindType");
+            _animator.SetTrigger ("WindType");
 			color = Color.green;
 		} else if (elementType == ElementType.Antimatter) {
-			_animator.SetTrigger ("AntimatterType");
+            GetComponent<NetworkAnimator>().SetTrigger("AntimatterType");
+            _animator.SetTrigger ("AntimatterType");
 			color = Color.black;
 		} else {
-			_animator.SetTrigger ("DefaultType");
+            GetComponent<NetworkAnimator>().SetTrigger("DefaultType");
+            _animator.SetTrigger ("DefaultType");
 			color = Color.gray;
 		}
 			
@@ -238,4 +246,5 @@ public class PlayerController : NetworkBehaviour {
 			health -= damage;
 		}
 	}
+
 }
