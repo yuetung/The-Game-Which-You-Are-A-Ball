@@ -219,6 +219,9 @@ MonoBehaviour:
   loopWaypoints: 1
   explosionPrefab: {fileID: 1015006985979810, guid: 269ed0b6d625aac4b9046c97d96ad3b4,
     type: 2}
+  patterns: []
+  cooldownTime: 3
+  sensePlayer: 5
   canRotate: 1
   waypointIndex: 0
 --- !u!212 &212495168959665728
