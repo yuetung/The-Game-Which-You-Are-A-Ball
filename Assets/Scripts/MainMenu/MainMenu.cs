@@ -12,11 +12,12 @@ public class MainMenu : MonoBehaviour {
         // assign starthost and joingame their onclicks
         // This is done programmically so we are able to assign a new networkmanager as onclick
         NetworkManager_Custom nw = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<NetworkManager_Custom>();
+        NetworkManager.singleton.StartMatchMaker();
         Debug.Log(nw.ToString());
         if (startHost && joinGame)
         { 
-            startHost.onClick.AddListener(delegate { nw.StartupHost(); });
-            joinGame.onClick.AddListener(delegate { nw.joinGame(); });
+            startHost.onClick.AddListener(delegate { nw.CreateInternetMatch(); });
+            joinGame.onClick.AddListener(delegate { nw.FindInternetMatch(); });
         }
 			
 	}
