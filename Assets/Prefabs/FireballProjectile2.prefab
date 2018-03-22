@@ -112,9 +112,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 1
   projectileSpeed: 20
-  projectileDamage: 5
+  projectileDamage: 7
   explodeAnimationSeconds: 2
   angleAdjustment: 0
+  AOEExplosionPrefab: {fileID: 0}
   belongToPlayer: 0
   shooter: {fileID: 0}
 --- !u!114 &114306445548069104

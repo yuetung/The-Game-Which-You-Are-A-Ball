@@ -17,6 +17,8 @@ public class ProjectileController : NetworkBehaviour {
 		"if facing top, type 270; facing left, type 180; facing down type 90")]
 	public float angleAdjustment = 0.0f;
 
+	public GameObject AOEExplosionPrefab = null;
+
 	public bool belongToPlayer= false;
 
 	private bool alreadyHit = false;
@@ -98,7 +100,19 @@ public class ProjectileController : NetworkBehaviour {
 	}
 
 	void DestroyNow() {
+		if (AOEExplosionPrefab != null) {
+			GameObject aoeExplosion = Instantiate (AOEExplosionPrefab, transform.position, transform.rotation);
+			aoeExplosion.GetComponent<AOEExplosion> ().setShooter (shooter);
+			if (belongToPlayer) {
+				aoeExplosion.GetComponent<AOEExplosion> ().belongsToPlayer();
+			}
+			Invoke ("SetScaleToZero", 0.7f);
+		}
 		DestroyObject (this.gameObject);
+	}
+
+	void setScaleToZero(){
+		this.transform.localScale = Vector3.zero;
 	}
 
 	public int getProjectileDamage() {
