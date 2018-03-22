@@ -12,6 +12,8 @@ public class EnemyBat_Test: MonoBehaviour {
 	[UnityTest] /*1 Projectile to enemeyBat: enemyBat Hp=7? true;*/
 	public IEnumerator Enemy_BatHealthOnImpact() {
 		NetworkServer.Listen(7777);
+		GameObject maincanvas = Instantiate (Resources.Load ("Tests/maincanvas")) as GameObject;
+		GameObject maincamera = Instantiate (Resources.Load ("Tests/maincamera")) as GameObject;
 		GameObject gm= Instantiate (Resources.Load ("Tests/gamemanager")) as GameObject;
 		GameObject enemyBat = Instantiate (Resources.Load ("Tests/Enemy_Bat 1")) as GameObject;
 		GameObject projectile = Instantiate (Resources.Load ("Tests/FireballProjectile1")) as GameObject;
@@ -31,6 +33,8 @@ public class EnemyBat_Test: MonoBehaviour {
 	public IEnumerator Enemy_BatDestroyOnImpact() {
 		//GameObject[] projectileList = new GameObject[5];
 		NetworkServer.Listen(7777);
+		GameObject maincanvas = Instantiate (Resources.Load ("Tests/maincanvas")) as GameObject;
+		GameObject maincamera = Instantiate (Resources.Load ("Tests/maincamera")) as GameObject;
 		GameObject gm= Instantiate (Resources.Load ("Tests/gamemanager")) as GameObject;
 		GameObject enemyBat = Instantiate (Resources.Load ("Tests/Enemy_Bat 1")) as GameObject;
 		enemyBat.transform.position = new Vector2 (0, 0);
@@ -55,6 +59,8 @@ public class EnemyBat_Test: MonoBehaviour {
 	public IEnumerator Enemy_BatWayPoint() {
 		//GameObject[] projectileList = new GameObject[5];
 		NetworkServer.Listen(7777);
+		GameObject maincanvas = Instantiate (Resources.Load ("Tests/maincanvas")) as GameObject;
+		GameObject maincamera = Instantiate (Resources.Load ("Tests/maincamera")) as GameObject;
 		GameObject gm= Instantiate (Resources.Load ("Tests/gamemanager")) as GameObject;
 		GameObject enemyBat = Instantiate (Resources.Load ("Tests/Enemy_Bat 1")) as GameObject;
 		enemyBat.transform.position = new Vector2 (0, 0);
@@ -73,6 +79,11 @@ public class EnemyBat_Test: MonoBehaviour {
 	public IEnumerator Enemy_BatWayPoint1() {
 		//GameObject[] projectileList = new GameObject[5];
 		NetworkServer.Listen(7777);
+		GameObject maincanvas = Instantiate (Resources.Load ("Tests/maincanvas")) as GameObject;
+		GameObject maincamera = Instantiate (Resources.Load ("Tests/maincamera")) as GameObject;
+//		var playerPrefab = Resources.Load ("Tests/player");
+//		GameObject player = (GameObject)Instantiate(playerPrefab);
+
 		GameObject gm= Instantiate (Resources.Load ("Tests/gamemanager")) as GameObject;
 		GameObject enemyBat = Instantiate (Resources.Load ("Tests/Enemy_Bat 1")) as GameObject;
 		enemyBat.transform.position = new Vector2 (0, 0);
@@ -94,10 +105,10 @@ public class EnemyBat_Test: MonoBehaviour {
 	}
 	[TearDown]
 	public void afterEveryTest(){
-		foreach (var gameObject in GameObject.FindGameObjectsWithTag("Enemy")) {
-			Object.Destroy (gameObject);
+		foreach(GameObject i in Object.FindObjectsOfType<GameObject>()) {
+			Destroy (i);
 		}
-		NetworkServer.dontListen=true;
+		NetworkServer.dontListen = true;
 	}
 
 

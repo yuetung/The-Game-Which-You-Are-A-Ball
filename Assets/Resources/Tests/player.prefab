@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 96269211418891922}
   - component: {fileID: 114722736394927492}
   - component: {fileID: 114188977072319446}
+  - component: {fileID: 114191588241081478}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -381,6 +382,26 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &114191588241081478
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1661166567373652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95996742694304348, guid: a43a2d6c46e604bc59463db00d2c32b1,
+    type: 2}
+  m_ParameterSendBits: 125
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
 --- !u!114 &114711417549411646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -439,6 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b5b6b7e4216b9458d9cfeb4f36f7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  testMode: 0
   moveSpeed: 10
   clickDragSensitivity: 3
   playerShootSpeed: 1
@@ -452,6 +474,7 @@ MonoBehaviour:
   moveTarget: {x: 0, y: 0}
   timeCounter: 1
   energyLossRate: 1
+  _rigidbody: {fileID: 0}
   projectileFactory: {fileID: 0}
 --- !u!114 &114937199219800104
 MonoBehaviour:

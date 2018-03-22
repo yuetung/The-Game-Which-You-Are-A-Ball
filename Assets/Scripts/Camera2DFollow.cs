@@ -15,9 +15,11 @@ public class Camera2DFollow : NetworkBehaviour
     private Vector3 m_CurrentVelocity;
     private Vector3 m_LookAheadPos;
 
+	public GameObject parent;
+
     void Start()
-    {
-        GameObject parent = transform.parent.gameObject;
+    {	
+		parent = transform.parent.gameObject;
         followPlayer(parent);
     }
 

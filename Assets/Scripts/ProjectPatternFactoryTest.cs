@@ -106,13 +106,17 @@ public class ProjectilePatternFactoryTest: MonoBehaviour {
 
 	[TearDown]
 	public void afterEveryTest(){
-		foreach (var gameObject in GameObject.FindGameObjectsWithTag("Enemy")) {
-			Object.Destroy (gameObject);
+//		foreach (var gameObject in GameObject.FindGameObjectsWithTag("Enemy")) {
+//			Object.Destroy (gameObject);
+//		}
+//		NetworkServer.dontListen=true;
+//		foreach (var gameObject in GameObject.FindGameObjectsWithTag("Projectile")) {
+//			Object.Destroy (gameObject);
+//		}
+		foreach(GameObject i in Object.FindObjectsOfType<GameObject>()) {
+			Destroy (i);
 		}
-		NetworkServer.dontListen=true;
-		foreach (var gameObject in GameObject.FindGameObjectsWithTag("Projectile")) {
-			Object.Destroy (gameObject);
-		}
+		NetworkServer.dontListen = true;
 	}
 
 

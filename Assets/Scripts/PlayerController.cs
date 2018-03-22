@@ -3,6 +3,7 @@ using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour {
 
+	public bool testMode = false;
     [Tooltip("Movement Speed")]
     public float moveSpeed = 1.5f;
     [Tooltip("How much distance to drag mouse to distinguish between a click and a drag")]
@@ -20,6 +21,7 @@ public class PlayerController : NetworkBehaviour {
 	public Vector2 moveTarget;  // target point to move player towards
 	public float timeCounter = 1.0f;
 	public float energyLossRate = 1.0f;
+	public int levelCap = 3; 
 	// Possible element types
 	public enum ElementType {
 		Default,
@@ -60,7 +62,8 @@ public class PlayerController : NetworkBehaviour {
 
     // Update is called once per frame
     public void Update () {
-		if (!isLocalPlayer) {
+		if (!isLocalPlayer  && !testMode) {
+			Debug.Log ("not in test mode");
 			return;
 		}
 		// Mouse Down
@@ -86,6 +89,7 @@ public class PlayerController : NetworkBehaviour {
 		move ();
 		// Reduce energy over time
 		timeCounter += Time.deltaTime;
+
 		if (timeCounter >= 1 / energyLossRate) {
 			depletesEnergy (1);
 			timeCounter = 0;
@@ -161,16 +165,21 @@ public class PlayerController : NetworkBehaviour {
 
 	public void gainEnergy(int amount) {
 		energy = energy + amount;
-		while (energy >= 100) {
-			setElementLevel (elementLevel + 1);
-			energy -= 100;
+		while (energy > 100) {
+			if (elementLevel + 1 > levelCap) {
+				energy = 100;
+			} else {
+				setElementLevel (elementLevel + 1);
+				energy -= 100;
+			}
 		}
 
 	}
 
 	public void depletesEnergy(int amount) {
-		if (elementType == ElementType.Default || elementLevel==0)
+		if (elementType == ElementType.Default || elementLevel == 0) {
 			return;
+		}
 		energy -= amount;
 		if (energy <= 0) {
 			if (elementLevel == 1) {

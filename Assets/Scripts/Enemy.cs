@@ -70,8 +70,11 @@ public class Enemy : MonoBehaviour {
 	void CreateHealthBar(){
         // instantiate a new enemyhealthbar gameobject from prefab
         //		GameObject UIHealthBar = Instantiate(EnemyHealthBarPrefab,new Vector2 (0,0),Quaternion.identity) as GameObject;
-        EnemyHealthBar = Instantiate(EnemyHealthBarPrefab,new Vector2 (0,0),Quaternion.identity) as GameObject;
+		Debug.Log("enemyhealthbarprefab: "+EnemyHealthBarPrefab);
+		EnemyHealthBar = Instantiate(EnemyHealthBarPrefab,new Vector2 (0,0),Quaternion.identity) as GameObject;
         // place this gameobject inside the canvas (only way to display a UI)
+		Debug.Log("enemyhealthbar: "+EnemyHealthBar);
+		Debug.Log ("maincanvas: " + GameObject.FindGameObjectWithTag ("MainCanvas"));
 		EnemyHealthBar.transform.SetParent(GameObject.FindGameObjectWithTag("MainCanvas").transform,false);
 		Debug.Log ("created enemy health bar");
 		// fill the enemyhealthbar with red color
