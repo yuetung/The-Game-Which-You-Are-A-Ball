@@ -21,7 +21,6 @@ public class PlayerTest : MonoBehaviour {
 //		player.GetComponent<PlayerController> ().moveTarget = newPos;
 //		player.rigidbody = player.GetComponent<Rigidbody2D> ();
 
-
 		NetworkServer.Listen (7777);
 
 		yield return new WaitForSeconds(5);
