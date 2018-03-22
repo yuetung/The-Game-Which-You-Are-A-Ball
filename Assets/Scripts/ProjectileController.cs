@@ -19,6 +19,9 @@ public class ProjectileController : NetworkBehaviour {
 
 	public GameObject AOEExplosionPrefab = null;
 
+	[Tooltip("For Lightning type projectile only")]
+	public float maxDistance = 0.0f;
+
 	public bool belongToPlayer= false;
 
 	private bool alreadyHit = false;
@@ -64,12 +67,14 @@ public class ProjectileController : NetworkBehaviour {
         
 		if (other.tag == "Wall") {
 			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+			if (gameObject.GetComponent<Animator> ())
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
 			Invoke ("DestroyNow", explodeAnimationSeconds);
 			alreadyHit = true;
 		}
 		if (other.tag == "BreakableWall") {
 			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+			if (gameObject.GetComponent<Animator> ())
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
 			other.GetComponent<BreakableWall> ().depleteHealth (projectileDamage,elementType);
 			Invoke ("DestroyNow", explodeAnimationSeconds);
@@ -77,6 +82,7 @@ public class ProjectileController : NetworkBehaviour {
 		}
 		else if (other.tag == "Enemy" && belongToPlayer) {
 			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+			if (gameObject.GetComponent<Animator> ())
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
 			other.GetComponent<Enemy> ().depleteHealth (projectileDamage);
 			Invoke ("DestroyNow", explodeAnimationSeconds);
@@ -92,6 +98,7 @@ public class ProjectileController : NetworkBehaviour {
         else if (other.tag == "Player")
         {
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+			if (gameObject.GetComponent<Animator> ())
             gameObject.GetComponent<Animator>().SetTrigger("Explode");
 			other.GetComponent<PlayerController> ().depleteHealth (projectileDamage);
             Invoke("DestroyNow", explodeAnimationSeconds);

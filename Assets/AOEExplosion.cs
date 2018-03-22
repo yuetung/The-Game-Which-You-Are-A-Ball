@@ -21,6 +21,7 @@ public class AOEExplosion : MonoBehaviour {
 	// Collision with wall
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "BreakableWall" && !alreadyHit.Contains(other)) {
+			Debug.Log("Hit box");
 			other.GetComponent<BreakableWall> ().depleteHealth (AOEDamage,elementType);
 			alreadyHit.Add (other);
 		}

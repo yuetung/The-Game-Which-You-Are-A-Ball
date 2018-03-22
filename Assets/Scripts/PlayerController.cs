@@ -20,6 +20,7 @@ public class PlayerController : NetworkBehaviour {
 	public Vector2 moveTarget;  // target point to move player towards
 	public float timeCounter = 1.0f;
 	public float energyLossRate = 1.0f;
+	public GameObject lightningEffect;
 	// Possible element types
 	public enum ElementType {
 		Default,
@@ -107,14 +108,32 @@ public class PlayerController : NetworkBehaviour {
 	public void CmdShoot (Vector2 shootDirection, ElementType elementType, int elementLevel) {
 		Rigidbody2D projectile = projectileFactory.getProjectileFromType (elementType, elementLevel);
 		Rigidbody2D clone;
-		clone = Instantiate (projectile, transform.position, transform.rotation) as Rigidbody2D;
+		//Lightning projectile
+		if (projectile.GetComponent<ProjectileController> ().elementType == ElementType.Lightning) {
+			float maxDistance = projectile.GetComponent<ProjectileController> ().maxDistance;
+			int layerMask = LayerMask.GetMask ("Enemy", "Wall");
+			RaycastHit2D hit = Physics2D.Raycast (transform.position, shootDirection, Mathf.Infinity, layerMask);
+			Vector2 finalPosition;
+			if (hit.distance <= maxDistance) {
+				finalPosition = hit.transform.position;
+			} else {
+				finalPosition = new Vector2(transform.position.x, transform.position.y) + shootDirection.normalized * maxDistance;
+			}
+			clone = Instantiate (projectile, finalPosition, transform.rotation) as Rigidbody2D;
+			GameObject lightning = Instantiate (lightningEffect, transform.position, transform.rotation);
+			lightning.GetComponent<LightningBoltScript> ().StartObject = this.gameObject;
+			lightning.GetComponent<LightningBoltScript> ().EndPosition = finalPosition;
+			NetworkServer.Spawn(lightning);
+		} else { //other projectiles
+			clone = Instantiate (projectile, transform.position, transform.rotation) as Rigidbody2D;
+		}
 		GameObject cloneGameObject = clone.gameObject;
 		cloneGameObject.GetComponent<ProjectileController> ().belongsToPlayer ();
-		Vector2 velocity = shootDirection.normalized * playerShootSpeed * projectile.GetComponent<ProjectileController>().projectileSpeed;
+		Vector2 velocity = shootDirection.normalized * playerShootSpeed * projectile.GetComponent<ProjectileController> ().projectileSpeed;
 		float rotation = Mathf.Atan2 (shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
 		cloneGameObject.GetComponent<ProjectileController> ().setVelocityAndRotation (velocity, rotation);
-        // assigns a shooter to the bullet
-        cloneGameObject.GetComponent<ProjectileController>().shooter = transform.gameObject;
+		// assigns a shooter to the bullet
+		cloneGameObject.GetComponent<ProjectileController> ().shooter = transform.gameObject;
         NetworkServer.Spawn(cloneGameObject);
 	}
 
