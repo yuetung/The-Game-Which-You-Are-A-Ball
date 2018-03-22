@@ -17,6 +17,11 @@ public class ProjectileController : NetworkBehaviour {
 		"if facing top, type 270; facing left, type 180; facing down type 90")]
 	public float angleAdjustment = 0.0f;
 
+	public GameObject AOEExplosionPrefab = null;
+
+	[Tooltip("For Lightning type projectile only")]
+	public float maxDistance = 0.0f;
+
 	public bool belongToPlayer= false;
 
 	private bool alreadyHit = false;
@@ -62,12 +67,14 @@ public class ProjectileController : NetworkBehaviour {
         
 		if (other.tag == "Wall") {
 			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+			if (gameObject.GetComponent<Animator> ())
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
 			Invoke ("DestroyNow", explodeAnimationSeconds);
 			alreadyHit = true;
 		}
 		if (other.tag == "BreakableWall") {
 			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+			if (gameObject.GetComponent<Animator> ())
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
 			other.GetComponent<BreakableWall> ().depleteHealth (projectileDamage,elementType);
 			Invoke ("DestroyNow", explodeAnimationSeconds);
@@ -75,6 +82,7 @@ public class ProjectileController : NetworkBehaviour {
 		}
 		else if (other.tag == "Enemy" && belongToPlayer) {
 			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+			if (gameObject.GetComponent<Animator> ())
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
 			other.GetComponent<Enemy> ().depleteHealth (projectileDamage);
 			Invoke ("DestroyNow", explodeAnimationSeconds);
@@ -90,6 +98,7 @@ public class ProjectileController : NetworkBehaviour {
         else if (other.tag == "Player")
         {
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+			if (gameObject.GetComponent<Animator> ())
             gameObject.GetComponent<Animator>().SetTrigger("Explode");
 			other.GetComponent<PlayerController> ().depleteHealth (projectileDamage);
             Invoke("DestroyNow", explodeAnimationSeconds);
@@ -98,7 +107,19 @@ public class ProjectileController : NetworkBehaviour {
 	}
 
 	void DestroyNow() {
+		if (AOEExplosionPrefab != null) {
+			GameObject aoeExplosion = Instantiate (AOEExplosionPrefab, transform.position, transform.rotation);
+			aoeExplosion.GetComponent<AOEExplosion> ().setShooter (shooter);
+			if (belongToPlayer) {
+				aoeExplosion.GetComponent<AOEExplosion> ().belongsToPlayer();
+			}
+			Invoke ("SetScaleToZero", 0.7f);
+		}
 		DestroyObject (this.gameObject);
+	}
+
+	void setScaleToZero(){
+		this.transform.localScale = Vector3.zero;
 	}
 
 	public int getProjectileDamage() {

@@ -1,22 +1,18 @@
 fileFormatVersion: 2
-guid: 3d00ff427ece8fc4ba4c1fdbc00255d9
-timeCreated: 1520536187
+guid: e01da4d86127b6f4f95fcb98b89b84c3
+timeCreated: 1521729825
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: water_bullet_explosion_0
-    21300002: water_bullet_explosion_1
-    21300004: water_bullet_explosion_2
-    21300006: water_bullet_explosion_3
-    21300008: water_bullet_explosion_4
-    21300010: water_bullet_explosion_5
-    21300012: water_bullet_explosion_6
-    21300014: water_bullet_explosion_7
-    21300016: water_bullet_explosion_8
-    21300018: water_bullet_explosion_9
-    21300020: water_bullet_explosion_10
-    21300022: water_bullet_explosion_11
-    21300024: water_bullet_explosion_12
+    21300000: lightningExplosion1_0
+    21300002: lightningExplosion1_1
+    21300004: lightningExplosion1_2
+    21300006: lightningExplosion1_3
+    21300008: lightningExplosion1_4
+    21300010: lightningExplosion1_5
+    21300012: lightningExplosion1_6
+    21300014: lightningExplosion1_7
+    21300016: lightningExplosion1_8
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -58,7 +54,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 49
+  spritePixelsToUnits: 100
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -96,13 +92,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: water_bullet_explosion_0
+      name: lightningExplosion1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 362
-        height: 299
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -110,13 +106,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: water_bullet_explosion_1
+      name: lightningExplosion1_1
       rect:
         serializedVersion: 2
-        x: 362
+        x: 100
         y: 0
-        width: 362
-        height: 299
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,13 +120,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: water_bullet_explosion_2
+      name: lightningExplosion1_2
       rect:
         serializedVersion: 2
-        x: 724
+        x: 200
         y: 0
-        width: 362
-        height: 299
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -138,13 +134,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: water_bullet_explosion_3
+      name: lightningExplosion1_3
       rect:
         serializedVersion: 2
-        x: 1086
+        x: 300
         y: 0
-        width: 362
-        height: 299
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,13 +148,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: water_bullet_explosion_4
+      name: lightningExplosion1_4
       rect:
         serializedVersion: 2
-        x: 1448
+        x: 400
         y: 0
-        width: 362
-        height: 299
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,13 +162,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: water_bullet_explosion_5
+      name: lightningExplosion1_5
       rect:
         serializedVersion: 2
-        x: 1810
+        x: 500
         y: 0
-        width: 362
-        height: 299
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -180,13 +176,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: water_bullet_explosion_6
+      name: lightningExplosion1_6
       rect:
         serializedVersion: 2
-        x: 2172
+        x: 600
         y: 0
-        width: 362
-        height: 299
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,13 +190,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: water_bullet_explosion_7
+      name: lightningExplosion1_7
       rect:
         serializedVersion: 2
-        x: 2534
+        x: 700
         y: 0
-        width: 362
-        height: 299
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,69 +204,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: water_bullet_explosion_8
+      name: lightningExplosion1_8
       rect:
         serializedVersion: 2
-        x: 2896
+        x: 800
         y: 0
-        width: 362
-        height: 299
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: water_bullet_explosion_9
-      rect:
-        serializedVersion: 2
-        x: 3258
-        y: 0
-        width: 362
-        height: 299
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: water_bullet_explosion_10
-      rect:
-        serializedVersion: 2
-        x: 3620
-        y: 0
-        width: 362
-        height: 299
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: water_bullet_explosion_11
-      rect:
-        serializedVersion: 2
-        x: 3982
-        y: 0
-        width: 362
-        height: 299
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: water_bullet_explosion_12
-      rect:
-        serializedVersion: 2
-        x: 4344
-        y: 0
-        width: 362
-        height: 299
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
