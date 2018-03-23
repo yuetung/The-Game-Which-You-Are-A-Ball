@@ -5,19 +5,29 @@ Branch for multiplayer network
 
 ~~Animation change when picking up powerups network.~~
 
-IP Display networkbroadcast?
+~~IP Display networkbroadcast?~~
 
 ---
 
-Android <-> Android no IP address
+Touch animation detect whether person pressed place
+
+Player doesn't know if they level up (character level)
+
+Multiplayer UI menulist broadcast created rooms?
+
+Trail not synced
+
+coroutines?
 
 ---
 
-Change IP display & all the other displays for multiplayer to scale with screen size.
+Change the update errors
 
-Make back button from 2Player network screen
+~~Change IP display & all the other displays for multiplayer to scale with screen size.~~
 
-Show progress of connection of IP and cancel button
+~~Make back button from 2Player network screen~~
+
+~~Show progress of connection of IP and cancel button~~
 
 ~~Camera?~~
 
@@ -29,6 +39,7 @@ Show progress of connection of IP and cancel button
 
 ~~Client spawns only one colour?~~
 
-Can put a Boolean in PlayerController to check if there is a networkmanager
+~~Can put a Boolean in PlayerController to check if there is a networkmanager~~
 
-or separate SinglePlayerController code
+~~or separate SinglePlayerController code~~
+

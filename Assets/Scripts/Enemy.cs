@@ -56,16 +56,22 @@ public class Enemy : MonoBehaviour {
 		moveTime = 0f;
 		spawnTime = 0f;
 		moving = true;
-	}
 
-	void Start() {
+	}
+    IEnumerator WaitForSecondsWrapper(float secs)
+    {
+        yield return new UnityEngine.WaitForSeconds(secs);
+    }
+    void Start() {
 		hp = maxHp;
 		gameManager = GameManager.gm.gameObject;
         //var test1 = GameManager.gm;
 		projectilePatternFactory = gameManager.GetComponent<ProjectilePatternFactory>();
         //projectilePatternFactory = GameManager.gm.GetComponent<ProjectilePatternFactory>();
         CreateHealthBar ();
-	}
+
+        
+    }
 
 	void CreateHealthBar(){
         // instantiate a new enemyhealthbar gameobject from prefab
@@ -100,16 +106,16 @@ public class Enemy : MonoBehaviour {
 		}
 		if (Time.time >= spawnTime) {
 			spawnProjectile ();
-		} 
-		// update position of the health bar to follow the enemy
-		Vector3 TransformedPos = new Vector3 ((float)0, (float)0.7, (float)0);
-		Vector3 RectBoxPos = Camera.main.WorldToScreenPoint (transform.position + TransformedPos);
-		EnemyHealthBar.transform.position = RectBoxPos;
+		}
+        // update position of the health bar to follow the enemy
+        Vector3 TransformedPos = new Vector3((float)0, (float)0.7, (float)0);
+        Vector3 RectBoxPos = Camera.main.WorldToScreenPoint(transform.position + TransformedPos);
+        EnemyHealthBar.transform.position = RectBoxPos;
 
-		// update the health bar to show current health of enemy
-		float enemyhealth = hp*1.0f/maxHp;
-		EnemyHealthBar.GetComponent<Slider> ().value = enemyhealth;
-	}
+        // update the health bar to show current health of enemy
+        float enemyhealth = hp * 1.0f / maxHp;
+        EnemyHealthBar.GetComponent<Slider>().value = enemyhealth;
+    }
 
 	void spawnProjectile() {
 		if (Time.time >= spawnTime && isNearPlayer () && patterns.Length>0) {
@@ -121,6 +127,7 @@ public class Enemy : MonoBehaviour {
 		}
 		spawnTime = Time.time + cooldownTime;
 	}
+
 	void EnemyMovement() {
 		if (wayPoints.Length != 0 && moving) {
 			vx = wayPoints [waypointIndex].transform.position.x - transform.position.x;

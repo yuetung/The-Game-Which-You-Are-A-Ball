@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour {
@@ -40,6 +41,7 @@ public class PlayerController : NetworkBehaviour {
 	TrailRenderer _trailRenderer;
 	public ProjectileFactory projectileFactory;
 	GUIManager guiManager;
+    public GameObject touchIndicator;
 		
 	// Use this for initialization
 	public void Start () {
@@ -64,7 +66,6 @@ public class PlayerController : NetworkBehaviour {
     // Update is called once per frame
     public void Update () {
 		if (!isLocalPlayer  && !testMode) {
-			Debug.Log ("not in test mode");
 			return;
 		}
 		// Mouse Down
@@ -78,16 +79,38 @@ public class PlayerController : NetworkBehaviour {
 
 			// Mouse Clicked
 			if (shootDirection.magnitude < clickDragSensitivity) {
-				setMovementTarget (Camera.main.ScreenToWorldPoint (mouseUpLocation));
-			}
+                var worldLocation = Camera.main.ScreenToWorldPoint(mouseUpLocation);
+				setMovementTarget (worldLocation);
+
+                var tempIcon = Instantiate(touchIndicator, worldLocation + new Vector3(0,0,10), new Quaternion());
+                Destroy(tempIcon, 0.5f);
+            }
 
 			// Mouse Dragged
 			else { 
 				CmdShoot (shootDirection, elementType, elementLevel);
 				depletesEnergy (elementLevel * 10);
 			}
-		}
+            transform.Find("Target Arrow").gameObject.SetActive(false);
+        }
 		move ();
+
+        // if mouse is held down,
+        if (Input.GetMouseButton(0))
+        {
+            Vector2 draggedDistance = (Vector2)Input.mousePosition - mouseDownLocation;
+            if (draggedDistance.magnitude > clickDragSensitivity)
+            {
+                transform.Find("Target Arrow").gameObject.SetActive(true);
+                var angle = Mathf.Atan2(-draggedDistance.x, draggedDistance.y) * Mathf.Rad2Deg;
+                transform.Find("Target Arrow").rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            }
+            else
+            {
+                transform.Find("Target Arrow").gameObject.SetActive(false);
+            }
+        }
+
 		// Reduce energy over time
 		timeCounter += Time.deltaTime;
 
@@ -274,5 +297,10 @@ public class PlayerController : NetworkBehaviour {
 			health -= damage;
 		}
 	}
+
+    //IEnumerator Destroy(GameObject o)
+    //{
+        
+    //}
 
 }
