@@ -1,21 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ProjectPatternFactoryTest.cs">
     <Files>
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="116" Column="1" />
-      <File FileName="Assets\Scripts\PauseMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PowerUpPickup.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MainMenu\MainMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ProjectileFactory.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ProjectilePatternFactory.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Portal.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerControllerSingle.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemy.cs" Line="36" Column="32" />
-      <File FileName="Assets\Scripts\BreakableWall.cs" Line="1" Column="1" />
-      <File FileName="Assets\AOEExplosion.cs" Line="22" Column="43" />
-      <File FileName="Assets\LightningBolt\LightningBoltScript.cs" Line="49" Column="38" />
-      <File FileName="Assets\Scripts\ProjectileController.cs" Line="23" Column="34" />
-      <File FileName="Assets\LightningProjectileController.cs" Line="23" Column="3" />
+      <File FileName="Assets/Scripts/ProjectilePatternFactory.cs" Line="18" Column="2" />
+      <File FileName="Assets/Scripts/ProjectPatternFactoryTest.cs" Line="74" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

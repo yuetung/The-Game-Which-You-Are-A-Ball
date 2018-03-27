@@ -7,8 +7,7 @@ using System.Collections;
 using UnityEngine.Networking;
 
 public class EnemyBat_Test: MonoBehaviour {
-	// A UnityTest behaves like a coroutine in PlayMode
-	// and allows you to yield null to skip a frame in EditMode
+
 	[UnityTest] /*1 Projectile to enemeyBat: enemyBat Hp=7? true;*/
 	public IEnumerator Enemy_BatHealthOnImpact() {
 		NetworkServer.Listen(7777);
