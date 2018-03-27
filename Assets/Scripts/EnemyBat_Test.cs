@@ -7,13 +7,16 @@ using System.Collections;
 using UnityEngine.Networking;
 
 public class EnemyBat_Test: MonoBehaviour {
-
-	[UnityTest] /*1 Projectile to enemeyBat: enemyBat Hp=7? true;*/
-	public IEnumerator Enemy_BatHealthOnImpact() {
+	
+	/*	@Description: Test enemy's health will deplete upon being hit by projectile 
+	 * 	@Parameters: projectile damage = [0, 5, 9]
+	 */
+	[UnityTest]
+	public IEnumerator Enemy_BatHealthOnImpact1() {
 		NetworkServer.Listen(7777);
-		GameObject maincanvas = Instantiate (Resources.Load ("Tests/maincanvas")) as GameObject;
-		GameObject maincamera = Instantiate (Resources.Load ("Tests/maincamera")) as GameObject;
-		GameObject gm= Instantiate (Resources.Load ("Tests/gamemanager")) as GameObject;
+		Instantiate (Resources.Load ("Tests/maincanvas"));
+		Instantiate (Resources.Load ("Tests/maincamera"));
+		Instantiate (Resources.Load ("Tests/gamemanager"));
 		GameObject enemyBat = Instantiate (Resources.Load ("Tests/Enemy_Bat 1")) as GameObject;
 		GameObject projectile = Instantiate (Resources.Load ("Tests/FireballProjectile1")) as GameObject;
 		enemyBat.transform.position = new Vector2 (0, 0);
@@ -21,23 +24,95 @@ public class EnemyBat_Test: MonoBehaviour {
 		ProjectileController pc = projectile.GetComponent<ProjectileController> ();
 		pc.setVelocityAndRotation (new Vector2 (-4, 0), 0);
 
+		int startHp = enemyBat.GetComponentInChildren<Enemy> ().hp;
+		int damage = 0;
+		pc.projectileDamage = damage;
+
 		yield return new WaitForSeconds(5);
 
 		GameObject[] spawnedEnemyBatList = GameObject.FindGameObjectsWithTag("Enemy");
 		GameObject  spawnedEnemyBat = spawnedEnemyBatList[0];
 		Enemy enemyScript=spawnedEnemyBat.GetComponent<Enemy>();
-		Assert.AreEqual (enemyScript.hp, 7);
+		int expectedhealth = startHp - damage;
+		Assert.AreEqual (expectedhealth, enemyScript.hp);
 	}
-	[UnityTest] /*5 Projectile to enemeyBat: enemyBat Destroyed? true;*/
-	public IEnumerator Enemy_BatDestroyOnImpact() {
-		//GameObject[] projectileList = new GameObject[5];
+
+	[UnityTest]
+	public IEnumerator Enemy_BatHealthOnImpact2() {
 		NetworkServer.Listen(7777);
-		GameObject maincanvas = Instantiate (Resources.Load ("Tests/maincanvas")) as GameObject;
-		GameObject maincamera = Instantiate (Resources.Load ("Tests/maincamera")) as GameObject;
-		GameObject gm= Instantiate (Resources.Load ("Tests/gamemanager")) as GameObject;
+		Instantiate (Resources.Load ("Tests/maincanvas"));
+		Instantiate (Resources.Load ("Tests/maincamera"));
+		Instantiate (Resources.Load ("Tests/gamemanager"));
+		GameObject enemyBat = Instantiate (Resources.Load ("Tests/Enemy_Bat 1")) as GameObject;
+		GameObject projectile = Instantiate (Resources.Load ("Tests/FireballProjectile1")) as GameObject;
+		enemyBat.transform.position = new Vector2 (0, 0);
+		projectile.transform.position = new Vector2 (5, 0);
+		ProjectileController pc = projectile.GetComponent<ProjectileController> ();
+		pc.setVelocityAndRotation (new Vector2 (-4, 0), 0);
+
+		int startHp = enemyBat.GetComponentInChildren<Enemy> ().hp;
+		int damage = 5;
+		pc.projectileDamage = damage;
+
+		yield return new WaitForSeconds(5);
+
+		GameObject[] spawnedEnemyBatList = GameObject.FindGameObjectsWithTag("Enemy");
+		GameObject  spawnedEnemyBat = spawnedEnemyBatList[0];
+		Enemy enemyScript=spawnedEnemyBat.GetComponent<Enemy>();
+		int expectedhealth = startHp - damage;
+		Assert.AreEqual (expectedhealth, enemyScript.hp);
+	}
+
+	[UnityTest]
+	public IEnumerator Enemy_BatHealthOnImpact3() {
+		NetworkServer.Listen(7777);
+		Instantiate (Resources.Load ("Tests/maincanvas"));
+		Instantiate (Resources.Load ("Tests/maincamera"));
+		Instantiate (Resources.Load ("Tests/gamemanager"));
+		GameObject enemyBat = Instantiate (Resources.Load ("Tests/Enemy_Bat 1")) as GameObject;
+		GameObject projectile = Instantiate (Resources.Load ("Tests/FireballProjectile1")) as GameObject;
+		enemyBat.transform.position = new Vector2 (0, 0);
+		projectile.transform.position = new Vector2 (5, 0);
+		ProjectileController pc = projectile.GetComponent<ProjectileController> ();
+		pc.setVelocityAndRotation (new Vector2 (-4, 0), 0);
+
+		int startHp = enemyBat.GetComponentInChildren<Enemy> ().hp;
+		int damage = startHp-1;
+		pc.projectileDamage = damage;
+
+		yield return new WaitForSeconds(5);
+
+		GameObject[] spawnedEnemyBatList = GameObject.FindGameObjectsWithTag("Enemy");
+		GameObject  spawnedEnemyBat = spawnedEnemyBatList[0];
+		Enemy enemyScript=spawnedEnemyBat.GetComponent<Enemy>();
+		int expectedhealth = startHp - damage;
+		Assert.AreEqual (expectedhealth, enemyScript.hp);
+	}
+
+
+
+
+	/* 	@Description: Test if enemy is destroyed after being hit with projectil
+	 * 	@Parameters: projectile damage = [equal to enemy's health, just below enemy's health, just above enemy's health]
+	 */
+	[UnityTest]
+	public IEnumerator Enemy_BatDestroyOnImpact1() {
+		NetworkServer.Listen(7777);
+		Instantiate (Resources.Load ("Tests/maincanvas"));
+		Instantiate (Resources.Load ("Tests/maincamera"));
+		Instantiate (Resources.Load ("Tests/gamemanager"));
 		GameObject enemyBat = Instantiate (Resources.Load ("Tests/Enemy_Bat 1")) as GameObject;
 		enemyBat.transform.position = new Vector2 (0, 0);
-		for( int i=0; i<5;i++)
+		GameObject demoprojectile = Instantiate (Resources.Load ("Tests/FireballProjectile1")) as GameObject;
+		int starthealth = enemyBat.GetComponentInChildren<Enemy> ().hp;
+		int damage = demoprojectile.GetComponent<ProjectileController> ().getProjectileDamage();
+		int count = starthealth / damage;
+		Debug.Log (starthealth);
+		Debug.Log (damage);
+		Debug.Log (count);
+
+
+		for( int i=0; i<count;i++)
 		{
 			GameObject projectile = Instantiate (Resources.Load ("Tests/FireballProjectile1")) as GameObject;
 			projectile.transform.position = new Vector2 (5, 0);
@@ -45,22 +120,76 @@ public class EnemyBat_Test: MonoBehaviour {
 			pc.setVelocityAndRotation (new Vector2 (-4, 0), 0);
 			//projectile [i] = projectile;
 		}
-
-
 		yield return new WaitForSeconds(5);
-
-		//GameObject[] spawnedEnemyBatList = GameObject.FindGameObjectsWithTag("Enemy");
-		//GameObject  spawnedEnemyBat = spawnedEnemyBatList[0];
-		//Enemy enemyScript=spawnedEnemyBat.GetComponent<Enemy>();
 		Assert.AreEqual (GameObject.FindGameObjectWithTag("Enemy"), null);
 	}
-	[UnityTest] /*WayPoint: enemyBat position? waypoint;*/
-	public IEnumerator Enemy_BatWayPoint() {
-		//GameObject[] projectileList = new GameObject[5];
+
+	[UnityTest]
+	public IEnumerator Enemy_BatDestroyOnImpact2() {
 		NetworkServer.Listen(7777);
-		GameObject maincanvas = Instantiate (Resources.Load ("Tests/maincanvas")) as GameObject;
-		GameObject maincamera = Instantiate (Resources.Load ("Tests/maincamera")) as GameObject;
-		GameObject gm= Instantiate (Resources.Load ("Tests/gamemanager")) as GameObject;
+		Instantiate (Resources.Load ("Tests/maincanvas"));
+		Instantiate (Resources.Load ("Tests/maincamera"));
+		Instantiate (Resources.Load ("Tests/gamemanager"));
+		GameObject enemyBat = Instantiate (Resources.Load ("Tests/Enemy_Bat 1")) as GameObject;
+		enemyBat.transform.position = new Vector2 (0, 0);
+		GameObject demoprojectile = Instantiate (Resources.Load ("Tests/FireballProjectile1")) as GameObject;
+		int starthealth = enemyBat.GetComponentInChildren<Enemy> ().hp;
+		int damage = demoprojectile.GetComponent<ProjectileController> ().getProjectileDamage();
+		int count = starthealth / damage;
+
+
+		for( int i=0; i<count+1;i++)
+		{
+			GameObject projectile = Instantiate (Resources.Load ("Tests/FireballProjectile1")) as GameObject;
+			projectile.transform.position = new Vector2 (5, 0);
+			ProjectileController pc = projectile.GetComponent<ProjectileController> ();
+			pc.setVelocityAndRotation (new Vector2 (-4, 0), 0);
+			//projectile [i] = projectile;
+		}
+		yield return new WaitForSeconds(5);
+		Assert.AreEqual (GameObject.FindGameObjectWithTag("Enemy"), null);
+	}
+
+	[UnityTest]
+	public IEnumerator Enemy_BatDestroyOnImpact3() {
+		NetworkServer.Listen(7777);
+		Instantiate (Resources.Load ("Tests/maincanvas"));
+		Instantiate (Resources.Load ("Tests/maincamera"));
+		Instantiate (Resources.Load ("Tests/gamemanager"));
+		GameObject enemyBat = Instantiate (Resources.Load ("Tests/Enemy_Bat 1")) as GameObject;
+		enemyBat.transform.position = new Vector2 (0, 0);
+		GameObject demoprojectile = Instantiate (Resources.Load ("Tests/FireballProjectile1")) as GameObject;
+		int starthealth = enemyBat.GetComponentInChildren<Enemy> ().hp;
+		int damage = demoprojectile.GetComponent<ProjectileController> ().getProjectileDamage();
+		int count = starthealth / damage;
+
+
+		for( int i=0; i<count-1;i++)
+		{
+			GameObject projectile = Instantiate (Resources.Load ("Tests/FireballProjectile1")) as GameObject;
+			projectile.transform.position = new Vector2 (5, 0);
+			ProjectileController pc = projectile.GetComponent<ProjectileController> ();
+			pc.setVelocityAndRotation (new Vector2 (-4, 0), 0);
+			//projectile [i] = projectile;
+		}
+		yield return new WaitForSeconds(5);
+		Assert.AreEqual ((GameObject.FindGameObjectsWithTag("Enemy")).Length,1);
+	}
+
+
+
+
+
+
+	/*	@Description: Test if enemy bat moves to the right position
+	 * 	@Parameters: distance between new and current position:[1.0, 10.0]
+	 */ 
+	[UnityTest]
+	public IEnumerator Enemy_BatWayPoint1() {
+		NetworkServer.Listen(7777);
+		Instantiate (Resources.Load ("Tests/maincanvas"));
+		Instantiate (Resources.Load ("Tests/maincamera"));
+		Instantiate (Resources.Load ("Tests/gamemanager"));
 		GameObject enemyBat = Instantiate (Resources.Load ("Tests/Enemy_Bat 1")) as GameObject;
 		enemyBat.transform.position = new Vector2 (0, 0);
 		foreach (var gameObject in GameObject.FindGameObjectsWithTag("WayPoint")) {
@@ -74,16 +203,12 @@ public class EnemyBat_Test: MonoBehaviour {
 
 		Assert.AreEqual (new Vector3(10f,10f,0),vec_round );
 	}
-	[UnityTest] /*WayPoint: enemyBat position? waypoint;*/
-	public IEnumerator Enemy_BatWayPoint1() {
-		//GameObject[] projectileList = new GameObject[5];
+	[UnityTest]
+	public IEnumerator Enemy_BatWayPoint2() {
 		NetworkServer.Listen(7777);
-		GameObject maincanvas = Instantiate (Resources.Load ("Tests/maincanvas")) as GameObject;
-		GameObject maincamera = Instantiate (Resources.Load ("Tests/maincamera")) as GameObject;
-//		var playerPrefab = Resources.Load ("Tests/player");
-//		GameObject player = (GameObject)Instantiate(playerPrefab);
-
-		GameObject gm= Instantiate (Resources.Load ("Tests/gamemanager")) as GameObject;
+		Instantiate (Resources.Load ("Tests/maincanvas"));
+		Instantiate (Resources.Load ("Tests/maincamera"));
+		Instantiate (Resources.Load ("Tests/gamemanager"));
 		GameObject enemyBat = Instantiate (Resources.Load ("Tests/Enemy_Bat 1")) as GameObject;
 		enemyBat.transform.position = new Vector2 (0, 0);
 		Enemy bat=GameObject.FindGameObjectWithTag ("Enemy").GetComponent<Enemy>();
