@@ -14,20 +14,20 @@ public class AOEExplosion : MonoBehaviour {
 
 	public bool belongToPlayer= false;
 
-	private List<Collider2D> alreadyHit = new List<Collider2D>();
+	private List<GameObject> alreadyHit = new List<GameObject>();
 
 	public GameObject shooter;
 
 	// Collision with wall
 	void OnTriggerEnter2D(Collider2D other) {
-		if (other.tag == "BreakableWall" && !alreadyHit.Contains(other)) {
+		if (other.tag == "BreakableWall" && !alreadyHit.Contains(other.gameObject)) {
 			Debug.Log("Hit box");
 			other.GetComponent<BreakableWall> ().depleteHealth (AOEDamage,elementType);
-			alreadyHit.Add (other);
+			alreadyHit.Add (other.gameObject);
 		}
-		else if (other.tag == "Enemy" && belongToPlayer && !alreadyHit.Contains(other)) {
+		else if (other.tag == "Enemy" && belongToPlayer && !alreadyHit.Contains(other.gameObject)) {
 			other.GetComponent<Enemy> ().depleteHealth (AOEDamage);
-			alreadyHit.Add (other);
+			alreadyHit.Add (other.gameObject);
 		}
 
 		else if (shooter != null && other.gameObject == shooter.gameObject)
@@ -36,10 +36,10 @@ public class AOEExplosion : MonoBehaviour {
 			//do nothing
 		}
 
-		else if (other.tag == "Player" && !alreadyHit.Contains(other))
+		else if (other.tag == "Player" && !alreadyHit.Contains(other.gameObject))
 		{
 			other.GetComponent<PlayerController> ().depleteHealth (AOEDamage);
-			alreadyHit.Add (other);
+			alreadyHit.Add (other.gameObject);
 		}
 	}
 
