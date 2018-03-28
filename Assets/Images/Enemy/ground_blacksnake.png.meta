@@ -1,17 +1,13 @@
 fileFormatVersion: 2
-guid: cfdb34e0a063694498b0e64077c9b4cc
-timeCreated: 1522228772
+guid: 4e0b11241511f754dbccb4dd8d80046b
+timeCreated: 1522228724
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: redDragon_0
-    21300002: redDragon_1
-    21300004: redDragon_2
-    21300006: redDragon_3
-    21300008: redDragon_4
-    21300010: redDragon_5
-    21300012: redDragon_6
-    21300014: redDragon_7
+    21300000: ground_blacksnake_0
+    21300002: ground_blacksnake_1
+    21300004: ground_blacksnake_2
+    21300006: ground_blacksnake_3
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -91,13 +87,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: redDragon_0
+      name: ground_blacksnake_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 201
-        height: 158
+        width: 217
+        height: 298
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -105,13 +101,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: redDragon_1
+      name: ground_blacksnake_1
       rect:
         serializedVersion: 2
-        x: 201
+        x: 217
         y: 0
-        width: 201
-        height: 158
+        width: 217
+        height: 298
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,13 +115,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: redDragon_2
+      name: ground_blacksnake_2
       rect:
         serializedVersion: 2
-        x: 402
+        x: 434
         y: 0
-        width: 201
-        height: 158
+        width: 217
+        height: 298
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,69 +129,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: redDragon_3
+      name: ground_blacksnake_3
       rect:
         serializedVersion: 2
-        x: 603
+        x: 651
         y: 0
-        width: 201
-        height: 158
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: redDragon_4
-      rect:
-        serializedVersion: 2
-        x: 804
-        y: 0
-        width: 201
-        height: 158
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: redDragon_5
-      rect:
-        serializedVersion: 2
-        x: 1005
-        y: 0
-        width: 201
-        height: 158
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: redDragon_6
-      rect:
-        serializedVersion: 2
-        x: 1206
-        y: 0
-        width: 201
-        height: 158
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: redDragon_7
-      rect:
-        serializedVersion: 2
-        x: 1407
-        y: 0
-        width: 201
-        height: 158
+        width: 217
+        height: 298
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
