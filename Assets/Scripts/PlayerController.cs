@@ -24,6 +24,7 @@ public class PlayerController : NetworkBehaviour {
 	public float energyLossRate = 1.0f;
 	public int levelCap = 3; 
 	public GameObject lightningEffect;
+	private GameObject currentEarthProjectileSpawner;
 	// Possible element types
 	public enum ElementType {
 		Default,
@@ -133,6 +134,9 @@ public class PlayerController : NetworkBehaviour {
 	// Obtain a projectile from ProjectileFactory and shoots it
     [Command]
 	public void CmdShoot (Vector2 shootDirection, ElementType elementType, int elementLevel) {
+		//Earth type cannot shoot
+		if (elementType == ElementType.Earth)
+			return;
 		Rigidbody2D projectile = projectileFactory.getProjectileFromType (elementType, elementLevel);
 		Rigidbody2D clone;
 		//Lightning projectile
@@ -144,13 +148,13 @@ public class PlayerController : NetworkBehaviour {
 			if (hit.distance <= maxDistance) {
 				finalPosition = hit.transform.position;
 			} else {
-				finalPosition = new Vector2(transform.position.x, transform.position.y) + shootDirection.normalized * maxDistance;
+				finalPosition = new Vector2 (transform.position.x, transform.position.y) + shootDirection.normalized * maxDistance;
 			}
 			clone = Instantiate (projectile, finalPosition, transform.rotation) as Rigidbody2D;
 			GameObject lightning = Instantiate (lightningEffect, transform.position, transform.rotation);
 			lightning.GetComponent<LightningBoltScript> ().StartObject = this.gameObject;
 			lightning.GetComponent<LightningBoltScript> ().EndPosition = finalPosition;
-			NetworkServer.Spawn(lightning);
+			NetworkServer.Spawn (lightning);
 		} else { //other projectiles
 			clone = Instantiate (projectile, transform.position, transform.rotation) as Rigidbody2D;
 		}
@@ -192,6 +196,7 @@ public class PlayerController : NetworkBehaviour {
 	public void gainPowerUp(ElementType newElementType, int energyAmount) {
 		Debug.Log ("PowerUpGained");
 		if (elementType != newElementType) {
+			//reset element
 			elementType = newElementType;
 			setElementLevel (1);
 			this.energy = energyAmount;
@@ -208,10 +213,10 @@ public class PlayerController : NetworkBehaviour {
 	public void gainEnergy(int amount) {
 		energy = energy + amount;
 		while (energy > 100) {
-			if (elementLevel + 1 > levelCap) {
+			if (elementLevel + 1 > levelCap) { //hit level cap
 				energy = 100;
 			} else {
-				setElementLevel (elementLevel + 1);
+				setElementLevel (elementLevel + 1); // increase element level
 				energy -= 100;
 			}
 		}
@@ -241,6 +246,12 @@ public class PlayerController : NetworkBehaviour {
 	public void setElementLevel(int newElementLevel) {
 		elementLevel = newElementLevel;
 		energyLossRate = Mathf.Pow (elementLevel , 1.5f);
+		// create earth proectile spawner based on element level
+		if (elementType == ElementType.Earth) {
+			createEarthProjectileSpawner ();
+		} else {
+			destroyCurrentEarthProjectileSpawner ();
+		}
 	}
 
 	// Set the sprite animation and trailRenderer color
@@ -302,5 +313,27 @@ public class PlayerController : NetworkBehaviour {
     //{
         
     //}
+
+	private void createEarthProjectileSpawner() {
+		destroyCurrentEarthProjectileSpawner ();
+		Rigidbody2D projectile = projectileFactory.getProjectileFromType (elementType, elementLevel);
+		currentEarthProjectileSpawner = Instantiate (projectile.gameObject, transform.position, transform.rotation);
+		currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().belongsToPlayer ();
+		currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().shooter = transform.gameObject;
+		NetworkServer.Spawn(currentEarthProjectileSpawner);
+	}
+
+	private void destroyCurrentEarthProjectileSpawner() {
+		Debug.Log ("Destroying rock spawner");
+		if (currentEarthProjectileSpawner != null) {
+			GameObject[] earthProjectiles = currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().earthProjectiles;
+			for (int i = 0; i < earthProjectiles.Length; i++) {
+				if (earthProjectiles [i]!=null)
+					earthProjectiles [i].GetComponent<ProjectileController> ().DestroyNow ();
+			}
+			Destroy (currentEarthProjectileSpawner);
+		}
+		currentEarthProjectileSpawner = null;
+	}
 
 }
