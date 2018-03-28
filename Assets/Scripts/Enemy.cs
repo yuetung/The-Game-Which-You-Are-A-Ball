@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour {
 
 	[Tooltip("Set to true if the enemy can rotate when move")]
 	public bool canRotate = false;
+	public bool canFlip = false;
 	Rigidbody2D _rigidbody;
 	Animator _animator;
 
@@ -161,6 +162,11 @@ public class Enemy : MonoBehaviour {
 				//for enemy that can rotate
 				if (canRotate) {
 					_rigidbody.rotation = Mathf.Atan2 (vy, vx) * Mathf.Rad2Deg + 90; 
+				}
+				if (canFlip) {
+					if ((transform.localScale.x < 0 && vx > 0) || (transform.localScale.x > 0 && vx < 0)) {
+						transform.localScale = new Vector2 (-1 * transform.localScale.x, transform.localScale.y);
+					}
 				}
 			}
 		}
