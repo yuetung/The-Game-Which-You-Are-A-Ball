@@ -132,7 +132,7 @@ public class Enemy : MonoBehaviour {
 			pattern= patterns [rand];
 			Vector2 shootDirection = player.transform.position - transform.position;
 			Debug.Log (projectilePatternFactory);
-			projectilePatternFactory.createProjectilePattern(pattern,transform.position,shootDirection, false);
+			projectilePatternFactory.createProjectilePattern(pattern,transform.position,shootDirection, false,this.gameObject);
 		}
 		spawnTime = Time.time + cooldownTime;
 	}
@@ -142,7 +142,7 @@ public class Enemy : MonoBehaviour {
 			pattern = patterns [count % patterns.Length];
 			Vector2 shootDirection = player.transform.position - transform.position;
 			Debug.Log (projectilePatternFactory);
-			projectilePatternFactory.createProjectilePattern(pattern,transform.position,shootDirection, false);
+			projectilePatternFactory.createProjectilePattern(pattern,transform.position,shootDirection, false, this.gameObject);
 		}
 		spawnTime = Time.time + cooldownTime;
 	}

@@ -8625,6 +8625,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a645842cfdec7440988736d0693433f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lightningEffect: {fileID: 1502408209708092, guid: 58198a1d6e095b740b9f98eb88154987,
+    type: 2}
   projectileFactory: {fileID: 0}
 --- !u!114 &1354272047
 MonoBehaviour:

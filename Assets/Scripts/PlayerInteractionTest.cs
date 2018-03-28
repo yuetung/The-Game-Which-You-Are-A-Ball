@@ -133,7 +133,7 @@ public class PlayerInteractionTest : MonoBehaviour {
 		Vector2 shootDirection = new Vector2 (-1,-1);
 		bool belongToPlayer = false;
 		factory.projectileFactory = gm.GetComponent<ProjectileFactory> ();
-		factory.createProjectilePattern (pattern, startPosition, shootDirection, belongToPlayer);
+		factory.createProjectilePattern (pattern, startPosition, shootDirection, belongToPlayer,player);
 		GameObject projectile = GameObject.FindGameObjectWithTag("Projectile");
 		int damage = 0;
 		projectile.GetComponent<ProjectileController> ().projectileDamage = damage;
@@ -162,7 +162,7 @@ public class PlayerInteractionTest : MonoBehaviour {
 		Vector2 shootDirection = new Vector2 (-1,-1);
 		bool belongToPlayer = false;
 		factory.projectileFactory = gm.GetComponent<ProjectileFactory> ();
-		factory.createProjectilePattern (pattern, startPosition, shootDirection, belongToPlayer);
+		factory.createProjectilePattern (pattern, startPosition, shootDirection, belongToPlayer,player);
 		GameObject projectile = GameObject.FindGameObjectWithTag("Projectile");
 		int damage = 50;
 		projectile.GetComponent<ProjectileController> ().projectileDamage = damage;
@@ -191,7 +191,7 @@ public class PlayerInteractionTest : MonoBehaviour {
 		Vector2 shootDirection = new Vector2 (-1,-1);
 		bool belongToPlayer = false;
 		factory.projectileFactory = gm.GetComponent<ProjectileFactory> ();
-		factory.createProjectilePattern (pattern, startPosition, shootDirection, belongToPlayer);
+		factory.createProjectilePattern (pattern, startPosition, shootDirection, belongToPlayer,player);
 		GameObject projectile = GameObject.FindGameObjectWithTag("Projectile");
 		int damage = 99;
 		projectile.GetComponent<ProjectileController> ().projectileDamage = damage;

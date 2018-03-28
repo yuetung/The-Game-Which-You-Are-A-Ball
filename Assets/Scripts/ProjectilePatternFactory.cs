@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class ProjectilePatternFactory : NetworkBehaviour {
+	public GameObject lightningEffect;
 
 	public ProjectileFactory projectileFactory;
 	// Use this for initialization
@@ -16,7 +17,7 @@ public class ProjectilePatternFactory : NetworkBehaviour {
 	void Update () {
 	}
 
-	public void createProjectilePattern(string pattern, Vector3 startPosition, Vector2 shootDirection, bool belongToPlayer) {
+	public void createProjectilePattern(string pattern, Vector3 startPosition, Vector2 shootDirection, bool belongToPlayer, GameObject shooter) {
 		// Fire, Water
 		Vector2 noDirection = new Vector2(1.0f, 0.0f);
 		if (pattern == "basicFireball") {
@@ -244,6 +245,40 @@ public class ProjectilePatternFactory : NetworkBehaviour {
 				cloneGameObject.GetComponent<ProjectileController> ().setVelocity (velocity);
 				NetworkServer.Spawn (cloneGameObject);
 			}
+		}if (pattern == "basicLightningball") {
+			Rigidbody2D projectile = projectileFactory.getProjectileFromType (PlayerController.ElementType.Lightning, 1);
+			Rigidbody2D clone;
+			float maxDistance = projectile.GetComponent<ProjectileController> ().maxDistance; 
+			int layerMask = LayerMask.GetMask ("Player", "Wall"); //changed Player and wall
+			RaycastHit2D hit = Physics2D.Raycast (startPosition, shootDirection, Mathf.Infinity, layerMask);// change transform to startPostion
+			Vector2 finalPosition;
+			if (hit.distance <= maxDistance) {
+				finalPosition = hit.transform.position;
+			} else {
+				finalPosition = new Vector2 (startPosition.x, startPosition.y) + shootDirection.normalized * maxDistance;
+			}
+			clone = Instantiate (projectile, finalPosition, transform.rotation) as Rigidbody2D;
+			GameObject lightning = Instantiate (lightningEffect, transform.position, transform.rotation);
+			lightning.GetComponent<LightningBoltScript> ().StartPosition = startPosition;
+			lightning.GetComponent<LightningBoltScript> ().EndPosition = finalPosition;
+			NetworkServer.Spawn (lightning);
+			GameObject cloneGameObject = clone.gameObject;
+			NetworkServer.Spawn(cloneGameObject);
+			if (belongToPlayer) {
+				cloneGameObject.GetComponent<ProjectileController> ().belongsToPlayer ();
+			}
+		}
+		if (pattern == "basicRockball") {
+
+			Rigidbody2D projectile = projectileFactory.getProjectileFromType (PlayerController.ElementType.Earth, 1);
+			Rigidbody2D clone;
+			clone = Instantiate (projectile, startPosition, transform.rotation) as Rigidbody2D;
+			GameObject cloneGameObject = clone.gameObject;
+			if (belongToPlayer) {
+				cloneGameObject.GetComponent<ProjectileController> ().belongsToPlayer ();
+			}
+			cloneGameObject.GetComponent<EarthProjectileSpawner> ().shooter = shooter;
+			NetworkServer.Spawn (cloneGameObject);
 		}
 	}
 }

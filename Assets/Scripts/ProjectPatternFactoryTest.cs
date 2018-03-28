@@ -17,7 +17,7 @@ public class ProjectilePatternFactoryTest: MonoBehaviour {
 		Vector2 shootDirection = new Vector2 (0,0);
 		bool belongToPlayer = false;
 		factory.projectileFactory = gm.GetComponent<ProjectileFactory> ();
-		factory.createProjectilePattern (pattern, startPosition, shootDirection, belongToPlayer);
+		factory.createProjectilePattern (pattern, startPosition, shootDirection, belongToPlayer,null);
 		yield return new WaitForSeconds(1);
 		GameObject[] projectilesSpawned = GameObject.FindGameObjectsWithTag ("Projectile");
 		Assert.AreEqual (5, projectilesSpawned.Length);
@@ -32,7 +32,7 @@ public class ProjectilePatternFactoryTest: MonoBehaviour {
 		Vector2 shootDirection = new Vector2 (0,0);
 		bool belongToPlayer = false;
 		factory.projectileFactory = gm.GetComponent<ProjectileFactory> ();
-		factory.createProjectilePattern (pattern, startPosition, shootDirection, belongToPlayer);
+		factory.createProjectilePattern (pattern, startPosition, shootDirection, belongToPlayer,null);
 		yield return new WaitForSeconds(1);
 		GameObject[] projectilesSpawned = GameObject.FindGameObjectsWithTag ("Projectile");
 		Assert.AreEqual (8, projectilesSpawned.Length);
@@ -47,7 +47,7 @@ public class ProjectilePatternFactoryTest: MonoBehaviour {
 		Vector2 shootDirection = new Vector2 (0,0);
 		bool belongToPlayer = false;
 		factory.projectileFactory = gm.GetComponent<ProjectileFactory> ();
-		factory.createProjectilePattern (pattern, startPosition, shootDirection, belongToPlayer);
+		factory.createProjectilePattern (pattern, startPosition, shootDirection, belongToPlayer,null);
 		yield return new WaitForSeconds(1);
 		GameObject[] projectilesSpawned = GameObject.FindGameObjectsWithTag ("Projectile");
 		Assert.AreEqual (1, projectilesSpawned.Length);
