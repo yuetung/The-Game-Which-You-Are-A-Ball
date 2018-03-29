@@ -32,6 +32,8 @@ public class Enemy : MonoBehaviour {
 	[Tooltip("How far away to sense player")]
 	public float sensePlayer = 5.0f;
 
+	public List<PlayerController.ElementType> immuneTo;
+
 	[Tooltip("Set to true if the enemy can rotate when move")]
 	public bool randomProjectile=false;
 	public bool canRotate = false;
@@ -189,7 +191,9 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	public void depleteHealth(int damage){
+	public void depleteHealth(int damage, PlayerController.ElementType elementType){
+		if (immuneTo.Contains (elementType))
+			return;
 		if (hp - damage <= 0) {
 			hp = 0;
 			Instantiate (explosionPrefab, transform.position, transform.rotation);
