@@ -8640,8 +8640,10 @@ MonoBehaviour:
   projectileLightning2: {fileID: 50919722552886748, guid: c2587aff0f5d2d74ebc395fac94e0b49,
     type: 2}
   projectileLightning3: {fileID: 0}
-  projectileEarth1: {fileID: 0}
-  projectileEarth2: {fileID: 0}
+  projectileEarth1: {fileID: 50042287376748142, guid: 5f142fc817b373f42a0021030f5487db,
+    type: 2}
+  projectileEarth2: {fileID: 50569103260845596, guid: e732c83b5d5a04a4aad88f7345737bfe,
+    type: 2}
   projectileEarth3: {fileID: 0}
   projectileWind1: {fileID: 0}
   projectileWind2: {fileID: 0}
