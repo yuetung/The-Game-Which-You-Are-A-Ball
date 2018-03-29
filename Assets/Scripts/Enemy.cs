@@ -32,6 +32,8 @@ public class Enemy : MonoBehaviour {
 	[Tooltip("How far away to sense player")]
 	public float sensePlayer = 5.0f;
 
+	public bool chasePlayer = false;
+
 	public List<PlayerController.ElementType> immuneTo;
 
 	[Tooltip("Set to true if the enemy can rotate when move")]
@@ -176,7 +178,7 @@ public class Enemy : MonoBehaviour {
 				_animator.SetBool ("Moving", true);
 
 				//set enemy's velocity to moveSpeed towards new target position
-				_rigidbody.velocity = new Vector2 (vx * moveSpeed, vy * moveSpeed);
+				_rigidbody.velocity = Vector3.Normalize(new Vector3 (vx, vy,0)) * moveSpeed;
 
 				//for enemy that can rotate
 				if (canRotate) {
