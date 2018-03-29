@@ -188,7 +188,12 @@ public class PlayerController : NetworkBehaviour {
 		}
 	}
 
-	// Change user's current ElementType if element obtained is different from current elementType
+	/*	@Pre-condition: energyAmount>=0; newElementType!=null
+	 * 	@Post-condition: Player is assigned newElementType, elementLevel is reset to 1 and energyLevel is 
+	 * 					 reset to energy of powerup if different from player's current elementType.
+	 * 					 Else, the player's elementType remains the same and player's energyLevel is gained
+	 * 					 by amount equal to energy of powerup. 
+	 */ 
 	public void gainPowerUp(ElementType newElementType, int energyAmount) {
 		Debug.Log ("PowerUpGained");
 		if (elementType != newElementType) {
