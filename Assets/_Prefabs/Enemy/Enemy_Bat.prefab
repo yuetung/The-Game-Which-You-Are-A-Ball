@@ -212,7 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 10
   hp: 10
-  moveSpeed: 0.3
+  moveSpeed: 3.3
   wayPoints:
   - {fileID: 1257742968089650}
   - {fileID: 1221558790820120}
@@ -223,6 +223,10 @@ MonoBehaviour:
   patterns: []
   cooldownTime: 3
   sensePlayer: 5
+  chasePlayer: 1
+  maxChaseDistance: 20
+  immuneTo: 
+  randomProjectile: 0
   canRotate: 1
   canFlip: 0
   waypointIndex: 0
