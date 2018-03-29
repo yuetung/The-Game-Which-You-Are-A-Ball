@@ -583,7 +583,7 @@ public class PlayerTest : MonoBehaviour {
 		player.GetComponent<PlayerController> ().energy = startEnergy;
 		player.GetComponent<PlayerController> ().elementType = PlayerController.ElementType.Fire;
 		player.GetComponent<PlayerController> ().elementLevel = startLevel;
-		player.GetComponent<PlayerController> ().depletesEnergy (energydecrement);
+		player.GetComponent<PlayerController> ().depleteEnergy (energydecrement);
 		yield return new WaitForSeconds (5);
 
 		GameObject newplayer = GameObject.FindGameObjectWithTag("Player");
@@ -611,7 +611,7 @@ public class PlayerTest : MonoBehaviour {
 		player.GetComponent<PlayerController> ().energy = startEnergy;
 		player.GetComponent<PlayerController> ().elementType = PlayerController.ElementType.Fire;
 		player.GetComponent<PlayerController> ().elementLevel = startLevel;
-		player.GetComponent<PlayerController> ().depletesEnergy (energydecrement);
+		player.GetComponent<PlayerController> ().depleteEnergy (energydecrement);
 		yield return new WaitForSeconds (5);
 
 		GameObject newplayer = GameObject.FindGameObjectWithTag("Player");
@@ -645,7 +645,7 @@ public class PlayerTest : MonoBehaviour {
 		player.GetComponent<PlayerController> ().elementType = startType;
 		player.GetComponent<PlayerController> ().elementLevel = startLevel;
 		yield return new WaitForSeconds (5);
-		player.GetComponent<PlayerController> ().depletesEnergy (energydecrement);
+		player.GetComponent<PlayerController> ().depleteEnergy (energydecrement);
 		yield return new WaitForSeconds (5);
 
 		GameObject newplayer = GameObject.FindGameObjectWithTag("Player");
@@ -675,7 +675,7 @@ public class PlayerTest : MonoBehaviour {
 		player.GetComponent<PlayerController> ().elementType = startType;
 		player.GetComponent<PlayerController> ().elementLevel = startLevel;
 		yield return new WaitForSeconds (5);
-		player.GetComponent<PlayerController> ().depletesEnergy (energydecrement);
+		player.GetComponent<PlayerController> ().depleteEnergy (energydecrement);
 		yield return new WaitForSeconds (5);
 
 		GameObject newplayer = GameObject.FindGameObjectWithTag("Player");

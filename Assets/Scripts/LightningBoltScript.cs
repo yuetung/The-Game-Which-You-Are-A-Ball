@@ -7,6 +7,7 @@
 
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 
 /// <summary>
 /// Types of animations for lightning bolts
@@ -38,9 +39,10 @@ public enum LightningBoltAnimationMode
 /// Allows creation of simple lightning bolts
 /// </summary>
 [RequireComponent(typeof(LineRenderer))]
-public class LightningBoltScript : MonoBehaviour
+public class LightningBoltScript : NetworkBehaviour
 {
     [Tooltip("The game object where the lightning will emit from. If null, StartPosition is used.")]
+    [SyncVar]
     public GameObject StartObject;
 
     [Tooltip("The start position where the lightning will emit from. This is in world space if StartObject is null, otherwise this is offset from StartObject position.")]
@@ -50,6 +52,7 @@ public class LightningBoltScript : MonoBehaviour
     public GameObject EndObject;
 
     [Tooltip("The end position where the lightning will end at. This is in world space if EndObject is null, otherwise this is offset from EndObject position.")]
+    [SyncVar]
     public Vector3 EndPosition;
 
     [Range(0, 8)]

@@ -32,8 +32,13 @@ public class Enemy : MonoBehaviour {
 	[Tooltip("How far away to sense player")]
 	public float sensePlayer = 5.0f;
 
+	public List<PlayerController.ElementType> immuneTo;
+
 	[Tooltip("Set to true if the enemy can rotate when move")]
+	public bool randomProjectile=false;
 	public bool canRotate = false;
+	public bool canFlip = false;
+
 	Rigidbody2D _rigidbody;
 	Animator _animator;
 
@@ -87,7 +92,7 @@ public class Enemy : MonoBehaviour {
 		Transform barFill = EnemyHealthBar.transform.Find ("Fill Area").transform.Find ("Fill");
 		barFill.GetComponent<Image>().color = Color.red;
 	}
-	
+	int count=0;
 	// Update is called once per frame
 	void Update () {
 
@@ -105,7 +110,12 @@ public class Enemy : MonoBehaviour {
 			_animator.SetBool ("Moving", false);
 		}
 		if (Time.time >= spawnTime) {
-			spawnProjectile ();
+			if (randomProjectile) {
+				spawnProjectile ();
+ 			} else {
+				spawnProjectile(count);
+				count++;
+			}
 		}
         // update position of the health bar to follow the enemy
         Vector3 TransformedPos = new Vector3((float)0, (float)0.7, (float)0);
@@ -118,16 +128,26 @@ public class Enemy : MonoBehaviour {
     }
 
 	void spawnProjectile() {
+		string pattern;
 		if (Time.time >= spawnTime && isNearPlayer () && patterns.Length>0) {
 			int rand = Random.Range (0, patterns.Length);
-			string pattern = patterns [rand];
+			pattern= patterns [rand];
 			Vector2 shootDirection = player.transform.position - transform.position;
 			Debug.Log (projectilePatternFactory);
-			projectilePatternFactory.createProjectilePattern(pattern,transform.position,shootDirection, false);
+			projectilePatternFactory.createProjectilePattern(pattern,transform.position,shootDirection, false,this.gameObject);
 		}
 		spawnTime = Time.time + cooldownTime;
 	}
-
+	void spawnProjectile(int count) {
+		string pattern;
+		if (Time.time >= spawnTime && isNearPlayer () && patterns.Length>0) {
+			pattern = patterns [count % patterns.Length];
+			Vector2 shootDirection = player.transform.position - transform.position;
+			Debug.Log (projectilePatternFactory);
+			projectilePatternFactory.createProjectilePattern(pattern,transform.position,shootDirection, false, this.gameObject);
+		}
+		spawnTime = Time.time + cooldownTime;
+	}
 	void EnemyMovement() {
 		if (wayPoints.Length != 0 && moving) {
 			vx = wayPoints [waypointIndex].transform.position.x - transform.position.x;
@@ -162,11 +182,18 @@ public class Enemy : MonoBehaviour {
 				if (canRotate) {
 					_rigidbody.rotation = Mathf.Atan2 (vy, vx) * Mathf.Rad2Deg + 90; 
 				}
+				if (canFlip) {
+					if ((transform.localScale.x < 0 && vx > 0) || (transform.localScale.x > 0 && vx < 0)) {
+						transform.localScale = new Vector2 (-1 * transform.localScale.x, transform.localScale.y);
+					}
+				}
 			}
 		}
 	}
 
-	public void depleteHealth(int damage){
+	public void depleteHealth(int damage, PlayerController.ElementType elementType){
+		if (immuneTo.Contains (elementType))
+			return;
 		if (hp - damage <= 0) {
 			hp = 0;
 			Instantiate (explosionPrefab, transform.position, transform.rotation);

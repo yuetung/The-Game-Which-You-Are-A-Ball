@@ -13,6 +13,9 @@ public class ProjectileController : NetworkBehaviour {
 	[Tooltip("how many seconds before destroying object when hit, leave just enought to play animation")]
 	public float explodeAnimationSeconds = 1.0f;
 
+	[Tooltip("leave null if explosion is through animation")]
+	public GameObject explosionPrefab;
+
 	[Tooltip("only change this if sprite is originally not facing right" +
 		"if facing top, type 270; facing left, type 180; facing down type 90")]
 	public float angleAdjustment = 0.0f;
@@ -84,14 +87,13 @@ public class ProjectileController : NetworkBehaviour {
 			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			if (gameObject.GetComponent<Animator> ())
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
-			other.GetComponent<Enemy> ().depleteHealth (projectileDamage);
+			other.GetComponent<Enemy> ().depleteHealth (projectileDamage, elementType);
 			Invoke ("DestroyNow", explodeAnimationSeconds);
 			alreadyHit = true;
 		}
 
         else if (shooter != null && other.gameObject == shooter.gameObject)
         {
-            Debug.Log("Hit self");
             //do nothing
         }
 
@@ -106,7 +108,7 @@ public class ProjectileController : NetworkBehaviour {
         }
 	}
 
-	void DestroyNow() {
+	public void DestroyNow() {
 		if (AOEExplosionPrefab != null) {
 			GameObject aoeExplosion = Instantiate (AOEExplosionPrefab, transform.position, transform.rotation);
 			aoeExplosion.GetComponent<AOEExplosion> ().setShooter (shooter);
@@ -115,6 +117,7 @@ public class ProjectileController : NetworkBehaviour {
 			}
 			Invoke ("SetScaleToZero", 0.7f);
 		}
+		if (explosionPrefab) Instantiate (explosionPrefab, transform.position, transform.rotation);
 		DestroyObject (this.gameObject);
 	}
 

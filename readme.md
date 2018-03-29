@@ -1,7 +1,7 @@
 Branch for multiplayer network
 ===
 
-~~Health and Damage and Energy syncing in network. ~~
+~~Health and Damage and Energy syncing in network.~~
 
 ~~Animation change when picking up powerups network.~~
 
@@ -9,19 +9,22 @@ Branch for multiplayer network
 
 ---
 
-Touch animation detect whether person pressed place
+~~Touch animation detect whether person pressed place~~
 
 Player doesn't know if they level up (character level)
 
-Multiplayer UI menulist broadcast created rooms?
+Multiplayer UI menulist broadcast created rooms/multiplayer room GUI
 
-Trail not synced
+~~Trail not synced~~
+Trail not synced for host
 
 coroutines?
 
+Change the update errors
+
 ---
 
-Change the update errors
+Aesthetics: Change touch indicator
 
 ~~Change IP display & all the other displays for multiplayer to scale with screen size.~~
 

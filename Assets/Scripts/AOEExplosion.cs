@@ -26,7 +26,7 @@ public class AOEExplosion : MonoBehaviour {
 			alreadyHit.Add (other.gameObject);
 		}
 		else if (other.tag == "Enemy" && belongToPlayer && !alreadyHit.Contains(other.gameObject)) {
-			other.GetComponent<Enemy> ().depleteHealth (AOEDamage);
+			other.GetComponent<Enemy> ().depleteHealth (AOEDamage, elementType);
 			alreadyHit.Add (other.gameObject);
 		}
 
