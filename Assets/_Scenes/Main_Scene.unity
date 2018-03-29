@@ -358,13 +358,18 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114376333464639444, guid: 3ef832611f5234f4598c6175d16241cf,
+        type: 2}
+      propertyPath: powerUpPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4424687115620796, guid: 3ef832611f5234f4598c6175d16241cf, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4424687115620796, guid: 3ef832611f5234f4598c6175d16241cf, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4424687115620796, guid: 3ef832611f5234f4598c6175d16241cf, type: 2}
       propertyPath: m_LocalPosition.z
@@ -389,6 +394,25 @@ Prefab:
     - target: {fileID: 4424687115620796, guid: 3ef832611f5234f4598c6175d16241cf, type: 2}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114376333464639444, guid: 3ef832611f5234f4598c6175d16241cf,
+        type: 2}
+      propertyPath: powerUpPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 1454719174388740, guid: 93c80213327aa614d920812001a9ce19,
+        type: 2}
+    - target: {fileID: 114376333464639444, guid: 3ef832611f5234f4598c6175d16241cf,
+        type: 2}
+      propertyPath: secondsBetweenSpawn
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424687115620796, guid: 3ef832611f5234f4598c6175d16241cf, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424687115620796, guid: 3ef832611f5234f4598c6175d16241cf, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ef832611f5234f4598c6175d16241cf, type: 2}
@@ -3782,8 +3806,10 @@ MonoBehaviour:
   projectileWater2: {fileID: 50806736268402232, guid: 6791aa693f4e1c8468eba96595530cbd,
     type: 2}
   projectileWater3: {fileID: 0}
-  projectileLightning1: {fileID: 0}
-  projectileLightning2: {fileID: 0}
+  projectileLightning1: {fileID: 50630128092692992, guid: 1da9ed422ad95164783e3c37abcfd11a,
+    type: 2}
+  projectileLightning2: {fileID: 50919722552886748, guid: c2587aff0f5d2d74ebc395fac94e0b49,
+    type: 2}
   projectileLightning3: {fileID: 0}
   projectileEarth1: {fileID: 0}
   projectileEarth2: {fileID: 0}

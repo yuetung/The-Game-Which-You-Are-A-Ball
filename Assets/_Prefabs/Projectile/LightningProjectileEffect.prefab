@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114762631336338726}
   m_Layer: 0
   m_Name: LightningProjectileEffect
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
   StartObject: {fileID: 0}
   StartPosition: {x: 0, y: 0, z: 0}
   EndObject: {fileID: 0}
-  EndPosition: {x: 0, y: 0, z: 0}
+  EndPosition: {x: -0.774581, y: 2.6979206, z: 0}
   Generations: 6
   Duration: 0.085
   ChaosFactor: 0
@@ -119,6 +119,7 @@ LineRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -134,6 +135,7 @@ LineRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

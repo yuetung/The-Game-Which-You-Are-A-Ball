@@ -14,7 +14,7 @@ public class PlayerController : NetworkBehaviour {
     [Tooltip("Trail Renderer Material")]
     public Material trailMaterial = null;
     public float trailAlpha = 0.2f;
-	public ElementType elementType = ElementType.Default;
+    public ElementType elementType = ElementType.Default;
 	public int energy = 0;
 	public int elementLevel = 0;
 	public int health = 100;
@@ -38,6 +38,8 @@ public class PlayerController : NetworkBehaviour {
 
 	// Store references to gamebject Components
 	Animator _animator;
+    [SyncVar(hook = "updateTrailRenderer")]
+    Color color;
 	public Rigidbody2D _rigidbody;
 	TrailRenderer _trailRenderer;
 	public ProjectileFactory projectileFactory;
@@ -59,6 +61,7 @@ public class PlayerController : NetworkBehaviour {
 
         if (isLocalPlayer) {
 			guiManager.register (gameObject);
+            gameObject.layer = 9;
             // Cameras are disabled by default, this enables only one camera for each client.
             transform.Find("Main Camera").gameObject.SetActive(true);
         }
@@ -66,7 +69,8 @@ public class PlayerController : NetworkBehaviour {
 
     // Update is called once per frame
     public void Update () {
-		if (!isLocalPlayer  && !testMode) {
+
+        if (!isLocalPlayer  && !testMode) {
 			return;
 		}
 		// Mouse Down
@@ -89,9 +93,9 @@ public class PlayerController : NetworkBehaviour {
 
 			// Mouse Dragged
 			else { 
-				CmdShoot (shootDirection, elementType, elementLevel);
-				depletesEnergy (elementLevel * 10);
-			}
+				Shoot (shootDirection, elementType, elementLevel);
+                depleteEnergy(elementLevel * 10);
+            }
             transform.Find("Target Arrow").gameObject.SetActive(false);
         }
 		move ();
@@ -112,16 +116,19 @@ public class PlayerController : NetworkBehaviour {
             }
         }
 
-		// Reduce energy over time
-		timeCounter += Time.deltaTime;
+        // Reduce energy over time
+        timeCounter += Time.deltaTime;
 
-		if (timeCounter >= 1 / energyLossRate) {
-			depletesEnergy (1);
-			timeCounter = 0;
-		}
-		guiManager.updateAll ();
-		//Debug.Log ("Element: "+elementType.ToString()+" Level: "+elementLevel.ToString()+" Energy: "+energy.ToString());
-	}
+        if (timeCounter >= 1 / energyLossRate)
+        {
+            depleteEnergy(1);
+            timeCounter = 0;
+        }
+
+        guiManager.updateAll();
+
+        //Debug.Log ("Element: "+elementType.ToString()+" Level: "+elementLevel.ToString()+" Energy: "+energy.ToString());
+    }
 
 	// set moveTarget of where the player should go to
 	public void setMovementTarget(Vector2 targetLocation) {
@@ -132,55 +139,60 @@ public class PlayerController : NetworkBehaviour {
 
 
 	// Obtain a projectile from ProjectileFactory and shoots it
-    [Command]
-	public void CmdShoot (Vector2 shootDirection, ElementType elementType, int elementLevel) {
+    // Shoot is here instead of CmdShoot is such that Raycast would work on the local player who shoots it
+    // If it's a normal projectile, nothing really happens.
+    // If it's a lightning projectile, finalPosition is calculated and passed into CmdShoot.
+    public void Shoot(Vector2 shootDirection, ElementType elementType, int elementLevel)
+    {
 		//Earth type cannot shoot
 		if (elementType == ElementType.Earth)
 			return;
-		Rigidbody2D projectile = projectileFactory.getProjectileFromType (elementType, elementLevel);
-		Rigidbody2D clone;
-		//Lightning projectile
-		if (projectile.GetComponent<ProjectileController> ().elementType == ElementType.Lightning) {
-			float maxDistance = projectile.GetComponent<ProjectileController> ().maxDistance;
-			int layerMask = LayerMask.GetMask ("Enemy", "Wall");
-			RaycastHit2D hit = Physics2D.Raycast (transform.position, shootDirection, Mathf.Infinity, layerMask);
-			Vector2 finalPosition;
-			if (hit.distance <= maxDistance) {
-				finalPosition = hit.transform.position;
-			} else {
-				finalPosition = new Vector2 (transform.position.x, transform.position.y) + shootDirection.normalized * maxDistance;
-			}
-			clone = Instantiate (projectile, finalPosition, transform.rotation) as Rigidbody2D;
-			GameObject lightning = Instantiate (lightningEffect, transform.position, transform.rotation);
-			lightning.GetComponent<LightningBoltScript> ().StartObject = this.gameObject;
-			lightning.GetComponent<LightningBoltScript> ().EndPosition = finalPosition;
-			NetworkServer.Spawn (lightning);
-		} else { //other projectiles
-			clone = Instantiate (projectile, transform.position, transform.rotation) as Rigidbody2D;
-		}
-		GameObject cloneGameObject = clone.gameObject;
-		cloneGameObject.GetComponent<ProjectileController> ().belongsToPlayer ();
-		Vector2 velocity = shootDirection.normalized * playerShootSpeed * projectile.GetComponent<ProjectileController> ().projectileSpeed;
-		float rotation = Mathf.Atan2 (shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
-		cloneGameObject.GetComponent<ProjectileController> ().setVelocityAndRotation (velocity, rotation);
-		// assigns a shooter to the bullet
-		cloneGameObject.GetComponent<ProjectileController> ().shooter = transform.gameObject;
-        NetworkServer.Spawn(cloneGameObject);
-	}
-
-	/*
-	[Command]
-    public void CmdShoot(Vector2 shootDirection)
-    {
-        GameObject projectile = getProjectileFromType();
-        // Create Projectile
-        GameObject clone;
-        clone = Instantiate(projectile, transform.position, transform.rotation) as GameObject;
-        clone.GetComponent<Rigidbody2D>().velocity = shootDirection.normalized * playerShootSpeed * projectile.GetComponent<ProjectileController>().projectileSpeed;
-        clone.GetComponent<Rigidbody2D>().rotation = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
-        NetworkServer.Spawn(clone);
+        Rigidbody2D projectile = projectileFactory.getProjectileFromType(elementType, elementLevel);
+        float maxDistance = projectile.GetComponent<ProjectileController>().maxDistance;
+        int layerMask = LayerMask.GetMask("Enemy", "Wall");
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, shootDirection, Mathf.Infinity, layerMask);
+        Vector2 finalPosition;
+        if (hit.distance <= maxDistance)
+        {
+            finalPosition = hit.transform.position;
+        }
+        else
+        {
+            finalPosition = new Vector2(transform.position.x, transform.position.y) + shootDirection.normalized * maxDistance;
+        }
+        CmdShoot(shootDirection, elementType, elementLevel, finalPosition);
     }
-	*/
+   
+    // Since we can't pass GameObjects into Cmd, we pass similar parameters as Shoot()
+    [Command]
+	public void CmdShoot (Vector2 shootDirection, ElementType elementType, int elementLevel, Vector2 finalPosition)
+    {
+        Rigidbody2D projectile = projectileFactory.getProjectileFromType(elementType, elementLevel);
+        Rigidbody2D clone;
+        //Lightning projectile
+        Debug.Log("Type of projectile: " + elementType);
+        if (elementType == ElementType.Lightning)
+        {
+            clone = Instantiate(projectile, finalPosition, transform.rotation) as Rigidbody2D;
+            GameObject lightning = Instantiate(lightningEffect, transform.position, transform.rotation);
+            lightning.GetComponent<LightningBoltScript>().StartObject = this.gameObject;
+            lightning.GetComponent<LightningBoltScript>().EndPosition = finalPosition;
+            NetworkServer.Spawn(lightning);
+        }
+        else //other projectiles
+        { 
+            clone = Instantiate(projectile, transform.position, transform.rotation) as Rigidbody2D;
+        }
+        GameObject cloneGameObject = clone.gameObject;
+        cloneGameObject.GetComponent<ProjectileController>().belongsToPlayer();
+        Vector2 velocity = shootDirection.normalized * playerShootSpeed * projectile.GetComponent<ProjectileController>().projectileSpeed;
+        float rotation = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
+        cloneGameObject.GetComponent<ProjectileController>().setVelocityAndRotation(velocity, rotation);
+        // assigns a shooter to the bullet
+        cloneGameObject.GetComponent<ProjectileController>().shooter = transform.gameObject;
+        Debug.Log("Spawn projectile");
+        NetworkServer.Spawn(cloneGameObject);
+    }
 	
 	// constant movement if player haven't reached the moveTarget
 	public void move() {
@@ -201,13 +213,11 @@ public class PlayerController : NetworkBehaviour {
 			setElementLevel (1);
 			this.energy = energyAmount;
 			changeSprite ();
-
 		} else {
 			if (elementType != ElementType.Default) {
 				gainEnergy (energyAmount);
 			}
 		}
-
 	}
 
 	public void gainEnergy(int amount) {
@@ -220,10 +230,10 @@ public class PlayerController : NetworkBehaviour {
 				energy -= 100;
 			}
 		}
-
 	}
 
-	public void depletesEnergy(int amount) {
+
+	public void depleteEnergy(int amount) {
 		if (elementType == ElementType.Default || elementLevel == 0) {
 			return;
 		}
@@ -256,8 +266,8 @@ public class PlayerController : NetworkBehaviour {
 
 	// Set the sprite animation and trailRenderer color
 	public void changeSprite () {
-		Color color = Color.white;
-		if (elementType == ElementType.Fire) {
+        //color = Color.white;
+        if (elementType == ElementType.Fire) {
             GetComponent<NetworkAnimator>().SetTrigger("FireType");
             _animator.SetTrigger ("FireType");
 			color = Color.red;
@@ -284,16 +294,27 @@ public class PlayerController : NetworkBehaviour {
 		} else {
             GetComponent<NetworkAnimator>().SetTrigger("DefaultType");
             _animator.SetTrigger ("DefaultType");
-			color = Color.gray;
+			color = Color.grey;
 		}
-			
-		Gradient gradient = new Gradient ();
-		gradient.SetKeys (
-			new GradientColorKey[]{ new GradientColorKey (color, 0.0f), new GradientColorKey (Color.white, 1.0f) },
-			new GradientAlphaKey[]{ new GradientAlphaKey (trailAlpha, 0.0f), new GradientAlphaKey (0, 1.0f) }
-		);
-		_trailRenderer.colorGradient = gradient;
-	}
+        updateTrailRenderer(color);
+        CmdUpdateTrailRenderer(color);
+    }
+
+    [Command]
+    public void CmdUpdateTrailRenderer(Color color)
+    {
+        updateTrailRenderer(color);
+    }
+
+    public void updateTrailRenderer(Color color)
+    {
+        Gradient gradient = new Gradient();
+        gradient.SetKeys(
+            new GradientColorKey[] { new GradientColorKey(color, 0.0f), new GradientColorKey(Color.white, 1.0f) },
+            new GradientAlphaKey[] { new GradientAlphaKey(trailAlpha, 0.0f), new GradientAlphaKey(0, 1.0f) }
+        );
+        _trailRenderer.colorGradient = gradient;
+    }
 
     
 	public void depleteHealth(int damage) {

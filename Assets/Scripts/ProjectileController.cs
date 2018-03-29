@@ -94,7 +94,6 @@ public class ProjectileController : NetworkBehaviour {
 
         else if (shooter != null && other.gameObject == shooter.gameObject)
         {
-            Debug.Log("Hit self");
             //do nothing
         }
 
