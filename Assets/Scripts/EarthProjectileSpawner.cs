@@ -7,22 +7,29 @@ public class EarthProjectileSpawner : NetworkBehaviour {
 
 	public float regenerationTime = 50.0f;
 	public float rotationSpeed = 1.0f;
-	public float radius = 1.0f;
+	private float radius = 1.0f;
+	public float minRadius = 1.0f;
+	public float maxRadius = 1.5f;
 	public GameObject earthProjectilePrefab;
 	public int maxSpawn = 3;
 	public GameObject[] earthProjectiles;
 	public bool belongToPlayer= false;
 	private float angleDifference;
 	public float timeCounter = 0.0f;
-
+	public float expansionTime = 0.3f;
+	private bool expanding = false;
+	private bool contracting = false;
 	[SyncVar]
 	public GameObject shooter;
 
 	// Use this for initialization
 	void Start () {
-		earthProjectiles = new GameObject[maxSpawn];
-		angleDifference = 360 / maxSpawn;
-		timeCounter = regenerationTime;
+		if (earthProjectiles.Length != maxSpawn) {
+			earthProjectiles = new GameObject[maxSpawn];
+			angleDifference = 360 / maxSpawn;
+			timeCounter = regenerationTime;
+			radius = minRadius;
+		}
 	}
 	
 	// Update is called once per frame
@@ -33,6 +40,15 @@ public class EarthProjectileSpawner : NetworkBehaviour {
 
 		// Rotate around self
 		transform.Rotate(Vector3.forward*Time.deltaTime*rotationSpeed);
+
+		// expand if expanding
+		if (expanding) {
+			expand ();
+		}
+
+		if (contracting) {
+			contract ();
+		}
 
 		// Spawns rock based on regeneration rate
 		timeCounter -= Time.deltaTime;
@@ -45,8 +61,19 @@ public class EarthProjectileSpawner : NetworkBehaviour {
 
     [Command]
 	void CmdSpawnProjectile(int number) {
+		if (earthProjectiles.Length != maxSpawn) {
+			// not started properlly, stimulate Start() again
+			earthProjectiles = new GameObject[maxSpawn];
+			angleDifference = 360 / maxSpawn;
+			timeCounter = regenerationTime;
+			radius = minRadius;
+		}
+		if (number <= 0)
+			return;
 		int spawned = 0;
+		Debug.Log ("earthProjectiles length = " + earthProjectiles.Length + " max spawn = " + maxSpawn);
 		for (int i = 0; i < maxSpawn; i++) {
+			Debug.Log (i + " Max spawn = " + maxSpawn);
 			if (earthProjectiles [i] == null) {
 				float angle = i * angleDifference+transform.eulerAngles.z;
 				Vector3 spawnPosition = this.transform.position+ new Vector3 (radius * Mathf.Cos (Mathf.Deg2Rad*angle), radius * Mathf.Sin (Mathf.Deg2Rad*angle));
@@ -63,12 +90,62 @@ public class EarthProjectileSpawner : NetworkBehaviour {
 		}
 	}
 
+	private void expand(){
+		if (radius >= maxRadius) {
+			radius = maxRadius;
+			expanding = false;
+			contracting = true;
+			return;
+		}
+		else {
+			for (int i = 0; i < maxSpawn; i++) {
+				if (earthProjectiles [i] != null) {
+					Vector3 moveVector = Vector3.Normalize (earthProjectiles [i].transform.position - this.transform.position) * (maxRadius - minRadius) / expansionTime * Time.deltaTime;
+					earthProjectiles [i].transform.position = earthProjectiles [i].transform.position + moveVector;
+					radius = Vector3.Magnitude (earthProjectiles [i].transform.position - this.transform.position);
+				}
+			}
+		}
+	}
+
+	private void contract(){
+		if (radius <= minRadius) {
+			radius = minRadius;
+			contracting = false;
+			return;
+		}
+		else {
+			for (int i = 0; i < maxSpawn; i++) {
+				if (earthProjectiles [i] != null) {
+					Vector3 moveVector = Vector3.Normalize (earthProjectiles [i].transform.position - this.transform.position) * (maxRadius - minRadius) / expansionTime * Time.deltaTime;
+					earthProjectiles [i].transform.position = earthProjectiles [i].transform.position - moveVector;
+					radius = Vector3.Magnitude (earthProjectiles [i].transform.position - this.transform.position);
+				}
+			}
+		}
+	}
+
+	public void startExpand() {
+		expanding = true;
+
+	}
+
 	public void belongsToPlayer() {
 		belongToPlayer = true;
 	}
 
 	public bool getBelongsToPlayer() {
 		return belongToPlayer;
+	}
+
+	public int getNumRock(){
+		int numRock = 0;
+		for (int i=0; i<maxSpawn; i++) {
+			if (earthProjectiles [i] != null) {
+				numRock++;
+			}
+		}
+		return numRock;
 	}
 
 }

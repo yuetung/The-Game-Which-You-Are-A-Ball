@@ -87,7 +87,7 @@ public class ProjectileController : NetworkBehaviour {
 			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			if (gameObject.GetComponent<Animator> ())
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
-			other.GetComponent<Enemy> ().depleteHealth (projectileDamage);
+			other.GetComponent<Enemy> ().depleteHealth (projectileDamage, elementType);
 			Invoke ("DestroyNow", explodeAnimationSeconds);
 			alreadyHit = true;
 		}

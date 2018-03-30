@@ -17,7 +17,8 @@ public class PlayerController : NetworkBehaviour {
     public ElementType elementType = ElementType.Default;
 	public int energy = 0;
 	public int elementLevel = 0;
-	public int health = 100;
+	public int maxHealth = 100;
+	public int health;
 	public Vector2 mouseDownLocation; // where the mouse is initially held down
 	public Vector2 moveTarget;  // target point to move player towards
 	public float timeCounter = 1.0f;
@@ -48,6 +49,7 @@ public class PlayerController : NetworkBehaviour {
 		
 	// Use this for initialization
 	public void Start () {
+		health = maxHealth;
 		_animator=gameObject.GetComponent<Animator>();
 		_rigidbody = gameObject.GetComponent<Rigidbody2D> ();
 		_trailRenderer = gameObject.GetComponent<TrailRenderer> ();
@@ -143,12 +145,13 @@ public class PlayerController : NetworkBehaviour {
     // If it's a lightning projectile, finalPosition is calculated and passed into CmdShoot.
     public void Shoot(Vector2 shootDirection, ElementType elementType, int elementLevel)
     {
-        //Earth type cannot shoot
-        if (elementType == ElementType.Earth)
-        {
-            Debug.Log("Earth tries to shoot");
+		//Earth type expand when "shoot"
+		if (elementType == ElementType.Earth) {
+			if (currentEarthProjectileSpawner) {
+				currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().startExpand ();
+			}
             return;
-        }
+		}
         Rigidbody2D projectile = projectileFactory.getProjectileFromType(elementType, elementLevel);
         float maxDistance = projectile.GetComponent<ProjectileController>().maxDistance;
         int layerMask = LayerMask.GetMask("Enemy", "Wall");
@@ -208,6 +211,12 @@ public class PlayerController : NetworkBehaviour {
 	}
 
 	// Changes user's current ElementType if element obtained is different from current elementType
+	/*	@Pre-condition: energyAmount>=0; newElementType!=null
+	 * 	@Post-condition: Player is assigned newElementType, elementLevel is reset to 1 and energyLevel is 
+	 * 					 reset to energy of powerup if different from player's current elementType.
+	 * 					 Else, the player's elementType remains the same and player's energyLevel is gained
+	 * 					 by amount equal to energy of powerup. 
+	 */ 
 	public void gainPowerUp(ElementType newElementType, int energyAmount) {
 		Debug.Log ("PowerUpGained");
 		if (elementType != newElementType) {
@@ -321,6 +330,7 @@ public class PlayerController : NetworkBehaviour {
 
     
 	public void depleteHealth(int damage) {
+		Handheld.Vibrate ();
 		if (health - damage <= 0) {
 			health = 0;
 			//TODO: implement player's death
@@ -338,12 +348,17 @@ public class PlayerController : NetworkBehaviour {
     // This way, the client is able to pass in their own information and don't have to rely on the server's data on them
 	private void CmdCreateEarthProjectileSpawner(ElementType elementType, int elementLevel) {
 		CmdDestroyCurrentEarthProjectileSpawner ();
+		int numRockToSpawn = 0;
+		if (currentEarthProjectileSpawner) {
+			numRockToSpawn = currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().getNumRock ();
+		}
 		Rigidbody2D projectile = projectileFactory.getProjectileFromType (elementType, elementLevel);
 		currentEarthProjectileSpawner = Instantiate (projectile.gameObject, transform.position, transform.rotation);
 		currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().belongsToPlayer ();
 		currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().shooter = transform.gameObject;
         //CmdassignClientAuthority(currentEarthProjectileSpawner.GetComponent<NetworkIdentity>());
-        //Debug.Log("Setauthority for " + currentEarthProjectileSpawner.GetComponent<NetworkIdentity>());
+		currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().spawnProjectile (numRockToSpawn);
+		// spawn is moved to EarthProjectileSpawner?
 		NetworkServer.SpawnWithClientAuthority(currentEarthProjectileSpawner, this.gameObject);
 	}
 
