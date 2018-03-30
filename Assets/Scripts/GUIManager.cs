@@ -142,9 +142,12 @@ public class GUIManager : NetworkBehaviour {
 		} else if (newElement == PlayerController.ElementType.Lightning) {
 			// set the color of the radial energy bar
 			LoadingBar.GetComponent<Image>().color = Color.yellow;
-		}
+		} else if (newElement == PlayerController.ElementType.Earth) {
+            // set the color of the radial energy bar
+            LoadingBar.GetComponent<Image>().color = new Color(120 / 255f, 82 / 255f, 45 / 255f);
+        }
 
-	}
+    }
 
 	public void updateLevel (int amount) {
 		level = amount;

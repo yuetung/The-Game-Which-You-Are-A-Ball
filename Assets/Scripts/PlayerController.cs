@@ -92,9 +92,8 @@ public class PlayerController : NetworkBehaviour {
             }
 
 			// Mouse Dragged
-			else { 
+			else {
 				Shoot (shootDirection, elementType, elementLevel);
-                depleteEnergy(elementLevel * 10);
             }
             transform.Find("Target Arrow").gameObject.SetActive(false);
         }
@@ -140,13 +139,16 @@ public class PlayerController : NetworkBehaviour {
 
 	// Obtain a projectile from ProjectileFactory and shoots it
     // Shoot is here instead of CmdShoot is such that Raycast would work on the local player who shoots it
-    // If it's a normal projectile, nothing really happens.
+    // If it's a normal projectile, nothing really happens, CmdShoot is called.
     // If it's a lightning projectile, finalPosition is calculated and passed into CmdShoot.
     public void Shoot(Vector2 shootDirection, ElementType elementType, int elementLevel)
     {
-		//Earth type cannot shoot
-		if (elementType == ElementType.Earth)
-			return;
+        //Earth type cannot shoot
+        if (elementType == ElementType.Earth)
+        {
+            Debug.Log("Earth tries to shoot");
+            return;
+        }
         Rigidbody2D projectile = projectileFactory.getProjectileFromType(elementType, elementLevel);
         float maxDistance = projectile.GetComponent<ProjectileController>().maxDistance;
         int layerMask = LayerMask.GetMask("Enemy", "Wall");
@@ -161,6 +163,7 @@ public class PlayerController : NetworkBehaviour {
             finalPosition = new Vector2(transform.position.x, transform.position.y) + shootDirection.normalized * maxDistance;
         }
         CmdShoot(shootDirection, elementType, elementLevel, finalPosition);
+        depleteEnergy(elementLevel * 10);
     }
    
     // Since we can't pass GameObjects into Cmd, we pass similar parameters as Shoot()
@@ -204,7 +207,7 @@ public class PlayerController : NetworkBehaviour {
 		}
 	}
 
-	// Change user's current ElementType if element obtained is different from current elementType
+	// Changes user's current ElementType if element obtained is different from current elementType
 	public void gainPowerUp(ElementType newElementType, int energyAmount) {
 		Debug.Log ("PowerUpGained");
 		if (elementType != newElementType) {
@@ -256,11 +259,11 @@ public class PlayerController : NetworkBehaviour {
 	public void setElementLevel(int newElementLevel) {
 		elementLevel = newElementLevel;
 		energyLossRate = Mathf.Pow (elementLevel , 1.5f);
-		// create earth proectile spawner based on element level
+		// create earth projectile spawner based on element level
 		if (elementType == ElementType.Earth) {
-			createEarthProjectileSpawner ();
+			CmdCreateEarthProjectileSpawner (elementType, elementLevel);
 		} else {
-			destroyCurrentEarthProjectileSpawner ();
+			CmdDestroyCurrentEarthProjectileSpawner ();
 		}
 	}
 
@@ -282,8 +285,8 @@ public class PlayerController : NetworkBehaviour {
 		} else if (elementType == ElementType.Earth) {
             GetComponent<NetworkAnimator>().SetTrigger("EarthType");
             _animator.SetTrigger ("EarthType");
-			color = new Color (120, 82, 45); //Brown color
-		} else if (elementType == ElementType.Wind) {
+			color = new Color(120/255f, 82/255f, 45/255f);
+        } else if (elementType == ElementType.Wind) {
             GetComponent<NetworkAnimator>().SetTrigger("WindType");
             _animator.SetTrigger ("WindType");
 			color = Color.green;
@@ -330,29 +333,36 @@ public class PlayerController : NetworkBehaviour {
 		}
 	}
 
-    //IEnumerator Destroy(GameObject o)
-    //{
-        
-    //}
-
-	private void createEarthProjectileSpawner() {
-		destroyCurrentEarthProjectileSpawner ();
+    [Command]
+    // we pass in parameters instead of using values from the class because the class might not be updated on the server
+    // This way, the client is able to pass in their own information and don't have to rely on the server's data on them
+	private void CmdCreateEarthProjectileSpawner(ElementType elementType, int elementLevel) {
+		CmdDestroyCurrentEarthProjectileSpawner ();
 		Rigidbody2D projectile = projectileFactory.getProjectileFromType (elementType, elementLevel);
 		currentEarthProjectileSpawner = Instantiate (projectile.gameObject, transform.position, transform.rotation);
 		currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().belongsToPlayer ();
 		currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().shooter = transform.gameObject;
-		NetworkServer.Spawn(currentEarthProjectileSpawner);
+        //CmdassignClientAuthority(currentEarthProjectileSpawner.GetComponent<NetworkIdentity>());
+        //Debug.Log("Setauthority for " + currentEarthProjectileSpawner.GetComponent<NetworkIdentity>());
+		NetworkServer.SpawnWithClientAuthority(currentEarthProjectileSpawner, this.gameObject);
 	}
 
-	private void destroyCurrentEarthProjectileSpawner() {
-		Debug.Log ("Destroying rock spawner");
+    private void CmdassignClientAuthority(NetworkIdentity inp)
+    {
+        inp.AssignClientAuthority(connectionToClient);
+        Debug.Log(inp.localPlayerAuthority);
+        Debug.Log(inp.hasAuthority);
+    }
+
+    [Command]
+	private void CmdDestroyCurrentEarthProjectileSpawner() {
 		if (currentEarthProjectileSpawner != null) {
 			GameObject[] earthProjectiles = currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().earthProjectiles;
 			for (int i = 0; i < earthProjectiles.Length; i++) {
 				if (earthProjectiles [i]!=null)
 					earthProjectiles [i].GetComponent<ProjectileController> ().DestroyNow ();
 			}
-			Destroy (currentEarthProjectileSpawner);
+			NetworkServer.Destroy(currentEarthProjectileSpawner);
 		}
 		currentEarthProjectileSpawner = null;
 	}

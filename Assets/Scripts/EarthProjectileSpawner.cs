@@ -38,12 +38,13 @@ public class EarthProjectileSpawner : NetworkBehaviour {
 		timeCounter -= Time.deltaTime;
 
 		if (timeCounter <= 0) {
-			spawnProjectile (1);
+			CmdSpawnProjectile (1);
 			timeCounter = regenerationTime;
 		}
 	}
 
-	void spawnProjectile(int number) {
+    [Command]
+	void CmdSpawnProjectile(int number) {
 		int spawned = 0;
 		for (int i = 0; i < maxSpawn; i++) {
 			if (earthProjectiles [i] == null) {

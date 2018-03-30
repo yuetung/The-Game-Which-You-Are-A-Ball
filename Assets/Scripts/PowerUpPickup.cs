@@ -11,11 +11,6 @@ public class PowerUpPickup : MonoBehaviour {
 	void Start () {
 		//transform.SetParent (GameObject.Find("PowerUps").transform);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	// Collision with player
 	void OnTriggerEnter2D(Collider2D other) {

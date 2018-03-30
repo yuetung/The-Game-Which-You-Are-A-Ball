@@ -16,11 +16,21 @@ Player doesn't know if they level up (character level)
 Multiplayer UI menulist broadcast created rooms/multiplayer room GUI
 
 ~~Trail not synced~~
-Trail not synced for host
+~~Trail not synced for host~~
 
 coroutines?
 
 Change the update errors
+
+Multiplayer map design
+
+~~Earth powerups to multiplayer: no animation; warning: Trying to send command for object without authority.~~
+
+HP not syncing well sometimes.
+
+Some error messages when rocks lose their level, networktransform sending for non existing object
+
+Game Over screen for multiplayer
 
 ---
 
