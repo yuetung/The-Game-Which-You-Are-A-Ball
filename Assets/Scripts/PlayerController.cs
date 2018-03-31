@@ -330,7 +330,7 @@ public class PlayerController : NetworkBehaviour {
 
     
 	public void depleteHealth(int damage) {
-		Handheld.Vibrate ();
+		//Handheld.Vibrate ();
 		if (health - damage <= 0) {
 			health = 0;
 			//TODO: implement player's death
@@ -353,12 +353,12 @@ public class PlayerController : NetworkBehaviour {
 			numRockToSpawn = currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().getNumRock ();
 		}
 		Rigidbody2D projectile = projectileFactory.getProjectileFromType (elementType, elementLevel);
-		currentEarthProjectileSpawner = Instantiate (projectile.gameObject, transform.position, transform.rotation);
+        currentEarthProjectileSpawner = Instantiate(projectile.gameObject, transform.position, transform.rotation);
 		currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().belongsToPlayer ();
 		currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().shooter = transform.gameObject;
         //CmdassignClientAuthority(currentEarthProjectileSpawner.GetComponent<NetworkIdentity>());
-		currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().spawnProjectile (numRockToSpawn);
-		// spawn is moved to EarthProjectileSpawner?
+        //currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().CmdSpawnProjectile (numRockToSpawn);
+        // spawn is moved to EarthProjectileSpawner?
 		NetworkServer.SpawnWithClientAuthority(currentEarthProjectileSpawner, this.gameObject);
 	}
 

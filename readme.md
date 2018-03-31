@@ -26,6 +26,13 @@ Multiplayer map design
 
 ~~Earth powerups to multiplayer: no animation; warning: Trying to send command for object without authority.~~
 
+ROCKS ARE BAD, SHOULD JUST ATTACH TO PLAYER, MIGHT NOT NEED TO BE SERVERSIDE
+
+If we have to detach rockspawner from parent, it's difficult to fix the latency issues.
+
+Attach to player and ignore player's rotations
+
+
 HP not syncing well sometimes.
 
 Some error messages when rocks lose their level, networktransform sending for non existing object

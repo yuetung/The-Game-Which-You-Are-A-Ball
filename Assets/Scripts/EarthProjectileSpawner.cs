@@ -30,16 +30,17 @@ public class EarthProjectileSpawner : NetworkBehaviour {
 			timeCounter = regenerationTime;
 			radius = minRadius;
 		}
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		// follow parent's transform
-		if (shooter)
-			transform.position = shooter.transform.position;
+        // follow parent's transform
+        if (shooter)
+            transform.position = shooter.transform.position;
 
-		// Rotate around self
-		transform.Rotate(Vector3.forward*Time.deltaTime*rotationSpeed);
+        // Rotate around self
+        transform.Rotate(Vector3.forward*Time.deltaTime*rotationSpeed);
 
 		// expand if expanding
 		if (expanding) {
@@ -60,9 +61,9 @@ public class EarthProjectileSpawner : NetworkBehaviour {
 	}
 
     [Command]
-	void CmdSpawnProjectile(int number) {
+	public void CmdSpawnProjectile(int number) {
 		if (earthProjectiles.Length != maxSpawn) {
-			// not started properlly, stimulate Start() again
+			// not started properlly, simulate Start() again
 			earthProjectiles = new GameObject[maxSpawn];
 			angleDifference = 360 / maxSpawn;
 			timeCounter = regenerationTime;
