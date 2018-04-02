@@ -220,14 +220,9 @@ MonoBehaviour:
   loopWaypoints: 1
   explosionPrefab: {fileID: 1015006985979810, guid: 269ed0b6d625aac4b9046c97d96ad3b4,
     type: 2}
-  patterns:
-  - basicRockball
-  cooldownTime: 300
+  patterns: []
+  cooldownTime: 3
   sensePlayer: 5
-  chasePlayer: 0
-  maxChaseDistance: 0
-  immuneTo: 
-  randomProjectile: 0
   canRotate: 0
   canFlip: 1
   waypointIndex: 0

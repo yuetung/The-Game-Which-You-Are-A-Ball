@@ -210,9 +210,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96b5106ab417b8844826e88da779cdc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 1
-  hp: 1
-  moveSpeed: 3
+  maxHp: 10
+  hp: 10
+  moveSpeed: 3.3
   wayPoints:
   - {fileID: 1257742968089650}
   - {fileID: 1221558790820120}
@@ -220,11 +220,10 @@ MonoBehaviour:
   loopWaypoints: 1
   explosionPrefab: {fileID: 1015006985979810, guid: 269ed0b6d625aac4b9046c97d96ad3b4,
     type: 2}
-  patterns:
-  - basicFireball
-  cooldownTime: 2
+  patterns: []
+  cooldownTime: 3
   sensePlayer: 5
-  chasePlayer: 0
+  chasePlayer: 1
   maxChaseDistance: 20
   immuneTo: 
   randomProjectile: 0
@@ -266,7 +265,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0a07071dc86e0ae48841e96661ca9358, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.044117928, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
