@@ -21,6 +21,8 @@ public class EarthProjectileSpawner : NetworkBehaviour {
 	private bool contracting = false;
 	[SyncVar]
 	public GameObject shooter;
+    [SyncVar]
+    public NetworkInstanceId nId;
 
 	// Use this for initialization
 	void Start () {
@@ -30,14 +32,21 @@ public class EarthProjectileSpawner : NetworkBehaviour {
 			timeCounter = regenerationTime;
 			radius = minRadius;
 		}
+        GameObject parent = ClientScene.FindLocalObject(nId);
+        transform.SetParent(parent.transform, false);
+    }
 
-	}
+    // To assign parent
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+    }
 	
 	// Update is called once per frame
 	void Update () {
         // follow parent's transform
-        if (shooter)
-            transform.position = shooter.transform.position;
+        //if (shooter)
+        //    transform.position = shooter.transform.position;
 
         // Rotate around self
         transform.Rotate(Vector3.forward*Time.deltaTime*rotationSpeed);

@@ -88,7 +88,6 @@ public class PlayerController : NetworkBehaviour {
 			if (shootDirection.magnitude < clickDragSensitivity) {
                 var worldLocation = Camera.main.ScreenToWorldPoint(mouseUpLocation);
 				setMovementTarget (worldLocation);
-
                 var tempIcon = Instantiate(touchIndicator, worldLocation + new Vector3(0,0,10), new Quaternion());
                 Destroy(tempIcon, 0.5f);
             }
@@ -131,12 +130,17 @@ public class PlayerController : NetworkBehaviour {
         //Debug.Log ("Element: "+elementType.ToString()+" Level: "+elementLevel.ToString()+" Energy: "+energy.ToString());
     }
 
-	// set moveTarget of where the player should go to
-	public void setMovementTarget(Vector2 targetLocation) {
-		moveTarget = targetLocation;
-		Vector2 faceDirection = moveTarget - new Vector2(transform.position.x,transform.position.y);
-		_rigidbody.rotation = Mathf.Atan2 (faceDirection.y, faceDirection.x) * Mathf.Rad2Deg +90;
-	}
+    // set moveTarget of where the player should go to
+    public void setMovementTarget(Vector2 targetLocation)
+    {
+        moveTarget = targetLocation;
+        Vector2 faceDirection = moveTarget - new Vector2(transform.position.x, transform.position.y);
+        _rigidbody.rotation = Mathf.Atan2(faceDirection.y, faceDirection.x) * Mathf.Rad2Deg + 90;
+        var x = transform.Find("EarthProjectileSpawner1(Clone)");
+        if (x != null) {
+            x.Rotate(-Vector3.forward);
+        }
+    }
 
 
 	// Obtain a projectile from ProjectileFactory and shoots it
@@ -353,13 +357,16 @@ public class PlayerController : NetworkBehaviour {
 			numRockToSpawn = currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().getNumRock ();
 		}
 		Rigidbody2D projectile = projectileFactory.getProjectileFromType (elementType, elementLevel);
-        currentEarthProjectileSpawner = Instantiate(projectile.gameObject, transform.position, transform.rotation);
+        currentEarthProjectileSpawner = Instantiate(projectile.gameObject);
 		currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().belongsToPlayer ();
 		currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().shooter = transform.gameObject;
         //CmdassignClientAuthority(currentEarthProjectileSpawner.GetComponent<NetworkIdentity>());
         //currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().CmdSpawnProjectile (numRockToSpawn);
         // spawn is moved to EarthProjectileSpawner?
-		NetworkServer.SpawnWithClientAuthority(currentEarthProjectileSpawner, this.gameObject);
+        currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner>().nId = netId;
+        //currentEarthProjectileSpawner.transform.SetParent(transform);
+        //transform.SetPositionAndRotation(new Vector3(), new Quaternion());
+        NetworkServer.SpawnWithClientAuthority(currentEarthProjectileSpawner, gameObject);
 	}
 
     private void CmdassignClientAuthority(NetworkIdentity inp)
