@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 95496053294525780}
   - component: {fileID: 114942625780306642}
   - component: {fileID: 114840729374471940}
-  - component: {fileID: 114606877512556224}
+  - component: {fileID: 114007730593491132}
   m_Layer: 11
   m_Name: EarthProjectile2
   m_TagString: BreakableWall
@@ -42,7 +42,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000695069210206}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -115,7 +115,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114606877512556224
+--- !u!114 &114007730593491132
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -123,19 +123,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000695069210206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 520a709f6a2d895449e8238efdc94c09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TransformSyncMode: 2
-  m_SendInterval: 0.033333335
-  m_SyncRotationAxis: 3
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
 --- !u!114 &114840729374471940
 MonoBehaviour:
   m_ObjectHideFlags: 1

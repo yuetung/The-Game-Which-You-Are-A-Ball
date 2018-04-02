@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114106465172912620}
   - component: {fileID: 114522624250717672}
   - component: {fileID: 50569103260845596}
+  - component: {fileID: 114983261891329848}
   m_Layer: 0
   m_Name: EarthProjectileSpawner2
   m_TagString: Projectile
@@ -117,3 +118,14 @@ MonoBehaviour:
   timeCounter: 0
   expansionTime: 0.3
   shooter: {fileID: 0}
+--- !u!114 &114983261891329848
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1812201680187066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520a709f6a2d895449e8238efdc94c09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

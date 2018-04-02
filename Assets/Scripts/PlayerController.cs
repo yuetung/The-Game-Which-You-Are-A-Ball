@@ -75,6 +75,8 @@ public class PlayerController : NetworkBehaviour {
         if (!isLocalPlayer  && !testMode) {
 			return;
 		}
+
+
 		// Mouse Down
 		if (Input.GetMouseButtonDown (0)) { // Record initial mouseDown location
 			mouseDownLocation = Input.mousePosition;
@@ -363,7 +365,7 @@ public class PlayerController : NetworkBehaviour {
         //CmdassignClientAuthority(currentEarthProjectileSpawner.GetComponent<NetworkIdentity>());
         //currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().CmdSpawnProjectile (numRockToSpawn);
         // spawn is moved to EarthProjectileSpawner?
-        currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner>().nId = netId;
+        currentEarthProjectileSpawner.GetComponent<SetParent>().nId = netId;
         //currentEarthProjectileSpawner.transform.SetParent(transform);
         //transform.SetPositionAndRotation(new Vector3(), new Quaternion());
         NetworkServer.SpawnWithClientAuthority(currentEarthProjectileSpawner, gameObject);

@@ -84,6 +84,7 @@
      <Compile Include="Assets\Scripts\ProjectileFactory.cs" />
      <Compile Include="Assets\Scripts\ProjectilePatternFactory.cs" />
      <Compile Include="Assets\Scripts\ProjectPatternFactoryTest.cs" />
+     <Compile Include="Assets\Scripts\SetParent.cs" />
      <Compile Include="Assets\Scripts\SinglePlayerNetwork.cs" />
      <Compile Include="Assets\Scripts\TimedObjectDestruction.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
