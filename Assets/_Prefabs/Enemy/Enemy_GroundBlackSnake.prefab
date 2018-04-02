@@ -220,14 +220,21 @@ MonoBehaviour:
   loopWaypoints: 1
   explosionPrefab: {fileID: 1015006985979810, guid: 269ed0b6d625aac4b9046c97d96ad3b4,
     type: 2}
-  patterns: []
-  cooldownTime: 3
+  patterns:
+  - basicLightningball
+  cooldownTime: 1
   sensePlayer: 5
+  chasePlayer: 0
+  maxChaseDistance: 0
+  immuneTo: 
+  randomProjectile: 1
   canRotate: 1
   canFlip: 0
   waypointIndex: 0
   EnemyHealthBarPrefab: {fileID: 1920628111961788, guid: e6bcf14eac3452c4698df3582a518a7e,
     type: 2}
+  noticeBubble: {fileID: 0}
+  dontChaseForSeconds: 1
 --- !u!212 &212442729283951928
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -261,7 +268,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4e0b11241511f754dbccb4dd8d80046b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.94482756, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

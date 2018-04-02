@@ -508,11 +508,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114933607402819170, guid: 30e00e832d1ed4044a51d5f430041b49,
-        type: 2}
-      propertyPath: patterns.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4214173263629758, guid: 30e00e832d1ed4044a51d5f430041b49, type: 2}
       propertyPath: m_LocalPosition.x
       value: -15.11
@@ -544,21 +539,6 @@ Prefab:
     - target: {fileID: 4214173263629758, guid: 30e00e832d1ed4044a51d5f430041b49, type: 2}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114933607402819170, guid: 30e00e832d1ed4044a51d5f430041b49,
-        type: 2}
-      propertyPath: patterns.Array.data[1]
-      value: basicFireball
-      objectReference: {fileID: 0}
-    - target: {fileID: 114933607402819170, guid: 30e00e832d1ed4044a51d5f430041b49,
-        type: 2}
-      propertyPath: patterns.Array.data[0]
-      value: basicWaterball
-      objectReference: {fileID: 0}
-    - target: {fileID: 114933607402819170, guid: 30e00e832d1ed4044a51d5f430041b49,
-        type: 2}
-      propertyPath: cooldownTime
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 30e00e832d1ed4044a51d5f430041b49, type: 2}
@@ -824,11 +804,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114802433154187580, guid: 57dd29285f826bf459e1b3836ff21aed,
-        type: 2}
-      propertyPath: patterns.Array.size
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 4479495421871988, guid: 57dd29285f826bf459e1b3836ff21aed, type: 2}
       propertyPath: m_LocalPosition.x
       value: -15.08
@@ -863,53 +838,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114802433154187580, guid: 57dd29285f826bf459e1b3836ff21aed,
         type: 2}
-      propertyPath: patterns.Array.data[0]
-      value: shoot4Waterball360DegreeSpread0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114802433154187580, guid: 57dd29285f826bf459e1b3836ff21aed,
-        type: 2}
-      propertyPath: patterns.Array.data[1]
-      value: shoot4Waterball360DegreeSpread1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114802433154187580, guid: 57dd29285f826bf459e1b3836ff21aed,
-        type: 2}
-      propertyPath: patterns.Array.data[2]
-      value: shoot4Waterball360DegreeSpread2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114802433154187580, guid: 57dd29285f826bf459e1b3836ff21aed,
-        type: 2}
-      propertyPath: patterns.Array.data[3]
-      value: shoot4Waterball360DegreeSpread3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114802433154187580, guid: 57dd29285f826bf459e1b3836ff21aed,
-        type: 2}
-      propertyPath: patterns.Array.data[4]
-      value: shoot4Waterball360DegreeSpread4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114802433154187580, guid: 57dd29285f826bf459e1b3836ff21aed,
-        type: 2}
       propertyPath: cooldownTime
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114802433154187580, guid: 57dd29285f826bf459e1b3836ff21aed,
-        type: 2}
-      propertyPath: sensePlayer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114802433154187580, guid: 57dd29285f826bf459e1b3836ff21aed,
-        type: 2}
-      propertyPath: patterns.Array.data[5]
-      value: shoot4Waterball360DegreeSpread5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114802433154187580, guid: 57dd29285f826bf459e1b3836ff21aed,
-        type: 2}
-      propertyPath: patterns.Array.data[6]
-      value: shoot4Waterball360DegreeSpread6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114802433154187580, guid: 57dd29285f826bf459e1b3836ff21aed,
-        type: 2}
-      propertyPath: patterns.Array.data[7]
-      value: shoot4Waterball360DegreeSpread7
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57dd29285f826bf459e1b3836ff21aed, type: 2}
@@ -1930,16 +1860,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114563324931523796, guid: 62728cc8993d2dd439742a1081a7a9ec,
-        type: 2}
-      propertyPath: patterns.Array.data[0]
-      value: shoot3FireballSpread30Degree2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114563324931523796, guid: 62728cc8993d2dd439742a1081a7a9ec,
-        type: 2}
-      propertyPath: cooldownTime
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62728cc8993d2dd439742a1081a7a9ec, type: 2}
   m_IsPrefabParent: 0
@@ -1950,11 +1870,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114423472917751136, guid: c1ef16f1df96fb5468975b3b3c4c5871,
-        type: 2}
-      propertyPath: patterns.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4174678641160234, guid: c1ef16f1df96fb5468975b3b3c4c5871, type: 2}
       propertyPath: m_LocalPosition.x
       value: -14.99
@@ -1986,16 +1901,6 @@ Prefab:
     - target: {fileID: 4174678641160234, guid: c1ef16f1df96fb5468975b3b3c4c5871, type: 2}
       propertyPath: m_RootOrder
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114423472917751136, guid: c1ef16f1df96fb5468975b3b3c4c5871,
-        type: 2}
-      propertyPath: patterns.Array.data[0]
-      value: basicRockball
-      objectReference: {fileID: 0}
-    - target: {fileID: 114423472917751136, guid: c1ef16f1df96fb5468975b3b3c4c5871,
-        type: 2}
-      propertyPath: cooldownTime
-      value: 300
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c1ef16f1df96fb5468975b3b3c4c5871, type: 2}
@@ -2167,11 +2072,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114092636379114216, guid: 3aa2b877c0a9668478694910239c4ff1,
-        type: 2}
-      propertyPath: patterns.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4646051062248388, guid: 3aa2b877c0a9668478694910239c4ff1, type: 2}
       propertyPath: m_LocalPosition.x
       value: -15.08
@@ -2202,31 +2102,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4646051062248388, guid: 3aa2b877c0a9668478694910239c4ff1, type: 2}
       propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 212706367239758460, guid: 3aa2b877c0a9668478694910239c4ff1,
-        type: 2}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212706367239758460, guid: 3aa2b877c0a9668478694910239c4ff1,
-        type: 2}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 212706367239758460, guid: 3aa2b877c0a9668478694910239c4ff1,
-        type: 2}
-      propertyPath: m_Color.b
-      value: 0.044117928
-      objectReference: {fileID: 0}
-    - target: {fileID: 114092636379114216, guid: 3aa2b877c0a9668478694910239c4ff1,
-        type: 2}
-      propertyPath: patterns.Array.data[0]
-      value: basicFireball
-      objectReference: {fileID: 0}
-    - target: {fileID: 114092636379114216, guid: 3aa2b877c0a9668478694910239c4ff1,
-        type: 2}
-      propertyPath: cooldownTime
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3459,11 +3334,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114859546190829982, guid: 5442855a25cf04d4699c64b84164aaf1,
-        type: 2}
-      propertyPath: patterns.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4101470187959016, guid: 5442855a25cf04d4699c64b84164aaf1, type: 2}
       propertyPath: m_LocalPosition.x
       value: -15.08
@@ -3495,36 +3365,6 @@ Prefab:
     - target: {fileID: 4101470187959016, guid: 5442855a25cf04d4699c64b84164aaf1, type: 2}
       propertyPath: m_RootOrder
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 212442729283951928, guid: 5442855a25cf04d4699c64b84164aaf1,
-        type: 2}
-      propertyPath: m_Color.r
-      value: 0.94482756
-      objectReference: {fileID: 0}
-    - target: {fileID: 212442729283951928, guid: 5442855a25cf04d4699c64b84164aaf1,
-        type: 2}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212442729283951928, guid: 5442855a25cf04d4699c64b84164aaf1,
-        type: 2}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114859546190829982, guid: 5442855a25cf04d4699c64b84164aaf1,
-        type: 2}
-      propertyPath: patterns.Array.data[0]
-      value: basicLightningball
-      objectReference: {fileID: 0}
-    - target: {fileID: 114859546190829982, guid: 5442855a25cf04d4699c64b84164aaf1,
-        type: 2}
-      propertyPath: randomProjectile
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114859546190829982, guid: 5442855a25cf04d4699c64b84164aaf1,
-        type: 2}
-      propertyPath: cooldownTime
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5442855a25cf04d4699c64b84164aaf1, type: 2}
