@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour {
-	
+
 	public bool testMode = false;
     [Tooltip("Movement Speed")]
     public float moveSpeed = 1.5f;
@@ -23,12 +23,7 @@ public class PlayerController : NetworkBehaviour {
 	public Vector2 moveTarget;  // target point to move player towards
 	public float timeCounter = 1.0f;
 	public float energyLossRate = 1.0f;
-
-	// element level caps from user pref
-	// hmm..maybe i shld get it from game manager instead of direct...?
-	public int levelCap = 0; 
-
-
+	public int levelCap = 3; 
 	public GameObject lightningEffect;
 	private GameObject currentEarthProjectileSpawner;
 	// Possible element types
@@ -229,18 +224,6 @@ public class PlayerController : NetworkBehaviour {
 			setElementLevel (1);
 			this.energy = energyAmount;
 			changeSprite ();
-
-			// logic for changing energy cap when gain powerup with different element
-			if (newElementType == ElementType.Fire) {
-				levelCap = GameManager.getFireCap ();
-			} else if (newElementType == ElementType.Water) {
-				levelCap = GameManager.getWaterCap();
-			} else if (newElementType == ElementType.Lightning) {
-				levelCap = GameManager.getLightningCap();
-			} else if (newElementType == ElementType.Earth) {
-				levelCap = GameManager.getEarthCap();
-			}
-
 		} else {
 			if (elementType != ElementType.Default) {
 				gainEnergy (energyAmount);
