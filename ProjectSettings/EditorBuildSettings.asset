@@ -9,14 +9,14 @@ EditorBuildSettings:
     path: Assets/_Scenes/Menu_Scene.unity
     guid: 9345bce0d1428c74c94c0650f0d6786d
   - enabled: 1
-    path: Assets/_Scenes/Single_Player_Scene_1.unity
-    guid: 3235691c65be2d14fa69a1d034bb8f65
+    path: Assets/_Scenes/Level1.unity
+    guid: c757934108efb8949b832a85fe42b03f
   - enabled: 1
-    path: Assets/_Scenes/Test_enemies.unity
-    guid: 65d7e5fc9cecc8a49ad87e64cb8629eb
+    path: Assets/_Scenes/Level2.unity
+    guid: c54d6d7b5df53f649bfcf53a2c93a079
   - enabled: 1
-    path: Assets/_Scenes/Single_Player_Scene_2.unity
-    guid: 57f2d7cc284abca4fab0081201dd27e6
+    path: Assets/_Scenes/Level3.unity
+    guid: d35dd378257fa8448bff071df51c50c2
   - enabled: 1
     path: Assets/_Scenes/Main_Scene.unity
     guid: 4779505945342c446be16f47a81c9017

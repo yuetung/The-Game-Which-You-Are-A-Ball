@@ -224,6 +224,10 @@ MonoBehaviour:
   - shoot8Fireball360DegreeSpread
   cooldownTime: 0.1
   sensePlayer: 3
+  chasePlayer: 0
+  maxChaseDistance: 0
+  immuneTo: 
+  randomProjectile: 0
   canRotate: 1
   canFlip: 0
   waypointIndex: 0
