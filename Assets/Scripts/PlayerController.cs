@@ -17,7 +17,8 @@ public class PlayerController : NetworkBehaviour {
     public ElementType elementType = ElementType.Default;
 	public int energy = 0;
 	public int elementLevel = 0;
-	public int health = 100;
+	public int maxHealth = 100;
+	public int health;
 	public Vector2 mouseDownLocation; // where the mouse is initially held down
 	public Vector2 moveTarget;  // target point to move player towards
 	public float timeCounter = 1.0f;
@@ -53,6 +54,7 @@ public class PlayerController : NetworkBehaviour {
 		
 	// Use this for initialization
 	public void Start () {
+		health = maxHealth;
 		_animator=gameObject.GetComponent<Animator>();
 		_rigidbody = gameObject.GetComponent<Rigidbody2D> ();
 		_trailRenderer = gameObject.GetComponent<TrailRenderer> ();
@@ -149,9 +151,13 @@ public class PlayerController : NetworkBehaviour {
     // If it's a lightning projectile, finalPosition is calculated and passed into CmdShoot.
     public void Shoot(Vector2 shootDirection, ElementType elementType, int elementLevel)
     {
-		//Earth type cannot shoot
-		if (elementType == ElementType.Earth)
+		//Earth type expand when "shoot"
+		if (elementType == ElementType.Earth) {
+			if (currentEarthProjectileSpawner) {
+				currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().startExpand ();
+			}
 			return;
+		}
         Rigidbody2D projectile = projectileFactory.getProjectileFromType(elementType, elementLevel);
         float maxDistance = projectile.GetComponent<ProjectileController>().maxDistance;
         int layerMask = LayerMask.GetMask("Enemy", "Wall");
@@ -340,6 +346,7 @@ public class PlayerController : NetworkBehaviour {
 
     
 	public void depleteHealth(int damage) {
+		Handheld.Vibrate ();
 		if (health - damage <= 0) {
 			health = 0;
 			//TODO: implement player's death
@@ -358,12 +365,17 @@ public class PlayerController : NetworkBehaviour {
     //}
 
 	private void createEarthProjectileSpawner() {
+		int numRockToSpawn = 0;
+		if (currentEarthProjectileSpawner) {
+			numRockToSpawn = currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().getNumRock ();
+		}
 		destroyCurrentEarthProjectileSpawner ();
 		Rigidbody2D projectile = projectileFactory.getProjectileFromType (elementType, elementLevel);
 		currentEarthProjectileSpawner = Instantiate (projectile.gameObject, transform.position, transform.rotation);
 		currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().belongsToPlayer ();
 		currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().shooter = transform.gameObject;
 		NetworkServer.Spawn(currentEarthProjectileSpawner);
+		currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().spawnProjectile (numRockToSpawn);
 	}
 
 	private void destroyCurrentEarthProjectileSpawner() {

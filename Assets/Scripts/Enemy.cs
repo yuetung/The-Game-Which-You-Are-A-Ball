@@ -32,6 +32,9 @@ public class Enemy : MonoBehaviour {
 	[Tooltip("How far away to sense player")]
 	public float sensePlayer = 5.0f;
 
+	public bool chasePlayer = false;
+	public float maxChaseDistance = 0f;
+
 	public List<PlayerController.ElementType> immuneTo;
 
 	[Tooltip("Set to true if the enemy can rotate when move")]
@@ -54,6 +57,7 @@ public class Enemy : MonoBehaviour {
 	public GameObject EnemyHealthBarPrefab;
 	private GameObject EnemyHealthBar;
 	private GameObject gameManager;
+	private Vector3 startPosition;
 
 	void Awake() {
 		_rigidbody = GetComponent<Rigidbody2D> ();
@@ -74,7 +78,7 @@ public class Enemy : MonoBehaviour {
 		projectilePatternFactory = gameManager.GetComponent<ProjectilePatternFactory>();
         //projectilePatternFactory = GameManager.gm.GetComponent<ProjectilePatternFactory>();
         CreateHealthBar ();
-
+		startPosition = this.transform.position;
         
     }
 
@@ -96,18 +100,20 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (projectilePatternFactory == null)
-        {
+		if (projectilePatternFactory == null) {
 			gameManager = GameManager.gm.gameObject;
-			projectilePatternFactory = gameManager.GetComponent<ProjectilePatternFactory>();
-            CreateHealthBar();
-        }
-
-
-        if (Time.time >= moveTime) {
-			EnemyMovement ();
-		} else {
-			_animator.SetBool ("Moving", false);
+			projectilePatternFactory = gameManager.GetComponent<ProjectilePatternFactory> ();
+			CreateHealthBar ();
+		} 
+		if (chasePlayer && isNearPlayer()) {
+			ChasePlayer ();
+		}
+		else {
+			if (Time.time >= moveTime) {
+				EnemyMovement ();
+			} else {
+				_animator.SetBool ("Moving", false);
+			}
 		}
 		if (Time.time >= spawnTime) {
 			if (randomProjectile) {
@@ -148,6 +154,12 @@ public class Enemy : MonoBehaviour {
 		}
 		spawnTime = Time.time + cooldownTime;
 	}
+	void ChasePlayer() {
+		float distanceFromStartPosition = Vector3.Magnitude (this.transform.position - startPosition);
+		if (distanceFromStartPosition <= maxChaseDistance) {
+			_rigidbody.velocity = Vector3.Normalize (player.transform.position - gameObject.transform.position) * moveSpeed;
+		} 
+	}
 	void EnemyMovement() {
 		if (wayPoints.Length != 0 && moving) {
 			vx = wayPoints [waypointIndex].transform.position.x - transform.position.x;
@@ -176,7 +188,7 @@ public class Enemy : MonoBehaviour {
 				_animator.SetBool ("Moving", true);
 
 				//set enemy's velocity to moveSpeed towards new target position
-				_rigidbody.velocity = new Vector2 (vx * moveSpeed, vy * moveSpeed);
+				_rigidbody.velocity = Vector3.Normalize(new Vector3 (vx, vy,0)) * moveSpeed;
 
 				//for enemy that can rotate
 				if (canRotate) {

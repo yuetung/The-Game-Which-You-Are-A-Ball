@@ -76,13 +76,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   regenerationTime: 3
   rotationSpeed: 150
-  radius: 1
-  earthProjectilePrefab: {fileID: 1000695069210206, guid: 5cf6a7428587c5f41859aec18b1e70cd,
+  minRadius: 1
+  maxRadius: 1.5
+  earthProjectilePrefab: {fileID: 1214263965549362, guid: c34ca55aa0113564b85768d8981ead20,
     type: 2}
   maxSpawn: 3
   earthProjectiles: []
   belongToPlayer: 0
   timeCounter: 0
+  expansionTime: 0.3
   shooter: {fileID: 0}
 --- !u!114 &114406833897873246
 MonoBehaviour:
