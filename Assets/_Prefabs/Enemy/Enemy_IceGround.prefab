@@ -220,9 +220,21 @@ MonoBehaviour:
   loopWaypoints: 1
   explosionPrefab: {fileID: 1015006985979810, guid: 269ed0b6d625aac4b9046c97d96ad3b4,
     type: 2}
-  patterns: []
-  cooldownTime: 3
-  sensePlayer: 5
+  patterns:
+  - shoot4Waterball360DegreeSpread0
+  - shoot4Waterball360DegreeSpread1
+  - shoot4Waterball360DegreeSpread2
+  - shoot4Waterball360DegreeSpread3
+  - shoot4Waterball360DegreeSpread4
+  - shoot4Waterball360DegreeSpread5
+  - shoot4Waterball360DegreeSpread6
+  - shoot4Waterball360DegreeSpread7
+  cooldownTime: 0.1
+  sensePlayer: 10
+  chasePlayer: 0
+  maxChaseDistance: 0
+  immuneTo: 
+  randomProjectile: 0
   canRotate: 0
   canFlip: 1
   waypointIndex: 0

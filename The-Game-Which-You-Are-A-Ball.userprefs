@@ -1,14 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ProjectilePatternFactory.cs">
     <Files>
-      <File FileName="Assets\Scripts\ProjectilePatternFactory.cs" Line="280" Column="78" />
-      <File FileName="Assets\Scripts\ProjectPatternFactoryTest.cs" Line="20" Column="1" />
-      <File FileName="Assets\Scripts\Enemy.cs" Line="135" Column="53" />
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="250" Column="3" />
-      <File FileName="Assets\Scripts\EarthProjectileSpawner.cs" Line="46" Column="20" />
+      <File FileName="Assets\Scripts\ProjectilePatternFactory.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ProjectPatternFactoryTest.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Enemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\EarthProjectileSpawner.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PlayerInteractionTest.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\ProjectileFactory.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MainMenu\MainMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MainMenu\LevelSelectMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Portal.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LevelSelect\LevelSelect.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

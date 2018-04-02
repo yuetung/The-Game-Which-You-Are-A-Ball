@@ -32,8 +32,11 @@ public class MainMenu : MonoBehaviour {
         SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 2);
         
 	}
-	public void BossAi(){
+	public void Play3(){
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 3);
+	}
+	public void Play4(){
+		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 4);
 	}
 	public void Quit(){
 		Debug.Log ("Quit");
