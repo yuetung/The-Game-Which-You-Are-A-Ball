@@ -173,6 +173,8 @@ public class PlayerController : NetworkBehaviour {
     [Command]
 	public void CmdShoot (Vector2 shootDirection, ElementType elementType, int elementLevel, Vector2 finalPosition)
     {
+		if (elementType == ElementType.Default)
+			return;
         Rigidbody2D projectile = projectileFactory.getProjectileFromType(elementType, elementLevel);
         Rigidbody2D clone;
         //Lightning projectile

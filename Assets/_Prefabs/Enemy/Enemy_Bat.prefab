@@ -232,6 +232,8 @@ MonoBehaviour:
   waypointIndex: 0
   EnemyHealthBarPrefab: {fileID: 1920628111961788, guid: e6bcf14eac3452c4698df3582a518a7e,
     type: 2}
+  noticeBubble: {fileID: 1850631887488504, guid: fff54b0f61634e4468a82f2609a1e1f2,
+    type: 2}
 --- !u!212 &212706367239758460
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -55,13 +55,19 @@ public class Enemy : MonoBehaviour {
 	bool moving = true;
 	ProjectilePatternFactory projectilePatternFactory;
 	public GameObject EnemyHealthBarPrefab;
+	public GameObject noticeBubble;
 	private GameObject EnemyHealthBar;
 	private GameObject gameManager;
 	private Vector3 startPosition;
+	CircleCollider2D _collider;
+	private bool chasingPlayer = false;
+	public float dontChaseForSeconds = 1f;
+	private float chaseCooldownCount;
 
 	void Awake() {
 		_rigidbody = GetComponent<Rigidbody2D> ();
 		_animator = GetComponent<Animator> ();
+		_collider = GetComponent<CircleCollider2D> ();
 		moveTime = 0f;
 		spawnTime = 0f;
 		moving = true;
@@ -79,7 +85,7 @@ public class Enemy : MonoBehaviour {
         //projectilePatternFactory = GameManager.gm.GetComponent<ProjectilePatternFactory>();
         CreateHealthBar ();
 		startPosition = this.transform.position;
-        
+		chaseCooldownCount = 0f;
     }
 
 	void CreateHealthBar(){
@@ -99,16 +105,25 @@ public class Enemy : MonoBehaviour {
 	int count=0;
 	// Update is called once per frame
 	void Update () {
-
+		//Initiate gm if it has not been initiated
 		if (projectilePatternFactory == null) {
 			gameManager = GameManager.gm.gameObject;
 			projectilePatternFactory = gameManager.GetComponent<ProjectilePatternFactory> ();
 			CreateHealthBar ();
 		} 
-		if (chasePlayer && isNearPlayer()) {
+		float distanceFromStartPosition = Vector3.Magnitude (this.transform.position - startPosition);
+		if (chasePlayer && isNearPlayer () && distanceFromStartPosition <= maxChaseDistance && chaseCooldownCount<=0) {
 			ChasePlayer ();
-		}
+		} 
 		else {
+			if (distanceFromStartPosition > maxChaseDistance) {
+				chaseCooldownCount = dontChaseForSeconds;
+			}
+			if (chaseCooldownCount>0)
+				chaseCooldownCount -= Time.deltaTime;
+			if (chasingPlayer) {
+				chasingPlayer = false;
+			}
 			if (Time.time >= moveTime) {
 				EnemyMovement ();
 			} else {
@@ -155,10 +170,16 @@ public class Enemy : MonoBehaviour {
 		spawnTime = Time.time + cooldownTime;
 	}
 	void ChasePlayer() {
-		float distanceFromStartPosition = Vector3.Magnitude (this.transform.position - startPosition);
-		if (distanceFromStartPosition <= maxChaseDistance) {
-			_rigidbody.velocity = Vector3.Normalize (player.transform.position - gameObject.transform.position) * moveSpeed;
-		} 
+		_animator.SetBool ("Moving", true);
+		_rigidbody.velocity = Vector3.Normalize (player.transform.position - gameObject.transform.position) * moveSpeed;
+		if (!chasingPlayer) {
+			chasingPlayer = true;
+			Vector3 bubbleOffset = new Vector3 (_collider.radius*1.1f, _collider.radius*1.1f, 0);
+			Vector3 bubbleScale = new Vector3 (_collider.radius, _collider.radius, 0);
+			GameObject bubble = Instantiate (noticeBubble, transform.position+bubbleOffset, Quaternion.identity);
+			bubble.transform.localScale = bubbleScale;
+			bubble.GetComponent<EnemyNotice> ().setParentOffset (this.gameObject, bubbleOffset);
+		}
 	}
 	void EnemyMovement() {
 		if (wayPoints.Length != 0 && moving) {
