@@ -51,9 +51,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MonsterRoomSpawner.cs" />
-     <Compile Include="Assets\MonsterRoomTrigger.cs" />
-     <Compile Include="Assets\NewBehaviourScript.cs" />
      <Compile Include="Assets\Scripts\AOEExplosion.cs" />
      <Compile Include="Assets\Scripts\AOETest.cs" />
      <Compile Include="Assets\Scripts\BreakableWall.cs" />
@@ -69,6 +66,8 @@
      <Compile Include="Assets\Scripts\MainMenu\LevelSelectMenu.cs" />
      <Compile Include="Assets\Scripts\MainMenu\MainMenu.cs" />
      <Compile Include="Assets\Scripts\MainMenu\NetworkManager_Custom.cs" />
+     <Compile Include="Assets\Scripts\MonsterRoomSpawner.cs" />
+     <Compile Include="Assets\Scripts\MonsterRoomTrigger.cs" />
      <Compile Include="Assets\Scripts\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\PauseMenuList.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
@@ -79,7 +78,6 @@
      <Compile Include="Assets\Scripts\PowerUpSpawner.cs" />
      <Compile Include="Assets\Scripts\PowerUpSpawnerTest.cs" />
      <Compile Include="Assets\Scripts\PowerUpTest.cs" />
-     <Compile Include="Assets\Scripts\Progress.cs" />
      <Compile Include="Assets\Scripts\ProjectileController.cs" />
      <Compile Include="Assets\Scripts\ProjectileFactory.cs" />
      <Compile Include="Assets\Scripts\ProjectilePatternFactory.cs" />
@@ -87,6 +85,7 @@
      <Compile Include="Assets\Scripts\SetParent.cs" />
      <Compile Include="Assets\Scripts\SinglePlayerNetwork.cs" />
      <Compile Include="Assets\Scripts\TimedObjectDestruction.cs" />
+     <Compile Include="Assets\Scripts\WaitFor2P.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />

@@ -13,6 +13,10 @@ public class SetParent : NetworkBehaviour {
         {
             GameObject parent = ClientScene.FindLocalObject(nId);
             transform.SetParent(parent.transform, false);
+        } 
+        else
+        {
+            Debug.Log("No parent");
         }
     }
 }

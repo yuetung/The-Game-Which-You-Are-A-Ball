@@ -21,7 +21,6 @@ public class PowerUpPickup : MonoBehaviour {
 			}
 			DestroyObject (this.gameObject);
 		}
-
 	}
 
 	public void setEnergy(int amount){

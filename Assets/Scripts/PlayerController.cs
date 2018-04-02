@@ -76,7 +76,6 @@ public class PlayerController : NetworkBehaviour {
 			return;
 		}
 
-
 		// Mouse Down
 		if (Input.GetMouseButtonDown (0)) { // Record initial mouseDown location
 			mouseDownLocation = Input.mousePosition;
