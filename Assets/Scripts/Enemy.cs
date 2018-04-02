@@ -61,6 +61,7 @@ public class Enemy : MonoBehaviour {
 	private Vector3 startPosition;
 	CircleCollider2D _collider;
 	private bool chasingPlayer = false;
+	private bool sensingPlayer = false; // to display alert bubble for non-chaser enemies
 	public float dontChaseForSeconds = 1f;
 	private float chaseCooldownCount;
 
@@ -174,11 +175,7 @@ public class Enemy : MonoBehaviour {
 		_rigidbody.velocity = Vector3.Normalize (player.transform.position - gameObject.transform.position) * moveSpeed;
 		if (!chasingPlayer) {
 			chasingPlayer = true;
-			Vector3 bubbleOffset = new Vector3 (_collider.radius*1.1f, _collider.radius*1.1f, 0);
-			Vector3 bubbleScale = new Vector3 (_collider.radius, _collider.radius, 0);
-			GameObject bubble = Instantiate (noticeBubble, transform.position+bubbleOffset, Quaternion.identity);
-			bubble.transform.localScale = bubbleScale;
-			bubble.GetComponent<EnemyNotice> ().setParentOffset (this.gameObject, bubbleOffset);
+			generateAlertBubble ();
 		}
 	}
 	void EnemyMovement() {
@@ -250,8 +247,20 @@ public class Enemy : MonoBehaviour {
 		Vector3 difference = transform.position - playerLocation;
 		if(difference.magnitude < sensePlayer)
 		{
+			if (!chasePlayer && !sensingPlayer) {
+				sensingPlayer = true;
+				generateAlertBubble();
+			}
 			return true;
 		}
+		sensingPlayer = false;
 		return false;
+	}
+	void generateAlertBubble(){
+		Vector3 bubbleOffset = new Vector3 (_collider.radius*1.1f, _collider.radius*1.1f, 0);
+		Vector3 bubbleScale = new Vector3 (_collider.radius, _collider.radius, 0);
+		GameObject bubble = Instantiate (noticeBubble, transform.position+bubbleOffset, Quaternion.identity);
+		bubble.transform.localScale = bubbleScale;
+		bubble.GetComponent<EnemyNotice> ().setParentOffset (this.gameObject, bubbleOffset);
 	}
 }

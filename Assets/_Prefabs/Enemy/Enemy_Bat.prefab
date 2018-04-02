@@ -220,7 +220,8 @@ MonoBehaviour:
   loopWaypoints: 1
   explosionPrefab: {fileID: 1015006985979810, guid: 269ed0b6d625aac4b9046c97d96ad3b4,
     type: 2}
-  patterns: []
+  patterns:
+  - shoot5FireballSpread30Degree
   cooldownTime: 3
   sensePlayer: 5
   chasePlayer: 1
@@ -234,6 +235,7 @@ MonoBehaviour:
     type: 2}
   noticeBubble: {fileID: 1850631887488504, guid: fff54b0f61634e4468a82f2609a1e1f2,
     type: 2}
+  dontChaseForSeconds: 1
 --- !u!212 &212706367239758460
 SpriteRenderer:
   m_ObjectHideFlags: 1

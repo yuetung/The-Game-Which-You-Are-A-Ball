@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementType: 2
-  AOEDamage: 3
+  AOEDamage: 4
   explodeAnimationSeconds: 1
   belongToPlayer: 0
   shooter: {fileID: 0}
