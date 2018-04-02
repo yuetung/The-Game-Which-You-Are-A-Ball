@@ -222,13 +222,19 @@ MonoBehaviour:
     type: 2}
   patterns:
   - shoot8Fireball360DegreeSpread
-  cooldownTime: 0.1
+  cooldownTime: 0.2
   sensePlayer: 3
+  chasePlayer: 1
+  maxChaseDistance: 0
+  immuneTo: 
+  randomProjectile: 0
   canRotate: 1
   canFlip: 0
   waypointIndex: 0
   EnemyHealthBarPrefab: {fileID: 1920628111961788, guid: e6bcf14eac3452c4698df3582a518a7e,
     type: 2}
+  noticeBubble: {fileID: 0}
+  dontChaseForSeconds: 1
 --- !u!212 &212049650170566882
 SpriteRenderer:
   m_ObjectHideFlags: 1
