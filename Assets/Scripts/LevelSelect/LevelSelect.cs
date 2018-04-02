@@ -15,9 +15,12 @@ public class LevelSelect : MonoBehaviour {
 		//TODO: Error Network.Shutdown automatically goes to menu
 		//NetworkManager_Custom.Shutdown();
 		//NetworkManager_Custom.StartSinglePlayer();
-        nw.ServerChangeScene("Level" + (currentLevel + 1));
-		//SceneManager.LoadScene (currentLevel+1);
-
+		if (currentLevel <= 3) {
+			nw.ServerChangeScene ("Level" + (currentLevel + 1));
+			//SceneManager.LoadScene (currentLevel+1);
+		} else {
+			SceneManager.LoadScene (0);
+		}
 	}
 }
 
