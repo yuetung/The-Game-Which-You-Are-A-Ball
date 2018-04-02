@@ -1,5 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ProjectilePatternFactory.cs">
     <Files>
       <File FileName="Assets\Scripts\ProjectilePatternFactory.cs" Line="1" Column="1" />
@@ -14,6 +15,15 @@
       <File FileName="Assets\Scripts\MainMenu\LevelSelectMenu.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Portal.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\LevelSelect\LevelSelect.cs" Line="1" Column="1" />
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameManager.cs">
+    <Files>
+      <File FileName="Assets/Scripts/MainMenu/LevelSelectMenu.cs" Line="26" Column="38" />
+      <File FileName="Assets/Scripts/LevelSelect/LevelSelect.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MainMenu/MainMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="14" Column="47" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="28" Column="24" />
+>>>>>>> 167188e49a1e19d03a25181ae66d2f26b9ba6c5e
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
