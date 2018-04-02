@@ -229,7 +229,7 @@ MonoBehaviour:
   - shoot4Waterball360DegreeSpread5
   - shoot4Waterball360DegreeSpread6
   - shoot4Waterball360DegreeSpread7
-  cooldownTime: 0.4
+  cooldownTime: 0.2
   sensePlayer: 10
   chasePlayer: 0
   maxChaseDistance: 0

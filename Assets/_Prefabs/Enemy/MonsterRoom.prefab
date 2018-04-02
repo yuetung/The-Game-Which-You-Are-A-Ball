@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterPrefabs:
-  - {fileID: 1899975723233294, guid: 91605b0a9cdd652439af7d5140456eae, type: 2}
+  - {fileID: 1947651829862970, guid: 3aa2b877c0a9668478694910239c4ff1, type: 2}
   height_y: 6
   width_x: 14
   maxWave: 1
