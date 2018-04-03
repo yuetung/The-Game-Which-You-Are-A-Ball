@@ -156,9 +156,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementType: 2
-  projectileSpeed: 13
-  projectileDamage: 1
+  projectileSpeed: 10
+  projectileDamage: 0
   explodeAnimationSeconds: 0
+  explosionPrefab: {fileID: 0}
   angleAdjustment: 270
   AOEExplosionPrefab: {fileID: 1680319487218808, guid: ea0e27e8417e8964a863ea91baeab9be,
     type: 2}

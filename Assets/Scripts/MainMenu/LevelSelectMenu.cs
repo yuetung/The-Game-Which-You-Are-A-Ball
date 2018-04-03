@@ -18,6 +18,11 @@ public class LevelSelectMenu : MonoBehaviour {
 		level04Button.interactable = false;
 
 		switch (levelReached) {
+		case 1:
+			level02Button.interactable = false;
+			level03Button.interactable = false;
+			level04Button.interactable = false;
+			break;
 		case 2:
 			level02Button.interactable=true;
 			break;
@@ -26,10 +31,16 @@ public class LevelSelectMenu : MonoBehaviour {
 			level03Button.interactable = true;
 			break;
 		case 4:
-			level02Button.interactable = false;
-			level03Button.interactable = false;
-			level04Button.interactable = false;
+			level02Button.interactable = true;
+			level03Button.interactable = true;
+			level04Button.interactable = true;
 			break;
+		default:
+			level02Button.interactable = true;
+			level03Button.interactable = true;
+			level04Button.interactable = true;
+			break;
+			
 		}
 	}
 

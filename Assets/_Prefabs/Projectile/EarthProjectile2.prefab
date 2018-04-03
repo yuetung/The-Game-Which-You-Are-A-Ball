@@ -171,7 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 0
   projectileSpeed: 0
-  projectileDamage: 20
+  projectileDamage: 13
   explodeAnimationSeconds: 0.1
   explosionPrefab: {fileID: 1520980963323082, guid: 4dab4d0677f536a40a1e3caef9a4963e,
     type: 2}

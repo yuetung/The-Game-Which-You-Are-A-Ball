@@ -28,7 +28,7 @@ TagManager:
   - Player
   - Enemy
   - Wall
-  - 
+  - NoticeBubble
   - 
   - 
   - 
@@ -63,4 +63,7 @@ TagManager:
     locked: 0
   - name: Projectiles
     uniqueID: 2142278917
+    locked: 0
+  - name: NoticeBubble
+    uniqueID: 736657429
     locked: 0

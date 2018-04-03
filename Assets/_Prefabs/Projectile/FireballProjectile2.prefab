@@ -114,6 +114,7 @@ MonoBehaviour:
   projectileSpeed: 20
   projectileDamage: 7
   explodeAnimationSeconds: 2
+  explosionPrefab: {fileID: 0}
   angleAdjustment: 0
   AOEExplosionPrefab: {fileID: 0}
   maxDistance: 0
