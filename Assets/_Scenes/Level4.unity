@@ -4208,6 +4208,11 @@ Prefab:
       propertyPath: timeOut
       value: 600
       objectReference: {fileID: 0}
+    - target: {fileID: 114729389305516080, guid: cfbfa974868c8ec4bbaffc673039995a,
+        type: 2}
+      propertyPath: energy
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cfbfa974868c8ec4bbaffc673039995a, type: 2}
   m_IsPrefabParent: 0
@@ -4299,7 +4304,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4977923616624878, guid: 71a31a17f81e2a44fb2cf650ca3ea7a7, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4194386071031884, guid: 71a31a17f81e2a44fb2cf650ca3ea7a7, type: 2}
       propertyPath: m_LocalPosition.x
@@ -4311,6 +4316,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1214435583589184, guid: 5442855a25cf04d4699c64b84164aaf1,
         type: 2}
+    - target: {fileID: 114214659973072764, guid: 71a31a17f81e2a44fb2cf650ca3ea7a7,
+        type: 2}
+      propertyPath: numberOfEnemies
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 71a31a17f81e2a44fb2cf650ca3ea7a7, type: 2}
   m_IsPrefabParent: 0
@@ -5632,6 +5642,11 @@ Prefab:
     - target: {fileID: 1089991351277568, guid: cfbfa974868c8ec4bbaffc673039995a, type: 2}
       propertyPath: m_Name
       value: FirePowerUp (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114729389305516080, guid: cfbfa974868c8ec4bbaffc673039995a,
+        type: 2}
+      propertyPath: energy
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cfbfa974868c8ec4bbaffc673039995a, type: 2}
@@ -9074,6 +9089,118 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 923237811}
+--- !u!1001 &933033383
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 35.045013
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -4.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_RootOrder
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 1454719174388740, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_Name
+      value: LightningPowerUp (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114404537108505076, guid: 93c80213327aa614d920812001a9ce19,
+        type: 2}
+      propertyPath: timeOut
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051343982568994, guid: 93c80213327aa614d920812001a9ce19,
+        type: 2}
+      propertyPath: energy
+      value: 30
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &937505049
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 35.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -4.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_RootOrder
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 1454719174388740, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_Name
+      value: LightningPowerUp (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114404537108505076, guid: 93c80213327aa614d920812001a9ce19,
+        type: 2}
+      propertyPath: timeOut
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051343982568994, guid: 93c80213327aa614d920812001a9ce19,
+        type: 2}
+      propertyPath: energy
+      value: 30
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &938283977
 Prefab:
   m_ObjectHideFlags: 0
@@ -10845,6 +10972,62 @@ Transform:
   m_PrefabParentObject: {fileID: 4829250634997258, guid: a3d03ea29e09ec440bab0a433861d32f,
     type: 2}
   m_PrefabInternal: {fileID: 1151102251}
+--- !u!1001 &1151192364
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 34.30155
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -4.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_RootOrder
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 114404537108505076, guid: 93c80213327aa614d920812001a9ce19,
+        type: 2}
+      propertyPath: timeOut
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051343982568994, guid: 93c80213327aa614d920812001a9ce19,
+        type: 2}
+      propertyPath: energy
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1454719174388740, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_Name
+      value: LightningPowerUp (9)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1154430759
 Prefab:
   m_ObjectHideFlags: 0
@@ -11045,6 +11228,11 @@ Prefab:
     - target: {fileID: 1089991351277568, guid: cfbfa974868c8ec4bbaffc673039995a, type: 2}
       propertyPath: m_Name
       value: FirePowerUp (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114729389305516080, guid: cfbfa974868c8ec4bbaffc673039995a,
+        type: 2}
+      propertyPath: energy
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cfbfa974868c8ec4bbaffc673039995a, type: 2}
@@ -11500,6 +11688,62 @@ Transform:
   m_PrefabParentObject: {fileID: 4829250634997258, guid: a3d03ea29e09ec440bab0a433861d32f,
     type: 2}
   m_PrefabInternal: {fileID: 1207621111}
+--- !u!1001 &1227169996
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 36.423462
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -4.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516364285527596, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_RootOrder
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 1454719174388740, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+      propertyPath: m_Name
+      value: LightningPowerUp (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114404537108505076, guid: 93c80213327aa614d920812001a9ce19,
+        type: 2}
+      propertyPath: timeOut
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051343982568994, guid: 93c80213327aa614d920812001a9ce19,
+        type: 2}
+      propertyPath: energy
+      value: 30
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 93c80213327aa614d920812001a9ce19, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1234655372
 Prefab:
   m_ObjectHideFlags: 0
