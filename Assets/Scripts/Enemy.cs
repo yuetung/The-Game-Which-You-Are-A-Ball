@@ -235,6 +235,9 @@ public class Enemy : MonoBehaviour {
 			if (value > 0) { 
 				GameObject crystal = Instantiate (crystalPrefab, transform.position, Quaternion.identity);
 				crystal.GetComponent<Collectible> ().setValue (value);
+				float scalingFactor = Mathf.Log (value);
+				float scaled = scalingFactor * crystal.transform.localScale.x;
+				crystal.transform.localScale = new Vector3 (scaled, scaled, crystal.transform.localScale.z);
 				//crystal.transform.localScale = new Vector3 (value / 50, value / 50, 1);
 				Debug.Log("Crystal"+ crystal);
 			}

@@ -225,15 +225,20 @@ MonoBehaviour:
   cooldownTime: 2
   sensePlayer: 4
   chasePlayer: 1
-  maxChaseDistance: 2
+  maxChaseDistance: 0.1
   immuneTo: 
   randomProjectile: 0
   canRotate: 0
   canFlip: 1
+  crystalPrefab: {fileID: 1773349470175732, guid: 5a2d7dfa9c7de2548a26103cf14a0527,
+    type: 2}
+  maxValue: 20
+  minValue: 15
   waypointIndex: 0
   EnemyHealthBarPrefab: {fileID: 1920628111961788, guid: e6bcf14eac3452c4698df3582a518a7e,
     type: 2}
-  noticeBubble: {fileID: 0}
+  noticeBubble: {fileID: 1850631887488504, guid: fff54b0f61634e4468a82f2609a1e1f2,
+    type: 2}
   dontChaseForSeconds: 1
 --- !u!212 &212087560754832474
 SpriteRenderer:
