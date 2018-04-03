@@ -18,6 +18,15 @@ public class WaitFor2P : NetworkBehaviour {
         {
             Debug.Log("Starting in 3");
             start = true;
+            var WaitingTextBox = GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("WaitingText");
+            if (WaitingTextBox != null)
+            {
+                WaitingTextBox.GetComponent<UnityEngine.UI.Text>().text = "Starting game...";
+            }
+            else
+            {
+                Debug.Log("No IP Text");
+            }
             StartCoroutine(StartGame(3));
         }
     }
