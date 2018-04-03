@@ -15,4 +15,5 @@ public class PauseMenuList : MonoBehaviour {
 		Debug.Log ("Quit");
 		Application.Quit();
 	}
+
 }
