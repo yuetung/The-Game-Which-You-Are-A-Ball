@@ -391,13 +391,13 @@ public class PlayerController : NetworkBehaviour {
         NetworkServer.SpawnWithClientAuthority(currentEarthProjectileSpawner, gameObject);
     }
 
-    [Command]
+    /*[Command]
     private void CmdassignClientAuthority(NetworkIdentity inp)
     {
         inp.AssignClientAuthority(connectionToClient);
         Debug.Log(inp.localPlayerAuthority);
         Debug.Log(inp.hasAuthority);
-    }
+    }*/
 
     [Command]
 	private void CmdDestroyCurrentEarthProjectileSpawner() {
