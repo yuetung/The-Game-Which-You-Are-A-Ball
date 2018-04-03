@@ -535,12 +535,12 @@ Prefab:
     - target: {fileID: 114376333464639444, guid: 3ef832611f5234f4598c6175d16241cf,
         type: 2}
       propertyPath: minEnergy
-      value: 40
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114376333464639444, guid: 3ef832611f5234f4598c6175d16241cf,
         type: 2}
       propertyPath: maxEnergy
-      value: 70
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 114376333464639444, guid: 3ef832611f5234f4598c6175d16241cf,
         type: 2}

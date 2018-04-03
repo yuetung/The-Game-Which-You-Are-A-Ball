@@ -56,15 +56,6 @@ public class NetworkManager_Custom : NetworkManager {
     //==========NetworkMatch==========
     //this method is called when your request for creating a match is returned
 
-    public void CreateInternetMatch()
-    {
-        //string matchName = GameObject.Find("InputFieldIPAddress").transform.Find("Text").GetComponent<Text>().text;
-        string matchName = "";
-        var mm = NetworkManager.singleton.matchMaker;
-        mm.ToString();
-        mm.CreateMatch(matchName, 4, true, "", "", "", 0, 0, OnInternetMatchCreate);
-    }
-
     //public void StartMM()
     //{
     //    StartMatchMaker();
@@ -86,7 +77,6 @@ public class NetworkManager_Custom : NetworkManager {
             if (matches.Count != 0)
             {
                 //Debug.Log("A list of matches was returned");
-
                 //join the last server (just in case there are two...)
                 NetworkManager.singleton.matchMaker.JoinMatch(matches[matches.Count - 1].networkId, "", "", "", 0, 0, OnJoinInternetMatch);
             }
@@ -99,6 +89,15 @@ public class NetworkManager_Custom : NetworkManager {
         {
             Debug.LogError("Couldn't connect to match maker");
         }
+    }
+
+    public void CreateInternetMatch()
+    {
+        //string matchName = GameObject.Find("InputFieldIPAddress").transform.Find("Text").GetComponent<Text>().text;
+        string matchName = "";
+        var mm = NetworkManager.singleton.matchMaker;
+        mm.ToString();
+        mm.CreateMatch(matchName, 2, true, "", "", "", 0, 0, OnInternetMatchCreate);
     }
 
     private void OnInternetMatchCreate(bool success, string extendedInfo, MatchInfo matchInfo)
