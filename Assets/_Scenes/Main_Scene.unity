@@ -6085,7 +6085,6 @@ MonoBehaviour:
   mainElementDisplay: {fileID: 1820079695}
   mainLevelDisplay: {fileID: 1804188762}
   mainGameOverDisplay: {fileID: 1581728934}
-  mainNetworkIPAddress: {fileID: 1963347324}
   HealthBar: {fileID: 1136603177}
   LoadingBar: {fileID: 297681930}
   LevelText2: {fileID: 968215929}
@@ -6112,6 +6111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 295d4c618c6ddbb4fa5cfd4eeaa7127a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCount: 0
 --- !u!1 &1355932422
 GameObject:
   m_ObjectHideFlags: 0
@@ -6472,6 +6472,84 @@ Transform:
   m_PrefabParentObject: {fileID: 4829250634997258, guid: a3d03ea29e09ec440bab0a433861d32f,
     type: 2}
   m_PrefabInternal: {fileID: 1403325567}
+--- !u!1 &1423288157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1197073933829720, guid: 6366d48e80247e74fb1d0a5b97fa2efd,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1423288158}
+  - component: {fileID: 1423288160}
+  - component: {fileID: 1423288159}
+  m_Layer: 5
+  m_Name: WaitingText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1423288158
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 224169188045900536, guid: 6366d48e80247e74fb1d0a5b97fa2efd,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1423288157}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 395231518}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 133.5, y: -20.3}
+  m_SizeDelta: {x: 267, y: 40.6}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1423288159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114530487489824446, guid: 6366d48e80247e74fb1d0a5b97fa2efd,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1423288157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 16
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Waiting for players...
+--- !u!222 &1423288160
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 222431077763402910, guid: 6366d48e80247e74fb1d0a5b97fa2efd,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1423288157}
 --- !u!1001 &1431034068
 Prefab:
   m_ObjectHideFlags: 0
@@ -7529,6 +7607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 283812742}
+  shopMenuUI: {fileID: 0}
 --- !u!1 &1670005312
 GameObject:
   m_ObjectHideFlags: 0
@@ -8550,6 +8629,21 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114530487489824446, guid: 6366d48e80247e74fb1d0a5b97fa2efd,
+        type: 2}
+      propertyPath: m_Text
+      value: Waiting for player...
+      objectReference: {fileID: 0}
+    - target: {fileID: 114530487489824446, guid: 6366d48e80247e74fb1d0a5b97fa2efd,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 114530487489824446, guid: 6366d48e80247e74fb1d0a5b97fa2efd,
+        type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6366d48e80247e74fb1d0a5b97fa2efd, type: 2}
   m_IsPrefabParent: 0
@@ -8604,12 +8698,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4120781631125450, guid: 5a6e4b3ec0c5f784d8b21fe56fda6d5b,
     type: 2}
   m_PrefabInternal: {fileID: 1928400913}
---- !u!114 &1963347324 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114530487489824446, guid: 6366d48e80247e74fb1d0a5b97fa2efd,
-    type: 2}
-  m_PrefabInternal: {fileID: 1881075073}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1995194654
 Prefab:
   m_ObjectHideFlags: 0

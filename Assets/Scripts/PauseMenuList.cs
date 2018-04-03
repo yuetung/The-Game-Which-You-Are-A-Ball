@@ -11,8 +11,17 @@ public class PauseMenuList : MonoBehaviour {
         NetworkManager_Custom.Shutdown();
 		SceneManager.LoadScene (0);
 	}
+
 	public void Quit(){
 		Debug.Log ("Quit");
 		Application.Quit();
 	}
+
+    public static void MainMenuStatic()
+    {
+        GameObject networkManager = GameObject.FindGameObjectWithTag("NetworkManager");
+        GameObject.Destroy(networkManager);
+        NetworkManager_Custom.Shutdown();
+        SceneManager.LoadScene(0);
+    }
 }

@@ -212,7 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 10
   hp: 10
-  moveSpeed: 0.3
+  moveSpeed: 0
   wayPoints:
   - {fileID: 1243492356404402}
   - {fileID: 1594853765187182}
@@ -222,18 +222,23 @@ MonoBehaviour:
     type: 2}
   patterns:
   - basicLightningball
-  cooldownTime: 1
+  cooldownTime: 3
   sensePlayer: 5
-  chasePlayer: 0
+  chasePlayer: 1
   maxChaseDistance: 0
   immuneTo: 
   randomProjectile: 1
   canRotate: 1
   canFlip: 0
+  crystalPrefab: {fileID: 1773349470175732, guid: 5a2d7dfa9c7de2548a26103cf14a0527,
+    type: 2}
+  maxValue: 50
+  minValue: 20
   waypointIndex: 0
   EnemyHealthBarPrefab: {fileID: 1920628111961788, guid: e6bcf14eac3452c4698df3582a518a7e,
     type: 2}
-  noticeBubble: {fileID: 0}
+  noticeBubble: {fileID: 1850631887488504, guid: fff54b0f61634e4468a82f2609a1e1f2,
+    type: 2}
   dontChaseForSeconds: 1
 --- !u!212 &212442729283951928
 SpriteRenderer:
