@@ -359,24 +359,15 @@ public class PlayerController : NetworkBehaviour {
         {
             return;
         }
-        //Handheld.Vibrate ();
+        //Handheld.Vibrate();
         Debug.Log("Take damage");
         if (health - damage <= 0) {
             health = 0;
             //TODO: implement player's death
             //Instantiate (explosionPrefab, transform.position, transform.rotation);
             guiManager.updateAll();
-            //guiManager.EndGame();
             Debug.Log("someone died");
             CmdUpdateEnd();
-            //GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            //foreach (GameObject player in players)
-            //{
-            //    player.GetComponent<PlayerController>().CmdUpdateEnd();
-            //    Debug.Log("foreachplayer");
-            //}
-            //DestroyObject (this.gameObject);
-            //NetworkServer.Destroy(gameObject);
             CmdDestroySelf();
         } else {
             health -= damage;

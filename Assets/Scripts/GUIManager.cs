@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class GUIManager : NetworkBehaviour {
 
 	public int health = 100;
-
 	public int energy = 0;
 	public PlayerController.ElementType elementType = PlayerController.ElementType.Default;
 	public int level = 0;
@@ -16,13 +15,14 @@ public class GUIManager : NetworkBehaviour {
 	public Text mainEnergyDisplay;
 	public Text mainElementDisplay;
 	public Text mainLevelDisplay;
-	public Text mainGameOverDisplay;
+    public Text mainGameOverDisplay;
 
 	public Slider HealthBar;
 	public Transform LoadingBar;
 	public Text LevelText2;
 
 	public int counter = 1;
+    float maxHealth;
 
 	// Possible element types (copied from PlayerController.cs
 //	public enum ElementType {
@@ -47,7 +47,7 @@ public class GUIManager : NetworkBehaviour {
 		HealthBar.value = 1.0f;
 		LoadingBar.GetComponent<Image> ().fillAmount = 0.0f;
 		LevelText2.text = "1";
-	    //mainNetworkIPAddress.text = "a a a a ";
+        maxHealth = 8f;
 	}
 
 	public void register(GameObject player) {
@@ -81,10 +81,16 @@ public class GUIManager : NetworkBehaviour {
 		mainHealthDisplay.text = "Health: " + health.ToString ();
 
 		// Slidebar UI
-		float health2 = health/8f;
-        //TODO: STOP HARDCODE, FIND PLAYER MAXHP
+		float health2 = health/maxHealth;
+        
 		HealthBar.value = health2;
 	}
+
+    public void updateHealth(int amount, int maxHealth)
+    {
+        this.maxHealth = maxHealth;
+        updateHealth(amount);
+    }
 		
 	public void updateElement(PlayerController.ElementType newElement){
 		elementType = newElement;

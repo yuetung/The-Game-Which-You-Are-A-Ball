@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class PowerUpPickup : MonoBehaviour {
+public class PowerUpPickup : NetworkBehaviour {
 
 	public PlayerController.ElementType elementType;
+    [SyncVar]
 	public int energy=10;
 	[Tooltip("explosion particle effect")]
 	public GameObject explosion;
