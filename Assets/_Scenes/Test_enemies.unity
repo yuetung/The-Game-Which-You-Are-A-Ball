@@ -836,11 +836,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 114802433154187580, guid: 57dd29285f826bf459e1b3836ff21aed,
-        type: 2}
-      propertyPath: cooldownTime
-      value: 0.3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57dd29285f826bf459e1b3836ff21aed, type: 2}
   m_IsPrefabParent: 0

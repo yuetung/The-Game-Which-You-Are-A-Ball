@@ -223,9 +223,9 @@ MonoBehaviour:
   patterns:
   - shoot3FireballSpread30Degree2
   cooldownTime: 2
-  sensePlayer: 5
-  chasePlayer: 0
-  maxChaseDistance: 0
+  sensePlayer: 4
+  chasePlayer: 1
+  maxChaseDistance: 2
   immuneTo: 
   randomProjectile: 0
   canRotate: 0
