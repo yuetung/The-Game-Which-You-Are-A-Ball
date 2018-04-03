@@ -25,20 +25,22 @@ public class MainMenu : MonoBehaviour {
 	public void Play1(){
         NetworkManager_Custom.StartSinglePlayer();
         SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
-
+		Time.timeScale = 1f;
 	}
 	public void Play2(){
 		NetworkManager_Custom.StartSinglePlayer();
         SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 2);
-        
+		Time.timeScale = 1f;
 	}
 	public void Play3(){
 		NetworkManager_Custom.StartSinglePlayer();
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 3);
+		Time.timeScale = 1f;
 	}
 	public void testEnemy(){
 		NetworkManager_Custom.StartSinglePlayer();
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 4);
+		Time.timeScale = 1f;
 	}
 	public void Quit(){
 		Debug.Log ("Quit");

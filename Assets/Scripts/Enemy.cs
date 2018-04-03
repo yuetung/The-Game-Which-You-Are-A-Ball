@@ -42,6 +42,10 @@ public class Enemy : MonoBehaviour {
 	public bool canRotate = false;
 	public bool canFlip = false;
 
+	public GameObject crystalPrefab;
+	public int maxValue = 0;
+	public int minValue = 0;
+
 	Rigidbody2D _rigidbody;
 	Animator _animator;
 
@@ -225,6 +229,17 @@ public class Enemy : MonoBehaviour {
 		if (immuneTo.Contains (elementType))
 			return;
 		if (hp - damage <= 0) {
+			// add Spawn Gold coin , Kenny
+			int value = Random.Range (minValue, maxValue);
+			Debug.Log(value+ "Crystal");
+			if (value > 0) { 
+				GameObject crystal = Instantiate (crystalPrefab, transform.position, Quaternion.identity);
+				crystal.GetComponent<Collectible> ().setValue (value);
+				//crystal.transform.localScale = new Vector3 (value / 50, value / 50, 1);
+				Debug.Log("Crystal"+ crystal);
+			}
+			//
+
 			hp = 0;
 			Instantiate (explosionPrefab, transform.position, transform.rotation);
 			for (int i = 0; i < wayPoints.Length; i++) {
@@ -233,6 +248,8 @@ public class Enemy : MonoBehaviour {
 			DestroyObject (transform.parent.gameObject);
 			DestroyObject (EnemyHealthBar);
 			DestroyObject (this.gameObject);
+
+
 		} else {
 			hp -= damage;
 		}

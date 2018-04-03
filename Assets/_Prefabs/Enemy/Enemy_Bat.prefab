@@ -221,15 +221,19 @@ MonoBehaviour:
   explosionPrefab: {fileID: 1015006985979810, guid: 269ed0b6d625aac4b9046c97d96ad3b4,
     type: 2}
   patterns:
-  - shoot5FireballSpread30Degree
+  - basicFireball
   cooldownTime: 3
   sensePlayer: 5
   chasePlayer: 1
-  maxChaseDistance: 20
+  maxChaseDistance: 5
   immuneTo: 
   randomProjectile: 0
   canRotate: 1
   canFlip: 0
+  crystalPrefab: {fileID: 1773349470175732, guid: 5a2d7dfa9c7de2548a26103cf14a0527,
+    type: 2}
+  maxValue: 6
+  minValue: 5
   waypointIndex: 0
   EnemyHealthBarPrefab: {fileID: 1920628111961788, guid: e6bcf14eac3452c4698df3582a518a7e,
     type: 2}
