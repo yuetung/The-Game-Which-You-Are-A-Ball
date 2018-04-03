@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour {
 	public static int getGold(){
 		if (!PlayerPrefs.HasKey ("Gold")) {
 			// initialize the firecap at 1
-			PlayerPrefs.SetInt("Gold",100);
+			PlayerPrefs.SetInt("Gold",0);
 		}
 		return PlayerPrefs.GetInt ("Gold");
 	}

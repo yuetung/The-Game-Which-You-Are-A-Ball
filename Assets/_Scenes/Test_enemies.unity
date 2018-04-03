@@ -514,7 +514,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4214173263629758, guid: 30e00e832d1ed4044a51d5f430041b49, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.6155753
+      value: 2.4755752
       objectReference: {fileID: 0}
     - target: {fileID: 4214173263629758, guid: 30e00e832d1ed4044a51d5f430041b49, type: 2}
       propertyPath: m_LocalPosition.z
@@ -835,11 +835,6 @@ Prefab:
     - target: {fileID: 4479495421871988, guid: 57dd29285f826bf459e1b3836ff21aed, type: 2}
       propertyPath: m_RootOrder
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114802433154187580, guid: 57dd29285f826bf459e1b3836ff21aed,
-        type: 2}
-      propertyPath: cooldownTime
-      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57dd29285f826bf459e1b3836ff21aed, type: 2}
@@ -1876,7 +1871,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4174678641160234, guid: c1ef16f1df96fb5468975b3b3c4c5871, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.54
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4174678641160234, guid: c1ef16f1df96fb5468975b3b3c4c5871, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2000,7 +1995,6 @@ MonoBehaviour:
   mainElementDisplay: {fileID: 1820079695}
   mainLevelDisplay: {fileID: 1804188762}
   mainGameOverDisplay: {fileID: 1581728934}
-  mainNetworkIPAddress: {fileID: 0}
   HealthBar: {fileID: 1881631300}
   LoadingBar: {fileID: 136750820}
   LevelText2: {fileID: 807670936}
@@ -2812,6 +2806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 283812742}
+  shopMenuUI: {fileID: 0}
 --- !u!114 &1804188762
 MonoBehaviour:
   m_ObjectHideFlags: 0

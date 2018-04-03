@@ -1,3 +1,6 @@
 /Library
 /.vs
 /Temp/
+.collabignore
+Assembly-CSharp.csproj
+Assembly-CSharp.csproj
