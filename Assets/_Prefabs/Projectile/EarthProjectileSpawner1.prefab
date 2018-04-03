@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114398857511839040}
   - component: {fileID: 50042287376748142}
   - component: {fileID: 114487899619355580}
+  - component: {fileID: 114154769804033054}
   m_Layer: 0
   m_Name: EarthProjectileSpawner1
   m_TagString: Projectile
@@ -63,6 +64,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &114154769804033054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1946532220465592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.033333335
+  m_SyncRotationAxis: 3
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!114 &114398857511839040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -97,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520a709f6a2d895449e8238efdc94c09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotateWithParent: 1
 --- !u!114 &114594078184250160
 MonoBehaviour:
   m_ObjectHideFlags: 1

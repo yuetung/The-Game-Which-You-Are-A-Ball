@@ -293,6 +293,8 @@ public class PlayerController : NetworkBehaviour {
 		elementLevel = newElementLevel;
 		energyLossRate = Mathf.Pow (elementLevel , 1.5f);
 		// create earth projectile spawner based on element level
+		if (!isLocalPlayer)
+			return;
 		if (elementType == ElementType.Earth) {
 			CmdCreateEarthProjectileSpawner (elementType, elementLevel);
 		} else {
@@ -374,21 +376,22 @@ public class PlayerController : NetworkBehaviour {
     private void CmdCreateEarthProjectileSpawner(ElementType elementType, int elementLevel) {
 		CmdDestroyCurrentEarthProjectileSpawner ();
 		//int numRockToSpawn = 0;
-        currentEarthProjectileSpawner.SetActive(true);
+        //currentEarthProjectileSpawner.SetActive(true);
 		//if (currentEarthProjectileSpawner) {
 		//	numRockToSpawn = currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().getNumRock ();
 		//}
 		Rigidbody2D projectile = projectileFactory.getProjectileFromType (elementType, elementLevel);
-        currentEarthProjectileSpawner = Instantiate(projectile.gameObject);
+		currentEarthProjectileSpawner = Instantiate(projectile.gameObject, transform.position, transform.rotation);
 		currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().belongsToPlayer ();
-		currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().shooter = transform.gameObject;
+		currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().shooter = gameObject;
         //CmdassignClientAuthority(currentEarthProjectileSpawner.GetComponent<NetworkIdentity>());
         //currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().CmdSpawnProjectile (numRockToSpawn);
         // spawn is moved to EarthProjectileSpawner?
+		currentEarthProjectileSpawner.GetComponent<SetParent>().rotateWithParent = false;
         currentEarthProjectileSpawner.GetComponent<SetParent>().nId = netId;
         //currentEarthProjectileSpawner.transform.SetParent(transform);
         //transform.SetPositionAndRotation(new Vector3(), new Quaternion());
-        NetworkServer.SpawnWithClientAuthority(currentEarthProjectileSpawner, gameObject);
+		NetworkServer.SpawnWithClientAuthority(currentEarthProjectileSpawner,gameObject);
     }
 
     /*[Command]
@@ -404,12 +407,17 @@ public class PlayerController : NetworkBehaviour {
 		if (currentEarthProjectileSpawner != null) {
 			GameObject[] earthProjectiles = currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().earthProjectiles;
 			for (int i = 0; i < earthProjectiles.Length; i++) {
-				if (earthProjectiles [i]!=null)
+				if (earthProjectiles [i] != null) {
 					earthProjectiles [i].GetComponent<ProjectileController> ().DestroyNow ();
+					//NetworkServer.Destroy (earthProjectiles[i]);
+				}
 			}
-			//NetworkServer.Destroy(currentEarthProjectileSpawner);
+			//Destroy (currentEarthProjectileSpawner);
+			NetworkServer.Destroy(currentEarthProjectileSpawner);
+			currentEarthProjectileSpawner = null;
 		}
-        currentEarthProjectileSpawner.SetActive(false);
+		//Destroy (currentEarthProjectileSpawner);
+        //currentEarthProjectileSpawner.SetActive(false);
 		//currentEarthProjectileSpawner = null;
 	}
 
