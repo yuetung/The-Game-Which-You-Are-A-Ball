@@ -1995,7 +1995,6 @@ MonoBehaviour:
   mainElementDisplay: {fileID: 1820079695}
   mainLevelDisplay: {fileID: 1804188762}
   mainGameOverDisplay: {fileID: 1581728934}
-  mainNetworkIPAddress: {fileID: 0}
   HealthBar: {fileID: 1881631300}
   LoadingBar: {fileID: 136750820}
   LevelText2: {fileID: 807670936}
@@ -2807,6 +2806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 283812742}
+  shopMenuUI: {fileID: 0}
 --- !u!114 &1804188762
 MonoBehaviour:
   m_ObjectHideFlags: 0
