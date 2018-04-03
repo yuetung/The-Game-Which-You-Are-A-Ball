@@ -348,7 +348,6 @@ public class PlayerController : NetworkBehaviour {
 
     
 	public void depleteHealth(int damage) {
-		Handheld.Vibrate ();
 		if (health - damage <= 0) {
 			health = 0;
 			//TODO: implement player's death
