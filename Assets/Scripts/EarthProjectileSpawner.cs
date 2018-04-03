@@ -61,7 +61,9 @@ public class EarthProjectileSpawner : NetworkBehaviour {
 
         if (timeCounter <= 0)
         {
-	        CmdSpawnProjectile(1);
+			if (hasAuthority) {
+				CmdSpawnProjectile (1);
+			}
             timeCounter = regenerationTime;
         }
     }
@@ -92,7 +94,7 @@ public class EarthProjectileSpawner : NetworkBehaviour {
 					earthProjectiles [i].GetComponent<ProjectileController> ().belongsToPlayer();
                 earthProjectiles[i].GetComponent<SetParent>().nId = netId;
 				earthProjectiles [i].transform.SetParent (gameObject.transform);
-				if (shooter) {
+				if (shooter && hasAuthority) {
 					NetworkServer.SpawnWithClientAuthority (earthProjectiles [i], shooter);
 				}
 				else NetworkServer.Spawn(earthProjectiles [i]);
