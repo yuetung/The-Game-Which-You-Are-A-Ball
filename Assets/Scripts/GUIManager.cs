@@ -17,7 +17,6 @@ public class GUIManager : NetworkBehaviour {
 	public Text mainElementDisplay;
 	public Text mainLevelDisplay;
 	public Text mainGameOverDisplay;
-    public Text mainNetworkIPAddress;
 
 	public Slider HealthBar;
 	public Transform LoadingBar;
@@ -40,7 +39,7 @@ public class GUIManager : NetworkBehaviour {
 	void Start () {
 
 		// init health to 100
-		mainHealthDisplay.text = "Health: 100";
+		mainHealthDisplay.text = "Health: 3";
 		mainEnergyDisplay.text = "Energy: 0";
 		mainElementDisplay.text = "Element: Default";
 		mainLevelDisplay.text = "Level: 1";
@@ -49,53 +48,6 @@ public class GUIManager : NetworkBehaviour {
 		LoadingBar.GetComponent<Image> ().fillAmount = 0.0f;
 		LevelText2.text = "1";
 	    //mainNetworkIPAddress.text = "a a a a ";
-	}
-
-    public virtual void OnClientConnect(NetworkConnection conn)
-    {
-        Debug.Log("OnClientConnect");
-        ClientScene.Ready(conn);
-        ClientScene.AddPlayer(0);
-        mainNetworkIPAddress.text = conn.address;
-    }
-
-    // Update is called once per frame
-    // Update is used to check to run idle state
-    void Update () {
-
-		// check if health < 0
-//		if (health <= 0) {
-//			EndGame ();
-//		}
-
-		// check if energy > 100
-//		if (energy > 100) {
-//			energy = energy - 100;
-//			mainEnergyDisplay.text = "Energy: " + energy.ToString ();
-//			levelUp ();
-//		}
-
-		// check if energy < 0 to reduce the level 
-//		if (energy < 0) {
-//			if (level != 1) {
-//				energy = 100;
-//				mainEnergyDisplay.text = "Energy: " + energy.ToString ();
-//				levelDown ();
-//			} else {
-//				energy = 0;
-//				mainEnergyDisplay.text = "Energy: " + energy.ToString ();
-//			}
-//		}
-
-		// energy will reduce by proportion to level with passing of time
-		// energy decay in multiples of 0.5 instead of 1
-//		double multiplier = 0.5;
-//		if (counter % (50/(multiplier*level)) == 1){
-//			energyDown (5);
-//		}
-
-		// counter for health decrement 
-//		counter += 1;
 	}
 
 	public void register(GameObject player) {
@@ -108,7 +60,7 @@ public class GUIManager : NetworkBehaviour {
 
     public void WinGame()
     {
-        mainGameOverDisplay.text = "You win!!!";
+        mainGameOverDisplay.text = "YOU WIN";
     }
 
     public void updateEnergy(int amount){
@@ -129,7 +81,8 @@ public class GUIManager : NetworkBehaviour {
 		mainHealthDisplay.text = "Health: " + health.ToString ();
 
 		// Slidebar UI
-		float health2 = health/100.0f;
+		float health2 = health/3f;
+        //TODO: STOP HARDCODE, FIND PLAYER MAXHP
 		HealthBar.value = health2;
 	}
 		
