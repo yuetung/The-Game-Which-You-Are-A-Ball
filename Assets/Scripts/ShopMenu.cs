@@ -74,6 +74,11 @@ public class ShopMenu : MonoBehaviour {
 		efficiencyDownButton.onClick.AddListener (decreaseEfficiency);
 	}
 
+	void Update(){
+		gold = GameManager.getGold ();
+		goldDisplay.text = gold.ToString();
+	}
+
 	public void increaseFire(){
 		// check if enough money and maxcap is 4
 		if (gold >= firecost && !(fireCap+1>=4)) {
