@@ -35,12 +35,12 @@ public class ShopMenu : MonoBehaviour {
 	public Button efficiencyUpButton;
 	public Button efficiencyDownButton;
 
-	int firecost = 20;
-	int watercost = 20;
-	int lightningcost = 20;
-	int earthcost = 20;
-	int healthcost = 50;
-	int efficiencycost = 50;
+	int firecost = 50;
+	int watercost = 50;
+	int lightningcost = 50;
+	int earthcost = 50;
+	int healthcost = 70;
+	int efficiencycost = 70;
 
 	// Use this for initialization
 	void Start () {
@@ -63,9 +63,9 @@ public class ShopMenu : MonoBehaviour {
 		fireUpButton.onClick.AddListener (increaseFire);
 		fireDownButton.onClick.AddListener (decreaseFire);
 		waterUpButton.onClick.AddListener (increaseWater);
-		waterUpButton.onClick.AddListener (decreaseWater);
+		waterDownButton.onClick.AddListener (decreaseWater);
 		lightningUpButton.onClick.AddListener (increaseLightning);
-		lightningUpButton.onClick.AddListener (decreaseLightning);
+		lightningDownButton.onClick.AddListener (decreaseLightning);
 		earthUpButton.onClick.AddListener (increaseEarth);
 		earthDownButton.onClick.AddListener (decreaseEarth);
 		healthUpButton.onClick.AddListener (increaseHealth);
@@ -109,42 +109,148 @@ public class ShopMenu : MonoBehaviour {
 	}
 
 	public void increaseWater(){
-
+		
+		// check if enough money and maxcap is 4
+		if (gold >= watercost && !(waterCap+1>=4)) {
+			// deduct the money and increase firecap
+			gold = gold - watercost;
+			waterCap = waterCap + 1;
+			// update the user pref for gold and firecap
+			GameManager.setGold(gold);
+			GameManager.setWaterCap (waterCap);
+			// update the UI for gold and firecap
+			watercapDisplay.text = waterCap.ToString();
+			goldDisplay.text = gold.ToString();
+		}
 	}
 
 	public void decreaseWater(){
-
+		if (!(waterCap - 1 <= 0)) {
+			// increase the money and deduct the firecap
+			gold = gold + watercost;
+			waterCap = waterCap - 1;
+			// update the user pref for gold and firecap
+			GameManager.setGold(gold);
+			GameManager.setWaterCap (waterCap);
+			// update the UI for gold and firecap
+			watercapDisplay.text = waterCap.ToString();
+			goldDisplay.text = gold.ToString();
+		}
 	}
 
 	public void increaseLightning(){
-
+		// check if enough money and maxcap is 4
+		if (gold >= lightningcost && !(lightningCap+1>=4)) {
+			// deduct the money and increase firecap
+			gold = gold - lightningcost;
+			lightningCap = lightningCap + 1;
+			// update the user pref for gold and firecap
+			GameManager.setGold(gold);
+			GameManager.setLightningCap (lightningCap);
+			// update the UI for gold and firecap
+			lightningcapDisplay.text = lightningCap.ToString();
+			goldDisplay.text = gold.ToString();
+		}
 	}
 
 	public void decreaseLightning(){
-
+		if (!(lightningCap - 1 <= 0)) {
+			// increase the money and deduct the firecap
+			gold = gold + lightningcost;
+			lightningCap = lightningCap - 1;
+			// update the user pref for gold and firecap
+			GameManager.setGold(gold);
+			GameManager.setLightningCap (lightningCap);
+			// update the UI for gold and firecap
+			lightningcapDisplay.text = lightningCap.ToString();
+			goldDisplay.text = gold.ToString();
+		}
 	}
 
 	public void increaseEarth(){
-
+		// check if enough money and maxcap is 4
+		if (gold >= earthcost && !(earthCap+1>=4)) {
+			// deduct the money and increase firecap
+			gold = gold - earthcost;
+			earthCap = earthCap + 1;
+			// update the user pref for gold and firecap
+			GameManager.setGold(gold);
+			GameManager.setEarthCap (earthCap);
+			// update the UI for gold and firecap
+			earthcapDisplay.text = earthCap.ToString();
+			goldDisplay.text = gold.ToString();
+		}
 	}
 
 	public void decreaseEarth(){
-
+		if (!(earthCap - 1 <= 0)) {
+			// increase the money and deduct the firecap
+			gold = gold + earthcost;
+			earthCap = earthCap - 1;
+			// update the user pref for gold and firecap
+			GameManager.setGold(gold);
+			GameManager.setEarthCap (earthCap);
+			// update the UI for gold and firecap
+			earthcapDisplay.text = earthCap.ToString();
+			goldDisplay.text = gold.ToString();
+		}
 	}
 
 	public void increaseHealth(){
-
+		// check if enough money and maxcap is 4
+		if (gold >= healthcost && !(maxHealth+20>200)) {
+			// deduct the money and increase firecap
+			gold = gold - healthcost;
+			maxHealth = maxHealth + 20;
+			// update the user pref for gold and firecap
+			GameManager.setGold(gold);
+			GameManager.setMaxHealth (maxHealth);
+			// update the UI for gold and firecap
+			maxhealthDisplay.text = maxHealth.ToString();
+			goldDisplay.text = gold.ToString();
+		}
 	}
 
 	public void decreaseHealth(){
-
+		if (!(maxHealth - 20 < 100)) {
+			// increase the money and deduct the firecap
+			gold = gold + healthcost;
+			maxHealth = maxHealth - 20;
+			// update the user pref for gold and firecap
+			GameManager.setGold(gold);
+			GameManager.setMaxHealth (maxHealth);
+			// update the UI for gold and firecap
+			maxhealthDisplay.text = maxHealth.ToString();
+			goldDisplay.text = gold.ToString();
+		}
 	}
 
 	public void increaseEfficiency(){
-
+		// check if enough money and maxcap is 4
+		if (gold >= efficiencycost && !(efficiency+0.1>2)) {
+			// deduct the money and increase firecap
+			gold = gold - efficiencycost;
+			efficiency = efficiency + 0.1f;
+			// update the user pref for gold and firecap
+			GameManager.setGold(gold);
+			GameManager.setEfficiency (efficiency);
+			// update the UI for gold and firecap
+			efficiencyDisplay.text = efficiency.ToString();
+			goldDisplay.text = gold.ToString();
+		}
 	}
 
 	public void decreaseEfficiency(){
-
+		if (!(efficiency - 0.1 < 1)) {
+			// increase the money and deduct the firecap
+			gold = gold + efficiencycost;
+			efficiency = efficiency - 0.1f;
+			// update the user pref for gold and firecap
+			GameManager.setGold(gold);
+			GameManager.setEfficiency (efficiency);
+			// update the UI for gold and firecap
+			efficiencyDisplay.text = efficiency.ToString();
+			goldDisplay.text = gold.ToString();
+		}
 	}
 }

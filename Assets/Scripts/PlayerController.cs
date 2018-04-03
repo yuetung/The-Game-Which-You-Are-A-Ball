@@ -249,6 +249,7 @@ public class PlayerController : NetworkBehaviour {
             } else if (newElementType == ElementType.Earth) {
                 levelCap = GameManager.getEarthCap();
             }
+			Debug.Log ("levelcap" + levelCap);
 
         } else {
             if (elementType != ElementType.Default) {
