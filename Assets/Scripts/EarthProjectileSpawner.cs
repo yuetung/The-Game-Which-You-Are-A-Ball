@@ -24,43 +24,50 @@ public class EarthProjectileSpawner : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Debug.Log("Start");
 		if (earthProjectiles.Length != maxSpawn) {
 			earthProjectiles = new GameObject[maxSpawn];
 			angleDifference = 360 / maxSpawn;
 			timeCounter = regenerationTime;
 			radius = minRadius;
+            Debug.Log("Start if");
 		}
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         // follow parent's transform
         //if (shooter)
         //    transform.position = shooter.transform.position;
 
         // Rotate around self
-        transform.Rotate(Vector3.forward*Time.deltaTime*rotationSpeed);
+        transform.Rotate(Vector3.forward * Time.deltaTime * rotationSpeed);
 
-		// expand if expanding
-		if (expanding) {
-			expand ();
-		}
+        // expand if expanding
+        if (expanding)
+        {
+            expand();
+        }
 
-		if (contracting) {
-			contract ();
-		}
+        if (contracting)
+        {
+            contract();
+        }
 
-		// Spawns rock based on regeneration rate
-		timeCounter -= Time.deltaTime;
+        // Spawns rock based on regeneration rate
+        timeCounter -= Time.deltaTime;
 
-		if (timeCounter <= 0) {
-			CmdSpawnProjectile (1);
-			timeCounter = regenerationTime;
-		}
-	}
+        if (timeCounter <= 0)
+        {
+            CmdSpawnProjectile(1);
+            timeCounter = regenerationTime;
+        }
+    }
 
     [Command]
 	public void CmdSpawnProjectile(int number) {
+        Debug.Log("spawn?");
 		if (earthProjectiles.Length != maxSpawn) {
 			// not started properlly, simulate Start() again
 			earthProjectiles = new GameObject[maxSpawn];
@@ -75,7 +82,7 @@ public class EarthProjectileSpawner : NetworkBehaviour {
 		for (int i = 0; i < maxSpawn; i++) {
 			Debug.Log (i + " Max spawn = " + maxSpawn);
 			if (earthProjectiles [i] == null) {
-				float angle = i * angleDifference+transform.eulerAngles.z;
+				float angle = i * angleDifference + transform.eulerAngles.z;
 				Vector3 spawnPosition = this.transform.position+ new Vector3 (radius * Mathf.Cos (Mathf.Deg2Rad*angle), radius * Mathf.Sin (Mathf.Deg2Rad*angle));
 				earthProjectiles [i] = Instantiate (earthProjectilePrefab, spawnPosition, transform.rotation, this.transform);
 				if (shooter)

@@ -25,7 +25,7 @@ public class PlayerController : NetworkBehaviour {
 	public float energyLossRate = 1.0f;
 	public int levelCap = 3; 
 	public GameObject lightningEffect;
-	private GameObject currentEarthProjectileSpawner;
+	public GameObject currentEarthProjectileSpawner;
 	// Possible element types
 	public enum ElementType {
 		Default,
@@ -348,15 +348,16 @@ public class PlayerController : NetworkBehaviour {
 		}
 	}
 
-    [Command]
     // we pass in parameters instead of using values from the class because the class might not be updated on the server
     // This way, the client is able to pass in their own information and don't have to rely on the server's data on them
-	private void CmdCreateEarthProjectileSpawner(ElementType elementType, int elementLevel) {
+    [Command]
+    private void CmdCreateEarthProjectileSpawner(ElementType elementType, int elementLevel) {
 		CmdDestroyCurrentEarthProjectileSpawner ();
-		int numRockToSpawn = 0;
-		if (currentEarthProjectileSpawner) {
-			numRockToSpawn = currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().getNumRock ();
-		}
+		//int numRockToSpawn = 0;
+        currentEarthProjectileSpawner.SetActive(true);
+		//if (currentEarthProjectileSpawner) {
+		//	numRockToSpawn = currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().getNumRock ();
+		//}
 		Rigidbody2D projectile = projectileFactory.getProjectileFromType (elementType, elementLevel);
         currentEarthProjectileSpawner = Instantiate(projectile.gameObject);
 		currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().belongsToPlayer ();
@@ -368,8 +369,9 @@ public class PlayerController : NetworkBehaviour {
         //currentEarthProjectileSpawner.transform.SetParent(transform);
         //transform.SetPositionAndRotation(new Vector3(), new Quaternion());
         NetworkServer.SpawnWithClientAuthority(currentEarthProjectileSpawner, gameObject);
-	}
+    }
 
+    [Command]
     private void CmdassignClientAuthority(NetworkIdentity inp)
     {
         inp.AssignClientAuthority(connectionToClient);
@@ -385,9 +387,10 @@ public class PlayerController : NetworkBehaviour {
 				if (earthProjectiles [i]!=null)
 					earthProjectiles [i].GetComponent<ProjectileController> ().DestroyNow ();
 			}
-			NetworkServer.Destroy(currentEarthProjectileSpawner);
+			//NetworkServer.Destroy(currentEarthProjectileSpawner);
 		}
-		currentEarthProjectileSpawner = null;
+        currentEarthProjectileSpawner.SetActive(false);
+		//currentEarthProjectileSpawner = null;
 	}
 
 }
