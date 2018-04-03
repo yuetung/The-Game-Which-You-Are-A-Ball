@@ -1,24 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ProjectPatternFactoryTest.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemy.cs">
     <Files>
-      <File FileName="Assets\Scripts\ProjectilePatternFactory.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ProjectPatternFactoryTest.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemy.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EarthProjectileSpawner.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerInteractionTest.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ProjectileFactory.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ProjectileController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\AOEExplosion.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PowerUpPickup.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PowerUpSpawner.cs" Line="1" Column="1" />
-      <File FileName="Assets\MonsterRoomSpawner.cs" Line="1" Column="1" />
-      <File FileName="Assets\MonsterRoomTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GUIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PowerUpTest.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EnemyNotice.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ShopMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PowerUpPickup.cs" Line="32" Column="1" />
+      <File FileName="Assets\Scripts\Enemy.cs" Line="276" Column="1" />
+      <File FileName="Assets\Scripts\Collectible.cs" Line="23" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

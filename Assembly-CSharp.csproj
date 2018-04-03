@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\AOETest.cs" />
      <Compile Include="Assets\Scripts\BreakableWall.cs" />
      <Compile Include="Assets\Scripts\Camera2DFollow.cs" />
+     <Compile Include="Assets\Scripts\Collectible.cs" />
      <Compile Include="Assets\Scripts\EarthProjectileSpawner.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\EnemyBat_Test.cs" />
