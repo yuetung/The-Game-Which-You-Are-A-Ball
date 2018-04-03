@@ -81,7 +81,7 @@ public class GUIManager : NetworkBehaviour {
 		mainHealthDisplay.text = "Health: " + health.ToString ();
 
 		// Slidebar UI
-		float health2 = health/3f;
+		float health2 = health/8f;
         //TODO: STOP HARDCODE, FIND PLAYER MAXHP
 		HealthBar.value = health2;
 	}

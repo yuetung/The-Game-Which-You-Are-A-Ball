@@ -19,7 +19,10 @@ public class PauseMenu : MonoBehaviour {
 	}
 	public void Resume(){
 		pauseMenuUI.SetActive (false);
-		shopMenuUI.SetActive (false);
+        if (shopMenuUI != null)
+        {
+            shopMenuUI.SetActive(false);
+        }
 		Time.timeScale = 1f;
 		GameIsPaused = false;
 	}

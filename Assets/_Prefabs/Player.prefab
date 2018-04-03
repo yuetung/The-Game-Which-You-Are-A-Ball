@@ -82,25 +82,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1871651486605312
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4319589864494740}
-  - component: {fileID: 114955798093200808}
-  - component: {fileID: 114891396234019424}
-  - component: {fileID: 50943202974702106}
-  - component: {fileID: 114418755840664318}
-  m_Layer: 0
-  m_Name: EarthProjectileSpawner1
-  m_TagString: Projectile
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
 --- !u!1 &1915009595028262
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,19 +163,6 @@ Transform:
   m_Father: {fileID: 4586591404880112}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4319589864494740
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1871651486605312}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4923546949563450}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4401501824511946
 Transform:
   m_ObjectHideFlags: 1
@@ -234,7 +202,6 @@ Transform:
   m_Children:
   - {fileID: 4144424408891944}
   - {fileID: 4586591404880112}
-  - {fileID: 4319589864494740}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -329,26 +296,6 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
---- !u!50 &50943202974702106
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1871651486605312}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!58 &58144774554068120
 CircleCollider2D:
@@ -556,17 +503,6 @@ MonoBehaviour:
     i15: 99
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
---- !u!114 &114418755840664318
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1871651486605312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 520a709f6a2d895449e8238efdc94c09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114459985772307504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -603,8 +539,8 @@ MonoBehaviour:
   elementType: 0
   energy: 0
   elementLevel: 0
-  maxHealth: 3
-  health: 3
+  maxHealth: 8
+  health: 8
   mouseDownLocation: {x: 0, y: 0}
   moveTarget: {x: 0, y: 0}
   timeCounter: 1
@@ -664,61 +600,6 @@ MonoBehaviour:
   param3: 
   param4: 
   param5: 
---- !u!114 &114891396234019424
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1871651486605312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4a04fe9360d2a3428eccba6b2f1c0fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  regenerationTime: 3
-  rotationSpeed: 150
-  minRadius: 1
-  maxRadius: 1.5
-  earthProjectilePrefab: {fileID: 1214263965549362, guid: c34ca55aa0113564b85768d8981ead20,
-    type: 2}
-  maxSpawn: 3
-  earthProjectiles: []
-  belongToPlayer: 0
-  timeCounter: 0
-  expansionTime: 0.3
-  shooter: {fileID: 0}
---- !u!114 &114955798093200808
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1871651486605312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 112
-    i1: 231
-    i2: 91
-    i3: 72
-    i4: 54
-    i5: 0
-    i6: 96
-    i7: 20
-    i8: 137
-    i9: 124
-    i10: 192
-    i11: 62
-    i12: 238
-    i13: 25
-    i14: 14
-    i15: 99
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
 --- !u!124 &124592331832067538
 Behaviour:
   m_ObjectHideFlags: 1
