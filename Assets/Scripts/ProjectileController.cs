@@ -117,7 +117,12 @@ public class ProjectileController : NetworkBehaviour {
 			}
 			Invoke ("SetScaleToZero", 0.7f);
 		}
-		if (explosionPrefab) Instantiate (explosionPrefab, transform.position, transform.rotation);
+		if (explosionPrefab) {
+			GameObject explosion = Instantiate (explosionPrefab, transform.position, transform.rotation);
+			if (hasAuthority) {
+				NetworkServer.Spawn (explosion);
+			}
+		}
 		DestroyObject (this.gameObject);
 	}
 

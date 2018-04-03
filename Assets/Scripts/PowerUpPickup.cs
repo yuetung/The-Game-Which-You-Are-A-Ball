@@ -18,10 +18,7 @@ public class PowerUpPickup : NetworkBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Player") {
 			other.gameObject.GetComponent<PlayerController> ().gainPowerUp (elementType, energy);
-			if (explosion) {
-				Instantiate (explosion, transform.position, transform.rotation);
-			}
-			DestroyObject (this.gameObject);
+			Invoke ("DestroyNow", 0.02f);
 		}
 	}
 
@@ -31,4 +28,11 @@ public class PowerUpPickup : NetworkBehaviour {
 		transform.localScale = new Vector3 (scaleFactor, scaleFactor, 1);
 	}
 
+	void DestroyNow(){
+		if (explosion) {
+			Instantiate (explosion, transform.position, transform.rotation);
+		}
+		DestroyObject (this.gameObject);
+
+	}
 }

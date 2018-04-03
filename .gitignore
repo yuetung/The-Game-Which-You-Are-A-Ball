@@ -2,4 +2,5 @@
 /.vs
 /Temp/
 .collabignore
+master
 Assembly-CSharp.csproj
