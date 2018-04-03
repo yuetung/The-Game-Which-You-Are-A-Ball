@@ -361,8 +361,9 @@ public class PlayerController : NetworkBehaviour {
 			//Instantiate (explosionPrefab, transform.position, transform.rotation);
 			guiManager.updateAll ();
 			guiManager.EndGame ();
-			DestroyObject (this.gameObject);
-		} else {
+		    DestroyObject (this.gameObject);    
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().End();
+        } else {
 			health -= damage;
 		}
 	}
@@ -412,4 +413,16 @@ public class PlayerController : NetworkBehaviour {
 		//currentEarthProjectileSpawner = null;
 	}
 
+    public void End()
+    {
+        if (health <= 0)
+        {
+            Debug.Log("lose");
+        }
+        else
+        {
+            Debug.Log("Win");
+            guiManager.WinGame();
+        }
+    }
 }

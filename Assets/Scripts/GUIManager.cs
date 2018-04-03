@@ -105,8 +105,13 @@ public class GUIManager : NetworkBehaviour {
 	public void EndGame(){
 		mainGameOverDisplay.text = "GAME OVER";
 	}
-		
-	public void updateEnergy(int amount){
+
+    public void WinGame()
+    {
+        mainGameOverDisplay.text = "You win!!!";
+    }
+
+    public void updateEnergy(int amount){
 		energy = amount;
 		mainEnergyDisplay.text = "Energy: " + energy.ToString();
 
