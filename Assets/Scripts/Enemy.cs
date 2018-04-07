@@ -47,6 +47,8 @@ public class Enemy : MonoBehaviour {
 	public int minValue = 0;
 	public float dropRate = 1f;
 
+	public GameObject spawnerParent = null;
+
 	Rigidbody2D _rigidbody;
 	Animator _animator;
 
@@ -243,7 +245,10 @@ public class Enemy : MonoBehaviour {
 				//crystal.transform.localScale = new Vector3 (value / 50, value / 50, 1);
 				Debug.Log("Crystal"+ crystal);
 			}
-			//
+			// if belongs to a spawner, reduce monsterCountLeft
+			if (spawnerParent != null) {
+				spawnerParent.GetComponent<MonsterRoomSpawner> ().reduceMonsterCount ();
+			}
 
 			hp = 0;
 			Instantiate (explosionPrefab, transform.position, transform.rotation);
@@ -284,5 +289,9 @@ public class Enemy : MonoBehaviour {
 		GameObject bubble = Instantiate (noticeBubble, transform.position+bubbleOffset, Quaternion.identity);
 		bubble.transform.localScale = bubbleScale;
 		bubble.GetComponent<EnemyNotice> ().setParentOffset (this.gameObject, bubbleOffset);
+	}
+
+	public void setSpawnerParent(GameObject spawnerParent){
+		this.spawnerParent = spawnerParent;
 	}
 }

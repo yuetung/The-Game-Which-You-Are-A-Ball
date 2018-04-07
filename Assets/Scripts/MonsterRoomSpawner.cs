@@ -6,6 +6,7 @@ public class MonsterRoomSpawner : MonoBehaviour {
 
 	[Tooltip("Include enemies here (each has equal chance of spawning)")]
 	public GameObject[] monsterPrefabs;
+	public GameObject[] steelWalls;
 	[HideInInspector]
 	public float height_y = 6.0f;
 	[HideInInspector]
@@ -14,18 +15,28 @@ public class MonsterRoomSpawner : MonoBehaviour {
 	public int maxWave = 1;
 	private int waveCount = 0;
 	public int numberOfEnemies = 3;
+	public int monsterCountLeft = 0;
 
 	void Start() {
 		Vector2 dimension = gameObject.GetComponent<BoxCollider2D>().size;
 		height_y = dimension.y;
 		width_x = dimension.x;
+		monsterCountLeft = numberOfEnemies;
 	}
 
 	void Update() {
-
+		if (monsterCountLeft <= 0) {
+			for (int i = 0; i < steelWalls.Length; i++) {
+				steelWalls [i].GetComponent<BreakableWall> ().destroyNow ();
+			}
+			Destroy (this.gameObject);
+		}
 	}
 
 	public void Spawn() {
+		for (int i = 0; i < steelWalls.Length; i++) {
+			steelWalls [i].SetActive (true);
+		}
 		if (waveCount >= maxWave)
 			return;
 		waveCount++;
@@ -62,7 +73,8 @@ public class MonsterRoomSpawner : MonoBehaviour {
 		//The strength/level of powerups should also be randomized.
 
 		GameObject monsterPrefab = monsterPrefabs[Random.Range(0, monsterPrefabs.Length)];
-		GameObject monster = (GameObject)Instantiate(monsterPrefab, location, new Quaternion());
+		GameObject monster = Instantiate(monsterPrefab, location, new Quaternion()) as GameObject;
+		monster.GetComponentInChildren<Enemy> ().setSpawnerParent (gameObject);
 
 		//  }       
 		//Debug.Log(Network.player.ipAddress);
@@ -77,6 +89,10 @@ public class MonsterRoomSpawner : MonoBehaviour {
 			return true;
 		}
 		return false;
+	}
+
+	public void reduceMonsterCount(){
+		monsterCountLeft--;
 	}
 		
 }
