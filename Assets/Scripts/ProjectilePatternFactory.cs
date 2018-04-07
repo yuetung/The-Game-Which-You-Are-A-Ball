@@ -246,7 +246,7 @@ public class ProjectilePatternFactory : NetworkBehaviour {
 				NetworkServer.Spawn (cloneGameObject);
 			}
 		}if (pattern == "basicLightningball") {
-			Rigidbody2D projectile = projectileFactory.getProjectileFromType (PlayerController.ElementType.Lightning, 1);
+			Rigidbody2D projectile = projectileFactory.getProjectileFromType (PlayerController.ElementType.Lightning, 0);
 			Rigidbody2D clone;
 			float maxDistance = projectile.GetComponent<ProjectileController> ().maxDistance; 
 			int layerMask = LayerMask.GetMask ("Player", "Wall"); //changed Player and wall

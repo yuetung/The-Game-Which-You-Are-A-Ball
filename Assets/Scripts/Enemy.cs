@@ -45,6 +45,7 @@ public class Enemy : MonoBehaviour {
 	public GameObject crystalPrefab;
 	public int maxValue = 0;
 	public int minValue = 0;
+	public float dropRate = 1f;
 
 	Rigidbody2D _rigidbody;
 	Animator _animator;
@@ -231,8 +232,9 @@ public class Enemy : MonoBehaviour {
 		if (hp - damage <= 0) {
 			// add Spawn Gold coin , Kenny
 			int value = Random.Range (minValue, maxValue);
+			bool drop = Random.value <= dropRate;
 			Debug.Log(value+ "Crystal");
-			if (value > 0) { 
+			if (value > 0 && drop) { 
 				GameObject crystal = Instantiate (crystalPrefab, transform.position, Quaternion.identity);
 				crystal.GetComponent<Collectible> ().setValue (value);
 				float scalingFactor = Mathf.Log (value)/6f;

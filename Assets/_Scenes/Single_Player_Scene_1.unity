@@ -8636,6 +8636,7 @@ MonoBehaviour:
     type: 2}
   projectileWater3: {fileID: 50677897223881650, guid: 18641721a4d4ddc42b4fa5649402a2f7,
     type: 2}
+  projectileLightning0: {fileID: 0}
   projectileLightning1: {fileID: 50630128092692992, guid: 1da9ed422ad95164783e3c37abcfd11a,
     type: 2}
   projectileLightning2: {fileID: 50919722552886748, guid: c2587aff0f5d2d74ebc395fac94e0b49,
@@ -8648,10 +8649,6 @@ MonoBehaviour:
     type: 2}
   projectileEarth3: {fileID: 50191723339293016, guid: c62f3063aad822c4b84054dfab5a8757,
     type: 2}
-  projectileWind1: {fileID: 0}
-  projectileWind2: {fileID: 0}
-  projectileWind3: {fileID: 0}
-  projectileAntimatter: {fileID: 0}
 --- !u!4 &1354272043
 Transform:
   m_ObjectHideFlags: 0
@@ -8688,7 +8685,6 @@ MonoBehaviour:
   mainElementDisplay: {fileID: 1820079695}
   mainLevelDisplay: {fileID: 1804188762}
   mainGameOverDisplay: {fileID: 1581728934}
-  mainNetworkIPAddress: {fileID: 0}
   HealthBar: {fileID: 1881631300}
   LoadingBar: {fileID: 136750820}
   LevelText2: {fileID: 807670936}
@@ -11140,6 +11136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 283812742}
+  shopMenuUI: {fileID: 0}
 --- !u!1001 &1658753023
 Prefab:
   m_ObjectHideFlags: 0

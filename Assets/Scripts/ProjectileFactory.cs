@@ -18,6 +18,8 @@ public class ProjectileFactory : MonoBehaviour {
 	public Rigidbody2D projectileWater2=null;
 	[Tooltip("Projectile for Water element lv3")]
 	public Rigidbody2D projectileWater3=null;
+	[Tooltip("Projectile for Lightning element lv0")]
+	public Rigidbody2D projectileLightning0=null;
 	[Tooltip("Projectile for Lightning element lv1")]
 	public Rigidbody2D projectileLightning1=null;
 	[Tooltip("Projectile for Lightning element lv2")]
@@ -30,14 +32,6 @@ public class ProjectileFactory : MonoBehaviour {
 	public Rigidbody2D projectileEarth2=null;
 	[Tooltip("Projectile for Earth element lv3")]
 	public Rigidbody2D projectileEarth3=null;
-	[Tooltip("Projectile for Wind element lv1")]
-	public Rigidbody2D projectileWind1=null;
-	[Tooltip("Projectile for Wind element lv2")]
-	public Rigidbody2D projectileWind2=null;
-	[Tooltip("Projectile for Wind element lv3")]
-	public Rigidbody2D projectileWind3=null;
-	[Tooltip("Projectile for Antimatter element")]
-	public Rigidbody2D projectileAntimatter=null;
 
 	// Return the corresponding projectile based on current elementType
 	public Rigidbody2D getProjectileFromType(PlayerController.ElementType element, int level) {
@@ -66,6 +60,8 @@ public class ProjectileFactory : MonoBehaviour {
 			}
 		case PlayerController.ElementType.Lightning:
 			switch (level) {
+			case 0:
+				return projectileLightning0;
 			case 1:
 				return projectileLightning1;
 			case 2:
@@ -86,19 +82,6 @@ public class ProjectileFactory : MonoBehaviour {
 			default:
 				return projectileDefault;
 			}
-		case PlayerController.ElementType.Wind:
-			switch (level) {
-			case 1:
-				return projectileWind1;
-			case 2:
-				return projectileWind2;
-			case 3:
-				return projectileWind3;
-			default:
-				return projectileDefault;
-			}
-		case PlayerController.ElementType.Antimatter:
-			return projectileAntimatter;
 		default:
 			return projectileDefault;
 		}

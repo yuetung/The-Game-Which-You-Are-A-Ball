@@ -5,7 +5,9 @@ using UnityEngine.Networking;
 public class PlayerController : NetworkBehaviour {
 
     public bool testMode = false;
-    [Tooltip("Movement Speed")]
+	[Tooltip("Movement Speed")]
+	public float defaultMoveSpeed = 150f;
+	[HideInInspector]
     public float moveSpeed = 1.5f;
     [Tooltip("How much distance to drag mouse to distinguish between a click and a drag")]
     public float clickDragSensitivity = 0.01f;
@@ -56,6 +58,7 @@ public class PlayerController : NetworkBehaviour {
     // Use this for initialization
     public void Start() {
         health = maxHealth;
+		moveSpeed = defaultMoveSpeed;
         _animator = gameObject.GetComponent<Animator>();
         _rigidbody = gameObject.GetComponent<Rigidbody2D>();
         _trailRenderer = gameObject.GetComponent<TrailRenderer>();
@@ -108,7 +111,7 @@ public class PlayerController : NetworkBehaviour {
         move();
 
         // if mouse is held down,
-        if (Input.GetMouseButton(0))
+		if (Input.GetMouseButton(0) && elementType!=ElementType.Default)
         {
             Vector2 draggedDistance = (Vector2)Input.mousePosition - mouseDownLocation;
             if (draggedDistance.magnitude > clickDragSensitivity)
@@ -298,8 +301,10 @@ public class PlayerController : NetworkBehaviour {
 		if (!isLocalPlayer)
 			return;
         if (elementType == ElementType.Earth) {
+			moveSpeed = defaultMoveSpeed / 2;
             CmdCreateEarthProjectileSpawner(elementType, elementLevel);
         } else {
+			moveSpeed = defaultMoveSpeed;
             CmdDestroyCurrentEarthProjectileSpawner();
         }
     }

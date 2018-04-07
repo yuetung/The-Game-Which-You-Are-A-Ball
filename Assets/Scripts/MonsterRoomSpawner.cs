@@ -6,7 +6,9 @@ public class MonsterRoomSpawner : MonoBehaviour {
 
 	[Tooltip("Include enemies here (each has equal chance of spawning)")]
 	public GameObject[] monsterPrefabs;
+	[HideInInspector]
 	public float height_y = 6.0f;
+	[HideInInspector]
 	public float width_x = 14.0f;
 	[Tooltip ("how many waves of monster to spawn")]
 	public int maxWave = 1;

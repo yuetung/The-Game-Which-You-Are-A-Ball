@@ -460,6 +460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testMode: 0
+  defaultMoveSpeed: 10
   moveSpeed: 10
   clickDragSensitivity: 100
   playerShootSpeed: 1
