@@ -25,7 +25,7 @@ public class PlayerController : NetworkBehaviour {
     public Vector2 mouseDownLocation; // where the mouse is initially held down
     public Vector2 moveTarget;  // target point to move player towards
     public float timeCounter = 1.0f;
-    public float energyLossRate = 1.0f;
+    public float energyLossRate = 0.5f;
 
     // element level caps from user pref
     // hmm..maybe i shld get it from game manager instead of direct...?
@@ -275,16 +275,16 @@ public class PlayerController : NetworkBehaviour {
 		
 	public void depleteEnergy(ElementType elementType, int elementLevel) {
 		if (elementType == ElementType.Fire) {
-			depleteEnergy(elementLevel * 3);
+			depleteEnergy(elementLevel * 2);
 		}
 		else if (elementType == ElementType.Water) {
-			depleteEnergy(elementLevel * 5);
+			depleteEnergy(elementLevel * 4);
 		}
 		else if (elementType == ElementType.Lightning) {
-			depleteEnergy(elementLevel * 8);
+			depleteEnergy(elementLevel * 6);
 		}
 		else if (elementType == ElementType.Earth) {
-			depleteEnergy(elementLevel * 2);
+			depleteEnergy(elementLevel * 1);
 		}
 
 	}
