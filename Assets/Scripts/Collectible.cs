@@ -41,6 +41,8 @@ public class Collectible : MonoBehaviour {
 
 	}
 	public void setValue(int value){
+		float scaled = Mathf.Pow(value,0.2f);
+		transform.localScale = new Vector3 (scaled, scaled, 0);
 		this.value = value;
 	}
 }

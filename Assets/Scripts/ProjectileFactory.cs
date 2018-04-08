@@ -6,12 +6,16 @@ public class ProjectileFactory : MonoBehaviour {
 
 	[Tooltip("Projectile for Default element")]
 	public Rigidbody2D projectileDefault=null;
+	[Tooltip("Projectile for Fire element lv0")]
+	public Rigidbody2D projectileFire0=null;
 	[Tooltip("Projectile for Fire element lv1")]
 	public Rigidbody2D projectileFire1=null;
 	[Tooltip("Projectile for Fire element lv2")]
 	public Rigidbody2D projectileFire2=null;
 	[Tooltip("Projectile for Fire element lv3")]
 	public Rigidbody2D projectileFire3=null;
+	[Tooltip("Projectile for Water element lv0")]
+	public Rigidbody2D projectileWater0=null;
 	[Tooltip("Projectile for Water element lv1")]
 	public Rigidbody2D projectileWater1=null;
 	[Tooltip("Projectile for Water element lv2")]
@@ -38,6 +42,8 @@ public class ProjectileFactory : MonoBehaviour {
 		switch (element) {
 		case PlayerController.ElementType.Fire:
 			switch (level) {
+			case 0:
+				return projectileFire0;
 			case 1:
 				return projectileFire1;
 			case 2:
@@ -49,6 +55,8 @@ public class ProjectileFactory : MonoBehaviour {
 			}
 		case PlayerController.ElementType.Water:
 			switch (level) {
+			case 0:
+				return projectileWater0;
 			case 1:
 				return projectileWater1;
 			case 2:

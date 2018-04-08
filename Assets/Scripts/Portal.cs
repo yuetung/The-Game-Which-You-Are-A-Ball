@@ -6,12 +6,12 @@ public class Portal : MonoBehaviour {
 	
 	// Use this for initialization
 	LevelSelect levelSelect;
-	float tier1Time = 30f;
-	float tier2Time = 40f;
-	float tier3Time = 50f;
-	int tier1Reward = 15;
-	int tier2Reward = 10;
-	int tier3Reward = 5;
+	public float tier1Time = 30f;
+	public float tier2Time = 40f;
+	public float tier3Time = 50f;
+	public int tier1Reward = 15;
+	public int tier2Reward = 10;
+	public int tier3Reward = 5;
 	private float startTime;
 	void Start () {
 		levelSelect = gameObject.GetComponent<LevelSelect> ();

@@ -210,8 +210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96b5106ab417b8844826e88da779cdc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 10
-  hp: 10
+  maxHp: 5
+  hp: 5
   moveSpeed: 0.3
   wayPoints:
   - {fileID: 1950722012817606}
@@ -230,6 +230,12 @@ MonoBehaviour:
   randomProjectile: 0
   canRotate: 1
   canFlip: 0
+  crystalPrefab: {fileID: 1773349470175732, guid: 5a2d7dfa9c7de2548a26103cf14a0527,
+    type: 2}
+  maxValue: 0
+  minValue: 0
+  dropRate: 1
+  spawnerParent: {fileID: 0}
   waypointIndex: 0
   EnemyHealthBarPrefab: {fileID: 1920628111961788, guid: e6bcf14eac3452c4698df3582a518a7e,
     type: 2}

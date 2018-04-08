@@ -180,7 +180,7 @@ public class PlayerController : NetworkBehaviour {
             finalPosition = new Vector2(transform.position.x, transform.position.y) + shootDirection.normalized * maxDistance;
         }
         CmdShoot(shootDirection, elementType, elementLevel, finalPosition);
-        depleteEnergy(elementLevel * 10);
+		depleteEnergy (elementType, elementLevel);
     }
 
     // Since we can't pass GameObjects into Cmd, we pass similar parameters as Shoot()
@@ -272,7 +272,22 @@ public class PlayerController : NetworkBehaviour {
             }
         }
     }
+		
+	public void depleteEnergy(ElementType elementType, int elementLevel) {
+		if (elementType == ElementType.Fire) {
+			depleteEnergy(elementLevel * 3);
+		}
+		else if (elementType == ElementType.Water) {
+			depleteEnergy(elementLevel * 5);
+		}
+		else if (elementType == ElementType.Lightning) {
+			depleteEnergy(elementLevel * 8);
+		}
+		else if (elementType == ElementType.Earth) {
+			depleteEnergy(elementLevel * 2);
+		}
 
+	}
 
     public void depleteEnergy(int amount) {
         if (elementType == ElementType.Default || elementLevel == 0) {
@@ -374,6 +389,8 @@ public class PlayerController : NetworkBehaviour {
             //Instantiate (explosionPrefab, transform.position, transform.rotation);
             guiManager.updateAll();
             Debug.Log("someone died");
+			if (currentEarthProjectileSpawner != null)
+				Destroy (currentEarthProjectileSpawner);
             CmdUpdateEnd();
             CmdDestroySelf();
         } else {
