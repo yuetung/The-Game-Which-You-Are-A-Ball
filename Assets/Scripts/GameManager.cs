@@ -127,5 +127,6 @@ public class GameManager : MonoBehaviour {
 
 	public static void setGold(int newgold){
 		PlayerPrefs.SetInt("Gold",newgold);
+		Debug.Log ("current Gold set to " + newgold);
 	}
 }

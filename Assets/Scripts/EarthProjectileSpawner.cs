@@ -32,14 +32,15 @@ public class EarthProjectileSpawner : NetworkBehaviour {
 			radius = minRadius;
             Debug.Log("Start if");
 		}
+		transform.parent = null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // follow parent's transform
-        //if (shooter)
-        //    transform.position = shooter.transform.position;
+        //follow parent's transform
+        if (shooter)
+            transform.position = shooter.transform.position;
 
         // Rotate around self
         transform.Rotate(Vector3.forward * Time.deltaTime * rotationSpeed);
@@ -60,7 +61,9 @@ public class EarthProjectileSpawner : NetworkBehaviour {
 
         if (timeCounter <= 0)
         {
-            CmdSpawnProjectile(1);
+			if (hasAuthority) {
+				CmdSpawnProjectile (1);
+			}
             timeCounter = regenerationTime;
         }
     }
@@ -90,7 +93,11 @@ public class EarthProjectileSpawner : NetworkBehaviour {
 				if (belongToPlayer)
 					earthProjectiles [i].GetComponent<ProjectileController> ().belongsToPlayer();
                 earthProjectiles[i].GetComponent<SetParent>().nId = netId;
-				NetworkServer.Spawn (earthProjectiles [i]);
+				earthProjectiles [i].transform.SetParent (gameObject.transform);
+				if (shooter && hasAuthority) {
+					NetworkServer.SpawnWithClientAuthority (earthProjectiles [i], shooter);
+				}
+				else NetworkServer.Spawn(earthProjectiles [i]);
 				spawned++;
 			}
 			if (spawned >= number)
@@ -135,7 +142,7 @@ public class EarthProjectileSpawner : NetworkBehaviour {
 
 	public void startExpand() {
 		expanding = true;
-
+		contracting = false;
 	}
 
 	public void belongsToPlayer() {

@@ -1,6 +1,6 @@
 /Library
 /.vs
 /Temp/
-Assets/_Scenes/Level1.unity
-Assembly-CSharp.csproj
+.collabignore
+master
 Assembly-CSharp.csproj

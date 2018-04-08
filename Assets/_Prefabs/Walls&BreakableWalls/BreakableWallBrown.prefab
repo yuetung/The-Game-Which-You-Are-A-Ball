@@ -52,7 +52,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -100,6 +100,10 @@ MonoBehaviour:
     type: 2}
   maxHealth: 9
   elementType: 4
+  crystalPrefab: {fileID: 0}
+  maxValue: 0
+  minValue: 0
+  dropRate: 1
 --- !u!212 &212645900600128122
 SpriteRenderer:
   m_ObjectHideFlags: 1

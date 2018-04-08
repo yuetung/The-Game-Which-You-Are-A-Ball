@@ -156,12 +156,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementType: 2
-  projectileSpeed: 4
+  projectileSpeed: 3
   projectileDamage: 0
   explodeAnimationSeconds: 0
   explosionPrefab: {fileID: 0}
   angleAdjustment: 270
-  AOEExplosionPrefab: {fileID: 1680319487218808, guid: ea0e27e8417e8964a863ea91baeab9be,
+  AOEExplosionPrefab: {fileID: 1680319487218808, guid: df523d22bb08aa64e9b56801c2b24dbe,
     type: 2}
   maxDistance: 0
   belongToPlayer: 0

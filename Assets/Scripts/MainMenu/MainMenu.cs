@@ -15,9 +15,10 @@ public class MainMenu : MonoBehaviour {
         NetworkManager.singleton.StartMatchMaker();
         Debug.Log(nw.ToString());
         if (startHost && joinGame)
-        { 
-            startHost.onClick.AddListener(delegate { nw.CreateInternetMatch(); });
-            joinGame.onClick.AddListener(delegate { nw.FindInternetMatch(); });
+        {
+            //startHost.onClick.AddListener(delegate { nw.CreateInternetMatch(); });
+            startHost.onClick.AddListener(delegate { nw.FindOrStartInternetMatch(); });
+            //joinGame.onClick.AddListener(delegate { nw.FindInternetMatch(); });
         }
 			
 	}

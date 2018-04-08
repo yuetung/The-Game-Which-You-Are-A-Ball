@@ -5,7 +5,9 @@ using UnityEngine.Networking;
 public class PlayerController : NetworkBehaviour {
 
     public bool testMode = false;
-    [Tooltip("Movement Speed")]
+	[Tooltip("Movement Speed")]
+	public float defaultMoveSpeed = 150f;
+	[HideInInspector]
     public float moveSpeed = 1.5f;
     [Tooltip("How much distance to drag mouse to distinguish between a click and a drag")]
     public float clickDragSensitivity = 0.01f;
@@ -56,6 +58,7 @@ public class PlayerController : NetworkBehaviour {
     // Use this for initialization
     public void Start() {
         health = maxHealth;
+		moveSpeed = defaultMoveSpeed;
         _animator = gameObject.GetComponent<Animator>();
         _rigidbody = gameObject.GetComponent<Rigidbody2D>();
         _trailRenderer = gameObject.GetComponent<TrailRenderer>();
@@ -108,7 +111,7 @@ public class PlayerController : NetworkBehaviour {
         move();
 
         // if mouse is held down,
-        if (Input.GetMouseButton(0))
+		if (Input.GetMouseButton(0) && elementType!=ElementType.Default)
         {
             Vector2 draggedDistance = (Vector2)Input.mousePosition - mouseDownLocation;
             if (draggedDistance.magnitude > clickDragSensitivity)
@@ -177,7 +180,7 @@ public class PlayerController : NetworkBehaviour {
             finalPosition = new Vector2(transform.position.x, transform.position.y) + shootDirection.normalized * maxDistance;
         }
         CmdShoot(shootDirection, elementType, elementLevel, finalPosition);
-        depleteEnergy(elementLevel * 10);
+		depleteEnergy (elementType, elementLevel);
     }
 
     // Since we can't pass GameObjects into Cmd, we pass similar parameters as Shoot()
@@ -269,7 +272,22 @@ public class PlayerController : NetworkBehaviour {
             }
         }
     }
+		
+	public void depleteEnergy(ElementType elementType, int elementLevel) {
+		if (elementType == ElementType.Fire) {
+			depleteEnergy(elementLevel * 3);
+		}
+		else if (elementType == ElementType.Water) {
+			depleteEnergy(elementLevel * 5);
+		}
+		else if (elementType == ElementType.Lightning) {
+			depleteEnergy(elementLevel * 8);
+		}
+		else if (elementType == ElementType.Earth) {
+			depleteEnergy(elementLevel * 2);
+		}
 
+	}
 
     public void depleteEnergy(int amount) {
         if (elementType == ElementType.Default || elementLevel == 0) {
@@ -295,9 +313,13 @@ public class PlayerController : NetworkBehaviour {
         elementLevel = newElementLevel;
         energyLossRate = Mathf.Pow(elementLevel, 1.5f);
         // create earth projectile spawner based on element level
+		if (!isLocalPlayer)
+			return;
         if (elementType == ElementType.Earth) {
+			moveSpeed = defaultMoveSpeed / 2;
             CmdCreateEarthProjectileSpawner(elementType, elementLevel);
         } else {
+			moveSpeed = defaultMoveSpeed;
             CmdDestroyCurrentEarthProjectileSpawner();
         }
     }
@@ -359,24 +381,17 @@ public class PlayerController : NetworkBehaviour {
         {
             return;
         }
-        //Handheld.Vibrate ();
+        //Handheld.Vibrate();
         Debug.Log("Take damage");
         if (health - damage <= 0) {
             health = 0;
             //TODO: implement player's death
             //Instantiate (explosionPrefab, transform.position, transform.rotation);
             guiManager.updateAll();
-            //guiManager.EndGame();
             Debug.Log("someone died");
+			if (currentEarthProjectileSpawner != null)
+				Destroy (currentEarthProjectileSpawner);
             CmdUpdateEnd();
-            //GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            //foreach (GameObject player in players)
-            //{
-            //    player.GetComponent<PlayerController>().CmdUpdateEnd();
-            //    Debug.Log("foreachplayer");
-            //}
-            //DestroyObject (this.gameObject);
-            //NetworkServer.Destroy(gameObject);
             CmdDestroySelf();
         } else {
             health -= damage;
@@ -395,42 +410,48 @@ public class PlayerController : NetworkBehaviour {
     private void CmdCreateEarthProjectileSpawner(ElementType elementType, int elementLevel) {
         CmdDestroyCurrentEarthProjectileSpawner();
         //int numRockToSpawn = 0;
-        currentEarthProjectileSpawner.SetActive(true);
+        //currentEarthProjectileSpawner.SetActive(true);
         //if (currentEarthProjectileSpawner) {
         //	numRockToSpawn = currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().getNumRock ();
         //}
         Rigidbody2D projectile = projectileFactory.getProjectileFromType(elementType, elementLevel);
-        currentEarthProjectileSpawner = Instantiate(projectile.gameObject);
+		currentEarthProjectileSpawner = Instantiate(projectile.gameObject, transform.position, transform.rotation);
         currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner>().belongsToPlayer();
-        currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner>().shooter = transform.gameObject;
+		currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().shooter = gameObject;
         //CmdassignClientAuthority(currentEarthProjectileSpawner.GetComponent<NetworkIdentity>());
         //currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner> ().CmdSpawnProjectile (numRockToSpawn);
         // spawn is moved to EarthProjectileSpawner?
+		currentEarthProjectileSpawner.GetComponent<SetParent>().rotateWithParent = false;
         currentEarthProjectileSpawner.GetComponent<SetParent>().nId = netId;
         //currentEarthProjectileSpawner.transform.SetParent(transform);
         //transform.SetPositionAndRotation(new Vector3(), new Quaternion());
-        NetworkServer.SpawnWithClientAuthority(currentEarthProjectileSpawner, gameObject);
+		NetworkServer.SpawnWithClientAuthority(currentEarthProjectileSpawner,gameObject);
     }
 
-    [Command]
+    /*[Command]
     private void CmdassignClientAuthority(NetworkIdentity inp)
     {
         inp.AssignClientAuthority(connectionToClient);
         Debug.Log(inp.localPlayerAuthority);
         Debug.Log(inp.hasAuthority);
-    }
+    }*/
 
     [Command]
     private void CmdDestroyCurrentEarthProjectileSpawner() {
         if (currentEarthProjectileSpawner != null) {
             GameObject[] earthProjectiles = currentEarthProjectileSpawner.GetComponent<EarthProjectileSpawner>().earthProjectiles;
             for (int i = 0; i < earthProjectiles.Length; i++) {
-                if (earthProjectiles[i] != null)
+				if (earthProjectiles [i] != null) {
                     earthProjectiles[i].GetComponent<ProjectileController>().DestroyNow();
-            }
-            //NetworkServer.Destroy(currentEarthProjectileSpawner);
-        }
-        currentEarthProjectileSpawner.SetActive(false);
+					//NetworkServer.Destroy (earthProjectiles[i]);
+				}
+			}
+			//Destroy (currentEarthProjectileSpawner);
+			NetworkServer.Destroy(currentEarthProjectileSpawner);
+			currentEarthProjectileSpawner = null;
+		}
+		//Destroy (currentEarthProjectileSpawner);
+        //currentEarthProjectileSpawner.SetActive(false);
         //currentEarthProjectileSpawner = null;
     }
 

@@ -45,6 +45,9 @@ public class Enemy : MonoBehaviour {
 	public GameObject crystalPrefab;
 	public int maxValue = 0;
 	public int minValue = 0;
+	public float dropRate = 1f;
+
+	public GameObject spawnerParent = null;
 
 	Rigidbody2D _rigidbody;
 	Animator _animator;
@@ -100,8 +103,8 @@ public class Enemy : MonoBehaviour {
 		EnemyHealthBar = Instantiate(EnemyHealthBarPrefab,new Vector2 (0,0),Quaternion.identity) as GameObject;
         // place this gameobject inside the canvas (only way to display a UI)
 		Debug.Log("enemyhealthbar: "+EnemyHealthBar);
-		Debug.Log ("maincanvas: " + GameObject.FindGameObjectWithTag ("MainCanvas"));
-		EnemyHealthBar.transform.SetParent(GameObject.FindGameObjectWithTag("MainCanvas").transform,false);
+		Transform mainCanvas = gameManager.transform.Find("MainCanvas");
+		EnemyHealthBar.transform.SetParent(mainCanvas,false);
 		Debug.Log ("created enemy health bar");
 		// fill the enemyhealthbar with red color
 		Transform barFill = EnemyHealthBar.transform.Find ("Fill Area").transform.Find ("Fill");
@@ -230,18 +233,19 @@ public class Enemy : MonoBehaviour {
 			return;
 		if (hp - damage <= 0) {
 			// add Spawn Gold coin , Kenny
-			int value = Random.Range (minValue, maxValue);
+			int value = Random.Range (minValue, maxValue+1);
+			bool drop = Random.value <= dropRate;
 			Debug.Log(value+ "Crystal");
-			if (value > 0) { 
+			if (value > 0 && drop) { 
 				GameObject crystal = Instantiate (crystalPrefab, transform.position, Quaternion.identity);
 				crystal.GetComponent<Collectible> ().setValue (value);
-				float scalingFactor = Mathf.Log (value);
-				float scaled = scalingFactor * crystal.transform.localScale.x;
-				crystal.transform.localScale = new Vector3 (scaled, scaled, crystal.transform.localScale.z);
 				//crystal.transform.localScale = new Vector3 (value / 50, value / 50, 1);
 				Debug.Log("Crystal"+ crystal);
 			}
-			//
+			// if belongs to a spawner, reduce monsterCountLeft
+			if (spawnerParent != null) {
+				spawnerParent.GetComponent<MonsterRoomSpawner> ().reduceMonsterCount ();
+			}
 
 			hp = 0;
 			Instantiate (explosionPrefab, transform.position, transform.rotation);
@@ -282,5 +286,9 @@ public class Enemy : MonoBehaviour {
 		GameObject bubble = Instantiate (noticeBubble, transform.position+bubbleOffset, Quaternion.identity);
 		bubble.transform.localScale = bubbleScale;
 		bubble.GetComponent<EnemyNotice> ().setParentOffset (this.gameObject, bubbleOffset);
+	}
+
+	public void setSpawnerParent(GameObject spawnerParent){
+		this.spawnerParent = spawnerParent;
 	}
 }
