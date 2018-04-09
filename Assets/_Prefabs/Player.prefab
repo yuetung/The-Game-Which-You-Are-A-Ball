@@ -469,8 +469,8 @@ MonoBehaviour:
   elementType: 0
   energy: 0
   elementLevel: 0
-  maxHealth: 8
-  health: 8
+  maxHealth: 30
+  health: 30
   mouseDownLocation: {x: 0, y: 0}
   moveTarget: {x: 0, y: 0}
   timeCounter: 1

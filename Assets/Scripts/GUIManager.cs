@@ -178,7 +178,7 @@ public class GUIManager : NetworkBehaviour {
 
 	public void updateAll() {
 		updateEnergy (playerController.energy);
-		updateHealth (playerController.health);
+		updateHealth (playerController.health, playerController.maxHealth);
 		updateElement (playerController.elementType);
 		updateLevel (playerController.elementLevel);
 	}

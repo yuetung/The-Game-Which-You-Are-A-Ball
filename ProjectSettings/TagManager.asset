@@ -15,6 +15,7 @@ TagManager:
   - GameManager
   - BreakableWall
   - TouchIndicator
+  - Hint
   layers:
   - Default
   - TransparentFX
