@@ -361,7 +361,7 @@ public class PlayerController : NetworkBehaviour {
         {
             return;
         }
-        //Handheld.Vibrate();
+        Handheld.Vibrate();
         Debug.Log("Take damage");
         if (health - damage <= 0) {
             health = 0;
