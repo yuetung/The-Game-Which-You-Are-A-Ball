@@ -24,6 +24,8 @@ public class GUIManager : NetworkBehaviour {
 	public int counter = 1;
     float maxHealth;
 
+	Coroutine currentCoroutine;
+
 	// Possible element types (copied from PlayerController.cs
 //	public enum ElementType {
 //		Default,
@@ -113,12 +115,42 @@ public class GUIManager : NetworkBehaviour {
 
     }
 
+	public IEnumerator flashText(Text textToFlash, int thetext){
+		float endTime = Time.time + 3.0f;	
+		while (Time.time < endTime) {
+			textToFlash.text = thetext.ToString();
+			yield return new WaitForSeconds (0.5f);
+			textToFlash.text = "";
+			yield return new WaitForSeconds (0.5f);
+		}
+		textToFlash.text = thetext.ToString();
+	
+	}
+
 	public void updateLevel (int amount) {
-		level = amount;
-		mainLevelDisplay.text = "Level: " + level.ToString ();
+		if (amount != level) {
+			if (currentCoroutine != null) {
+				StopCoroutine (currentCoroutine);
+			}
+			level = amount;
+			currentCoroutine = StartCoroutine(flashText (LevelText2, level));
+		}
+		//level = amount;
+		//mainLevelDisplay.text = "Level: " + level.ToString ();
 
 		//TODO: display the level text in the middle of the radial energy bar
-		LevelText2.text = level.ToString();
+		//LevelText2.text = level.ToString();
+
+		
+		//flashText (LevelText2, level);
+
+//		float endTime = Time.time + 5.0f;
+//		while (Time.time < endTime) {
+//			LevelText2.text = level.ToString();
+//			yield return new WaitForSeconds (0.5f);
+//			LevelText2.text = "";
+//			yield return new WaitForSeconds (0.5f);
+//		}
 	}
 
 	public void updateAll() {
