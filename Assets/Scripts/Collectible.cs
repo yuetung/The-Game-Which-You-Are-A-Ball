@@ -27,7 +27,7 @@ public class Collectible : MonoBehaviour {
 
 			//notification.transform.position = new Vector3 (transform.position.x, transform.position.y + 0.5f, transform.position.z);
 
-			Vector3 TransformedPos = new Vector3(0.65f, transform.localScale.y+0.5f, 0f);
+			Vector3 TransformedPos = new Vector3(0.5f, transform.localScale.y+0.5f, 0f);
 			Vector3 RectBoxPos = Camera.main.WorldToScreenPoint(transform.position + TransformedPos);
 			notification.transform.position = RectBoxPos;
 
@@ -41,6 +41,8 @@ public class Collectible : MonoBehaviour {
 
 	}
 	public void setValue(int value){
+		float scaled = Mathf.Pow(value,0.2f);
+		transform.localScale = new Vector3 (scaled, scaled, 0);
 		this.value = value;
 	}
 }

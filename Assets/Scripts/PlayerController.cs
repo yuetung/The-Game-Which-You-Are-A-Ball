@@ -5,7 +5,9 @@ using UnityEngine.Networking;
 public class PlayerController : NetworkBehaviour {
 
     public bool testMode = false;
-    [Tooltip("Movement Speed")]
+	[Tooltip("Movement Speed")]
+	public float defaultMoveSpeed = 150f;
+	[HideInInspector]
     public float moveSpeed = 1.5f;
     [Tooltip("How much distance to drag mouse to distinguish between a click and a drag")]
     public float clickDragSensitivity = 0.01f;
@@ -23,7 +25,7 @@ public class PlayerController : NetworkBehaviour {
     public Vector2 mouseDownLocation; // where the mouse is initially held down
     public Vector2 moveTarget;  // target point to move player towards
     public float timeCounter = 1.0f;
-    public float energyLossRate = 1.0f;
+    public float energyLossRate = 0.5f;
 
     // element level caps from user pref
     // hmm..maybe i shld get it from game manager instead of direct...?
@@ -56,6 +58,7 @@ public class PlayerController : NetworkBehaviour {
     // Use this for initialization
     public void Start() {
         health = maxHealth;
+		moveSpeed = defaultMoveSpeed;
         _animator = gameObject.GetComponent<Animator>();
         _rigidbody = gameObject.GetComponent<Rigidbody2D>();
         _trailRenderer = gameObject.GetComponent<TrailRenderer>();
@@ -108,7 +111,7 @@ public class PlayerController : NetworkBehaviour {
         move();
 
         // if mouse is held down,
-        if (Input.GetMouseButton(0))
+		if (Input.GetMouseButton(0) && elementType!=ElementType.Default)
         {
             Vector2 draggedDistance = (Vector2)Input.mousePosition - mouseDownLocation;
             if (draggedDistance.magnitude > clickDragSensitivity)
@@ -177,7 +180,7 @@ public class PlayerController : NetworkBehaviour {
             finalPosition = new Vector2(transform.position.x, transform.position.y) + shootDirection.normalized * maxDistance;
         }
         CmdShoot(shootDirection, elementType, elementLevel, finalPosition);
-        depleteEnergy(elementLevel * 10);
+		depleteEnergy (elementType, elementLevel);
     }
 
     // Since we can't pass GameObjects into Cmd, we pass similar parameters as Shoot()
@@ -269,7 +272,22 @@ public class PlayerController : NetworkBehaviour {
             }
         }
     }
+		
+	public void depleteEnergy(ElementType elementType, int elementLevel) {
+		if (elementType == ElementType.Fire) {
+			depleteEnergy(elementLevel * 2);
+		}
+		else if (elementType == ElementType.Water) {
+			depleteEnergy(elementLevel * 4);
+		}
+		else if (elementType == ElementType.Lightning) {
+			depleteEnergy(elementLevel * 6);
+		}
+		else if (elementType == ElementType.Earth) {
+			depleteEnergy(elementLevel * 1);
+		}
 
+	}
 
     public void depleteEnergy(int amount) {
         if (elementType == ElementType.Default || elementLevel == 0) {
@@ -298,8 +316,10 @@ public class PlayerController : NetworkBehaviour {
 		if (!isLocalPlayer)
 			return;
         if (elementType == ElementType.Earth) {
+			moveSpeed = defaultMoveSpeed / 2;
             CmdCreateEarthProjectileSpawner(elementType, elementLevel);
         } else {
+			moveSpeed = defaultMoveSpeed;
             CmdDestroyCurrentEarthProjectileSpawner();
         }
     }
@@ -369,6 +389,8 @@ public class PlayerController : NetworkBehaviour {
             //Instantiate (explosionPrefab, transform.position, transform.rotation);
             guiManager.updateAll();
             Debug.Log("someone died");
+			if (currentEarthProjectileSpawner != null)
+				Destroy (currentEarthProjectileSpawner);
             CmdUpdateEnd();
             CmdDestroySelf();
         } else {

@@ -24,6 +24,9 @@ public class GUIManager : NetworkBehaviour {
 	public int counter = 1;
     float maxHealth;
 
+	Coroutine currentLevelTextCoroutine;
+	Coroutine currentBarCoroutine;
+
 	// Possible element types (copied from PlayerController.cs
 //	public enum ElementType {
 //		Default,
@@ -70,20 +73,42 @@ public class GUIManager : NetworkBehaviour {
 		// TODO: change the display of energy into a radial energy bar
 		LoadingBar.GetComponent<Image>().fillAmount = energy/100.0f;
 	}
+
+	public IEnumerator flashBar(Slider myslider){
+		float endTime = Time.time + 3.0f;	
+		while (Time.time < endTime) {
+			myslider.GetComponentsInChildren<Image> ()[1].color = Color.red;
+			yield return new WaitForSeconds (0.5f);
+			myslider.GetComponentsInChildren<Image> ()[1].color = new Color(214, 214, 214, 255);
+			yield return new WaitForSeconds (0.5f);
+		}
+		myslider.GetComponentsInChildren<Image> ()[1].color = Color.red;
+	}
 		
 	public void updateHealth(int amount){
-		health = amount;
-		if (health <= 0) {
-			health = 0;
-			EndGame ();
-		}
-		// Text UI
-		mainHealthDisplay.text = "Health: " + health.ToString ();
+		if(amount!=health){
+			if (currentBarCoroutine!=null) {
+				StopCoroutine (currentBarCoroutine);
+			}
 
-		// Slidebar UI
-		float health2 = health/maxHealth;
-        
-		HealthBar.value = health2;
+			health = amount;
+			if (health <= 0) {
+				health = 0;
+				EndGame ();
+			}
+			// Text UI
+			mainHealthDisplay.text = "Health: " + health.ToString ();
+
+			// Slidebar UI
+			float health2 = health/maxHealth;
+
+			HealthBar.value = health2;
+
+			currentBarCoroutine = StartCoroutine(flashBar(HealthBar));
+
+			Debug.Log ("updating health");
+		}
+
 	}
 
     public void updateHealth(int amount, int maxHealth)
@@ -113,12 +138,42 @@ public class GUIManager : NetworkBehaviour {
 
     }
 
+	public IEnumerator flashText(Text textToFlash, int thetext){
+		float endTime = Time.time + 3.0f;	
+		while (Time.time < endTime) {
+			textToFlash.text = thetext.ToString();
+			yield return new WaitForSeconds (0.5f);
+			textToFlash.text = "";
+			yield return new WaitForSeconds (0.5f);
+		}
+		textToFlash.text = thetext.ToString();
+	
+	}
+
 	public void updateLevel (int amount) {
-		level = amount;
-		mainLevelDisplay.text = "Level: " + level.ToString ();
+		if (amount != level) {
+			if (currentLevelTextCoroutine != null) {
+				StopCoroutine (currentLevelTextCoroutine);
+			}
+			level = amount;
+			currentLevelTextCoroutine = StartCoroutine(flashText (LevelText2, level));
+		}
+		//level = amount;
+		//mainLevelDisplay.text = "Level: " + level.ToString ();
 
 		//TODO: display the level text in the middle of the radial energy bar
-		LevelText2.text = level.ToString();
+		//LevelText2.text = level.ToString();
+
+		
+		//flashText (LevelText2, level);
+
+//		float endTime = Time.time + 5.0f;
+//		while (Time.time < endTime) {
+//			LevelText2.text = level.ToString();
+//			yield return new WaitForSeconds (0.5f);
+//			LevelText2.text = "";
+//			yield return new WaitForSeconds (0.5f);
+//		}
 	}
 
 	public void updateAll() {

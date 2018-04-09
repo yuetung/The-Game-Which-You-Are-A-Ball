@@ -350,6 +350,7 @@ public class PlayerTest : MonoBehaviour {
 		float lossRate = 1.0f;
 		int timeElapsed = 5;
 
+
 		player.GetComponent<PlayerController> ().testMode = true;
 
 		NetworkServer.Listen (7777);

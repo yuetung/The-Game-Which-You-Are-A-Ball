@@ -11,8 +11,13 @@ public class PowerUpSpawner : NetworkBehaviour {
     public int maxEnergy = 80;
     public float secondsBetweenSpawn = 1.0f;
     public bool startSpawning = true;
-    public float height_y = 6.0f;
-    public float width_x = 14.0f;
+	public bool alwaysSpawn = false;
+	[HideInInspector]
+    public float height_y;  //made public for testing
+	[HideInInspector]
+	public float width_x; //made public for testing
+	private float offset_x;
+	private float offset_y;
     private float nextSpawnTime = 0f;
 
 	public void Construct (GameObject powerupPrefab, float secondsBetweenSpawn, 
@@ -26,9 +31,11 @@ public class PowerUpSpawner : NetworkBehaviour {
 	}
 
     void Start() {
-        Vector2 dimension = gameObject.GetComponent<BoxCollider2D>().size;
-        height_y = dimension.y;
-        width_x = dimension.x;
+		BoxCollider2D collider = gameObject.GetComponent<BoxCollider2D> ();
+		width_x = collider.size.x;
+		height_y = collider.size.y;
+		offset_x = collider.offset.x;
+		offset_y = collider.offset.y;
     }
 
     void Update() {
@@ -57,7 +64,7 @@ public class PowerUpSpawner : NetworkBehaviour {
         do
         {
             nearPlayer = false;
-			location = new Vector3(transform.position.x+Random.Range(-width_x / 2, width_x / 2), transform.position.y+Random.Range(-height_y / 2, height_y / 2), 0);
+			location = new Vector3(transform.position.x+offset_x+Random.Range(-width_x / 2, width_x / 2), transform.position.y+offset_y+Random.Range(-height_y / 2, height_y / 2), 0);
             foreach (GameObject p in GameObject.FindGameObjectsWithTag("Player"))
             {
                 if (Around(location, p.transform.localPosition))
@@ -111,6 +118,7 @@ public class PowerUpSpawner : NetworkBehaviour {
 	}
 
 	public void stopSpawn() {
-		startSpawning = false;
+		if (!alwaysSpawn)
+			startSpawning = false;
 	}
 }

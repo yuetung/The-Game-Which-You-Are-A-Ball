@@ -100,6 +100,11 @@ MonoBehaviour:
     type: 2}
   maxHealth: 9
   elementType: 5
+  crystalPrefab: {fileID: 1773349470175732, guid: 5a2d7dfa9c7de2548a26103cf14a0527,
+    type: 2}
+  maxValue: 0
+  minValue: 0
+  dropRate: 1
 --- !u!212 &212220906231518988
 SpriteRenderer:
   m_ObjectHideFlags: 1

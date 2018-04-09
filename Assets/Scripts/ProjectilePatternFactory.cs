@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 public class ProjectilePatternFactory : NetworkBehaviour {
 	public GameObject lightningEffect;
 
+	[HideInInspector]
 	public ProjectileFactory projectileFactory;
 	// Use this for initialization
 	void Start () {
@@ -23,6 +24,20 @@ public class ProjectilePatternFactory : NetworkBehaviour {
 		if (pattern == "basicFireball") {
 			
 			Rigidbody2D projectile = projectileFactory.getProjectileFromType (PlayerController.ElementType.Fire, 1);
+			Rigidbody2D clone;
+			clone = Instantiate (projectile, startPosition, transform.rotation) as Rigidbody2D;
+			GameObject cloneGameObject = clone.gameObject;
+			if (belongToPlayer) {
+				cloneGameObject.GetComponent<ProjectileController> ().belongsToPlayer ();
+			}
+			float rotation = Mathf.Atan2 (shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
+			Vector2 velocity = shootDirection.normalized * cloneGameObject.GetComponent<ProjectileController>().projectileSpeed;
+			cloneGameObject.GetComponent<ProjectileController> ().setVelocityAndRotation (velocity,rotation);
+			NetworkServer.Spawn (cloneGameObject);
+		}
+		if (pattern == "weakFireball") {
+
+			Rigidbody2D projectile = projectileFactory.getProjectileFromType (PlayerController.ElementType.Fire, 0);
 			Rigidbody2D clone;
 			clone = Instantiate (projectile, startPosition, transform.rotation) as Rigidbody2D;
 			GameObject cloneGameObject = clone.gameObject;
@@ -91,6 +106,19 @@ public class ProjectilePatternFactory : NetworkBehaviour {
 
 		if (pattern == "basicWaterball") {
 			Rigidbody2D projectile = projectileFactory.getProjectileFromType (PlayerController.ElementType.Water, 2);
+			Rigidbody2D clone;
+			clone = Instantiate (projectile, startPosition, transform.rotation) as Rigidbody2D;
+			GameObject cloneGameObject = clone.gameObject;
+			if (belongToPlayer) {
+				cloneGameObject.GetComponent<ProjectileController> ().belongsToPlayer ();
+			}
+			float rotation = Mathf.Atan2 (shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
+			Vector2 velocity = shootDirection.normalized * cloneGameObject.GetComponent<ProjectileController>().projectileSpeed;
+			cloneGameObject.GetComponent<ProjectileController> ().setVelocityAndRotation (velocity,rotation);
+			NetworkServer.Spawn (cloneGameObject);
+		}
+		if (pattern == "weakWaterball") {
+			Rigidbody2D projectile = projectileFactory.getProjectileFromType (PlayerController.ElementType.Water, 0);
 			Rigidbody2D clone;
 			clone = Instantiate (projectile, startPosition, transform.rotation) as Rigidbody2D;
 			GameObject cloneGameObject = clone.gameObject;
@@ -246,7 +274,7 @@ public class ProjectilePatternFactory : NetworkBehaviour {
 				NetworkServer.Spawn (cloneGameObject);
 			}
 		}if (pattern == "basicLightningball") {
-			Rigidbody2D projectile = projectileFactory.getProjectileFromType (PlayerController.ElementType.Lightning, 1);
+			Rigidbody2D projectile = projectileFactory.getProjectileFromType (PlayerController.ElementType.Lightning, 0);
 			Rigidbody2D clone;
 			float maxDistance = projectile.GetComponent<ProjectileController> ().maxDistance; 
 			int layerMask = LayerMask.GetMask ("Player", "Wall"); //changed Player and wall

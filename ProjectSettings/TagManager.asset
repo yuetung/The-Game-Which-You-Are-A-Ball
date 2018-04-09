@@ -67,3 +67,6 @@ TagManager:
   - name: NoticeBubble
     uniqueID: 736657429
     locked: 0
+  - name: Text
+    uniqueID: 314902933
+    locked: 0
