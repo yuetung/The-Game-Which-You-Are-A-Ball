@@ -35,6 +35,18 @@ public class ShopMenu : MonoBehaviour {
 	public Button efficiencyUpButton;
 	public Button efficiencyDownButton;
 
+	public TextMeshProUGUI informationDisplay;
+	public GameObject backgroundInformationDisplay;
+	public int displayNum=0;
+
+	public Button firePowerText;
+	public Button waterPowerText;
+	public Button lightningPowerText;
+	public Button earthPowerText;
+	public Button maxHealthText;
+	public Button efficiencyText;
+
+
 	int firecost = 50;
 	int watercost = 50;
 	int lightningcost = 50;
@@ -72,11 +84,86 @@ public class ShopMenu : MonoBehaviour {
 		healthDownButton.onClick.AddListener (decreaseHealth);
 		efficiencyUpButton.onClick.AddListener (increaseEfficiency);
 		efficiencyDownButton.onClick.AddListener (decreaseEfficiency);
+
+		firePowerText.onClick.AddListener (infoFire);
+		waterPowerText.onClick.AddListener (infoWater);
+		lightningPowerText.onClick.AddListener (infoLightning);
+		earthPowerText.onClick.AddListener (infoEarth);
+		maxHealthText.onClick.AddListener (infoMaxHealth);
+		efficiencyText.onClick.AddListener (infoEfficiency);
+
 	}
 
 	void Update(){
 		gold = GameManager.getGold ();
 		goldDisplay.text = gold.ToString();
+	}
+
+	public void infoFire(){
+		if (displayNum != 1) {
+			backgroundInformationDisplay.SetActive(true);
+			informationDisplay.text = "Level up to increase your cap on firepower. Each level up cost 50 crystals."; 
+			displayNum = 1;
+		} else {
+			backgroundInformationDisplay.SetActive(false);
+			informationDisplay.text = "";
+			displayNum = 0;
+		}
+	}
+	public void infoWater(){
+		if (displayNum != 2) {
+			backgroundInformationDisplay.SetActive(true);
+			informationDisplay.text = "Level up to increase your cap on waterpower. Each level up cost 50 crystals."; 
+			displayNum = 2;
+		} else {
+			backgroundInformationDisplay.SetActive(false);
+			informationDisplay.text = "";
+			displayNum = 0;
+		}
+	}
+	public void infoLightning(){
+		if (displayNum != 3) {
+			backgroundInformationDisplay.SetActive(true);
+			informationDisplay.text = "Level up to increase your cap on lightningpower. Each level up cost 50 crystals."; 
+			displayNum = 3;
+		} else {
+			backgroundInformationDisplay.SetActive(false);
+			informationDisplay.text = "";
+			displayNum = 0;
+		}
+	}
+	public void infoEarth(){
+		if (displayNum != 4) {
+			backgroundInformationDisplay.SetActive(true);
+			informationDisplay.text = "Level up to increase your cap on earthpower. Each level up cost 50 crystals."; 
+			displayNum = 4;
+		} else {
+			backgroundInformationDisplay.SetActive(false);
+			informationDisplay.text = "";
+			displayNum = 0;
+		}
+	}
+	public void infoMaxHealth(){
+		if (displayNum != 5) {
+			backgroundInformationDisplay.SetActive(true);
+			informationDisplay.text = "Level up to increase your max health by 20. Each level up cost 70 crystals."; 
+			displayNum = 5;
+		} else {
+			backgroundInformationDisplay.SetActive(false);
+			informationDisplay.text = "";
+			displayNum = 0;
+		}
+	}
+	public void infoEfficiency(){
+		if (displayNum != 6) {
+			backgroundInformationDisplay.SetActive(true);
+			informationDisplay.text = "Level up to increase your energy gain efficiency by 10%. Each level up cost 70 crystals."; 
+			displayNum = 6;
+		} else {
+			backgroundInformationDisplay.SetActive(false);
+			informationDisplay.text = "";
+			displayNum = 0;
+		}
 	}
 
 	public void increaseFire(){
