@@ -474,7 +474,7 @@ MonoBehaviour:
   mouseDownLocation: {x: 0, y: 0}
   moveTarget: {x: 0, y: 0}
   timeCounter: 1
-  energyLossRate: 0.5
+  energyLossRate: 1
   levelCap: 3
   lightningEffect: {fileID: 1502408209708092, guid: 58198a1d6e095b740b9f98eb88154987,
     type: 2}
