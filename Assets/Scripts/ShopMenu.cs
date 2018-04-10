@@ -36,6 +36,7 @@ public class ShopMenu : MonoBehaviour {
 	public Button efficiencyDownButton;
 
 	public TextMeshProUGUI informationDisplay;
+	public TextMeshProUGUI costDisplay;
 	public GameObject backgroundInformationDisplay;
 	public int displayNum=0;
 
@@ -46,13 +47,26 @@ public class ShopMenu : MonoBehaviour {
 	public Button maxHealthText;
 	public Button efficiencyText;
 
+	public GameObject mePRECIOUS;
+	public Vector3 whereMePRECIOUS;
 
-	int firecost = 50;
-	int watercost = 50;
-	int lightningcost = 50;
-	int earthcost = 50;
-	int healthcost = 70;
-	int efficiencycost = 70;
+	public GameObject meFire;
+	public Vector3 whereMeFire;
+	public GameObject meWater;
+	public Vector3 whereMeWater;
+	public GameObject meLightning;
+	public Vector3 whereMeLightning;
+	public GameObject meEarth;
+	public Vector3 whereMeEarth;
+	public GameObject meHealth;
+	public Vector3 whereMeHealth;
+
+	int firecost;
+	int watercost;
+	int lightningcost;
+	int earthcost;
+	int healthcost;
+	int efficiencycost;
 
 	// Use this for initialization
 	void Start () {
@@ -92,21 +106,62 @@ public class ShopMenu : MonoBehaviour {
 		maxHealthText.onClick.AddListener (infoMaxHealth);
 		efficiencyText.onClick.AddListener (infoEfficiency);
 
+		
+		whereMePRECIOUS = mePRECIOUS.transform.position;
+		whereMeFire = meFire.transform.position;
+		whereMeWater = meWater.transform.position;
+		whereMeLightning = meLightning.transform.position;
+		whereMeEarth = meEarth.transform.position;
+		whereMeHealth = meHealth.transform.position;
+
+		firecost = getCostPower (GameManager.getFireCap());
+		watercost = getCostPower (GameManager.getWaterCap());
+		lightningcost = getCostPower (GameManager.getLightningCap());
+		earthcost = getCostPower (GameManager.getEarthCap());
+		healthcost = getCostHP (GameManager.getMaxHealth());
 	}
 
 	void Update(){
 		gold = GameManager.getGold ();
 		goldDisplay.text = gold.ToString();
+
+		firecost = getCostPower (GameManager.getFireCap());
+		watercost = getCostPower (GameManager.getWaterCap());
+		lightningcost = getCostPower (GameManager.getLightningCap());
+		earthcost = getCostPower (GameManager.getEarthCap());
+		healthcost = getCostHP (GameManager.getMaxHealth());
+	}
+
+	public int getCostHP(int currentLevel){
+		return Mathf.RoundToInt(Mathf.Pow (currentLevel / 10.0f, 3));
+	}
+
+	public int getCostPower(int currentLevel){
+		return Mathf.RoundToInt (50*Mathf.Pow (currentLevel, 3));
 	}
 
 	public void infoFire(){
 		if (displayNum != 1) {
-			backgroundInformationDisplay.SetActive(true);
-			informationDisplay.text = "Level up to increase your cap on firepower. Each level up cost 50 crystals."; 
+			//backgroundInformationDisplay.SetActive(true);
+			//informationDisplay.text = "Level up to increase your cap on firepower. Each level up cost 50 crystals."; 
+			mePRECIOUS.SetActive(true);
+			costDisplay.transform.position = new Vector3 (whereMePRECIOUS.x + 80, whereMePRECIOUS.y, whereMePRECIOUS.z);
+			costDisplay.text = "-"+firecost;
+
+			meFire.SetActive (true);
+			informationDisplay.transform.position = new Vector3(whereMeFire.x + 80, whereMeFire.y, whereMeFire.z);
+			informationDisplay.text = "+1 Max Level";
+
 			displayNum = 1;
 		} else {
-			backgroundInformationDisplay.SetActive(false);
+			//backgroundInformationDisplay.SetActive(false);
+			//informationDisplay.text = "";
+			mePRECIOUS.SetActive (false);
+			costDisplay.text = "";
+			meFire.SetActive (false);
 			informationDisplay.text = "";
+
+
 			displayNum = 0;
 		}
 	}

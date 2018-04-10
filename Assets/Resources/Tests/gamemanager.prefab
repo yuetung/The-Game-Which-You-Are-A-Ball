@@ -86,7 +86,7 @@ MonoBehaviour:
     i14: 229
     i15: 136
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114511249060835158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -147,17 +147,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileDefault: {fileID: 50782933194062984, guid: bd5724900e5b551408d15391d3bfe8f6,
     type: 2}
+  projectileFire0: {fileID: 0}
   projectileFire1: {fileID: 50782933194062984, guid: d850a7b457631d240b68fbb0d45e4722,
     type: 2}
   projectileFire2: {fileID: 50782933194062984, guid: 1c25e549c243e964096e9563f9272c27,
     type: 2}
   projectileFire3: {fileID: 0}
+  projectileWater0: {fileID: 0}
   projectileWater1: {fileID: 50380027908743010, guid: 2a0c15af4f3249d419b98a774edc8246,
     type: 2}
   projectileWater2: {fileID: 50806736268402232, guid: 6791aa693f4e1c8468eba96595530cbd,
     type: 2}
   projectileWater3: {fileID: 50677897223881650, guid: 18641721a4d4ddc42b4fa5649402a2f7,
     type: 2}
+  projectileLightning0: {fileID: 0}
   projectileLightning1: {fileID: 50630128092692992, guid: 1da9ed422ad95164783e3c37abcfd11a,
     type: 2}
   projectileLightning2: {fileID: 50919722552886748, guid: c2587aff0f5d2d74ebc395fac94e0b49,
@@ -168,7 +171,3 @@ MonoBehaviour:
   projectileEarth2: {fileID: 50569103260845596, guid: e732c83b5d5a04a4aad88f7345737bfe,
     type: 2}
   projectileEarth3: {fileID: 0}
-  projectileWind1: {fileID: 0}
-  projectileWind2: {fileID: 0}
-  projectileWind3: {fileID: 0}
-  projectileAntimatter: {fileID: 0}
