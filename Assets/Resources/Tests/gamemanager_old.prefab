@@ -1,0 +1,168 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1777289820506282}
+  m_IsPrefabParent: 1
+--- !u!1 &1777289820506282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4854788960924700}
+  - component: {fileID: 114227981007185318}
+  - component: {fileID: 114110750494263096}
+  - component: {fileID: 114223937806373412}
+  - component: {fileID: 114118878012572250}
+  - component: {fileID: 114289286347516262}
+  m_Layer: 0
+  m_Name: gamemanager_old
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4854788960924700
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777289820506282}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114110750494263096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777289820506282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c09fabf9caca1994eaaac92f9eb483fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileDefault: {fileID: 50782933194062984, guid: bd5724900e5b551408d15391d3bfe8f6,
+    type: 2}
+  projectileFire1: {fileID: 50782933194062984, guid: d850a7b457631d240b68fbb0d45e4722,
+    type: 2}
+  projectileFire2: {fileID: 50782933194062984, guid: 1c25e549c243e964096e9563f9272c27,
+    type: 2}
+  projectileFire3: {fileID: 0}
+  projectileWater1: {fileID: 50380027908743010, guid: 2a0c15af4f3249d419b98a774edc8246,
+    type: 2}
+  projectileWater2: {fileID: 50806736268402232, guid: 6791aa693f4e1c8468eba96595530cbd,
+    type: 2}
+  projectileWater3: {fileID: 0}
+  projectileLightning1: {fileID: 0}
+  projectileLightning2: {fileID: 0}
+  projectileLightning3: {fileID: 0}
+  projectileEarth1: {fileID: 0}
+  projectileEarth2: {fileID: 0}
+  projectileEarth3: {fileID: 0}
+  projectileWind1: {fileID: 0}
+  projectileWind2: {fileID: 0}
+  projectileWind3: {fileID: 0}
+  projectileAntimatter: {fileID: 0}
+--- !u!114 &114118878012572250
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777289820506282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 46
+    i1: 77
+    i2: 54
+    i3: 248
+    i4: 45
+    i5: 42
+    i6: 132
+    i7: 103
+    i8: 154
+    i9: 22
+    i10: 74
+    i11: 1
+    i12: 85
+    i13: 228
+    i14: 84
+    i15: 44
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &114223937806373412
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777289820506282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b85b2996207c884f8d9a231014acb48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114227981007185318
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777289820506282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37915a3bc42d4c9abab3b5936bb6ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  energy: 0
+  elementType: 0
+  level: 1
+  playerController: {fileID: 0}
+  mainHealthDisplay: {fileID: 114554628603096446, guid: 3cfe92686ddb54d52ab0613bbf8100a6,
+    type: 2}
+  mainEnergyDisplay: {fileID: 114015479422856198, guid: 3cfe92686ddb54d52ab0613bbf8100a6,
+    type: 2}
+  mainElementDisplay: {fileID: 114562779242599610, guid: 3cfe92686ddb54d52ab0613bbf8100a6,
+    type: 2}
+  mainLevelDisplay: {fileID: 114199630605204482, guid: 3cfe92686ddb54d52ab0613bbf8100a6,
+    type: 2}
+  mainGameOverDisplay: {fileID: 114661337866471286, guid: 3cfe92686ddb54d52ab0613bbf8100a6,
+    type: 2}
+  HealthBar: {fileID: 114227069269022472, guid: 3cfe92686ddb54d52ab0613bbf8100a6,
+    type: 2}
+  LoadingBar: {fileID: 224795317823465558, guid: f55a2c33ad4414296ac61eefb6b53b0a,
+    type: 2}
+  LevelText2: {fileID: 114199630605204482, guid: 3cfe92686ddb54d52ab0613bbf8100a6,
+    type: 2}
+  counter: 1
+--- !u!114 &114289286347516262
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777289820506282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a645842cfdec7440988736d0693433f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightningEffect: {fileID: 0}
+  projectileFactory: {fileID: 0}
