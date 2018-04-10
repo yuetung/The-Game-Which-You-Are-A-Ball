@@ -15,7 +15,7 @@ public class GUIManager : NetworkBehaviour {
 	public Text mainEnergyDisplay;
 	public Text mainElementDisplay;
 	public Text mainLevelDisplay;
-    public Text mainGameOverDisplay;
+	public GameObject GameOverCanvas;
 
 	public Slider HealthBar;
 	public Transform LoadingBar;
@@ -46,7 +46,6 @@ public class GUIManager : NetworkBehaviour {
 		mainEnergyDisplay.text = "Energy: 0";
 		mainElementDisplay.text = "Element: Default";
 		mainLevelDisplay.text = "Level: 1";
-		mainGameOverDisplay.text = "";
 		HealthBar.value = 1.0f;
 		LoadingBar.GetComponent<Image> ().fillAmount = 0.0f;
 		LevelText2.text = "1";
@@ -58,12 +57,12 @@ public class GUIManager : NetworkBehaviour {
 	}
 
 	public void EndGame(){
-		mainGameOverDisplay.text = "GAME OVER";
+		GameOverCanvas.SetActive (true);
 	}
 
     public void WinGame()
     {
-        mainGameOverDisplay.text = "YOU WIN";
+        //mainGameOverDisplay.text = "YOU WIN";
     }
 
     public void updateEnergy(int amount){
