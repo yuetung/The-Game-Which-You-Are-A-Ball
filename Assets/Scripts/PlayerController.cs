@@ -19,6 +19,7 @@ public class PlayerController : NetworkBehaviour {
     public ElementType elementType = ElementType.Default;
     public int energy = 0;
     public int elementLevel = 0;
+	public bool testModeanualHealth = false;
     public int maxHealth = 100;
     [SyncVar]
     public int health;
@@ -58,7 +59,9 @@ public class PlayerController : NetworkBehaviour {
 
     // Use this for initialization
     public void Start() {
-        health = maxHealth;
+		if (!testModeanualHealth)
+			maxHealth = GameManager.getMaxHealth ();
+		health = maxHealth;
 		moveSpeed = defaultMoveSpeed;
         _animator = gameObject.GetComponent<Animator>();
         _rigidbody = gameObject.GetComponent<Rigidbody2D>();

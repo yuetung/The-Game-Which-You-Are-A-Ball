@@ -16203,17 +16203,17 @@ Prefab:
     - target: {fileID: 114391248363121152, guid: 634449adabb8902488d543d97db69c90,
         type: 2}
       propertyPath: tier3Reward
-      value: 20
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114391248363121152, guid: 634449adabb8902488d543d97db69c90,
         type: 2}
       propertyPath: tier2Reward
-      value: 30
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 114391248363121152, guid: 634449adabb8902488d543d97db69c90,
         type: 2}
       propertyPath: tier1Reward
-      value: 50
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 114391248363121152, guid: 634449adabb8902488d543d97db69c90,
         type: 2}
@@ -33374,12 +33374,12 @@ Prefab:
     - target: {fileID: 114703388899750424, guid: bb1c092b50da9104cb784afddd1ef372,
         type: 2}
       propertyPath: maxValue
-      value: 25
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114703388899750424, guid: bb1c092b50da9104cb784afddd1ef372,
         type: 2}
       propertyPath: minValue
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb1c092b50da9104cb784afddd1ef372, type: 2}
