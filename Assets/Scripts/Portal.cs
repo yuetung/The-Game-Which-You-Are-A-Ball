@@ -28,6 +28,8 @@ public class Portal : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "Player") {
+			LevelCleared levelCleared = levelClearedCanvas.GetComponent<LevelCleared> ();
+			levelClearedCanvas.SetActive(true);
 			Debug.Log ("level up");
 			float timeTaken = Time.time - startTime;
 			Debug.Log ("Time taken = " + timeTaken);
@@ -35,20 +37,28 @@ public class Portal : MonoBehaviour {
 			int currentGold = GameManager.getGold ();
 			Debug.Log ("current Gold is " + currentGold);
 			if (timeTaken <= tier1Time) {
-				Debug.Log ("Awarded " + tier1Reward+" Gold");
-				PlayerPrefs.SetInt("Stars",3);
+				Debug.Log ("3 star");
+				Debug.Log ("Awarded " + tier1Reward + " Gold");
+				levelCleared.setStar (3);
+				//levelCleared.setGoldReward(tier1Reward);
 				GameManager.setGold (currentGold + tier1Reward);
 			} else if (timeTaken <= tier2Time) {
-				Debug.Log ("Awarded " + tier2Reward+" Gold");
-				PlayerPrefs.SetInt("Stars",2);
+				Debug.Log ("2 star");
+				Debug.Log ("Awarded " + tier2Reward + " Gold");
+				levelCleared.setStar (2);
 				GameManager.setGold (currentGold + tier2Reward);
 			} else if (timeTaken <= tier3Time) {
-				Debug.Log ("Awarded " + tier3Reward+" Gold");
-				PlayerPrefs.SetInt("Stars",1);
+				Debug.Log ("1 star");
+				Debug.Log ("Awarded " + tier3Reward + " Gold");
+				levelCleared.setStar (1);
 				GameManager.setGold (currentGold + tier3Reward);
-			} 
+			} else {
+				Debug.Log ("0 star");
+				levelCleared.setStar (0);
+			}
 			//TODO: Set LevelCleared Active
-			levelClearedCanvas.SetActive(true);
+
+			//levelCleared.setTimeTaken ();
 
 			//TODO: assign reward here based on time taken
 			levelSelect.WinLevel ();

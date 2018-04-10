@@ -24,12 +24,10 @@ public class LevelCleared : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		setStar ();
-		setTimeTaken();
+		setTimeTaken ();
 	}
 
-	public void setStar(){
-		starsNo=PlayerPrefs.GetInt ("Stars");
+	public void setStar(int starsNo){
 		if (starsNo == 0) {     starImage1.SetActive (false);starImage2.SetActive (false);starImage3.SetActive (false);		} 
 		else if (starsNo == 1) {starImage1.SetActive (true);starImage2.SetActive (false);starImage3.SetActive (false);} 
 		else if (starsNo == 2) {starImage1.SetActive (true);starImage2.SetActive (true);starImage3.SetActive (false);}
