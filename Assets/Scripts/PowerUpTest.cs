@@ -16,6 +16,8 @@ public class PowerUpTest : MonoBehaviour {
 		GameObject powerup = (GameObject)Instantiate(powerupPrefab, currPos, new Quaternion());
 		var playerPrefab = Resources.Load ("Tests/player");
 		GameObject player = (GameObject)Instantiate (playerPrefab, currPos,new Quaternion());
+		gm.GetComponent<GUIManager> ().register (player);
+		player.GetComponent<PlayerController> ().testMode = true;
 		NetworkServer.Listen (7777);
 
 		yield return new WaitForSeconds(5);

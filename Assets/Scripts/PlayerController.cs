@@ -357,7 +357,11 @@ public class PlayerController : NetworkBehaviour {
             color = Color.grey;
         }
         updateTrailRenderer(color);
-        CmdUpdateTrailRenderer(color);
+		if (testMode == true) {
+			return;
+		}
+		CmdUpdateTrailRenderer(color);
+        
     }
 
     [Command]
@@ -377,7 +381,7 @@ public class PlayerController : NetworkBehaviour {
     }
 
     public void depleteHealth(int damage) {
-        if (!isLocalPlayer)
+		if (!isLocalPlayer && !testMode)
         {
             return;
         }
@@ -389,9 +393,13 @@ public class PlayerController : NetworkBehaviour {
             //Instantiate (explosionPrefab, transform.position, transform.rotation);
             guiManager.updateAll();
             Debug.Log("someone died");
-			if (currentEarthProjectileSpawner != null)
+			if (currentEarthProjectileSpawner != null && testMode==false)
 				Destroy (currentEarthProjectileSpawner);
-            CmdUpdateEnd();
+			if (testMode == true) {
+				Destroy (gameObject);
+				return;
+			}
+			CmdUpdateEnd();
             CmdDestroySelf();
         } else {
             health -= damage;

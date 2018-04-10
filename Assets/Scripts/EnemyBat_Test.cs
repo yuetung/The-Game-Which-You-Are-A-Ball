@@ -201,7 +201,7 @@ public class EnemyBat_Test: MonoBehaviour {
 		Vector3 vec = GameObject.FindGameObjectWithTag ("Enemy").transform.position;
 		Vector3 vec_round = new Vector3 (Mathf.Round (vec.x), Mathf.Round (vec.y),Mathf.Round (vec.z)); //rounds postion to nearest integer
 
-		Assert.AreEqual (new Vector3(10f,10f,0),vec_round );
+		Assert.AreEqual (new Vector3(2f,2f,0),vec_round );
 	}
 	[UnityTest]
 	public IEnumerator Enemy_BatWayPoint2() {
