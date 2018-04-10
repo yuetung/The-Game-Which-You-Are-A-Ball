@@ -1,32 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\AOEExplosion.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Canvas\LevelCleared.cs">
     <Files>
-      <File FileName="Assets\Scripts\ProjectilePatternFactory.cs" Line="12" Column="17" />
-      <File FileName="Assets\Scripts\Enemy.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BreakableWall.cs" Line="31" Column="11" />
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="215" Column="1" />
-      <File FileName="Assets\Scripts\EarthProjectileSpawner.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerInteractionTest.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ProjectileController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\AOEExplosion.cs" Line="23" Column="48" />
-      <File FileName="Assets\Scripts\PowerUpPickup.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PowerUpSpawner.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GUIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LevelSelect\LevelSelect.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MainMenu\MainMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PauseMenuList.cs" Line="27" Column="1" />
+      <File FileName="Assets\Scripts\PauseMenu.cs" Line="35" Column="1" />
+      <File FileName="Assets\Scripts\Canvas\LevelCleared.cs" Line="43" Column="71" />
+      <File FileName="Assets\Scripts\Canvas\GameOver.cs" Line="20" Column="3" />
+      <File FileName="Assets\Scripts\MainMenu\MainMenu.cs" Line="39" Column="23" />
       <File FileName="Assets\Scripts\MainMenu\LevelSelectMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SetParent.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MainMenu\NetworkManager_Custom.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Collectible.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerTest.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MonsterRoomSpawner.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MonsterRoomTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Portal.cs" Line="12" Column="30" />
-      <File FileName="Assets\Scripts\HintsBoard.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ProjectileFactory.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PowerUpSpawnerTest.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MainMenu\NetworkManager_Custom.cs" Line="15" Column="19" />
+      <File FileName="Assets\Scripts\Portal.cs" Line="54" Column="28" />
+      <File FileName="Assets\Scripts\LevelSelect\LevelSelect.cs" Line="24" Column="1" />
+      <File FileName="Assets\Scripts\ShopMenu.cs" Line="99" Column="38" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="125" Column="38" />
+      <File FileName="Assets\Scripts\GUIManager.cs" Line="65" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
