@@ -104,6 +104,25 @@ public class ProjectilePatternFactory : NetworkBehaviour {
 			}
 		}
 
+		if (pattern == "shoot18lv2Fireball360DegreeSpread") {
+			for (int i = 0; i < 18; i++) {
+				Rigidbody2D projectile = projectileFactory.getProjectileFromType (PlayerController.ElementType.Fire, 2);
+				Rigidbody2D clone;
+				clone = Instantiate (projectile, startPosition, transform.rotation) as Rigidbody2D;
+				GameObject cloneGameObject = clone.gameObject;
+				if (belongToPlayer) {
+					cloneGameObject.GetComponent<ProjectileController> ().belongsToPlayer ();
+				}
+				float rotation = Mathf.Atan2 (shootDirection.y, shootDirection.x) * Mathf.Rad2Deg+20*i;
+				cloneGameObject.GetComponent<ProjectileController> ().setRotation (rotation);
+				//float vx = cloneGameObject.transform.right*projectile.GetComponent<ProjectileController> ().projectileSpeed;
+				//float vy = cloneGameObject.transform.up*projectile.GetComponent<ProjectileController> ().projectileSpeed;
+				Vector2 velocity = new Vector2(Mathf.Cos(rotation*Mathf.Deg2Rad),Mathf.Sin(rotation*Mathf.Deg2Rad)).normalized*cloneGameObject.GetComponent<ProjectileController> ().projectileSpeed;
+				cloneGameObject.GetComponent<ProjectileController> ().setVelocity (velocity);
+				NetworkServer.Spawn (cloneGameObject);
+			}
+		}
+
 		if (pattern == "basicWaterball") {
 			Rigidbody2D projectile = projectileFactory.getProjectileFromType (PlayerController.ElementType.Water, 1);
 			Rigidbody2D clone;
@@ -117,6 +136,7 @@ public class ProjectilePatternFactory : NetworkBehaviour {
 			cloneGameObject.GetComponent<ProjectileController> ().setVelocityAndRotation (velocity,rotation);
 			NetworkServer.Spawn (cloneGameObject);
 		}
+
 		if (pattern == "weakWaterball") {
 			Rigidbody2D projectile = projectileFactory.getProjectileFromType (PlayerController.ElementType.Water, 0);
 			Rigidbody2D clone;
@@ -129,6 +149,24 @@ public class ProjectilePatternFactory : NetworkBehaviour {
 			Vector2 velocity = shootDirection.normalized * cloneGameObject.GetComponent<ProjectileController>().projectileSpeed;
 			cloneGameObject.GetComponent<ProjectileController> ().setVelocityAndRotation (velocity,rotation);
 			NetworkServer.Spawn (cloneGameObject);
+		}
+		if (pattern == "shoot5lv3Waterball360DegreeSpread") {
+			for (int i = 0; i < 5; i++) {
+				Rigidbody2D projectile = projectileFactory.getProjectileFromType (PlayerController.ElementType.Water, 3);
+				Rigidbody2D clone;
+				clone = Instantiate (projectile, startPosition, transform.rotation) as Rigidbody2D;
+				GameObject cloneGameObject = clone.gameObject;
+				if (belongToPlayer) {
+					cloneGameObject.GetComponent<ProjectileController> ().belongsToPlayer ();
+				}
+				float rotation = Mathf.Atan2 (shootDirection.y, shootDirection.x) * Mathf.Rad2Deg+72*i;
+				cloneGameObject.GetComponent<ProjectileController> ().setRotation (rotation);
+				//float vx = cloneGameObject.transform.right*projectile.GetComponent<ProjectileController> ().projectileSpeed;
+				//float vy = cloneGameObject.transform.up*projectile.GetComponent<ProjectileController> ().projectileSpeed;
+				Vector2 velocity = new Vector2(Mathf.Cos(rotation*Mathf.Deg2Rad),Mathf.Sin(rotation*Mathf.Deg2Rad)).normalized*cloneGameObject.GetComponent<ProjectileController> ().projectileSpeed;
+				cloneGameObject.GetComponent<ProjectileController> ().setVelocity (velocity);
+				NetworkServer.Spawn (cloneGameObject);
+			}
 		}
 		if (pattern == "shoot4Waterball360DegreeSpread0") {
 			for (int i = 0; i < 4; i++) {
