@@ -105,7 +105,7 @@ public class ProjectilePatternFactory : NetworkBehaviour {
 		}
 
 		if (pattern == "basicWaterball") {
-			Rigidbody2D projectile = projectileFactory.getProjectileFromType (PlayerController.ElementType.Water, 2);
+			Rigidbody2D projectile = projectileFactory.getProjectileFromType (PlayerController.ElementType.Water, 1);
 			Rigidbody2D clone;
 			clone = Instantiate (projectile, startPosition, transform.rotation) as Rigidbody2D;
 			GameObject cloneGameObject = clone.gameObject;
