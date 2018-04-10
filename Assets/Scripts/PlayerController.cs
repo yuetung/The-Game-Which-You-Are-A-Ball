@@ -26,6 +26,7 @@ public class PlayerController : NetworkBehaviour {
     public Vector2 moveTarget;  // target point to move player towards
     public float timeCounter = 1.0f;
     public float energyLossRate = 0.5f;
+	public bool paused;
 
     // element level caps from user pref
     // hmm..maybe i shld get it from game manager instead of direct...?
@@ -81,16 +82,21 @@ public class PlayerController : NetworkBehaviour {
     // Update is called once per frame
     public void Update() {
 
-        if (!isLocalPlayer && !testMode) {
+		if (!isLocalPlayer && !testMode) {
             return;
         }
-
         // Mouse Down
         if (Input.GetMouseButtonDown(0)) { // Record initial mouseDown location
             mouseDownLocation = Input.mousePosition;
         }
+		if (paused) {
+			//forget all mouse click when paused
+			mouseDownLocation=Vector2.zero;
+			return;
+		}
         // Mouse Released: considered click if mouse release location is close to mouse down location, considered drag otherwise
         if (Input.GetMouseButtonUp(0)) { // Record mouseUp location to determine click vs drag
+			if (mouseDownLocation==Vector2.zero) return;
             Vector2 mouseUpLocation = Input.mousePosition;
             Vector2 shootDirection = mouseUpLocation - mouseDownLocation;
 

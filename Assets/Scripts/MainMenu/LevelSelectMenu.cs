@@ -45,6 +45,7 @@ public class LevelSelectMenu : MonoBehaviour {
 	}
 
 	public void Reset(){
+		PlayerPrefs.DeleteAll ();
 		PlayerPrefs.SetInt ("LevelReached", 1);
 	}
 

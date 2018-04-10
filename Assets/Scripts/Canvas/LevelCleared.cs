@@ -11,20 +11,25 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class LevelCleared : MonoBehaviour {
 	public TextMeshProUGUI timeTakenDisplay;
+	public TextMeshProUGUI gemRewardDisplay;
 	public GameObject starImage1;
 	public GameObject starImage2;
 	public GameObject starImage3;
-
+	private GameObject player;
 	private int starsNo;
 	private float timeTaken;
+	private int gemReward;
 	// Use this for initialization
 	void Start () {
-		
+		setTimeTaken ();
+		if (player==null)
+			player = GameObject.FindGameObjectWithTag ("Player");
+		player.GetComponent<PlayerController> ().paused = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		setTimeTaken ();
+		
 	}
 
 	public void setStar(int starsNo){
@@ -35,12 +40,20 @@ public class LevelCleared : MonoBehaviour {
 	}
 	public void setTimeTaken(){
 		timeTaken=PlayerPrefs.GetFloat ("Timetaken");
-		timeTakenDisplay.text = timeTaken.ToString();
+		timeTakenDisplay.text = Mathf.Round(timeTaken*10f)/10.0+" s";
 	}
+
+	public void setGemReward(int amount){
+		gemRewardDisplay.text = "+"+amount;
+	}
+
 	public void nextLevel(){
 		NetworkManager_Custom nw = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<NetworkManager_Custom>();
 		nw.ServerChangeScene ("Level" + (PlayerPrefs.GetInt ("LevelReached")));
 		Time.timeScale = 1f;
+		if (player==null)
+			player = GameObject.FindGameObjectWithTag ("Player");
+		player.GetComponent<PlayerController> ().paused = false;
 	}
 	public void MainMenu(){
 		GameObject networkManager = GameObject.FindGameObjectWithTag("NetworkManager");

@@ -40,17 +40,19 @@ public class Portal : MonoBehaviour {
 				Debug.Log ("3 star");
 				Debug.Log ("Awarded " + tier1Reward + " Gold");
 				levelCleared.setStar (3);
-				//levelCleared.setGoldReward(tier1Reward);
+				levelCleared.setGemReward(tier1Reward);
 				GameManager.setGold (currentGold + tier1Reward);
 			} else if (timeTaken <= tier2Time) {
 				Debug.Log ("2 star");
 				Debug.Log ("Awarded " + tier2Reward + " Gold");
 				levelCleared.setStar (2);
+				levelCleared.setGemReward(tier2Reward);
 				GameManager.setGold (currentGold + tier2Reward);
 			} else if (timeTaken <= tier3Time) {
 				Debug.Log ("1 star");
 				Debug.Log ("Awarded " + tier3Reward + " Gold");
 				levelCleared.setStar (1);
+				levelCleared.setGemReward(tier3Reward);
 				GameManager.setGold (currentGold + tier3Reward);
 			} else {
 				Debug.Log ("0 star");
