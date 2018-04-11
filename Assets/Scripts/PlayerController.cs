@@ -20,7 +20,9 @@ public class PlayerController : NetworkBehaviour {
     public int energy = 0;
     public int elementLevel = 0;
 	public bool testModeanualHealth = false;
-    public int maxHealth = 100;
+//	public int maxHealth = GameManager.getMaxHealth();
+	public int maxHealth;
+//	public int maxHealth = 100;
     [SyncVar]
     public int health;
     public Vector2 mouseDownLocation; // where the mouse is initially held down
