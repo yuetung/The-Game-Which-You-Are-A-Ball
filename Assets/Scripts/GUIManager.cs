@@ -26,6 +26,7 @@ public class GUIManager : NetworkBehaviour {
 
 	Coroutine currentLevelTextCoroutine;
 	Coroutine currentBarCoroutine;
+	bool gameBegin = false;
 
 	// Possible element types (copied from PlayerController.cs
 //	public enum ElementType {
@@ -103,10 +104,15 @@ public class GUIManager : NetworkBehaviour {
 
 			HealthBar.value = health2;
 
-			currentBarCoroutine = StartCoroutine(flashBar(HealthBar));
+			// dont flash the health bar at the start...
+			if (gameBegin) {
+				currentBarCoroutine = StartCoroutine (flashBar (HealthBar));
+			}
+
 
 			Debug.Log ("updating health");
 		}
+		gameBegin = true;
 
 	}
 
