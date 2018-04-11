@@ -1,20 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour {
 
 	public static bool GameIsPaused = false;
 	public GameObject pauseMenuUI;
 	public GameObject shopMenuUI;
+	private GameObject player;
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Escape)) {
-			if (GameIsPaused) {
-				Resume ();
-			} else {
-				Pause();
-			}
+			Pausing ();
+		}
+	}
+	public void Pausing(){
+		
+		if (GameIsPaused) {
+			Debug.Log ("Resuming");
+			Resume ();
+		} else {
+			Debug.Log ("Pausing");
+			Pause ();
 		}
 	}
 	public void Resume(){
@@ -25,11 +33,17 @@ public class PauseMenu : MonoBehaviour {
         }
 		Time.timeScale = 1f;
 		GameIsPaused = false;
+		if (player==null)
+			player = GameObject.FindGameObjectWithTag ("Player");
+		player.GetComponent<PlayerController> ().paused = false;
 	}
 	public void Pause(){
 		pauseMenuUI.SetActive (true);
 		Time.timeScale = 0f;
 		GameIsPaused = true;
+		if (player==null)
+			player = GameObject.FindGameObjectWithTag ("Player");
+		player.GetComponent<PlayerController> ().paused = true;
 	}
 }
 

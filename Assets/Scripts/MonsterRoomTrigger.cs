@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MonsterRoomTrigger : MonoBehaviour {
 
+	public bool hasBossMonster = false;
+	public GameObject[] bossEnemies;
 	// Use this for initialization
 	void Start () {
 		
@@ -19,7 +21,13 @@ public class MonsterRoomTrigger : MonoBehaviour {
 		if (other.tag == "Player") {
 			MonsterRoomSpawner spawner = GetComponentInParent<MonsterRoomSpawner> ();
 			spawner.Spawn ();
+			if (hasBossMonster){
+				for (int i = 0; i < bossEnemies.Length; i++) {
+					bossEnemies [i].GetComponent<BossEnemy> ().openEye ();
+				}
+			}
 		}
 	}
+
 
 }

@@ -124,8 +124,8 @@ public class PowerUpSpawnerTest : MonoBehaviour{
 		Vector3 spawnerPos = powerupSpawner.transform.position;
 		//location = new Vector3(transform.position.x+Random.Range(-width_x / 2, width_x / 2), 
 		//transform.position.y+Random.Range(-height_y / 2, height_y / 2), 0);
-		Vector3 playerStartPos = new Vector3 (spawnerPos.x + Random.Range (powerupspawnerScript.width_x / 2 + 1, 2 * (powerupspawnerScript.width_x + 1)),
-			                         spawnerPos.y + Random.Range (powerupspawnerScript.height_y / 2 + 1, 2 * (powerupspawnerScript.height_y + 1)), 0);
+		Vector3 playerStartPos = new Vector3 (spawnerPos.x + Random.Range (powerupspawnerScript.width_x / 2 + 10, 2 * (powerupspawnerScript.width_x + 10)),
+			                         spawnerPos.y + Random.Range (powerupspawnerScript.height_y / 2 + 10, 2 * (powerupspawnerScript.height_y + 10)), 0);
 		
 		GameObject player = (GameObject)Instantiate (playerPrefab, playerStartPos,new Quaternion());
 		NetworkServer.Listen (7777);
@@ -133,7 +133,7 @@ public class PowerUpSpawnerTest : MonoBehaviour{
 		yield return new WaitForSeconds(5);
 
 		GameObject[] spawnedPowerUp = GameObject.FindGameObjectsWithTag("PowerUp");
-		Assert.AreEqual(spawnedPowerUp.Length,0);
+		Assert.AreEqual(0,spawnedPowerUp.Length);
 
 	}
 

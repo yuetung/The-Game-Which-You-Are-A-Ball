@@ -11,9 +11,12 @@ public class PlayerInteractionTest : MonoBehaviour {
 	 */
 	[UnityTest]
 	public IEnumerator TestPlayerWithPowerUp1() {
-		Instantiate(Resources.Load("Tests/gamemanager"));
+		GameObject gameManager = (GameObject)Instantiate(Resources.Load("Tests/gamemanager"));
 		var playerPrefab = Resources.Load ("Tests/player");
 		GameObject player = (GameObject)Instantiate(playerPrefab);
+		gameManager.GetComponent<GUIManager> ().register (player);
+		player.GetComponent<PlayerController> ().testMode = true;
+
 		NetworkServer.Listen (7777);
 
 		yield return new WaitForSeconds (2);
@@ -26,19 +29,28 @@ public class PlayerInteractionTest : MonoBehaviour {
 		powerup.GetComponent<PowerUpPickup> ().energy = setEnergy;
 		powerup.GetComponent<PowerUpPickup> ().elementType = setElement;
 
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds (1);
+		float lossRate = player.GetComponent<PlayerController> ().energyLossRate;
+		yield return new WaitForSeconds(4);
 		GameObject newplayer = GameObject.FindGameObjectWithTag("Player");
 		int newEnergy = newplayer.GetComponent<PlayerController> ().energy;
 		PlayerController.ElementType newElement = newplayer.GetComponent<PlayerController> ().elementType;
-		var check = (newEnergy == setEnergy && newElement == setElement);
+		
+		Debug.Log (newEnergy);
+		Debug.Log (setEnergy-(lossRate*5));
+		Debug.Log (newElement);
+		Debug.Log (setElement);
+		var check = (newEnergy == (setEnergy-(lossRate*5)) && newElement == setElement);
 		Assert.That (check);
 	}
 
 	[UnityTest]
 	public IEnumerator TestPlayerWithPowerUp2() {
-		Instantiate(Resources.Load("Tests/gamemanager"));
+		GameObject gameManager = (GameObject)Instantiate(Resources.Load("Tests/gamemanager"));
 		var playerPrefab = Resources.Load ("Tests/player");
 		GameObject player = (GameObject)Instantiate(playerPrefab);
+		gameManager.GetComponent<GUIManager> ().register (player);
+		player.GetComponent<PlayerController> ().testMode = true;
 		NetworkServer.Listen (7777);
 
 		yield return new WaitForSeconds (2);
@@ -51,19 +63,23 @@ public class PlayerInteractionTest : MonoBehaviour {
 		powerup.GetComponent<PowerUpPickup> ().energy = setEnergy;
 		powerup.GetComponent<PowerUpPickup> ().elementType = setElement;
 
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds (1);
+		float lossRate = player.GetComponent<PlayerController> ().energyLossRate;
+		yield return new WaitForSeconds(4);
 		GameObject newplayer = GameObject.FindGameObjectWithTag("Player");
 		int newEnergy = newplayer.GetComponent<PlayerController> ().energy;
 		PlayerController.ElementType newElement = newplayer.GetComponent<PlayerController> ().elementType;
-		var check = (newEnergy == setEnergy && newElement == setElement);
+		var check = (newEnergy == (setEnergy-(lossRate*5)) && newElement == setElement);
 		Assert.That (check);
 	}
 
 	[UnityTest]
 	public IEnumerator TestPlayerWithPowerUp3() {
-		Instantiate(Resources.Load("Tests/gamemanager"));
+		GameObject gameManager = (GameObject)Instantiate(Resources.Load("Tests/gamemanager"));
 		var playerPrefab = Resources.Load ("Tests/player");
 		GameObject player = (GameObject)Instantiate(playerPrefab);
+		gameManager.GetComponent<GUIManager> ().register (player);
+		player.GetComponent<PlayerController> ().testMode = true;
 		NetworkServer.Listen (7777);
 
 		yield return new WaitForSeconds (2);
@@ -76,19 +92,23 @@ public class PlayerInteractionTest : MonoBehaviour {
 		powerup.GetComponent<PowerUpPickup> ().energy = setEnergy;
 		powerup.GetComponent<PowerUpPickup> ().elementType = setElement;
 
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds (1);
+		float lossRate = player.GetComponent<PlayerController> ().energyLossRate;
+		yield return new WaitForSeconds(4);
 		GameObject newplayer = GameObject.FindGameObjectWithTag("Player");
 		int newEnergy = newplayer.GetComponent<PlayerController> ().energy;
 		PlayerController.ElementType newElement = newplayer.GetComponent<PlayerController> ().elementType;
-		var check = (newEnergy == setEnergy && newElement == setElement);
+		var check = (newEnergy == (setEnergy-(lossRate*5)) && newElement == PlayerController.ElementType.Default);
 		Assert.That (check);
 	}
 
 	[UnityTest]
 	public IEnumerator TestPlayerWithPowerUp4() {
-		Instantiate(Resources.Load("Tests/gamemanager"));
+		GameObject gameManager = (GameObject)Instantiate(Resources.Load("Tests/gamemanager"));
 		var playerPrefab = Resources.Load ("Tests/player");
 		GameObject player = (GameObject)Instantiate(playerPrefab);
+		gameManager.GetComponent<GUIManager> ().register (player);
+		player.GetComponent<PlayerController> ().testMode = true;
 		NetworkServer.Listen (7777);
 
 		yield return new WaitForSeconds (2);
@@ -101,11 +121,13 @@ public class PlayerInteractionTest : MonoBehaviour {
 		powerup.GetComponent<PowerUpPickup> ().energy = setEnergy;
 		powerup.GetComponent<PowerUpPickup> ().elementType = setElement;
 
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds (1);
+		float lossRate = player.GetComponent<PlayerController> ().energyLossRate;
+		yield return new WaitForSeconds(4);
 		GameObject newplayer = GameObject.FindGameObjectWithTag("Player");
 		int newEnergy = newplayer.GetComponent<PlayerController> ().energy;
 		PlayerController.ElementType newElement = newplayer.GetComponent<PlayerController> ().elementType;
-		var check = (newEnergy == setEnergy && newElement == setElement);
+		var check = (newEnergy == (setEnergy-(lossRate*5)) && newElement == PlayerController.ElementType.Default);
 		Assert.That (check);
 	}
 
@@ -113,20 +135,21 @@ public class PlayerInteractionTest : MonoBehaviour {
 
 
 	/*	@Description: Test if the player's health is reduced after being hit by projectile
-	 * 	@Parameters: projectile damage=[0,50, 99]
+	 * 	@Parameters: projectile damage=[0,10, 19]
 	 */ 
 	[UnityTest]
 	public IEnumerator TestPlayerWithProjectileHit1() {
 		GameObject gm = (GameObject)Instantiate(Resources.Load("Tests/gamemanager"));
 		var playerPrefab = Resources.Load ("Tests/player");
 		GameObject player = (GameObject)Instantiate(playerPrefab);
-		int startHealth = 100;
+		int startHealth = 20;
 		player.GetComponent<PlayerController> ().health = startHealth;
 		player.GetComponent<PlayerController> ().testMode = true;
 		gm.GetComponent<GUIManager> ().playerController = player.GetComponent<PlayerController> ();
 		NetworkServer.Listen (7777);
 
 		yield return new WaitForSeconds (2);
+		player.GetComponent<PlayerController> ().health = startHealth;
 		ProjectilePatternFactory factory = gm.GetComponent<ProjectilePatternFactory> ();
 		string pattern = "basicFireball";
 		Vector3 startPosition = new Vector3(5,5,0);
@@ -149,13 +172,14 @@ public class PlayerInteractionTest : MonoBehaviour {
 		GameObject gm = (GameObject)Instantiate(Resources.Load("Tests/gamemanager"));
 		var playerPrefab = Resources.Load ("Tests/player");
 		GameObject player = (GameObject)Instantiate(playerPrefab);
-		int startHealth = 100;
-		player.GetComponent<PlayerController> ().health = startHealth;
+		int startHealth = 20;
+
 		player.GetComponent<PlayerController> ().testMode = true;
 		gm.GetComponent<GUIManager> ().playerController = player.GetComponent<PlayerController> ();
 		NetworkServer.Listen (7777);
 
 		yield return new WaitForSeconds (2);
+		player.GetComponent<PlayerController> ().health = startHealth;
 		ProjectilePatternFactory factory = gm.GetComponent<ProjectilePatternFactory> ();
 		string pattern = "basicFireball";
 		Vector3 startPosition = new Vector3(5,5,0);
@@ -164,7 +188,7 @@ public class PlayerInteractionTest : MonoBehaviour {
 		factory.projectileFactory = gm.GetComponent<ProjectileFactory> ();
 		factory.createProjectilePattern (pattern, startPosition, shootDirection, belongToPlayer,player);
 		GameObject projectile = GameObject.FindGameObjectWithTag("Projectile");
-		int damage = 50;
+		int damage = 10;
 		projectile.GetComponent<ProjectileController> ().projectileDamage = damage;
 		yield return new WaitForSeconds(5);
 		GameObject newplayer = GameObject.FindGameObjectWithTag("Player");
@@ -178,13 +202,14 @@ public class PlayerInteractionTest : MonoBehaviour {
 		GameObject gm = (GameObject)Instantiate(Resources.Load("Tests/gamemanager"));
 		var playerPrefab = Resources.Load ("Tests/player");
 		GameObject player = (GameObject)Instantiate(playerPrefab);
-		int startHealth = 100;
-		player.GetComponent<PlayerController> ().health = startHealth;
+		int startHealth = 20;
+
 		player.GetComponent<PlayerController> ().testMode = true;
 		gm.GetComponent<GUIManager> ().playerController = player.GetComponent<PlayerController> ();
 		NetworkServer.Listen (7777);
 
 		yield return new WaitForSeconds (2);
+		player.GetComponent<PlayerController> ().health = startHealth;
 		ProjectilePatternFactory factory = gm.GetComponent<ProjectilePatternFactory> ();
 		string pattern = "basicFireball";
 		Vector3 startPosition = new Vector3(5,5,0);
@@ -193,7 +218,7 @@ public class PlayerInteractionTest : MonoBehaviour {
 		factory.projectileFactory = gm.GetComponent<ProjectileFactory> ();
 		factory.createProjectilePattern (pattern, startPosition, shootDirection, belongToPlayer,player);
 		GameObject projectile = GameObject.FindGameObjectWithTag("Projectile");
-		int damage = 99;
+		int damage = 19;
 		projectile.GetComponent<ProjectileController> ().projectileDamage = damage;
 		yield return new WaitForSeconds(5);
 		GameObject newplayer = GameObject.FindGameObjectWithTag("Player");

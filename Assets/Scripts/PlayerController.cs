@@ -19,6 +19,7 @@ public class PlayerController : NetworkBehaviour {
     public ElementType elementType = ElementType.Default;
     public int energy = 0;
     public int elementLevel = 0;
+	public bool testModeanualHealth = false;
     public int maxHealth = 100;
     [SyncVar]
     public int health;
@@ -26,6 +27,7 @@ public class PlayerController : NetworkBehaviour {
     public Vector2 moveTarget;  // target point to move player towards
     public float timeCounter = 1.0f;
     public float energyLossRate = 0.5f;
+	public bool paused;
 
     // element level caps from user pref
     // hmm..maybe i shld get it from game manager instead of direct...?
@@ -57,7 +59,9 @@ public class PlayerController : NetworkBehaviour {
 
     // Use this for initialization
     public void Start() {
-        health = maxHealth;
+		if (!testModeanualHealth)
+			maxHealth = GameManager.getMaxHealth ();
+		health = maxHealth;
 		moveSpeed = defaultMoveSpeed;
         _animator = gameObject.GetComponent<Animator>();
         _rigidbody = gameObject.GetComponent<Rigidbody2D>();
@@ -81,16 +85,21 @@ public class PlayerController : NetworkBehaviour {
     // Update is called once per frame
     public void Update() {
 
-        if (!isLocalPlayer && !testMode) {
+		if (!isLocalPlayer && !testMode) {
             return;
         }
-
         // Mouse Down
         if (Input.GetMouseButtonDown(0)) { // Record initial mouseDown location
             mouseDownLocation = Input.mousePosition;
         }
+		if (paused) {
+			//forget all mouse click when paused
+			mouseDownLocation=Vector2.zero;
+			return;
+		}
         // Mouse Released: considered click if mouse release location is close to mouse down location, considered drag otherwise
         if (Input.GetMouseButtonUp(0)) { // Record mouseUp location to determine click vs drag
+			if (mouseDownLocation==Vector2.zero) return;
             Vector2 mouseUpLocation = Input.mousePosition;
             Vector2 shootDirection = mouseUpLocation - mouseDownLocation;
 
@@ -357,7 +366,11 @@ public class PlayerController : NetworkBehaviour {
             color = Color.grey;
         }
         updateTrailRenderer(color);
-        CmdUpdateTrailRenderer(color);
+		if (testMode == true) {
+			return;
+		}
+		CmdUpdateTrailRenderer(color);
+        
     }
 
     [Command]
@@ -377,7 +390,7 @@ public class PlayerController : NetworkBehaviour {
     }
 
     public void depleteHealth(int damage) {
-        if (!isLocalPlayer)
+		if (!isLocalPlayer && !testMode)
         {
             return;
         }
@@ -389,9 +402,13 @@ public class PlayerController : NetworkBehaviour {
             //Instantiate (explosionPrefab, transform.position, transform.rotation);
             guiManager.updateAll();
             Debug.Log("someone died");
-			if (currentEarthProjectileSpawner != null)
+			if (currentEarthProjectileSpawner != null && testMode==false)
 				Destroy (currentEarthProjectileSpawner);
-            CmdUpdateEnd();
+			if (testMode == true) {
+				Destroy (gameObject);
+				return;
+			}
+			CmdUpdateEnd();
             CmdDestroySelf();
         } else {
             health -= damage;

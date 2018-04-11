@@ -87,6 +87,8 @@ public class ProjectilePatternFactoryTest: MonoBehaviour {
 		Rigidbody2D projectile = projectileFactory.getProjectileFromType (element, level);
 		yield return new WaitForSeconds(1);
 		GameObject projectile2 = Instantiate (Resources.Load ("Tests/WaterProjectile1")) as GameObject;
+		Debug.Log (projectile.gameObject.GetComponent<ProjectileController> ().projectileDamage);
+		Debug.Log (projectile2.GetComponent<ProjectileController> ().projectileDamage);
 		Assert.AreEqual (projectile2.GetComponent<ProjectileController>().projectileDamage, projectile.gameObject.GetComponent<ProjectileController>().projectileDamage);
 	}
 	[UnityTest] /*1 Projectile to enemeyBat: enemyBat Hp=7? true;*/

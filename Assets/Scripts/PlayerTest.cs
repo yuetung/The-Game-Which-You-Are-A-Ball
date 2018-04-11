@@ -261,6 +261,7 @@ public class PlayerTest : MonoBehaviour {
 		var playerPrefab = Resources.Load ("Tests/player");
 		GameObject player = (GameObject)Instantiate(playerPrefab);
 		gm.GetComponent<GUIManager> ().playerController = player.GetComponent<PlayerController> ();
+		player.GetComponent<PlayerController> ().testMode = true;
 		NetworkServer.Listen (7777);
 
 		yield return new WaitForSeconds(5);
@@ -293,6 +294,7 @@ public class PlayerTest : MonoBehaviour {
 		var playerPrefab = Resources.Load ("Tests/player");
 		GameObject player = (GameObject)Instantiate(playerPrefab);
 		gm.GetComponent<GUIManager> ().playerController = player.GetComponent<PlayerController> ();
+		player.GetComponent<PlayerController> ().testMode = true;
 		NetworkServer.Listen (7777);
 
 		yield return new WaitForSeconds(5);

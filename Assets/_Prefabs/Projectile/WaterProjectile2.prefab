@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementType: 2
-  projectileSpeed: 5
+  projectileSpeed: 6
   projectileDamage: 0
   explodeAnimationSeconds: 0
   explosionPrefab: {fileID: 0}

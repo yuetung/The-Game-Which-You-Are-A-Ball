@@ -16,12 +16,20 @@ public class MonsterRoomSpawner : MonoBehaviour {
 	private int waveCount = 0;
 	public int numberOfEnemies = 3;
 	public int monsterCountLeft = 0;
+	public bool hasBossMonster = false;
+	public GameObject[] bossEnemies;
 
 	void Start() {
 		Vector2 dimension = gameObject.GetComponent<BoxCollider2D>().size;
 		height_y = dimension.y;
 		width_x = dimension.x;
-		monsterCountLeft = numberOfEnemies;
+		if (hasBossMonster)
+			monsterCountLeft = numberOfEnemies + bossEnemies.Length;
+		else monsterCountLeft = numberOfEnemies;
+		for (int i = 0; i < bossEnemies.Length; i++) {
+			bossEnemies[i].GetComponentInChildren<Enemy> ().setSpawnerParent (gameObject);
+		}
+
 	}
 
 	void Update() {

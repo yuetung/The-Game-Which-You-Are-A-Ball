@@ -48,6 +48,8 @@ public class Enemy : MonoBehaviour {
 	public float dropRate = 1f;
 
 	public GameObject spawnerParent = null;
+	public bool isBossMonster = false;
+	private BossEnemy bossEnemyScript;
 
 	Rigidbody2D _rigidbody;
 	Animator _animator;
@@ -158,7 +160,7 @@ public class Enemy : MonoBehaviour {
 
 	void spawnProjectile() {
 		string pattern;
-		if (Time.time >= spawnTime && isNearPlayer () && patterns.Length>0) {
+		if (Time.time >= spawnTime && isNearPlayer () && player!=null && patterns.Length>0) {
 			int rand = Random.Range (0, patterns.Length);
 			pattern= patterns [rand];
 			Vector2 shootDirection = player.transform.position - transform.position;
@@ -169,7 +171,7 @@ public class Enemy : MonoBehaviour {
 	}
 	void spawnProjectile(int count) {
 		string pattern;
-		if (Time.time >= spawnTime && isNearPlayer () && patterns.Length>0) {
+		if (Time.time >= spawnTime && isNearPlayer () && player!=null && patterns.Length>0) {
 			pattern = patterns [count % patterns.Length];
 			Vector2 shootDirection = player.transform.position - transform.position;
 			Debug.Log (projectilePatternFactory);
@@ -281,6 +283,8 @@ public class Enemy : MonoBehaviour {
 		return false;
 	}
 	void generateAlertBubble(){
+		if (isBossMonster)
+			return;
 		Vector3 bubbleOffset = new Vector3 (_collider.radius*1.1f, _collider.radius*1.1f, 0);
 		Vector3 bubbleScale = new Vector3 (_collider.radius, _collider.radius, 0);
 		GameObject bubble = Instantiate (noticeBubble, transform.position+bubbleOffset, Quaternion.identity);

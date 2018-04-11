@@ -7,6 +7,8 @@ public class BreakableWall : MonoBehaviour {
 	public GameObject explosionPrefab;
 	public int maxHealth = 10;
 	public PlayerController.ElementType elementType;
+	[Tooltip("put 0 if initHealth = maxhealth for convenience")]
+	public int initHealth;
 	private int health;
 	Animator _animator;
 	public GameObject crystalPrefab;
@@ -15,10 +17,12 @@ public class BreakableWall : MonoBehaviour {
 	public float dropRate = 1f;
 	// Use this for initialization
 	void Start () {
-		health = maxHealth;
+		if (initHealth != 0)
+			health = initHealth;
+		else health = maxHealth;
 		_animator = gameObject.GetComponent<Animator> ();
 		if (_animator)
-			_animator.SetInteger ("HealthLevel", 3);
+			_animator.SetInteger ("HealthLevel", health*3/maxHealth);
 	}
 	
 	// Update is called once per frame
