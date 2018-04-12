@@ -10,6 +10,10 @@ public class PauseMenu : MonoBehaviour {
 	public GameObject shopMenuUI;
 	private GameObject player;
 	// Update is called once per frame
+    void Start()
+    {
+        Resume();
+    }
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 			Pausing ();
@@ -37,6 +41,7 @@ public class PauseMenu : MonoBehaviour {
 			player = GameObject.FindGameObjectWithTag ("Player");
 		player.GetComponent<PlayerController> ().paused = false;
 	}
+
 	public void Pause(){
 		pauseMenuUI.SetActive (true);
 		Time.timeScale = 0f;

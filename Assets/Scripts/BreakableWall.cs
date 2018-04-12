@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class BreakableWall : MonoBehaviour {
+public class BreakableWall : NetworkBehaviour {
 
 	public GameObject explosionPrefab;
 	public int maxHealth = 10;
@@ -54,6 +55,16 @@ public class BreakableWall : MonoBehaviour {
 	public void destroyNow(){
 		Instantiate (explosionPrefab, transform.position, transform.rotation);
 		DestroyObject (this.gameObject);
+        if (transform.GetComponent<NetworkIdentity>())
+        {
+            CmdDestroyNow();
+        }
 	}
+
+    [Command]
+    void CmdDestroyNow()
+    {
+        NetworkServer.Destroy(this.gameObject);
+    }
 
 }

@@ -4,36 +4,65 @@ using UnityEngine.Networking;
 using UnityEngine;
 using UnityEngine.Networking.Match;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
-public class NetworkManager_Custom : NetworkManager {
+public class NetworkManager_Custom : NetworkManager
+{
 
     public GameObject player1;
     private static bool singlePlayer = false;
 
-    public void StartupHost() {
+    public void Start()
+    {
+        //StartCoroutine(UpdateMatches());
+        StartCoroutine(
+        UpdateSpawnPoint());
+    }
+
+    IEnumerator UpdateSpawnPoint()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(3);
+            GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+            foreach (GameObject spawnPoint in spawnPoints)
+            {
+                //NetworkManager.RegisterStartPosition(spawnPoint.transform);
+                Debug.Log(spawnPoint.GetComponent<NetworkStartPosition>().isActiveAndEnabled);
+            }
+            //Debug.Log(singleton.startPositions.Count);
+            Debug.Log(singleton.playerSpawnMethod);
+            
+        }
+    }
+    public void StartupHost()
+    {
         Debug.Log("startupHost");
         SetPort();
         NetworkManager.singleton.StartHost();
-	}
-	public void joinGame(){
-        Debug.Log("joinGame");
-		SetIPAddress ();
-		SetPort ();
-		NetworkManager.singleton.StartClient();
     }
-	void SetIPAddress(){
-		string ipAddress=GameObject.Find("InputFieldIPAddress").transform.Find("Text").GetComponent<Text>().text;
-		NetworkManager.singleton.networkAddress = ipAddress;
+    public void joinGame()
+    {
+        Debug.Log("joinGame");
+        SetIPAddress();
+        SetPort();
+        NetworkManager.singleton.StartClient();
+    }
+    void SetIPAddress()
+    {
+        string ipAddress = GameObject.Find("InputFieldIPAddress").transform.Find("Text").GetComponent<Text>().text;
+        NetworkManager.singleton.networkAddress = ipAddress;
         Debug.Log("IP Address is " + ipAddress + ", length: " + ipAddress.Length);
-	}
-	void SetPort(){
-		NetworkManager.singleton.networkPort = 7777;
-	}
+    }
+    void SetPort()
+    {
+        NetworkManager.singleton.networkPort = 7777;
+    }
 
     public static void StartSinglePlayer()
     {
         Debug.Log("Start");
-        NetworkManager.singleton.StartHost();
+        singleton.StartHost();
         singlePlayer = true;
     }
 
@@ -77,6 +106,8 @@ public class NetworkManager_Custom : NetworkManager {
             if (matches.Count != 0)
             {
                 //Debug.Log("A list of matches was returned");
+                GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Background").Find("Network Menu").Find("JoiningGame").gameObject.SetActive(true);
+                GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Background").Find("Network Menu").Find("StartHost").gameObject.SetActive(false);
                 //join the last server (just in case there are two...)
                 NetworkManager.singleton.matchMaker.JoinMatch(matches[matches.Count - 1].networkId, "", "", "", 0, 0, OnJoinInternetMatch);
             }
@@ -94,8 +125,11 @@ public class NetworkManager_Custom : NetworkManager {
     public void CreateInternetMatch()
     {
         //string matchName = GameObject.Find("InputFieldIPAddress").transform.Find("Text").GetComponent<Text>().text;
+        GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Background").Find("Network Menu").Find("CreatingGame").gameObject.SetActive(true);
+        GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Background").Find("Network Menu").Find("StartHost").gameObject.SetActive(false);
         string matchName = "";
         var mm = NetworkManager.singleton.matchMaker;
+        UpdateSpawnPoint();
         mm.ToString();
         mm.CreateMatch(matchName, 2, true, "", "", "", 0, 0, OnInternetMatchCreate);
     }
@@ -117,28 +151,80 @@ public class NetworkManager_Custom : NetworkManager {
         }
     }
 
-    //call this method to find a match through the matchmaker
-    public void FindInternetMatch()
-    {
-        string matchName = GameObject.Find("InputFieldIPAddress").transform.Find("Text").GetComponent<Text>().text;
-        NetworkManager.singleton.matchMaker.ListMatches(0, 10, matchName, true, 0, 0, OnInternetMatchList);
-    }
 
-    //this method is called when a list of matches is returned
-    private void OnInternetMatchList(bool success, string extendedInfo, List<MatchInfoSnapshot> matches)
+    //this method is called when your request to join a match is returned
+    private void OnJoinInternetMatch(bool success, string extendedInfo, MatchInfo matchInfo)
     {
         if (success)
         {
+            //Debug.Log("Able to join a match");
+            
+            MatchInfo hostInfo = matchInfo;
+            NetworkManager.singleton.StartClient(hostInfo);
+            StartCoroutine(JoinGameChecker());
+        }
+        else
+        {
+            Debug.LogError("Join match failed");
+        }
+    }
+
+    public void OnFailedToConnect(NetworkConnectionError error)
+    {
+        Debug.Log("Failed to connect");
+    }
+
+    public override void OnServerDisconnect(NetworkConnection conn)
+    {
+        base.OnServerDisconnect(conn);
+        PauseMenuList temp = new PauseMenuList();
+        temp.MainMenu();
+    }
+
+    private IEnumerator JoinGameChecker()
+    {
+        yield return new WaitForSeconds(5);
+        if (!clientLoadedScene)
+        {
+            StopClient();
+            StopServer();
+            ServerChangeScene("Menu_Scene");
+            SceneManager.LoadScene(0);
+            Debug.LogError("Restarting client");
+        }
+        else
+        {
+            Debug.Log("Client loaded scene!");
+        }
+    }
+
+    IEnumerator UpdateMatches()
+    {
+        while (networkSceneName == "Menu_Scene")
+        {
+            yield return new WaitForSeconds(3);
+            NetworkManager.singleton.matchMaker.ListMatches(0, 10, matchName, true, 0, 0, OnInternetMatchList3);
+        }
+    }
+
+    private void OnInternetMatchList3(bool success, string extendedInfo, List<MatchInfoSnapshot> matches)
+    {
+        if (success)
+        {
+            Debug.Log(matches.Count);
+            this.matches = matches;
             if (matches.Count != 0)
             {
-                //Debug.Log("A list of matches was returned");
-
-                //join the last server (just in case there are two...)
-                NetworkManager.singleton.matchMaker.JoinMatch(matches[matches.Count - 1].networkId, "", "", "", 0, 0, OnJoinInternetMatch);
+                Debug.Log("Matches!!");
+                GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Background").Find("Network Menu").Find("JoinGame").gameObject.SetActive(true);
+                GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Background").Find("Network Menu").Find("StartHost").gameObject.SetActive(false);
+                // Change game button to join game
             }
             else
             {
-                Debug.Log("No matches in requested room!");
+                // change game button to start game
+                GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Background").Find("Network Menu").Find("JoinGame").gameObject.SetActive(false);
+                GameObject.FindGameObjectWithTag("MainCanvas").transform.Find("Background").Find("Network Menu").Find("StartHost").gameObject.SetActive(true);
             }
         }
         else
@@ -147,22 +233,10 @@ public class NetworkManager_Custom : NetworkManager {
         }
     }
 
-    //this method is called when your request to join a match is returned
-    private void OnJoinInternetMatch(bool success, string extendedInfo, MatchInfo matchInfo)
+    public void JoinGame()
     {
-        if (success)
-        {
-            //Debug.Log("Able to join a match");
-
-            MatchInfo hostInfo = matchInfo;
-            NetworkManager.singleton.StartClient(hostInfo);
-        }
-        else
-        {
-            Debug.LogError("Join match failed");
-        }
+        NetworkManager.singleton.matchMaker.JoinMatch(matches[matches.Count - 1].networkId, "", "", "", 0, 0, OnJoinInternetMatch);
     }
-
 
 }
 

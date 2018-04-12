@@ -16,6 +16,7 @@ TagManager:
   - BreakableWall
   - TouchIndicator
   - Hint
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX

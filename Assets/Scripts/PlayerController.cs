@@ -76,6 +76,14 @@ public class PlayerController : NetworkBehaviour {
         guiManager = GameManager.gm.GetComponent<GUIManager>();
         //GetComponent<NetworkAnimator>().SetParameterAutoSend(0, true);
 
+        //Custom spawn, not very good..? A lot more work than it should be I think...
+        //NetworkManager_Custom nw = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<NetworkManager_Custom>();
+        //if (transform.position.Equals(new Vector3()))
+        //{
+        //    Debug.Log("Player at 0");
+        //    transform.position = nw.GetStartPosition().position;
+        //}
+
         if (isLocalPlayer) {
             guiManager.register(gameObject);
             gameObject.layer = 9;
