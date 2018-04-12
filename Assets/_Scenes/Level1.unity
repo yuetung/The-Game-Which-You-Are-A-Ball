@@ -11350,7 +11350,7 @@ Prefab:
     - target: {fileID: 114214659973072764, guid: 71a31a17f81e2a44fb2cf650ca3ea7a7,
         type: 2}
       propertyPath: numberOfEnemies
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114214659973072764, guid: 71a31a17f81e2a44fb2cf650ca3ea7a7,
         type: 2}
@@ -11361,7 +11361,7 @@ Prefab:
     - target: {fileID: 114214659973072764, guid: 71a31a17f81e2a44fb2cf650ca3ea7a7,
         type: 2}
       propertyPath: monsterCountLeft
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 71a31a17f81e2a44fb2cf650ca3ea7a7, type: 2}

@@ -142,69 +142,115 @@ public class ShopMenu : MonoBehaviour {
 
 	public void infoFire(){
 		if (displayNum != 1) {
-			//backgroundInformationDisplay.SetActive(true);
-			//informationDisplay.text = "Level up to increase your cap on firepower. Each level up cost 50 crystals."; 
 			mePRECIOUS.SetActive(true);
 			costDisplay.transform.position = new Vector3 (whereMePRECIOUS.x + 80, whereMePRECIOUS.y, whereMePRECIOUS.z);
 			costDisplay.text = "-"+firecost;
 
 			meFire.SetActive (true);
+			meWater.SetActive (false);
+			meLightning.SetActive (false);
+			meEarth.SetActive (false);
+			meHealth.SetActive (false);
 			informationDisplay.transform.position = new Vector3(whereMeFire.x + 80, whereMeFire.y, whereMeFire.z);
 			informationDisplay.text = "+1 Max Level";
 
 			displayNum = 1;
 		} else {
-			//backgroundInformationDisplay.SetActive(false);
-			//informationDisplay.text = "";
 			mePRECIOUS.SetActive (false);
 			costDisplay.text = "";
 			meFire.SetActive (false);
 			informationDisplay.text = "";
-
-
 			displayNum = 0;
 		}
 	}
 	public void infoWater(){
 		if (displayNum != 2) {
-			backgroundInformationDisplay.SetActive(true);
-			informationDisplay.text = "Level up to increase your cap on waterpower. Each level up cost 50 crystals."; 
+			mePRECIOUS.SetActive(true);
+			costDisplay.transform.position = new Vector3 (whereMePRECIOUS.x + 80, whereMePRECIOUS.y, whereMePRECIOUS.z);
+			costDisplay.text = "-"+watercost;
+
+			meWater.SetActive (true);
+			meFire.SetActive (false);
+			meLightning.SetActive (false);
+			meEarth.SetActive (false);
+			meHealth.SetActive (false);
+			informationDisplay.transform.position = new Vector3(whereMeWater.x + 80, whereMeWater.y, whereMeWater.z);
+			informationDisplay.text = "+1 Max Level";
+
 			displayNum = 2;
 		} else {
-			backgroundInformationDisplay.SetActive(false);
+			mePRECIOUS.SetActive (false);
+			costDisplay.text = "";
+			meWater.SetActive (false);
 			informationDisplay.text = "";
 			displayNum = 0;
 		}
 	}
 	public void infoLightning(){
 		if (displayNum != 3) {
-			backgroundInformationDisplay.SetActive(true);
-			informationDisplay.text = "Level up to increase your cap on lightningpower. Each level up cost 50 crystals."; 
+			mePRECIOUS.SetActive(true);
+			costDisplay.transform.position = new Vector3 (whereMePRECIOUS.x + 80, whereMePRECIOUS.y, whereMePRECIOUS.z);
+			costDisplay.text = "-"+lightningcost;
+
+			meLightning.SetActive (true);
+			meWater.SetActive (false);
+			meFire.SetActive (false);
+			meEarth.SetActive (false);
+			meHealth.SetActive (false);
+			informationDisplay.transform.position = new Vector3(whereMeLightning.x + 80, whereMeLightning.y, whereMeLightning.z);
+			informationDisplay.text = "+1 Max Level";
+
 			displayNum = 3;
 		} else {
-			backgroundInformationDisplay.SetActive(false);
+			mePRECIOUS.SetActive (false);
+			costDisplay.text = "";
+			meLightning.SetActive (false);
 			informationDisplay.text = "";
 			displayNum = 0;
 		}
 	}
 	public void infoEarth(){
 		if (displayNum != 4) {
-			backgroundInformationDisplay.SetActive(true);
-			informationDisplay.text = "Level up to increase your cap on earthpower. Each level up cost 50 crystals."; 
+			mePRECIOUS.SetActive(true);
+			costDisplay.transform.position = new Vector3 (whereMePRECIOUS.x + 80, whereMePRECIOUS.y, whereMePRECIOUS.z);
+			costDisplay.text = "-"+earthcost;
+
+			meEarth.SetActive (true);
+			meWater.SetActive (false);
+			meLightning.SetActive (false);
+			meFire.SetActive (false);
+			meHealth.SetActive (false);
+			informationDisplay.transform.position = new Vector3(whereMeEarth.x + 80, whereMeEarth.y, whereMeEarth.z);
+			informationDisplay.text = "+1 Max Level";
+
 			displayNum = 4;
 		} else {
-			backgroundInformationDisplay.SetActive(false);
+			mePRECIOUS.SetActive (false);
+			costDisplay.text = "";
+			meEarth.SetActive (false);
 			informationDisplay.text = "";
 			displayNum = 0;
 		}
 	}
 	public void infoMaxHealth(){
 		if (displayNum != 5) {
-			backgroundInformationDisplay.SetActive(true);
-			informationDisplay.text = "Level up to increase your max health by 20. Each level up cost 70 crystals."; 
+			mePRECIOUS.SetActive(true);
+			costDisplay.transform.position = new Vector3 (whereMePRECIOUS.x + 80, whereMePRECIOUS.y, whereMePRECIOUS.z);
+			costDisplay.text = "-"+healthcost;
+
+			meHealth.SetActive (true);
+			meWater.SetActive (false);
+			meLightning.SetActive (false);
+			meEarth.SetActive (false);
+			meFire.SetActive (false);
+			informationDisplay.transform.position = new Vector3(whereMeHealth.x + 80, whereMeHealth.y, whereMeHealth.z);
+			informationDisplay.text = "+10 Max Health";
+
 			displayNum = 5;
 		} else {
-			backgroundInformationDisplay.SetActive(false);
+			mePRECIOUS.SetActive (false);
+			costDisplay.text = "";
+			meHealth.SetActive (false);
 			informationDisplay.text = "";
 			displayNum = 0;
 		}
@@ -239,7 +285,7 @@ public class ShopMenu : MonoBehaviour {
 	public void decreaseFire(){
 		if (!(fireCap - 1 <= 0)) {
 			// increase the money and deduct the firecap
-			gold = gold + firecost;
+			gold = gold + getCostPower(GameManager.getFireCap()-1);
 			fireCap = fireCap - 1;
 			// update the user pref for gold and firecap
 			GameManager.setGold(gold);
@@ -269,7 +315,7 @@ public class ShopMenu : MonoBehaviour {
 	public void decreaseWater(){
 		if (!(waterCap - 1 <= 0)) {
 			// increase the money and deduct the firecap
-			gold = gold + watercost;
+			gold = gold + getCostPower(GameManager.getWaterCap()-1);
 			waterCap = waterCap - 1;
 			// update the user pref for gold and firecap
 			GameManager.setGold(gold);
@@ -298,7 +344,7 @@ public class ShopMenu : MonoBehaviour {
 	public void decreaseLightning(){
 		if (!(lightningCap - 1 <= 0)) {
 			// increase the money and deduct the firecap
-			gold = gold + lightningcost;
+			gold = gold + getCostPower(GameManager.getLightningCap()-1);
 			lightningCap = lightningCap - 1;
 			// update the user pref for gold and firecap
 			GameManager.setGold(gold);
@@ -327,7 +373,7 @@ public class ShopMenu : MonoBehaviour {
 	public void decreaseEarth(){
 		if (!(earthCap - 1 <= 0)) {
 			// increase the money and deduct the firecap
-			gold = gold + earthcost;
+			gold = gold + getCostPower(GameManager.getEarthCap()-1);
 			earthCap = earthCap - 1;
 			// update the user pref for gold and firecap
 			GameManager.setGold(gold);
@@ -340,10 +386,10 @@ public class ShopMenu : MonoBehaviour {
 
 	public void increaseHealth(){
 		// check if enough money and maxcap is 4
-		if (gold >= healthcost && !(maxHealth+20>200)) {
+		if (gold >= healthcost && !(maxHealth+10>200)) {
 			// deduct the money and increase firecap
 			gold = gold - healthcost;
-			maxHealth = maxHealth + 20;
+			maxHealth = maxHealth + 10;
 			// update the user pref for gold and firecap
 			GameManager.setGold(gold);
 			GameManager.setMaxHealth (maxHealth);
@@ -354,10 +400,10 @@ public class ShopMenu : MonoBehaviour {
 	}
 
 	public void decreaseHealth(){
-		if (!(maxHealth - 20 < 100)) {
+		if (!(maxHealth - 10 < 100)) {
 			// increase the money and deduct the firecap
-			gold = gold + healthcost;
-			maxHealth = maxHealth - 20;
+			gold = gold + getCostHP(GameManager.getMaxHealth()-10);
+			maxHealth = maxHealth - 10;
 			// update the user pref for gold and firecap
 			GameManager.setGold(gold);
 			GameManager.setMaxHealth (maxHealth);

@@ -84,8 +84,11 @@ public class BossEnemy : MonoBehaviour {
 	}
 
 	void spawnProjectile() {
-		if (!player) {
+		if (player==null) {
 			player = GameObject.FindGameObjectWithTag ("Player");
+		}
+		if (projectilePatternFactory == null) {
+			projectilePatternFactory = GameManager.gm.gameObject.GetComponent<ProjectilePatternFactory>();
 		}
 		string pattern;
 		if (Time.time >= spawnTime && patterns.Length>0 && player!=null) {
@@ -98,12 +101,15 @@ public class BossEnemy : MonoBehaviour {
 	}
 
 	void spawnChargedProjectile() {
-		if (!player) {
+		if (player==null) {
 			player = GameObject.FindGameObjectWithTag ("Player");
+		}
+		if (projectilePatternFactory == null) {
+			projectilePatternFactory = GameManager.gm.gameObject.GetComponent<ProjectilePatternFactory>();
 		}
 		string pattern;
 		if (Time.time >= spawnTime && patterns.Length>0) {
-			int rand = Random.Range (0, patterns.Length);
+			int rand = Random.Range (0, chargedPatterns.Length);
 			pattern= chargedPatterns [rand];
 			Vector2 shootDirection = player.transform.position - transform.position;
 			projectilePatternFactory.createProjectilePattern(pattern,transform.position,shootDirection, false,this.gameObject);

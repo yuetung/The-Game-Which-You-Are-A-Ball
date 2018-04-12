@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour {
 	public static int getMaxHealth(){
 		if (!PlayerPrefs.HasKey ("Maxhealth")) {
 			// initialize the firecap at 1
-			PlayerPrefs.SetInt("Maxhealth",20);
+			PlayerPrefs.SetInt("Maxhealth",100);
 		}
 		return PlayerPrefs.GetInt ("Maxhealth");
 	}
