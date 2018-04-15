@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour {
 	public static int maxHealth;
 	public static float efficiency;
 	public static int gold;
+	public static int initMaxHealth = 50;
+	public static int initGold = 0;
 
 
 	// Use this for initialization
@@ -95,7 +97,7 @@ public class GameManager : MonoBehaviour {
 	public static int getMaxHealth(){
 		if (!PlayerPrefs.HasKey ("Maxhealth")) {
 			// initialize the firecap at 1
-			PlayerPrefs.SetInt("Maxhealth",100);
+			PlayerPrefs.SetInt("Maxhealth",initMaxHealth);
 		}
 		return PlayerPrefs.GetInt ("Maxhealth");
 	}
@@ -104,7 +106,7 @@ public class GameManager : MonoBehaviour {
 		PlayerPrefs.SetInt("Maxhealth",newcap);
 	}
 
-	// energy up efficiency..
+	// energy up efficiency.. not in use
 	public static float getEfficiency(){
 		if (!PlayerPrefs.HasKey ("Efficiency")) {
 			// initialize the firecap at 1
@@ -120,7 +122,7 @@ public class GameManager : MonoBehaviour {
 	public static int getGold(){
 		if (!PlayerPrefs.HasKey ("Gold")) {
 			// initialize the firecap at 1
-			PlayerPrefs.SetInt("Gold",0);
+			PlayerPrefs.SetInt("Gold",initGold);
 		}
 		return PlayerPrefs.GetInt ("Gold");
 	}
@@ -128,5 +130,15 @@ public class GameManager : MonoBehaviour {
 	public static void setGold(int newgold){
 		PlayerPrefs.SetInt("Gold",newgold);
 		Debug.Log ("current Gold set to " + newgold);
+	}
+
+	public static void resetAllPlayerPrefs(){
+		PlayerPrefs.SetInt("Firecap",1);
+		PlayerPrefs.SetInt("Watercap",1);
+		PlayerPrefs.SetInt("Lightningcap",1);
+		PlayerPrefs.SetInt("Earthcap",1);
+		PlayerPrefs.SetInt("Maxhealth",initMaxHealth);
+		PlayerPrefs.SetInt("Gold",initGold);
+		PlayerPrefs.SetInt ("LevelReached", 1);
 	}
 }

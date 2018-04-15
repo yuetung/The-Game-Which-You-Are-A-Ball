@@ -61,6 +61,12 @@ public class ShopMenu : MonoBehaviour {
 	public GameObject meHealth;
 	public Vector3 whereMeHealth;
 
+	public TextMeshProUGUI fireGoldCost;
+	public TextMeshProUGUI waterGoldCost;
+	public TextMeshProUGUI lightningGoldCost;
+	public TextMeshProUGUI earthGoldCost;
+	public TextMeshProUGUI maxHealthGoldCost;
+
 	int firecost;
 	int watercost;
 	int lightningcost;
@@ -68,24 +74,7 @@ public class ShopMenu : MonoBehaviour {
 	int healthcost;
 	int efficiencycost;
 
-	// Use this for initialization
-	void Start () {
-		fireCap = GameManager.getFireCap();
-		waterCap = GameManager.getWaterCap();
-		lightningCap = GameManager.getLightningCap();
-		earthCap = GameManager.getEarthCap();
-		maxHealth = GameManager.getMaxHealth();
-		efficiency = GameManager.getEfficiency();
-		gold = GameManager.getGold ();
-
-		firecapDisplay.text = fireCap.ToString();
-		watercapDisplay.text = waterCap.ToString();
-		lightningcapDisplay.text = lightningCap.ToString();
-		earthcapDisplay.text = earthCap.ToString();
-		maxhealthDisplay.text = maxHealth.ToString();
-		efficiencyDisplay.text = efficiency.ToString();
-		goldDisplay.text = gold.ToString();
-
+	void Start(){
 		fireUpButton.onClick.AddListener (increaseFire);
 		fireDownButton.onClick.AddListener (decreaseFire);
 		waterUpButton.onClick.AddListener (increaseWater);
@@ -106,23 +95,31 @@ public class ShopMenu : MonoBehaviour {
 		maxHealthText.onClick.AddListener (infoMaxHealth);
 		efficiencyText.onClick.AddListener (infoEfficiency);
 
-		
+
 		whereMePRECIOUS = mePRECIOUS.transform.position;
 		whereMeFire = meFire.transform.position;
 		whereMeWater = meWater.transform.position;
 		whereMeLightning = meLightning.transform.position;
 		whereMeEarth = meEarth.transform.position;
 		whereMeHealth = meHealth.transform.position;
-
-		firecost = getCostPower (GameManager.getFireCap());
-		watercost = getCostPower (GameManager.getWaterCap());
-		lightningcost = getCostPower (GameManager.getLightningCap());
-		earthcost = getCostPower (GameManager.getEarthCap());
-		healthcost = getCostHP (GameManager.getMaxHealth());
 	}
 
-	void Update(){
+	// Use this for initialization
+	void OnEnable () {
+		fireCap = GameManager.getFireCap();
+		waterCap = GameManager.getWaterCap();
+		lightningCap = GameManager.getLightningCap();
+		earthCap = GameManager.getEarthCap();
+		maxHealth = GameManager.getMaxHealth();
+		efficiency = GameManager.getEfficiency();
 		gold = GameManager.getGold ();
+
+		firecapDisplay.text = fireCap.ToString();
+		watercapDisplay.text = waterCap.ToString();
+		lightningcapDisplay.text = lightningCap.ToString();
+		earthcapDisplay.text = earthCap.ToString();
+		maxhealthDisplay.text = maxHealth.ToString();
+		efficiencyDisplay.text = efficiency.ToString();
 		goldDisplay.text = gold.ToString();
 
 		firecost = getCostPower (GameManager.getFireCap());
@@ -130,10 +127,26 @@ public class ShopMenu : MonoBehaviour {
 		lightningcost = getCostPower (GameManager.getLightningCap());
 		earthcost = getCostPower (GameManager.getEarthCap());
 		healthcost = getCostHP (GameManager.getMaxHealth());
+
+		fireGoldCost.text = "-"+firecost;
+		waterGoldCost.text = "-"+watercost;
+		lightningGoldCost.text = "-"+lightningcost;
+		earthGoldCost.text = "-"+earthcost;
+		maxHealthGoldCost.text = "-"+healthcost;
+	}
+
+	void Update(){
+		gold = GameManager.getGold ();
+		goldDisplay.text = gold.ToString();
+
+		watercost = getCostPower (GameManager.getWaterCap());
+		lightningcost = getCostPower (GameManager.getLightningCap());
+		earthcost = getCostPower (GameManager.getEarthCap());
+		healthcost = getCostHP (GameManager.getMaxHealth());
 	}
 
 	public int getCostHP(int currentLevel){
-		return Mathf.RoundToInt(Mathf.Pow (currentLevel / 10.0f, 3));
+		return Mathf.RoundToInt(Mathf.Pow ((currentLevel-45.0f)/2, 1.25f));
 	}
 
 	public int getCostPower(int currentLevel){
@@ -268,6 +281,7 @@ public class ShopMenu : MonoBehaviour {
 	}
 
 	public void increaseFire(){
+
 		// check if enough money and maxcap is 4
 		if (gold >= firecost && !(fireCap+1>=4)) {
 			// deduct the money and increase firecap
@@ -279,6 +293,8 @@ public class ShopMenu : MonoBehaviour {
 			// update the UI for gold and firecap
 			firecapDisplay.text = fireCap.ToString();
 			goldDisplay.text = gold.ToString();
+			fireGoldCost.text = "-"+getCostPower (fireCap);
+			firecost = getCostPower (fireCap);
 		}
 	}
 
@@ -309,6 +325,8 @@ public class ShopMenu : MonoBehaviour {
 			// update the UI for gold and firecap
 			watercapDisplay.text = waterCap.ToString();
 			goldDisplay.text = gold.ToString();
+			waterGoldCost.text = "-"+getCostPower (waterCap);
+			watercost = getCostPower (waterCap);
 		}
 	}
 
@@ -338,6 +356,8 @@ public class ShopMenu : MonoBehaviour {
 			// update the UI for gold and firecap
 			lightningcapDisplay.text = lightningCap.ToString();
 			goldDisplay.text = gold.ToString();
+			lightningGoldCost.text = "-"+getCostPower (lightningCap);
+			lightningcost = getCostPower (lightningCap);
 		}
 	}
 
@@ -367,6 +387,8 @@ public class ShopMenu : MonoBehaviour {
 			// update the UI for gold and firecap
 			earthcapDisplay.text = earthCap.ToString();
 			goldDisplay.text = gold.ToString();
+			earthGoldCost.text = "-"+getCostPower (earthCap);
+			earthcost = getCostPower (earthCap);
 		}
 	}
 
@@ -386,16 +408,18 @@ public class ShopMenu : MonoBehaviour {
 
 	public void increaseHealth(){
 		// check if enough money and maxcap is 4
-		if (gold >= healthcost && !(maxHealth+10>200)) {
+		if (gold >= healthcost && !(maxHealth+5>250)) {
 			// deduct the money and increase firecap
 			gold = gold - healthcost;
-			maxHealth = maxHealth + 10;
+			maxHealth = maxHealth + 5;
 			// update the user pref for gold and firecap
 			GameManager.setGold(gold);
 			GameManager.setMaxHealth (maxHealth);
 			// update the UI for gold and firecap
 			maxhealthDisplay.text = maxHealth.ToString();
 			goldDisplay.text = gold.ToString();
+			maxHealthGoldCost.text = "-"+getCostHP (maxHealth);
+			healthcost = getCostHP (maxHealth);
 		}
 	}
 
