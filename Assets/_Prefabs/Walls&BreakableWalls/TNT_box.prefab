@@ -82,6 +82,7 @@ MonoBehaviour:
     type: 2}
   maxHealth: 1
   elementType: 0
+  initHealth: 0
   crystalPrefab: {fileID: 1773349470175732, guid: 5a2d7dfa9c7de2548a26103cf14a0527,
     type: 2}
   maxValue: 0
