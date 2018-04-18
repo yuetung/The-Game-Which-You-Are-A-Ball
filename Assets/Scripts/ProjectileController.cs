@@ -111,15 +111,14 @@ public class ProjectileController : NetworkBehaviour {
 	public void DestroyNow() {
 		if (AOEExplosionPrefab != null) {
 			GameObject aoeExplosion = Instantiate (AOEExplosionPrefab, transform.position, transform.rotation);
-            NetworkServer.Spawn(aoeExplosion);
 			aoeExplosion.GetComponent<AOEExplosion> ().setShooter (shooter);
 			if (belongToPlayer) {
 				aoeExplosion.GetComponent<AOEExplosion> ().belongsToPlayer();
 			}
-            if (hasAuthority)
-            {
-            }
-            Invoke ("SetScaleToZero", 0.7f);
+			if (hasAuthority) {
+				NetworkServer.Spawn (aoeExplosion);
+			}
+			Invoke ("SetScaleToZero", 0.7f);
 		}
 		if (explosionPrefab) {
 			GameObject explosion = Instantiate (explosionPrefab, transform.position, transform.rotation);
