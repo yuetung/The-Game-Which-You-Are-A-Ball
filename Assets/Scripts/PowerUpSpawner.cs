@@ -16,9 +16,14 @@ public class PowerUpSpawner : NetworkBehaviour {
     public float height_y;  //made public for testing
 	[HideInInspector]
 	public float width_x; //made public for testing
+	public float maxIncreasesWithTime = 0f;
+	public float minIncreasesWithTime = 0f;
+	public float maxTime = 30.0f;
+	private float timeFromStart = 0f;
 	private float offset_x;
 	private float offset_y;
     private float nextSpawnTime = 0f;
+
 
 	public void Construct (GameObject powerupPrefab, float secondsBetweenSpawn, 
 		int portNumber){
@@ -46,6 +51,9 @@ public class PowerUpSpawner : NetworkBehaviour {
             Spawn();
             nextSpawnTime = Time.time + secondsBetweenSpawn;
         }
+		if (maxIncreasesWithTime != 0 || minIncreasesWithTime != 0) {
+			timeFromStart += Time.deltaTime;
+		}
     }
 
     void Spawn()
@@ -81,7 +89,9 @@ public class PowerUpSpawner : NetworkBehaviour {
 
         GameObject powerUpPrefab = powerUpPrefabs[Random.Range(0, powerUpPrefabs.Length)];
         GameObject powerUp = (GameObject)Instantiate(powerUpPrefab, location, new Quaternion());
-        powerUp.GetComponent<PowerUpPickup>().setEnergy(Random.Range(minEnergy, maxEnergy));
+		int minEnergyTimed = (int) (minEnergy + Mathf.Min (timeFromStart, maxTime) * minIncreasesWithTime);
+		int maxEnergyTimed = (int) (maxEnergy + Mathf.Min (timeFromStart, maxTime) * maxIncreasesWithTime);
+		powerUp.GetComponent<PowerUpPickup>().setEnergy(Random.Range(minEnergyTimed,maxEnergyTimed));
         NetworkServer.Spawn(powerUp);
 
     //  }       
