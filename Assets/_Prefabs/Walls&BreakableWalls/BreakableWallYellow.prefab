@@ -98,13 +98,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 1015006985979810, guid: 269ed0b6d625aac4b9046c97d96ad3b4,
     type: 2}
-  maxHealth: 9
+  maxHealth: 3
   elementType: 3
+  initHealth: 0
   crystalPrefab: {fileID: 1773349470175732, guid: 5a2d7dfa9c7de2548a26103cf14a0527,
     type: 2}
   maxValue: 0
   minValue: 0
   dropRate: 1
+  timeBeforeDestruction: 0.1
 --- !u!212 &212971354350986928
 SpriteRenderer:
   m_ObjectHideFlags: 1
