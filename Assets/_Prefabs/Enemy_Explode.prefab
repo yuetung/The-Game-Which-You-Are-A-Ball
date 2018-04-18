@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 95093406023589134}
   - component: {fileID: 212766387306727984}
   - component: {fileID: 114116736486731474}
+  - component: {fileID: 114859688419036338}
   m_Layer: 0
   m_Name: Enemy_Explode
   m_TagString: Untagged
@@ -72,6 +73,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeOut: 1
   detachChildren: 0
+--- !u!114 &114859688419036338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1015006985979810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 38
+    i1: 158
+    i2: 208
+    i3: 182
+    i4: 214
+    i5: 37
+    i6: 170
+    i7: 196
+    i8: 185
+    i9: 4
+    i10: 108
+    i11: 151
+    i12: 217
+    i13: 106
+    i14: 211
+    i15: 180
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!212 &212766387306727984
 SpriteRenderer:
   m_ObjectHideFlags: 1

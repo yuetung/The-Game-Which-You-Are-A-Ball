@@ -53,13 +53,15 @@ public class BreakableWall : NetworkBehaviour {
 	}
 
 	public void destroyNow(){
-		Instantiate (explosionPrefab, transform.position, transform.rotation);
-		DestroyObject (this.gameObject);
-        if (transform.GetComponent<NetworkIdentity>())
-        {
+		if (explosionPrefab) {
+			GameObject explosion = Instantiate (explosionPrefab, transform.position, transform.rotation);
+			NetworkServer.Spawn (explosion);
+		}
+		if (transform.GetComponent<NetworkIdentity>())
+		{
 			CmdDestroyNow();
-
-        }
+		}
+		DestroyObject (this.gameObject);
 	}
 
     [Command]
