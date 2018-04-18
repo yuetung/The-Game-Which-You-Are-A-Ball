@@ -13,6 +13,8 @@ public class ProjectileController : NetworkBehaviour {
 	[Tooltip("how many seconds before destroying object when hit, leave just enought to play animation")]
 	public float explodeAnimationSeconds = 1.0f;
 
+	public float timeBeforeDestruction = 0.1f;
+
 	[Tooltip("leave null if explosion is through animation")]
 	public GameObject explosionPrefab;
 
@@ -72,7 +74,7 @@ public class ProjectileController : NetworkBehaviour {
 			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			if (gameObject.GetComponent<Animator> ())
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
-			Invoke ("DestroyNow", explodeAnimationSeconds);
+			Invoke ("SpawnAOEPrefab", explodeAnimationSeconds);
 			alreadyHit = true;
 		}
 		if (other.tag == "BreakableWall") {
@@ -80,7 +82,7 @@ public class ProjectileController : NetworkBehaviour {
 			if (gameObject.GetComponent<Animator> ())
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
 			other.GetComponent<BreakableWall> ().depleteHealth (projectileDamage,elementType);
-			Invoke ("DestroyNow", explodeAnimationSeconds);
+			Invoke ("SpawnAOEPrefab", explodeAnimationSeconds);
 			alreadyHit = true;
 		}
 		else if (other.tag == "Enemy" && belongToPlayer) {
@@ -88,7 +90,7 @@ public class ProjectileController : NetworkBehaviour {
 			if (gameObject.GetComponent<Animator> ())
 			gameObject.GetComponent<Animator> ().SetTrigger ("Explode");
 			other.GetComponent<Enemy> ().depleteHealth (projectileDamage, elementType);
-			Invoke ("DestroyNow", explodeAnimationSeconds);
+			Invoke ("SpawnAOEPrefab", explodeAnimationSeconds);
 			alreadyHit = true;
 		}
 
@@ -103,23 +105,24 @@ public class ProjectileController : NetworkBehaviour {
 			if (gameObject.GetComponent<Animator> ())
             gameObject.GetComponent<Animator>().SetTrigger("Explode");
 			other.GetComponent<PlayerController> ().depleteHealth (projectileDamage);
-            Invoke("DestroyNow", explodeAnimationSeconds);
+			Invoke("SpawnAOEPrefab", explodeAnimationSeconds);
 			alreadyHit = true;
         }
 	}
 
-	public void DestroyNow() {
+	public void SpawnAOEPrefab() {
 		if (AOEExplosionPrefab != null) {
 			GameObject aoeExplosion = Instantiate (AOEExplosionPrefab, transform.position, transform.rotation);
 			aoeExplosion.GetComponent<AOEExplosion> ().setShooter (shooter);
 			if (belongToPlayer) {
 				aoeExplosion.GetComponent<AOEExplosion> ().belongsToPlayer();
 			}
-			if (hasAuthority) {
-				NetworkServer.Spawn (aoeExplosion);
-			}
 			Invoke ("SetScaleToZero", 0.7f);
 		}
+		Invoke ("DestroyNow",timeBeforeDestruction);
+	}
+
+	public void DestroyNow(){
 		if (explosionPrefab) {
 			GameObject explosion = Instantiate (explosionPrefab, transform.position, transform.rotation);
 			if (hasAuthority) {
