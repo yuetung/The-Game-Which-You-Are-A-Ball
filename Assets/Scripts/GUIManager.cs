@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using TMPro;
 
 public class GUIManager : NetworkBehaviour {
 
@@ -58,12 +59,19 @@ public class GUIManager : NetworkBehaviour {
 	}
 
 	public void EndGame(){
-		GameOverCanvas.SetActive (true);
+        GameOverCanvas.SetActive(true);
+        GameObject MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas");
+        Transform gameOverCanvas = MainCanvas.transform.Find("GameOverCanvas");
+        gameOverCanvas.Find("WinText").GetComponent<TextMeshProUGUI>().text = "Game Over";
+        gameOverCanvas.gameObject.SetActive(true);
 	}
 
     public void WinGame()
     {
-        //mainGameOverDisplay.text = "YOU WIN";
+        GameObject MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas");
+        Transform gameOverCanvas = MainCanvas.transform.Find("GameOverCanvas");
+        gameOverCanvas.gameObject.SetActive(true);
+
     }
 
     public void updateEnergy(int amount){
