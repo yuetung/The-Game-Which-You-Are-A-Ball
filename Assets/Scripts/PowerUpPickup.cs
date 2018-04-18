@@ -14,6 +14,10 @@ public class PowerUpPickup : NetworkBehaviour {
 		//transform.SetParent (GameObject.Find("PowerUps").transform);
 	}
 
+	void OnStartClient(){
+		setEnergy (energy);
+	}
+
 	// Collision with player
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Player") {

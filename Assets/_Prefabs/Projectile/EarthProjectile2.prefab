@@ -194,7 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 0
   projectileSpeed: 0
-  projectileDamage: 13
+  projectileDamage: 6
   explodeAnimationSeconds: 0.1
   explosionPrefab: {fileID: 1520980963323082, guid: 4dab4d0677f536a40a1e3caef9a4963e,
     type: 2}
@@ -218,6 +218,11 @@ MonoBehaviour:
     type: 2}
   maxHealth: 5
   elementType: 0
+  initHealth: 0
+  crystalPrefab: {fileID: 0}
+  maxValue: 0
+  minValue: 0
+  dropRate: 1
 --- !u!212 &212753528090626112
 SpriteRenderer:
   m_ObjectHideFlags: 1
