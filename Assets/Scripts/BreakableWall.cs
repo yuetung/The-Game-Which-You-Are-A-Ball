@@ -16,6 +16,7 @@ public class BreakableWall : NetworkBehaviour {
 	public int maxValue = 0;
 	public int minValue = 0;
 	public float dropRate = 1f;
+	public float timeBeforeDestruction = 0.1f;
 	// Use this for initialization
 	void Start () {
 		if (initHealth != 0)
@@ -44,7 +45,9 @@ public class BreakableWall : NetworkBehaviour {
 				//crystal.transform.localScale = new Vector3 (value / 50, value / 50, 1);
 				Debug.Log("Crystal"+ crystal);
 			}
-			Invoke ("destroyNow", 0.1f);
+			if (_animator)
+				_animator.SetTrigger ("GlowingRed");
+			Invoke ("destroyNow", timeBeforeDestruction);
 		} else {
 			health -= damage;
 			if (_animator)
@@ -53,13 +56,15 @@ public class BreakableWall : NetworkBehaviour {
 	}
 
 	public void destroyNow(){
-		Instantiate (explosionPrefab, transform.position, transform.rotation);
-		DestroyObject (this.gameObject);
-        if (transform.GetComponent<NetworkIdentity>())
-        {
+		if (explosionPrefab) {
+			GameObject explosion = Instantiate (explosionPrefab, transform.position, transform.rotation);
+			//NetworkServer.Spawn (explosion);
+		}
+		if (transform.GetComponent<NetworkIdentity>())
+		{
 			CmdDestroyNow();
-
-        }
+		}
+		DestroyObject (this.gameObject);
 	}
 
     [Command]
