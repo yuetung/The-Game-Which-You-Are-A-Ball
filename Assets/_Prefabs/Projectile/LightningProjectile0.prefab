@@ -196,6 +196,7 @@ MonoBehaviour:
   projectileSpeed: 0
   projectileDamage: 1
   explodeAnimationSeconds: 1
+  timeBeforeDestruction: 0
   explosionPrefab: {fileID: 0}
   angleAdjustment: 0
   AOEExplosionPrefab: {fileID: 0}
