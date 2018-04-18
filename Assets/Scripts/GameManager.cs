@@ -20,11 +20,12 @@ public class GameManager : MonoBehaviour {
 	public static int initGold = 0;
 	public bool isMultiPlayer = false;
 	public static bool fixedForMultiplayer;
+	public int fixedMaxHealthMultiPlayer = 10;
 	public static int fixedFireCap = 3;
 	public static int fixedWaterCap = 3;
 	public static int fixedLightningCap = 3;
 	public static int fixedEarthCap = 3;
-	public static int fixedMaxHealth = 10;
+	public static int fixedMaxHealth;
 
 	// Use this for initialization
 	void Awake () {
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour {
 
 	void Start(){
 		fixedForMultiplayer = gameObject.GetComponent<GameManager> ().isMultiPlayer;
+		fixedMaxHealth = gameObject.GetComponent<GameManager> ().fixedMaxHealthMultiPlayer;
 	}
 	
 	// Update is called once per frame
