@@ -188,8 +188,11 @@ public class NetworkManager_Custom : NetworkManager
         {
             StopClient();
             StopServer();
-            ServerChangeScene("Menu_Scene");
-            SceneManager.LoadScene(0);
+
+            CreateInternetMatch();
+
+            //ServerChangeScene("Menu_Scene");
+            //SceneManager.LoadScene(0);
             Debug.LogError("Restarting client");
         }
         else
