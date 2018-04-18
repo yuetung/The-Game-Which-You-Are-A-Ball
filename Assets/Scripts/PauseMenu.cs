@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour {
 
 	public static bool GameIsPaused = false;
+	public bool isSinglePlayer = true;
 	public GameObject pauseMenuUI;
 	public GameObject shopMenuUI;
 	private GameObject player;
@@ -44,7 +45,8 @@ public class PauseMenu : MonoBehaviour {
 
 	public void Pause(){
 		pauseMenuUI.SetActive (true);
-		Time.timeScale = 0f;
+		if (isSinglePlayer)
+			Time.timeScale = 0f;
 		GameIsPaused = true;
 		if (player==null)
 			player = GameObject.FindGameObjectWithTag ("Player");
