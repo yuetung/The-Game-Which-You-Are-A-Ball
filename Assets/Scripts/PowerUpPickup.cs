@@ -4,7 +4,7 @@ using UnityEngine.Networking;
 public class PowerUpPickup : NetworkBehaviour {
 
 	public PlayerController.ElementType elementType;
-    [SyncVar]
+	[SyncVar(hook = "OnSetEnergy")]
 	public int energy=10;
 	[Tooltip("explosion particle effect")]
 	public GameObject explosion;
@@ -12,6 +12,11 @@ public class PowerUpPickup : NetworkBehaviour {
 	// Use this for initialization
 	void Start () {
 		//transform.SetParent (GameObject.Find("PowerUps").transform);
+	}
+
+	void OnSetEnergy(int energy){
+		Debug.Log ("Setting client power up size");
+		setEnergy (energy);
 	}
 
 	// Collision with player

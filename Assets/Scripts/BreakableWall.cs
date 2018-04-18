@@ -44,7 +44,7 @@ public class BreakableWall : NetworkBehaviour {
 				//crystal.transform.localScale = new Vector3 (value / 50, value / 50, 1);
 				Debug.Log("Crystal"+ crystal);
 			}
-			destroyNow ();
+			Invoke ("destroyNow", 0.1f);
 		} else {
 			health -= damage;
 			if (_animator)
@@ -57,15 +57,10 @@ public class BreakableWall : NetworkBehaviour {
 		DestroyObject (this.gameObject);
         if (transform.GetComponent<NetworkIdentity>())
         {
-            StartCoroutine(destroySoon(1f));
+			CmdDestroyNow();
+
         }
 	}
-
-    IEnumerator destroySoon(float time)
-    {
-        yield return new WaitForSeconds(time);
-        CmdDestroyNow();
-    }
 
     [Command]
     void CmdDestroyNow()

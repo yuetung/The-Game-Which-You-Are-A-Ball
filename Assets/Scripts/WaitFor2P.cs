@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class WaitFor2P : NetworkBehaviour {
     NetworkManager_Custom nw;
@@ -35,10 +36,10 @@ public class WaitFor2P : NetworkBehaviour {
     {
         playerCount++;
         Debug.Log("Player " + playerCount + " connected");
-        if(playerCount >= 2)
-        {
-            nw.ServerChangeScene("Multiplayer_Scene");
-        }
+        //if(playerCount >= 2)
+        //{
+        //    nw.ServerChangeScene("Multiplayer_Scene");
+        //}
     }
     
     [Server]
@@ -46,6 +47,7 @@ public class WaitFor2P : NetworkBehaviour {
     {
         Debug.Log("coroutine started");
         yield return new WaitForSeconds(waitTime);
+		//SceneManager.LoadScene ("Multiplayer_Scene");
         nw.ServerChangeScene("Multiplayer_Scene");
     }
 

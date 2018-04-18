@@ -88,7 +88,6 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -110,8 +109,6 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-    debug:
-      m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1001 &17480386
 Prefab:
@@ -2596,7 +2593,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2612,7 +2608,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -10926,6 +10921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b85b2996207c884f8d9a231014acb48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMultiPlayer: 0
 --- !u!114 &1142833169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10991,7 +10987,7 @@ MonoBehaviour:
   mainEnergyDisplay: {fileID: 1872364135}
   mainElementDisplay: {fileID: 957070483}
   mainLevelDisplay: {fileID: 1914874548}
-  mainGameOverDisplay: {fileID: 1336610065}
+  GameOverCanvas: {fileID: 0}
   HealthBar: {fileID: 203431599}
   LoadingBar: {fileID: 557994045}
   LevelText2: {fileID: 183890224}
@@ -15132,7 +15128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1658053752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15221,6 +15217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf5072cdeafacc44a644cc4e7b1fbf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSinglePlayer: 1
   pauseMenuUI: {fileID: 837628886}
   shopMenuUI: {fileID: 2074604305}
 --- !u!1001 &1663091477
@@ -18130,6 +18127,33 @@ MonoBehaviour:
   healthDownButton: {fileID: 32251553}
   efficiencyUpButton: {fileID: 142183225}
   efficiencyDownButton: {fileID: 1462981128}
+  informationDisplay: {fileID: 0}
+  costDisplay: {fileID: 0}
+  backgroundInformationDisplay: {fileID: 0}
+  displayNum: 0
+  firePowerText: {fileID: 0}
+  waterPowerText: {fileID: 0}
+  lightningPowerText: {fileID: 0}
+  earthPowerText: {fileID: 0}
+  maxHealthText: {fileID: 0}
+  efficiencyText: {fileID: 0}
+  mePRECIOUS: {fileID: 0}
+  whereMePRECIOUS: {x: 0, y: 0, z: 0}
+  meFire: {fileID: 0}
+  whereMeFire: {x: 0, y: 0, z: 0}
+  meWater: {fileID: 0}
+  whereMeWater: {x: 0, y: 0, z: 0}
+  meLightning: {fileID: 0}
+  whereMeLightning: {x: 0, y: 0, z: 0}
+  meEarth: {fileID: 0}
+  whereMeEarth: {x: 0, y: 0, z: 0}
+  meHealth: {fileID: 0}
+  whereMeHealth: {x: 0, y: 0, z: 0}
+  fireGoldCost: {fileID: 0}
+  waterGoldCost: {fileID: 0}
+  lightningGoldCost: {fileID: 0}
+  earthGoldCost: {fileID: 0}
+  maxHealthGoldCost: {fileID: 0}
 --- !u!224 &2074604307
 RectTransform:
   m_ObjectHideFlags: 0
