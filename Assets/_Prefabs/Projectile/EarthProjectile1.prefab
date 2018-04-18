@@ -136,6 +136,7 @@ MonoBehaviour:
   maxValue: 0
   minValue: 0
   dropRate: 1
+  timeBeforeDestruction: 0.1
 --- !u!114 &114246948568902860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -216,6 +217,7 @@ MonoBehaviour:
   projectileSpeed: 0
   projectileDamage: 5
   explodeAnimationSeconds: 0.1
+  timeBeforeDestruction: 0
   explosionPrefab: {fileID: 1520980963323082, guid: 4dab4d0677f536a40a1e3caef9a4963e,
     type: 2}
   angleAdjustment: 0
