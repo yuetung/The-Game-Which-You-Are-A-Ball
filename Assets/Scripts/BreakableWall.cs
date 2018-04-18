@@ -58,7 +58,7 @@ public class BreakableWall : NetworkBehaviour {
 	public void destroyNow(){
 		if (explosionPrefab) {
 			GameObject explosion = Instantiate (explosionPrefab, transform.position, transform.rotation);
-			NetworkServer.Spawn (explosion);
+			//NetworkServer.Spawn (explosion);
 		}
 		if (transform.GetComponent<NetworkIdentity>())
 		{

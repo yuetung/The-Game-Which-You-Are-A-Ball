@@ -194,7 +194,7 @@ MonoBehaviour:
   elementType: 2
   projectileSpeed: 7
   projectileDamage: 0
-  explodeAnimationSeconds: 0
+  explodeAnimationSeconds: 0.2
   explosionPrefab: {fileID: 0}
   angleAdjustment: 270
   AOEExplosionPrefab: {fileID: 1557459952337356, guid: be01b064ab3440c48a2ca75fba2ec6e7,
