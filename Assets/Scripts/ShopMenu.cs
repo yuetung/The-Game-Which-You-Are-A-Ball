@@ -88,12 +88,12 @@ public class ShopMenu : MonoBehaviour {
 		efficiencyUpButton.onClick.AddListener (increaseEfficiency);
 		efficiencyDownButton.onClick.AddListener (decreaseEfficiency);
 
-		firePowerText.onClick.AddListener (infoFire);
-		waterPowerText.onClick.AddListener (infoWater);
-		lightningPowerText.onClick.AddListener (infoLightning);
-		earthPowerText.onClick.AddListener (infoEarth);
-		maxHealthText.onClick.AddListener (infoMaxHealth);
-		efficiencyText.onClick.AddListener (infoEfficiency);
+		//firePowerText.onClick.AddListener (infoFire);
+		//waterPowerText.onClick.AddListener (infoWater);
+		//lightningPowerText.onClick.AddListener (infoLightning);
+		//earthPowerText.onClick.AddListener (infoEarth);
+		//maxHealthText.onClick.AddListener (infoMaxHealth);
+		//efficiencyText.onClick.AddListener (infoEfficiency);
 
 
 		whereMePRECIOUS = mePRECIOUS.transform.position;

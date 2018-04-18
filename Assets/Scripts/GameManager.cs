@@ -18,7 +18,13 @@ public class GameManager : MonoBehaviour {
 	public static int gold;
 	public static int initMaxHealth = 50;
 	public static int initGold = 0;
-
+	public bool isMultiPlayer = false;
+	public static bool fixedForMultiplayer;
+	public static int fixedFireCap = 3;
+	public static int fixedWaterCap = 3;
+	public static int fixedLightningCap = 3;
+	public static int fixedEarthCap = 3;
+	public static int fixedMaxHealth = 10;
 
 	// Use this for initialization
 	void Awake () {
@@ -39,6 +45,10 @@ public class GameManager : MonoBehaviour {
             Debug.LogError("Multiple GameManagers");
         }
     }
+
+	void Start(){
+		fixedForMultiplayer = gameObject.GetComponent<GameManager> ().isMultiPlayer;
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -50,6 +60,8 @@ public class GameManager : MonoBehaviour {
 			// initialize the firecap at 1
 			PlayerPrefs.SetInt("Firecap",1);
 		}
+		if (fixedForMultiplayer) 
+			return fixedFireCap;
 		return PlayerPrefs.GetInt ("Firecap");
 	}
 
@@ -62,6 +74,8 @@ public class GameManager : MonoBehaviour {
 			// initialize the firecap at 1
 			PlayerPrefs.SetInt("Watercap",1);
 		}
+		if (fixedForMultiplayer) 
+			return fixedWaterCap;
 		return PlayerPrefs.GetInt ("Watercap");
 	}
 
@@ -74,6 +88,8 @@ public class GameManager : MonoBehaviour {
 			// initialize the firecap at 1
 			PlayerPrefs.SetInt("Lightningcap",1);
 		}
+		if (fixedForMultiplayer) 
+			return fixedLightningCap;
 		return PlayerPrefs.GetInt ("Lightningcap");
 	}
 
@@ -86,6 +102,8 @@ public class GameManager : MonoBehaviour {
 			// initialize the firecap at 1
 			PlayerPrefs.SetInt("Earthcap",1);
 		}
+		if (fixedForMultiplayer) 
+			return fixedLightningCap;
 		return PlayerPrefs.GetInt ("Earthcap");
 	}
 
@@ -99,6 +117,8 @@ public class GameManager : MonoBehaviour {
 			// initialize the firecap at 1
 			PlayerPrefs.SetInt("Maxhealth",initMaxHealth);
 		}
+		if (fixedForMultiplayer) 
+			return fixedMaxHealth;
 		return PlayerPrefs.GetInt ("Maxhealth");
 	}
 
