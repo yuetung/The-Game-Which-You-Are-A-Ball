@@ -117,7 +117,7 @@ public class ProjectileController : NetworkBehaviour {
 			if (belongToPlayer) {
 				aoeExplosion.GetComponent<AOEExplosion> ().belongsToPlayer();
 			}
-			Invoke ("SetScaleToZero", 0.7f);
+			//Invoke ("SetScaleToZero", 0.7f);
 		}
 		Invoke ("DestroyNow",timeBeforeDestruction);
 	}
