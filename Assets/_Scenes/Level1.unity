@@ -3807,7 +3807,7 @@ Prefab:
     - target: {fileID: 114391248363121152, guid: 634449adabb8902488d543d97db69c90,
         type: 2}
       propertyPath: tier3Time
-      value: 150
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 114391248363121152, guid: 634449adabb8902488d543d97db69c90,
         type: 2}
@@ -10949,6 +10949,74 @@ Prefab:
     - target: {fileID: 1868641963676806, guid: 62d67d9379fbd8e4d9ff8cfc04aeea5a, type: 2}
       propertyPath: m_TagString
       value: Hint
+      objectReference: {fileID: 0}
+    - target: {fileID: 114544685097159706, guid: 62d67d9379fbd8e4d9ff8cfc04aeea5a,
+        type: 2}
+      propertyPath: m_text
+      value: '1) Collect Power-up to charge Energy Ring (top right corner)
+
+        2) Swipe to shoot, shooting consumes energy'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114544685097159706, guid: 62d67d9379fbd8e4d9ff8cfc04aeea5a,
+        type: 2}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114544685097159706, guid: 62d67d9379fbd8e4d9ff8cfc04aeea5a,
+        type: 2}
+      propertyPath: m_textInfo.characterCount
+      value: 104
+      objectReference: {fileID: 0}
+    - target: {fileID: 114544685097159706, guid: 62d67d9379fbd8e4d9ff8cfc04aeea5a,
+        type: 2}
+      propertyPath: m_textInfo.spaceCount
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 114544685097159706, guid: 62d67d9379fbd8e4d9ff8cfc04aeea5a,
+        type: 2}
+      propertyPath: m_textInfo.wordCount
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 114544685097159706, guid: 62d67d9379fbd8e4d9ff8cfc04aeea5a,
+        type: 2}
+      propertyPath: m_textInfo.lineCount
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114544685097159706, guid: 62d67d9379fbd8e4d9ff8cfc04aeea5a,
+        type: 2}
+      propertyPath: m_margin.z
+      value: 42.933777
+      objectReference: {fileID: 0}
+    - target: {fileID: 224785523903749286, guid: 62d67d9379fbd8e4d9ff8cfc04aeea5a,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.7299998
+      objectReference: {fileID: 0}
+    - target: {fileID: 224785523903749286, guid: 62d67d9379fbd8e4d9ff8cfc04aeea5a,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 2.7500002
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410333709809414, guid: 62d67d9379fbd8e4d9ff8cfc04aeea5a, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.8274903
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410333709809414, guid: 62d67d9379fbd8e4d9ff8cfc04aeea5a, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.4504133
+      objectReference: {fileID: 0}
+    - target: {fileID: 114544685097159706, guid: 62d67d9379fbd8e4d9ff8cfc04aeea5a,
+        type: 2}
+      propertyPath: m_margin.x
+      value: 40.155796
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410333709809414, guid: 62d67d9379fbd8e4d9ff8cfc04aeea5a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410333709809414, guid: 62d67d9379fbd8e4d9ff8cfc04aeea5a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.19
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62d67d9379fbd8e4d9ff8cfc04aeea5a, type: 2}
