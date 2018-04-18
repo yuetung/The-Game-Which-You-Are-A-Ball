@@ -57,11 +57,8 @@ public class BreakableWall : NetworkBehaviour {
 		DestroyObject (this.gameObject);
         if (transform.GetComponent<NetworkIdentity>())
         {
-<<<<<<< HEAD
-			CmdDestroyNow ();
-=======
-			Invoke("CmdDestroyNow",0.3f);
->>>>>>> 6653df8eeb1a28ebeaea4020f52bfc5b308eb93a
+			CmdDestroyNow();
+
         }
 	}
 
