@@ -44,7 +44,7 @@ public class BreakableWall : NetworkBehaviour {
 				//crystal.transform.localScale = new Vector3 (value / 50, value / 50, 1);
 				Debug.Log("Crystal"+ crystal);
 			}
-			Invoke ("destroyNow", 0.1f);
+			Invoke ("destroyNow", 0.2f);
 		} else {
 			health -= damage;
 			if (_animator)
