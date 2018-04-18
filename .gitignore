@@ -4,3 +4,4 @@
 .collabignore
 master
 Assembly-CSharp.csproj
+Assets/Scripts/BreakableWall.cs
